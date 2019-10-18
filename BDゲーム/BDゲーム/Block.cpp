@@ -44,21 +44,13 @@ void CObjBlock::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//背景表示
-	src.m_top = 256.0f;
-	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 800.f;
-	dst.m_bottom = 600.0f;
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	
 
 	//マップチップによるblock設置
 	//マップチップによるblock設置
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 320.0f;
+	src.m_left = 0.0f;
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = 64.0f;
 
@@ -75,7 +67,7 @@ void CObjBlock::Draw()
 				dst.m_bottom = 64.0;
 
 				//描画
-				Draw::Draw(0, &src, &dst, c, 0.0f);
+				Draw::Draw(1, &src, &dst, c, 0.0f);
 			}
 		}
 	}
