@@ -29,7 +29,7 @@ void CObjHero::Action()
 	m_vy = 0.0f;
 
 	//ƒL[‚Ì“ü—Í•ûŒü
-	if (Input::GetVKey(VK_RIGHT) == true)
+	if (Input::GetVKey(VK_RIGHT) == true)//‰E
 	{
 		m_vx =+1.2f;
 		m_posture = 0.0f;
