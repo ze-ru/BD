@@ -79,7 +79,9 @@ void CObjBlock::Action()
 					//âE
 					if ((r < 45 && r > 0)|| r > 315)
 					{
-						
+						hero->SetRight(true);
+						hero->SetX(x + 64.0f);
+						hero->SetVX(-hero->GetVX()*0.1f);
 					}
 
 					//è„
@@ -93,7 +95,9 @@ void CObjBlock::Action()
 					//ç∂
 					if (r < 135 & r < 225)
 					{
-
+						hero->SetLeft(true);
+						hero->SetX(x - 64.0f);
+						hero->SetVX(-hero->GetVX()*0.1f);
 					}
 
 					//â∫
