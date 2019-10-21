@@ -131,7 +131,9 @@
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="ObjStage1.cpp" />
+    <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneStage1.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
@@ -150,7 +152,9 @@
     <ClInclude Include="Hero.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjStage1.h" />
+    <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneStage1.h" />
+    <ClInclude Include="SceneTitle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
