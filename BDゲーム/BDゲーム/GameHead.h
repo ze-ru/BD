@@ -6,6 +6,7 @@ enum OBJ_NAME
 	OBJ_HERO,
 	OBJ_BLOCK,
 	OBJ_STAGE1,
+	OBJ_TITLE,
 	OBJ_NO_NAME,	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -55,13 +56,15 @@ struct UserData
 #include"Hero.h"
 #include"Block.h"
 #include"ObjStage1.h"
+#include"ObjTitle.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include"SceneStage1.h"
+#include"SceneTitle.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneStage1
+#define SET_GAME_START  CSceneTitle
 //-----------------------------------------------
