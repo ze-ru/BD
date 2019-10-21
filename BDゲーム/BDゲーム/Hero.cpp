@@ -20,11 +20,26 @@ void CObjHero::Init()
 
 	m_ani_time = 0;
 	m_ani_frame = 1;
+
+	//blockとの衝突状態確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
 }
 
 //アクション
 void CObjHero::Action()
 {
+	//Spaceキーでジャンプ
+	if (Input::GetVKey(' ') == true)
+	{
+		if (m_hit_down == true)
+		{
+			m_vy = -18;
+		}
+	}
+
 	//キーの入力方向
 	if (Input::GetVKey(VK_RIGHT) == true)//右
 	{
@@ -63,7 +78,7 @@ void CObjHero::Action()
 	m_vx += -(m_vx*0.098);
 
 	//自由落下運動
-
+	m_vy += 9.8/(16.0f);
 
 	//位置の更新
 	m_px += m_vx;
