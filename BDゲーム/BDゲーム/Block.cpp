@@ -64,7 +64,7 @@ void CObjBlock::Action()
 					float vy = hy - y;
 
 					//長さを求める
-					float len = sqrt(vx*vx + vy * vy);
+					float len = sqrt(vx * vx + vy * vy);
 
 					//角度を求める
 					float r = atan2(vy, vx);
@@ -74,42 +74,46 @@ void CObjBlock::Action()
 						r = abs(r);
 					else
 						r = 360.0f - abs(r);
-
-					//角度で上下左右を判定
+				//lenがある一定の長さより短い場合判定に入る
+					if (len < 88.0f)
+					{
+						//角度で上下左右を判定
 					//右
-					if ((r < 45 && r > 0)|| r > 315)
-					{
-						hero->SetRight(true);
-						hero->SetX(x + 64.0f);
-						hero->SetVX(-hero->GetVX()*0.1f);
-					}
-
-					//上
-					if (r > 45 && r < 135)
-					{
-						hero->SetDown(true);
-						hero->SetY(y-64.0f);
-						hero->SetVY(0.0f);
-					}
-
-					//左
-					if (r < 135 & r < 225)
-					{
-						hero->SetLeft(true);
-						hero->SetX(x - 64.0f);
-						hero->SetVX(-hero->GetVX()*0.1f);
-					}
-
-					//下
-					if (r > 225 && r < 315)
-					{
-						hero->SetUp(true);
-						hero->SetY(y + 64.0f);
-						if (hero->GetVY() < 0)
+						if ((r < 45 && r > 0) || r > 315)
 						{
+							hero->SetRight(true);
+							hero->SetX(x + 64.0f);
+							hero->SetVX(-hero->GetVX()*0.1f);
+						}
+
+						//上
+						if (r > 45 && r < 135)
+						{
+							hero->SetDown(true);
+							hero->SetY(y - 64.0f);
 							hero->SetVY(0.0f);
 						}
-					}
+
+						//左
+						if (r > 135 & r < 225)
+						{
+							hero->SetLeft(true);
+							hero->SetX(x - 64.0f);
+							hero->SetVX(-hero->GetVX()*0.1f);
+						}
+
+						//下
+						if (r > 225 && r < 315)
+						{
+							hero->SetUp(true);
+							hero->SetY(y + 64.0f);
+							if (hero->GetVY() < 0)
+							{
+								hero->SetVY(0.0f);
+							}
+						}
+				    }
+					
 					
 				}
 			}
