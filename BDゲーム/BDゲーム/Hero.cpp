@@ -83,6 +83,12 @@ void CObjHero::Action()
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+	//開始位置から左に行かない処理
+	if (m_px < 0)
+	{
+		m_px = 0;
+	}
 }
 
 //ドロー
