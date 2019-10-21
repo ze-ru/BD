@@ -29,17 +29,19 @@ CSceneStage1::~CSceneStage1()
 void CSceneStage1::InitScene()
 {
 	//グラフィック読み込み
-	Draw::LoadImageW(L"ORIGIN.png",0,TEX_SIZE_512);
-	Draw::LoadImageW(L"stage1.png", 1, TEX_SIZE_512);
-	Draw::LoadImageW(L"BackGround.png", 2, TEX_SIZE_512);
+	Draw::LoadImageW(L"ORIGIN.png",1,TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage2..png",0, TEX_SIZE_512);
+	Draw::LoadImageW(L"hage.jpg", 2, TEX_SIZE_512);
 
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
 	CObjBlock*objb = new CObjBlock();
-	Objs::InsertObj(objb, OBJ_BLOCK, 9);
+	Objs::InsertObj(objb, OBJ_BLOCK, 11);
+
 	CObjStage1*objs1 = new CObjStage1();
-	Objs::InsertObj(objs1, OBJ_STAGE1, 8);
+	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
 }
 
 //実行中メソッド

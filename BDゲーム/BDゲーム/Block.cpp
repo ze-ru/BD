@@ -1,7 +1,7 @@
 //使用するヘッダーファイル
-#include "GameL/DrawTexture.h"
-#include "GameL/WinInputs.h"
-#include "GameL/SceneManager.h"
+#include "GameL\DrawTexture.h"
+#include "GameL\WinInputs.h"
+#include "GameL\SceneManager.h"
 
 #include "GameHead.h"
 #include "Block.h"
@@ -47,7 +47,6 @@ void CObjBlock::Draw()
 	
 
 	//マップチップによるblock設置
-	//マップチップによるblock設置
 	//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -61,14 +60,15 @@ void CObjBlock::Draw()
 			if (m_map[i][j] > 0)
 			{
 				//表示位置の設定
-				dst.m_top = 0.0f;
-				dst.m_left = 0.0f;
-				dst.m_right = 64.0f;
-				dst.m_bottom = 64.0;
+				dst.m_top = i *64.0f;
+				dst.m_left = j *64.0f;
+				dst.m_right = dst.m_left + 64.0f;
+				dst.m_bottom = dst.m_top + 64.0f;
 
 				//描画
-				Draw::Draw(1, &src, &dst, c, 0.0f);
+				Draw::Draw(0, &src, &dst, c, 0.0f);
 			}
 		}
 	}
+	
 }

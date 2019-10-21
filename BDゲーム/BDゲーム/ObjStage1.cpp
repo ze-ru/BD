@@ -25,8 +25,8 @@ void CObjStage1::Draw()
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 360.0f;
-	src.m_bottom = 360.0f;
+	src.m_right = 5532.0f;
+	src.m_bottom = 3684.0f;
 
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;

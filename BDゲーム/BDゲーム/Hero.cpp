@@ -25,40 +25,34 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	//移動ベクトルの破棄
-	m_vy = 0.0f;
-
 	//キーの入力方向
 	if (Input::GetVKey(VK_RIGHT) == true)//右
 	{
-		m_vx =+1.2f;
+		m_vx =+4.0f;
 		m_posture = 0.0f;
 		m_ani_time += 1;
 	}
 
 	else if (Input::GetVKey(VK_LEFT) == true)//左
 	{
-		m_vx =-1.2f;
+		m_vx =-4.0f;
 		m_posture = 1.0f;
 		m_ani_time += 1;
 	}
 
 	else
 	{
-		m_ani_frame = 1;
+		m_ani_frame = 0;
 		m_ani_time = 0;
 	}
 
-	if (m_ani_time > 2)
+	if (m_ani_time > 6)
 	{
 		m_ani_frame += 1;
-		
+		m_ani_time = 0;
 	}
 
-	if (m_ani_frame == 3)
-	{
-		m_ani_frame = 3;
-	}
+	
 
 	if (m_ani_frame == 4)
 	{
@@ -67,6 +61,9 @@ void CObjHero::Action()
 
 	//摩擦
 	m_vx += -(m_vx*0.098);
+
+	//自由落下運動
+
 
 	//位置の更新
 	m_px += m_vx;
@@ -78,7 +75,7 @@ void CObjHero::Draw()
 {
 	int AniDate[4] =
 	{
-		1,2,3,0,
+		1,2,3,4,
 	};
 
 	//描画カラー情報
@@ -89,8 +86,8 @@ void CObjHero::Draw()
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 0.0f + AniDate[m_ani_frame] * 64;
-	src.m_right = 64.0f + AniDate[m_ani_frame]*64;
+	src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f+1.0f;
+	src.m_right = src.m_left+64.0f-2.0f;
 	src.m_bottom = 64.0f;
 
 	//表示位置の設定
@@ -100,6 +97,6 @@ void CObjHero::Draw()
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(1, &src, &dst, c, 0.0f);
 
 }

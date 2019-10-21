@@ -4,6 +4,8 @@
 enum OBJ_NAME
 {
 	OBJ_HERO,
+	OBJ_BLOCK,
+	OBJ_STAGE1,
 	OBJ_NO_NAME,	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -51,6 +53,8 @@ struct UserData
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include"Hero.h"
+#include"Block.h"
+#include"ObjStage1.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
