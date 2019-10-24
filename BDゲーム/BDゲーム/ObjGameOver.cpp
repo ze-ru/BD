@@ -1,4 +1,4 @@
-//g—p‚·‚éƒwƒbƒ_[ƒtƒ@ƒCƒ‹
+ï»¿//ä½¿ç”¨ã™ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
 #include "GameL\DrawFont.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
@@ -6,20 +6,31 @@
 #include "GameHead.h"
 #include "ObjGameOver.h"
 
-//g—p‚·‚éƒl[ƒ€ƒXƒy[ƒX
+//ä½¿ç”¨ã™ã‚‹ãƒãƒ¼ãƒ ã‚¹ãƒšãƒ¼ã‚¹
 using namespace GameL;
 
-//ƒCƒjƒVƒƒƒ‰ƒCƒY
+//ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚º
 void CObjGameOver::Init()
 {
-	m_key_flag = false;//ƒL[ƒtƒ‰ƒO
+	m_key_flag = false;//ã‚­ãƒ¼ãƒ•ãƒ©ã‚°
+	key = false;
 }
 
-//ƒAƒNƒVƒ‡ƒ“
+//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 void CObjGameOver::Action()
 {
-	//ƒGƒ“ƒ^[ƒL[‚ğ‰Ÿ‚µ‚ÄƒV[ƒ“FƒQ[ƒ€Title‚ÉˆÚs‚·‚é
-	if (Input::GetVKey(VK_RETURN) == true)
+	if (Input::GetVKey(VK_UP) == true)
+	{
+		key = false;
+	}
+	if (Input::GetVKey(VK_DOWN) == true)
+	{
+		key = true;
+	}
+
+
+	//ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã‚·ãƒ¼ãƒ³ï¼šã‚²ãƒ¼ãƒ Titleã«ç§»è¡Œã™ã‚‹
+	if (Input::GetVKey(VK_RETURN) == true&&key==false)
 	{
 		if (m_key_flag == true)
 		{
@@ -27,17 +38,39 @@ void CObjGameOver::Action()
 			m_key_flag = false;
 		}
 	}
+	if (Input::GetVKey(VK_RETURN) == true && key == true)
+	{
+		if (m_key_flag == true)
+		{
+			Scene::SetScene(new CSceneStage1());
+			m_key_flag = false;
+		}
+	}
 	else
 	{
 		m_key_flag = true;
 	}
+
+
+
 }
-//ƒhƒ[
+//ãƒ‰ãƒ­ãƒ¼
 void CObjGameOver::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	Font::StrDraw(L"YOU LOST", 324, 224, 32, c);
 	Font::StrDraw(L"GAME OVER", 324, 264, 32, c);
-	Font::StrDraw(L"NEXT_CHALLENGE:ENTER_KEY", 204, 314, 32, c);
+
+	if (key == false) 
+	{
+		Font::StrDraw(L"â–¶ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹", 224, 314, 32, c);
+		Font::StrDraw(L" ã¤ã¥ãã‹ã‚‰", 224, 344, 32, c);
+	}
+	if (key == true)
+	{
+		Font::StrDraw(L" ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹", 224, 314, 32, c);
+		Font::StrDraw(L"â–¶ã¤ã¥ãã‹ã‚‰", 224, 344, 32, c);
+	}
+	
 }

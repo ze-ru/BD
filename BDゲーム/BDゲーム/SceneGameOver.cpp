@@ -29,10 +29,7 @@ CSceneGameOver::~CSceneGameOver()
 //ゲームメイン初期化メソッド
 void CSceneGameOver::InitScene()
 {
-	//出力させる文字のグラフィックを作成
-	Font::SetStrTex(L"YOU LOST");
-	Font::SetStrTex(L"GAME OVER");
-	Font::SetStrTex(L"NEXT_CHALLENGE:ENTER_KEY");
+	
 
 	
 
