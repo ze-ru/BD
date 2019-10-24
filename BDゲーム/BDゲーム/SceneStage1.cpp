@@ -47,6 +47,9 @@ void CSceneStage1::InitScene()
 
 	CObjLockEnemy*obje2 = new CObjLockEnemy();
 	Objs::InsertObj(obje2, OBJ_LOCKENEMY, 10);
+
+	CObjWolkEnemy*obje1 = new CObjWolkEnemy();
+	Objs::InsertObj(obje1, OBJ_WOLKENEMY, 10);
 }
 
 //実行中メソッド
