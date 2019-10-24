@@ -14,4 +14,5 @@ public:
 	void Action();
 	void Draw();
 private:
+	int m_x;
 };
