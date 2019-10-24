@@ -24,7 +24,7 @@ void CObjStageUi::Action()
 	{
 		m_ani_time++;
 	}
-	if (m_ani_time == 9)
+	if (m_ani_time == 4)
 	{
 		m_ani_frame++;
 		m_ani_time = 0;
@@ -33,6 +33,10 @@ void CObjStageUi::Action()
 	{
 		m_hp++;
 		m_ani_frame = 0;
+	}
+	if (m_hp >= 50)
+	{
+		Scene::SetScene(new CSceneGameOver());
 	}
 
 }
