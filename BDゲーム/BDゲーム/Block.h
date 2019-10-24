@@ -14,5 +14,7 @@ public :
 	void Action();   //アクション
 	void Draw();     //ドロー
 private:
-	int m_map[10][10]; //マップ情報（仮）
+	int m_map[10][20]; //マップ情報（仮）
+
+	float m_scroll; //左右スクロール用
 };

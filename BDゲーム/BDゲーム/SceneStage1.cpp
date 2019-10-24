@@ -31,7 +31,7 @@ void CSceneStage1::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"ORIGIN.png",1,TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage2..png",0, TEX_SIZE_512);
-	Draw::LoadImageW(L"hage.jpg", 2, TEX_SIZE_512);
+	Draw::LoadImageW(L"stage1 Back.jpg", 2, TEX_SIZE_512);
 
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
