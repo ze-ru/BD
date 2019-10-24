@@ -14,5 +14,8 @@ public:
 	void Action();
 	void Draw();
 private:
-	int m_x;
+	int m_hp;
+	int m_ani_time;
+	int m_ani_frame;
+
 };

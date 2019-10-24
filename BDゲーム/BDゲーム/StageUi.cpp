@@ -12,13 +12,29 @@ using namespace GameL;
 //イニシャライズ
 void CObjStageUi::Init()
 {
-	
+	m_hp = 0;
+	m_ani_time = 0;
+	m_ani_frame = 0;
 }
 
 //アクション
 void CObjStageUi::Action()
 {
-	
+	if (m_hp <50) 
+	{
+		m_ani_time++;
+	}
+	if (m_ani_time == 9)
+	{
+		m_ani_frame++;
+		m_ani_time = 0;
+	}
+	if (m_ani_frame == 9)
+	{
+		m_hp++;
+		m_ani_frame = 0;
+	}
+
 }
 
 //ドロー
@@ -35,6 +51,7 @@ void CObjStageUi::Draw()
 	src.m_left = 0.0f;
 	src.m_right = 128.0f;
 	src.m_bottom = 24.0f;
+	
 
 	//表示位置の設定
 	dst.m_top = 0.0f;
@@ -42,6 +59,24 @@ void CObjStageUi::Draw()
 	dst.m_right = 128.0f;
 	dst.m_bottom = 24.0f;
 
+	
+
 	//描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);
+
+	src.m_top = 2.0f;
+	src.m_left = 128.0f;
+	src.m_right = 130.0f;
+	src.m_bottom = 22.0f;
+
+	
+		dst.m_top = 2.0f;
+		dst.m_left = 2.0f;
+		dst.m_right = 128.0f-m_hp*2.5f;
+		dst.m_bottom = 22.0f;
+
+		Draw::Draw(5, &src, &dst, c, 0.0f);
+	
+	
+
 }
