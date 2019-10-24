@@ -7,9 +7,13 @@ enum OBJ_NAME
 	OBJ_BLOCK,
 	OBJ_STAGE1,
 	OBJ_TITLE,
+	OBJ_LOCKENEMY,
+	OBJ_WOLKENEMY,
+	OBJ_STAGEUI,
 	OBJ_NO_NAME,	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
+	OBJ_GAME_OVER,
 };
 //------------------------------------------------
 
@@ -57,11 +61,16 @@ struct UserData
 #include"Block.h"
 #include"ObjStage1.h"
 #include"ObjTitle.h"
+#include"LockEnemy.h"
+#include"WolkEnemy.h"
+#include "ObjGameOver.h"
+#include"StageUi.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include"SceneStage1.h"
 #include"SceneTitle.h"
+#include "SceneGameOver.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

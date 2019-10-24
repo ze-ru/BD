@@ -10,25 +10,15 @@
 //使用するネームスペース
 using namespace GameL;
 
+CObjBlock::CObjBlock(int map[11][157])
+{
+	//マップデータをコピー
+	memcpy(m_map, map, sizeof(int)*(11* 157));
+}
 //イニシャライズ
 void CObjBlock::Init()
 {
-	//マップ情報
-	int block_data[10][10] =
-	{
-		{0,0,0,0,0,0,0,0,0,0,},
-		{0,0,0,0,0,0,0,1,1,0,},
-		{0,0,0,0,0,0,0,0,0,0,},
-		{0,0,0,0,0,0,0,0,0,0,},
-		{0,0,0,0,0,0,0,0,0,0,},
-		{0,0,0,0,0,0,0,0,0,0,},
-		{0,0,0,1,1,1,0,0,0,1,},
-		{0,0,0,0,0,0,0,0,0,1,},
-		{0,0,0,0,0,0,0,0,0,1,},
-		{1,1,1,1,1,1,1,1,1,1,},
-	};
-	//マップデータをコピー
-	memcpy(m_map, block_data, sizeof(int)*(10 * 10));
+	m_scroll = 0.0f;
 }
 //アクション
 void CObjBlock::Action()
@@ -38,29 +28,43 @@ void CObjBlock::Action()
 	float hx = hero->GetX();
 	float hy = hero->GetY();
 
+	//後方スクロールライン
+	if (hx < 80)
+	{
+		hero->SetX(80);//主人公はラインを超えないようにする
+		m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
+	}
+
+	//前方スクロールライン
+	if (hx > 300)
+	{
+		hero->SetX(300);
+		m_scroll -= hero->GetVX();
+	}
+
 	hero->SetUp(false);
 	hero->SetDown(false);
 	hero->SetLeft(false);
 	hero->SetRight(false);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 157; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map[i][j] > 0)
 			{
 				//要素番号を座標に変更
 				float x = j * 64.0f;
-				float y = i * 64.0f;
+				float y = i * 64.0f-64.0f;
 
 				//主人公とブロックの当たり判定
-				if ((hx+64.0f>x) && (hx<x+64.0f) && (hy+64.0f>y) && (hy<y+64.0f))
+				if ((hx+(-m_scroll)+64.0f>x) && (hx+(-m_scroll)<x+64.0f) && (hy+64.0f>y) && (hy<y+64.0f))
 				{
 					//上下左右判定
 
 					//vectorの作成
-					float vx = hx - x;
+					float vx =(hx+(-m_scroll)) - x;
 					float vy = hy - y;
 
 					//長さを求める
@@ -82,7 +86,7 @@ void CObjBlock::Action()
 						if ((r < 45 && r > 0) || r > 315)
 						{
 							hero->SetRight(true);
-							hero->SetX(x + 64.0f);
+							hero->SetX(x + 64.0f+(m_scroll));
 							hero->SetVX(-hero->GetVX()*0.1f);
 						}
 
@@ -98,7 +102,7 @@ void CObjBlock::Action()
 						if (r > 135 & r < 225)
 						{
 							hero->SetLeft(true);
-							hero->SetX(x - 64.0f);
+							hero->SetX(x - 64.0f+(m_scroll));
 							hero->SetVX(-hero->GetVX()*0.1f);
 						}
 
@@ -119,6 +123,8 @@ void CObjBlock::Action()
 			}
 		}
 	}
+
+	
 }
 //ドロー
 void CObjBlock::Draw()
@@ -139,15 +145,16 @@ void CObjBlock::Draw()
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = 64.0f;
 
-	for (int i = 0; i < 10; i++)
+
+	for (int i = 0; i <11 ; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 157; j++)
 		{
 			if (m_map[i][j] > 0)
 			{
 				//表示位置の設定
-				dst.m_top = i *64.0f;
-				dst.m_left = j *64.0f;
+				dst.m_top = i *64.0f-64.0f;
+				dst.m_left = j *64.0f+m_scroll;
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
 

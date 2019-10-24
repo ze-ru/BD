@@ -12,7 +12,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_px = 0.0f;//位置
+	m_px = 100.0f;//位置
 	m_py = 0.0f;
 	m_vx = 0.0f;//移動ベクトル
 	m_vy = 0.0f;
@@ -36,7 +36,8 @@ void CObjHero::Action()
 	{
 		if (m_hit_down == true)
 		{
-			m_vy = -18;
+			if(m_py>0)
+			m_vy = -12;
 		}
 	}
 
@@ -78,7 +79,7 @@ void CObjHero::Action()
 	m_vx += -(m_vx*0.098);
 
 	//自由落下運動
-	m_vy += 9.8/(20.0f);
+	m_vy += 5.0/(20.0f);
 
 	//位置の更新
 	m_px += m_vx;
@@ -88,6 +89,10 @@ void CObjHero::Action()
 	if (m_px < 0)
 	{
 		m_px = 0;
+	}
+	if (m_py < 0)
+	{
+		m_vy += 0.5f;
 	}
 }
 
