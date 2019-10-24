@@ -129,12 +129,15 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="ObjGameOver.cpp" />
+    <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="LockEnemy.cpp" />
     <ClCompile Include="ObjStage1.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneStage1.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="StageUi.cpp" />
     <ClCompile Include="WolkEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,10 +157,13 @@
     <ClInclude Include="Hero.h" />
     <ClInclude Include="LockEnemy.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjStage1.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneStage1.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="StageUi.h" />
     <ClInclude Include="WolkEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
