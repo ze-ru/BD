@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\Title">
+      <UniqueIdentifier>{b296334e-60c9-4943-b360-8866c85cbf2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -66,11 +69,11 @@
     <ClCompile Include="Block.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="SceneTitle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTitle.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソース ファイル\Title</Filter>
     </ClCompile>
     <ClCompile Include="UtilityModule.cpp">
       <Filter>ソース ファイル</Filter>
@@ -128,11 +131,11 @@
     <ClInclude Include="Block.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneTitle.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjTitle.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソース ファイル\Title</Filter>
     </ClInclude>
     <ClInclude Include="UtilityModule.h">
       <Filter>ソース ファイル</Filter>
