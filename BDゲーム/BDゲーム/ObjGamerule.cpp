@@ -11,13 +11,25 @@ using namespace GameL;
 //イニシャライズ
 void CObjGamerule::Init()
 {
-
+	m_time = 0;
+	m_frame = 0;
 }
 
 //アクション
 void CObjGamerule::Action()
 {
-	if (Input::GetVKey(VK_RETURN) == true)
+	if (m_frame == 0)
+	{
+		m_time++;
+	}
+	
+	if (m_time > 60)
+	{
+		m_time = 0;
+		m_frame = 1;
+	}
+	
+	if (Input::GetVKey(VK_RETURN) == true&&m_frame==1)
 	{
 		Scene::SetScene(new CSceneStage1());
 	}

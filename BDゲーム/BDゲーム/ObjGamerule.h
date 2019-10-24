@@ -15,4 +15,6 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:
+	int m_time;
+	int m_frame;
 };

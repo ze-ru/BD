@@ -1,70 +1,78 @@
-//Žg—p‚·‚éƒwƒbƒ_[ƒtƒ@ƒCƒ‹
-#include"GameL\DrawTexture.h"
+ï»¿//ä½¿ç”¨ã™ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
+
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
 #include"GameL\DrawFont.h"
 
 #include"ObjTitle.h"
-#include"SceneStage1.h"
-#include"Gamerule.h"
 
-//Žg—p‚·‚éƒl[ƒ€ƒXƒy[ƒX
+#include"GameHead.h"
+
+//ä½¿ç”¨ã™ã‚‹ãƒãƒ¼ãƒ ã‚¹ãƒšãƒ¼ã‚¹
 using namespace GameL;
 
-//ƒCƒjƒVƒƒƒ‰ƒCƒY
+//ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚º
 void CObjTitle::Init()
 {
 	m_mou_x = 0.0f;
 	m_mou_y = 0.0f;
 	m_mou_r = false;
 	m_mou_l = false;
+	m_key_flag = false;//ã‚­ãƒ¼ãƒ•ãƒ©ã‚°
+	key = true;
 }
 
-//ƒAƒNƒVƒ‡ƒ“
+//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 void CObjTitle::Action()
 {
-	//ƒ}ƒEƒX‚ÌˆÊ’u‚ðŽæ“¾
-	m_mou_x = (float)Input::GetPosX();
-	m_mou_y = (float)Input::GetPosY();
-	//ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô
-	m_mou_r = Input::GetMouButtonR();
-	m_mou_l = Input::GetMouButtonL();
-
-	//ƒ}ƒEƒX‚ÌˆÊ’u‚ÆƒNƒŠƒbƒN‚·‚éêŠ‚Å“–‚½‚è”»’è
-	if (m_mou_x > 280 && m_mou_x < 500 && m_mou_y > 400 && m_mou_y < 430)
+	if (Input::GetVKey(VK_UP) == true)
 	{
-		//ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚çƒƒCƒ“‚É‘JˆÚ
-		if (m_mou_r == true || m_mou_l == true)
+		key = true;
+	}
+	if (Input::GetVKey(VK_DOWN) == true)
+	{
+		key = false;
+	}
+
+	if (Input::GetVKey(VK_RETURN) == true && key == false)
+	{
+		
+		if (m_key_flag == true)
+		{
+			Scene::SetScene(new CSceneStage1());
+			m_key_flag == false;
+		}
+	}
+	if (Input::GetVKey(VK_RETURN) == true && key == true)
+	{
+		if (m_key_flag == true)
 		{
 			Scene::SetScene(new CSceneGamerule());
+			m_key_flag == false;
 		}
+	}
+	else
+	{
+		m_key_flag = true;
 	}
 }
 
-//ƒhƒ[
+//ãƒ‰ãƒ­ãƒ¼
 void CObjTitle::Draw()
 {
 	float c[4] = { 1,1,1,1 };
 
-	//‰¼ƒ}ƒEƒX‚ÌˆÊ’u•\Ž¦
-	wchar_t str[256];
-	swprintf_s(str, L"x=%f,y=%f", m_mou_x, m_mou_y);
-	Font::StrDraw(str, 20, 20,12, c);
-	//‰¼ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“ó‘Ô
-	if (m_mou_r == true)
-		Font::StrDraw(L"R=‰Ÿ‚µ‚Ä‚é", 20, 30, 12, c);
-	else
-		Font::StrDraw(L"R=‰Ÿ‚µ‚Ä‚È‚¢", 20, 30, 12, c);
 
-	if (m_mou_l == true)
-		Font::StrDraw(L"L=‰Ÿ‚µ‚Ä‚é", 20, 40, 12, c);
-	else
-		Font::StrDraw(L"L=‰Ÿ‚µ‚Ä‚È‚¢", 20, 40, 12, c);
+	Font::StrDraw(L"LOST", 340, 200, 64, c);
+	if (key == true)
+	{
+		Font::StrDraw(L"â–¶ã¯ã˜ã‚ã‹ã‚‰", 224, 314, 32, c);
+		Font::StrDraw(L" ã¤ã¥ãã‹ã‚‰", 224, 344, 32, c);
+	}
 
-	//ƒ^ƒCƒgƒ‹
-	Font::StrDraw(L"Lost", 320, 200, 80, c);
-
-	//ƒNƒŠƒbƒN‚·‚éêŠ
-	//Game‚ÉˆÚsƒNƒŠƒbƒNêŠ
-	Font::StrDraw(L"ŸClickStart", 300, 400, 30, c);
+	if (key == false)
+	{
+		Font::StrDraw(L" ã¯ã˜ã‚ã‹ã‚‰", 224, 314, 32, c);
+		Font::StrDraw(L"â–¶ã¤ã¥ãã‹ã‚‰", 224, 344, 32, c);
+	}
 }
