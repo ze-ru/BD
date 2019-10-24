@@ -16,8 +16,8 @@ public:
 	void Draw();
 
 private:
-	float m_px;
-	float m_py;
+	float m_ex;
+	float m_ey;
 	float m_vx;
 	float m_vy;
 	float m_posture;
@@ -32,4 +32,7 @@ private:
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;
+
+	//ˆÚ“®‚ÌŒü‚«—p
+	bool m_move;
 };
