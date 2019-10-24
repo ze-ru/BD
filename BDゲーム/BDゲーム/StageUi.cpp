@@ -24,7 +24,7 @@ void CObjStageUi::Action()
 	{
 		m_ani_time++;
 	}
-	if (m_ani_time == 4)
+	if (m_ani_time == 5)
 	{
 		m_ani_frame++;
 		m_ani_time = 0;
