@@ -35,17 +35,27 @@ void CSceneStage1::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"stage1.csv", &size);//外部データ読み込み
 
-	int map[10][157];
-	int count = 1;
-	for (int i = 0; i < 10; i++)
+	int map[11][157];
+	int count =1;
+	
+	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 157; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-			map[i][j] = w;
-			count += 2;
+			
+				map[i][j] = w;
+
+				if (w >= 10)
+				{
+					count += 3;
+				}
+				else
+				{
+					count += 2;
+				}
 		}
 	}
 

@@ -36,6 +36,7 @@ void CObjHero::Action()
 	{
 		if (m_hit_down == true)
 		{
+			if(m_py>0)
 			m_vy = -12;
 		}
 	}
@@ -88,6 +89,10 @@ void CObjHero::Action()
 	if (m_px < 0)
 	{
 		m_px = 0;
+	}
+	if (m_py < 0)
+	{
+		m_vy += 0.5f;
 	}
 }
 

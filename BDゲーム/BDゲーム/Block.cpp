@@ -10,10 +10,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjBlock::CObjBlock(int map[10][157])
+CObjBlock::CObjBlock(int map[11][157])
 {
 	//マップデータをコピー
-	memcpy(m_map, map, sizeof(int)*(10 * 157));
+	memcpy(m_map, map, sizeof(int)*(11* 157));
 }
 //イニシャライズ
 void CObjBlock::Init()
@@ -47,7 +47,7 @@ void CObjBlock::Action()
 	hero->SetLeft(false);
 	hero->SetRight(false);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 157; j++)
 		{
@@ -56,7 +56,7 @@ void CObjBlock::Action()
 			{
 				//要素番号を座標に変更
 				float x = j * 64.0f;
-				float y = i * 64.0f;
+				float y = i * 64.0f-64.0f;
 
 				//主人公とブロックの当たり判定
 				if ((hx+(-m_scroll)+64.0f>x) && (hx+(-m_scroll)<x+64.0f) && (hy+64.0f>y) && (hy<y+64.0f))
@@ -123,6 +123,8 @@ void CObjBlock::Action()
 			}
 		}
 	}
+
+	
 }
 //ドロー
 void CObjBlock::Draw()
@@ -144,14 +146,14 @@ void CObjBlock::Draw()
 	src.m_bottom = 64.0f;
 
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i <11 ; i++)
 	{
 		for (int j = 0; j < 157; j++)
 		{
 			if (m_map[i][j] > 0)
 			{
 				//表示位置の設定
-				dst.m_top = i *64.0f;
+				dst.m_top = i *64.0f-64.0f;
 				dst.m_left = j *64.0f+m_scroll;
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
