@@ -81,6 +81,12 @@ void CObjHero::Action()
 	//自由落下運動
 	m_vy += 5.0/(20.0f);
 
+	//ブロックとの当たり判定実行
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+		&m_vx, &m_vy);
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -90,6 +96,7 @@ void CObjHero::Action()
 	{
 		m_px = 0;
 	}
+
 	if (m_py < 0)
 	{
 		m_vy += 0.5f;
