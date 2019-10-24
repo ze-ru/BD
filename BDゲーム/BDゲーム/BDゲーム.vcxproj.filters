@@ -75,7 +75,7 @@
     <ClCompile Include="SceneTitle.cpp">
       <Filter>ソース ファイル\Title</Filter>
     </ClCompile>
-    <ClCompile Include="UtilityModule.cpp">
+    <ClCompile Include="LockEnemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="WolkEnemy.cpp">
@@ -140,7 +140,7 @@
     <ClInclude Include="SceneTitle.h">
       <Filter>ソース ファイル\Title</Filter>
     </ClInclude>
-    <ClInclude Include="UtilityModule.h">
+    <ClInclude Include="LockEnemy.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="WolkEnemy.h">
