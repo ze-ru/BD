@@ -12,7 +12,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjStageUi::Init()
 {
-
+	
 }
 
 //アクション
