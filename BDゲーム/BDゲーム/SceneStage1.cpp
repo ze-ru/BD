@@ -65,6 +65,7 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"Stage1Back.png", 2, TEX_SIZE_512);
 	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
 	Draw::LoadImageW(L"kyaramemo.png", 4, TEX_SIZE_512);
+	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
 
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
@@ -82,6 +83,9 @@ void CSceneStage1::InitScene()
 
 	CObjWolkEnemy*obje1 = new CObjWolkEnemy();
 	Objs::InsertObj(obje1, OBJ_WOLKENEMY, 10);
+
+	CObjStageUi*objui = new CObjStageUi();
+	Objs::InsertObj(objui, OBJ_STAGEUI, 12);
 }
 
 //実行中メソッド
