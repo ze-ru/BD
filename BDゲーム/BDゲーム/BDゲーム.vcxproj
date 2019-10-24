@@ -129,6 +129,7 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="Gamerule.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="ObjStage1.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="GameL\SetWindow.h" />
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="Gamerule.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjStage1.h" />
