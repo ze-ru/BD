@@ -14,6 +14,7 @@ enum OBJ_NAME
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_GAME_OVER,
+	OBJ_GAMERULE,
 };
 //------------------------------------------------
 
@@ -65,12 +66,15 @@ struct UserData
 #include"WolkEnemy.h"
 #include "ObjGameOver.h"
 #include"StageUi.h"
+
+#include "ObjGamerule.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include"SceneStage1.h"
 #include"SceneTitle.h"
 #include "SceneGameOver.h"
+#include"Gamerule.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

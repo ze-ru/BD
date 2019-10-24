@@ -28,7 +28,12 @@ CSceneGamerule::~CSceneGamerule()
 //ゲームメイン初期化メソッド
 void CSceneGamerule::InitScene()
 {
+	//出力させる文字のグラフィックを作成
+	Font::SetStrTex(L"");
 
+	//タイトルオブジェクト作成
+	CObjGamerule* obj = new CObjGamerule();//タイトルオブジェクト作成
+	Objs::InsertObj(obj, OBJ_GAMERULE, 10);//主人公オブジェクト登録
 }
 
 //ゲームメイン実行中メソッド

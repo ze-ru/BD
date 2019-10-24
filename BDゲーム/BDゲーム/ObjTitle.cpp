@@ -6,6 +6,7 @@
 
 #include"ObjTitle.h"
 #include"SceneStage1.h"
+#include"Gamerule.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -35,7 +36,7 @@ void CObjTitle::Action()
 		//マウスのボタンが押されたらメインに遷移
 		if (m_mou_r == true || m_mou_l == true)
 		{
-			Scene::SetScene(new CSceneStage1());
+			Scene::SetScene(new CSceneGamerule());
 		}
 	}
 }

@@ -90,6 +90,12 @@
     <ClCompile Include="StageUi.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Gamerule.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGamerule.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -165,6 +171,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="WolkEnemy.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGamerule.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
