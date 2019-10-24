@@ -52,7 +52,7 @@ void CSceneStage1::InitScene()
 	//グラフィック読み込み
 	Draw::LoadImageW(L"ORIGIN.png",1,TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage2..png",0, TEX_SIZE_512);
-	Draw::LoadImageW(L"stage1 Back.jpg", 2, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage1Back.png", 2, TEX_SIZE_512);
 	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
 	Draw::LoadImageW(L"kyaramemo.png", 4, TEX_SIZE_512);
 
