@@ -1,17 +1,22 @@
 #pragma once
+#pragma once
+//
 #include"GameL\SceneObjManager.h"
-
+//
 using namespace GameL;
 
-class CObjLockEnemy :public CObj
+//
+class CObjWolkEnemy :public CObj
 {
 public:
-	CObjLockEnemy() {};
-	~CObjLockEnemy() {};
+	CObjWolkEnemy() {};
+	~CObjWolkEnemy() {};
 	void Init();
 	void Action();
 	void Draw();
 
+	float GetX() { return m_px; }
+	float GetY() { return m_py; }
 private:
 	float m_px;
 	float m_py;
@@ -22,4 +27,6 @@ private:
 	float x;
 	int m_ani_time;
 	int m_ani_frame;
+
+
 };
