@@ -2,6 +2,7 @@
 #include"GameL\DrawTexture.h"
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
+#include"GameL\HitBoxManager.h"
 
 #include"GameHead.h"
 #include"Hero.h"
@@ -26,6 +27,9 @@ void CObjHero::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
+	//当たり判定用のHitBoxを作成
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
@@ -87,9 +91,51 @@ void CObjHero::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
 
+	//自身のHitBoxを持ってくる
+	CHitBox* hit = Hits::GetHitBox(this);
+
+	//敵と当たっているか確認
+	if (hit->CheckObjNameHit(OBJ_WOLKENEMY)!=nullptr)
+	{
+		//主人公が敵とどの角度で当たってるか確認
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
+
+		//敵の左右に当たったら
+		float r = hit_data[0]->r;
+		if ((r < 45 && r >= 0) || r > 315)
+		{
+			m_vx = -5.0f;//左に移動
+		}
+		if (r > 135 && r < 225)
+		{
+			m_vx = +5.0f;//右に移動
+		}
+		if (r >= 225 && r < 315)
+		{
+			//敵の移動方向を主人公の位置に加算
+			m_px += ((CObjWolkEnemy*)hit_data[0]->o) -> GetVx();
+
+			CObjBlock*b=(CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+			if (m_vy <= -1.0f)
+			{
+
+			}
+			else
+			{
+				m_vy = 0.0f;//ベクトルを0にする
+				m_hit_down = true;//地面に当たっている判定にする
+			}
+		}
+	}
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+	//HitBoxの位置の変更
+	hit->SetPos(m_px, m_py);
 
 	//開始位置から左に行かない処理
 	if (m_px < 0)

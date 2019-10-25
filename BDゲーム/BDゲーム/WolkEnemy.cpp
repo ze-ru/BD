@@ -1,6 +1,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
+#include "GameL\HitBoxManager.h"
 
 #include "GameHead.h"
 #include "WolkEnemy.h"
@@ -9,11 +10,14 @@
 //
 using namespace GameL;
 
+CObjWolkEnemy::CObjWolkEnemy(float x,float y)
+{
+	m_ex = x;//
+	m_ey = y;
+}
 //
 void CObjWolkEnemy::Init()
 {
-	m_ex = 720.0f;//
-	m_ey = 0.0f;
 	m_vx = 0.0f;//
 	m_vy = 0.0f;
 	m_posture = 0.0f;
@@ -22,7 +26,7 @@ void CObjWolkEnemy::Init()
 	m_ani_frame = 0;
 
 	m_speed_power = 0.5f;
-	m_ani_max_time = 2;
+	m_ani_max_time = 4;
 
 	m_move = false;//false=右　true=左
 
@@ -30,6 +34,9 @@ void CObjWolkEnemy::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
+	//当たり判定用のHitBoxを作成
+	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_WOLKENEMY, 1);
 }
 
 //
@@ -42,13 +49,13 @@ void CObjWolkEnemy::Action()
 	}
 
 	//通常速度
-	m_speed_power = 0.5f;
-	m_ani_max_time = 2;
+	m_speed_power = 0.3f;
+	m_ani_max_time = 4;
 
 
-	/*CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	/*CObjHero*m_px = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//主人公の位置で向き変更
-	/if (m_move == true && m_ex < m_px)
+	if (m_move == true && m_ex < m_px)
 	{
 		m_move = false;
 	}
@@ -57,6 +64,16 @@ void CObjWolkEnemy::Action()
 	{
 		m_move = true;
 	}*/
+
+	//ブロック衝突で向き変更(仮)
+	if (m_hit_left == true)
+	{
+		m_move = false;
+	}
+	if (m_hit_right == true)
+	{
+		m_move = true;
+	}
 
 	//方向
 	if (m_move==true)
@@ -79,7 +96,7 @@ void CObjWolkEnemy::Action()
 		m_ani_time = 0;
 	}
 
-	if (m_ani_frame == 2)
+	if (m_ani_frame == 4)
 	{
 		m_ani_frame = 0;
 	}
@@ -99,15 +116,22 @@ void CObjWolkEnemy::Action()
 	//位置の更新
 	m_ex += m_vx;
 	m_ey += m_vy;
+
+	//ブロック情報を持ってくる
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	//HitBoxの位置の変更
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_ex + block->GetScroll(), m_ey);
 	
 }
 
 //
 void CObjWolkEnemy::Draw()
 {
-	int AniData[2]=
+	int AniData[4]=
 	{
-		0,1,
+		0,1,0,1,
 	};
 	//
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };

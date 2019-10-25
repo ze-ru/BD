@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 //
 #include"GameL\SceneObjManager.h"
 //
@@ -9,11 +8,13 @@ using namespace GameL;
 class CObjWolkEnemy :public CObj
 {
 public:
-	CObjWolkEnemy() {};
+	CObjWolkEnemy(float x,float y);
 	~CObjWolkEnemy() {};
 	void Init();
 	void Action();
 	void Draw();
+
+	float GetVx() { return m_vx; }
 
 private:
 	float m_ex;
