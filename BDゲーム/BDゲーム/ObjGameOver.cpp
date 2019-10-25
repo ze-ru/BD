@@ -60,17 +60,17 @@ void CObjGameOver::Draw()
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	Font::StrDraw(L"YOU LOST", 240, 70, 80, c);
-	Font::StrDraw(L"GAME OVER", 120, 200, 120, c);
+	Font::StrDraw(L"GAME OVER", 125, 200, 120, c);
 
 	if (key == false) 
 	{
-		Font::StrDraw(L"▶タイトルに戻る", 170, 380, 60, c);
-		Font::StrDraw(L" つづきから", 200, 480, 60, c);
+		Font::StrDraw(L"▶タイトルに戻る", 155, 380, 60, c);
+		Font::StrDraw(L" つづきから", 185, 480, 60, c);
 	}
 	if (key == true)
 	{
-		Font::StrDraw(L" タイトルに戻る", 200, 380, 60, c);
-		Font::StrDraw(L"▶つづきから", 170, 480, 60, c);
+		Font::StrDraw(L" タイトルに戻る", 185, 380, 60, c);
+		Font::StrDraw(L"▶つづきから", 155, 480, 60, c);
 	}
 	
 }

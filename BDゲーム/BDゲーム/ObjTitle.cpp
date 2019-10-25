@@ -63,14 +63,15 @@ void CObjTitle::Draw()
 	float c[4] = { 1,1,1,1 };
 
 
-	Font::StrDraw(L"LOST", 340, 200, 64, c);
+	Font::StrDraw(L"LOST", 230, 70, 180, c);
 	if (key == true)
 	{
-		Font::StrDraw(L"▶はじめから", 224, 314, 32, c);
-		Font::StrDraw(L" つづきから", 224, 344, 32, c);
+		Font::StrDraw(L"▶はじめから", 125, 320, 80, c);
+		Font::StrDraw(L" つづきから", 160, 450, 80, c);
 	}
-
-	//クリックする場所
-	//Gameに移行クリック場所
-	Font::StrDraw(L"◆ClickStart", 300, 400, 30, c);
+	if (key == false)
+	{
+		Font::StrDraw(L" はじめから", 165, 320, 80, c);
+		Font::StrDraw(L"▶つづきから", 120, 450, 80, c);
+	}
 }
