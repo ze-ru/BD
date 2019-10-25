@@ -36,7 +36,7 @@ void CObjStageUi::Action()
 	}
 	if (m_hp >= 50)
 	{
-		Scene::SetScene(new CSceneGameOver());
+		//Scene::SetScene(new CSceneGameOver());
 	}
 
 }
