@@ -22,6 +22,9 @@
     <Filter Include="ソース ファイル\map">
       <UniqueIdentifier>{57c83d14-517e-449f-b7a8-4ac1e109fca0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Shop">
+      <UniqueIdentifier>{39dbeb12-9dca-4935-bb2a-16038941289e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -102,11 +105,11 @@
     <ClCompile Include="StageUi.cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
-    <ClCompile Include="SceneShop.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjShop.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneShop.cpp">
+      <Filter>ソース ファイル\Shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,11 +191,11 @@
     <ClInclude Include="StageUi.h">
       <Filter>ソース ファイル\map</Filter>
     </ClInclude>
-    <ClInclude Include="SceneShop.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjShop.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneShop.h">
+      <Filter>ソース ファイル\Shop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
