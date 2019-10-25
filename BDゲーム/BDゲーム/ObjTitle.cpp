@@ -61,9 +61,10 @@ void CObjTitle::Draw()
 		Font::StrDraw(L"L=押してない", 20, 40, 12, c);
 
 	//タイトル
-	Font::StrDraw(L"Lost", 320, 200, 80, c);
+	Font::StrDraw(L"Lost", 300, 200, 90, c);
 
 	//クリックする場所
 	//Gameに移行クリック場所
-	Font::StrDraw(L"◆ClickStart", 300, 400, 30, c);
+	Font::StrDraw(L"◆NewGame", 280, 400, 40, c);
+	Font::StrDraw(L"◆LoadGame", 280, 480, 40, c);
 }
