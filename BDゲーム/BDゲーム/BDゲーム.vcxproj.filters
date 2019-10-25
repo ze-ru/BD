@@ -16,6 +16,12 @@
     <Filter Include="ソース ファイル\Title">
       <UniqueIdentifier>{b296334e-60c9-4943-b360-8866c85cbf2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\chara">
+      <UniqueIdentifier>{a45a0e3f-7b18-447e-91b7-2f9cb7f46e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\map">
+      <UniqueIdentifier>{57c83d14-517e-449f-b7a8-4ac1e109fca0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -57,23 +63,44 @@
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Hero.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneStage1.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjStage1.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Block.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjTitle.cpp">
       <Filter>ソース ファイル\Title</Filter>
     </ClCompile>
     <ClCompile Include="SceneTitle.cpp">
       <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero.cpp">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClCompile>
+    <ClCompile Include="LockEnemy.cpp">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClCompile>
+    <ClCompile Include="WolkEnemy.cpp">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGamerule.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Gamerule.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjStage1.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStage1.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="StageUi.cpp">
+      <Filter>ソース ファイル\map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,23 +143,44 @@
     <ClInclude Include="main.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Hero.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneStage1.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjStage1.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Block.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjTitle.h">
       <Filter>ソース ファイル\Title</Filter>
     </ClInclude>
     <ClInclude Include="SceneTitle.h">
       <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="LockEnemy.h">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="WolkEnemy.h">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameOver.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Gamerule.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGamerule.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>ソース ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage1.h">
+      <Filter>ソース ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStage1.h">
+      <Filter>ソース ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="StageUi.h">
+      <Filter>ソース ファイル\map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_px = 0.0f;//位置
+	m_px = 100.0f;//位置
 	m_py = 0.0f;
 	m_vx = 0.0f;//移動ベクトル
 	m_vy = 0.0f;
@@ -20,11 +20,27 @@ void CObjHero::Init()
 
 	m_ani_time = 0;
 	m_ani_frame = 1;
+
+	//blockとの衝突状態確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
 }
 
 //アクション
 void CObjHero::Action()
 {
+	//Spaceキーでジャンプ
+	if (Input::GetVKey(' ') == true)
+	{
+		if (m_hit_down == true)
+		{
+			if(m_py>0)
+			m_vy = -12;
+		}
+	}
+
 	//キーの入力方向
 	if (Input::GetVKey(VK_RIGHT) == true)//右
 	{
@@ -63,11 +79,28 @@ void CObjHero::Action()
 	m_vx += -(m_vx*0.098);
 
 	//自由落下運動
+	m_vy += 5.0/(20.0f);
 
+	//ブロックとの当たり判定実行
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+		&m_vx, &m_vy);
 
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+	//開始位置から左に行かない処理
+	if (m_px < 0)
+	{
+		m_px = 0;
+	}
+
+	if (m_py < 0)
+	{
+		m_vy += 0.5f;
+	}
 }
 
 //ドロー
