@@ -132,11 +132,13 @@
     <ClCompile Include="Gamerule.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjGamerule.cpp" />
+    <ClCompile Include="ObjShop.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="LockEnemy.cpp" />
     <ClCompile Include="ObjStage1.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="SceneShop.cpp" />
     <ClCompile Include="SceneStage1.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="StageUi.cpp" />
@@ -162,9 +164,11 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGamerule.h" />
+    <ClInclude Include="ObjShop.h" />
     <ClInclude Include="ObjStage1.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameOver.h" />
+    <ClInclude Include="SceneShop.h" />
     <ClInclude Include="SceneStage1.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="StageUi.h" />

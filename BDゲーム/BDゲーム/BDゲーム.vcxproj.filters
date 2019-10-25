@@ -102,6 +102,12 @@
     <ClCompile Include="StageUi.cpp">
       <Filter>ソース ファイル\map</Filter>
     </ClCompile>
+    <ClCompile Include="SceneShop.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjShop.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -181,6 +187,12 @@
     </ClInclude>
     <ClInclude Include="StageUi.h">
       <Filter>ソース ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneShop.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjShop.h">
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
