@@ -31,6 +31,13 @@ void CSceneTitle::InitScene()
 {
 	CObjTitle* p = new CObjTitle();
 	Objs::InsertObj(p, OBJ_TITLE, 1);
+
+	//音楽情報の読み込み
+	Audio::LoadAudio(0, L"Title.wav", SOUND_TYPE::BACK_MUSIC);
+
+	//バックミュージックスタート
+	float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+	Audio::Start(0);//音楽スタート
 }
 
 //ゲームタイトル実行中メソッド
