@@ -28,7 +28,7 @@ void CObjWolkEnemy::Init()
 	m_speed_power = 0.5f;
 	m_ani_max_time = 4;
 
-	m_move = false;//false=右　true=左
+	m_move = true;//false=右　true=左
 
 	m_hit_up = false;
 	m_hit_down = false;

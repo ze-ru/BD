@@ -41,6 +41,26 @@ void CObjBlock::Action()
 		hero->SetX(300);
 		m_scroll -= hero->GetVX();
 	}
+
+	//敵出現ライン
+	//主人公の位置＋500を敵出現ラインに
+	float line = hx+(-m_scroll) + 500;
+
+	//敵出現ラインを要素番号化
+	int lx = ((int)line) / 64;
+
+	//敵出現ラインの列を検索
+	for (int i = 0; i < 11; i++)
+	{
+		if (m_map[i][lx] == 5)
+		{
+			CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f);
+			Objs::InsertObj(objW, OBJ_WOLKENEMY,10);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+	}
 }
 //ドロー
 void CObjBlock::Draw()
@@ -55,27 +75,32 @@ void CObjBlock::Draw()
 	
 
 	//マップチップによるblock設置
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = src.m_left + 64.0f;
-	src.m_bottom = 64.0f;
-
 
 	for (int i = 0; i <11 ; i++)
 	{
 		for (int j = 0; j < 157; j++)
 		{
-			if (m_map[i][j] > 0)
+			if (m_map[i][j] > 0 && m_map[i][j]!=5)
 			{
+				//要素番号を座標に追加
+				float bx = i * 64.0f;
+				float by = i * 64.0f;
 				//表示位置の設定
 				dst.m_top = i * 64.0f-64.0f;
 				dst.m_left = j * 64.0f + m_scroll;
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
 
-				//描画
-				Draw::Draw(0, &src, &dst, c, 0.0f);
+				if (m_map[i][j] == 5)//WolkEnemy
+				{
+					;
+				}
+				else
+				{
+					//描画
+					BlockDraw(0.0f, 0.0f, &dst, c);
+				}
+
 			}
 		}
 	}

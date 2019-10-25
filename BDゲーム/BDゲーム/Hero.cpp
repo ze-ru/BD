@@ -35,6 +35,12 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	//落下時
+	if (m_py > 1000.0f)
+	{
+		;
+	}
+
 	//Spaceキーでジャンプ
 	if (Input::GetVKey(' ') == true)
 	{
@@ -101,31 +107,49 @@ void CObjHero::Action()
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
 
-		//敵の左右に当たったら
-		float r = hit_data[0]->r;
-		if ((r < 45 && r >= 0) || r > 315)
+		for (int i = 0; i < hit->GetCount(); i++)
 		{
-			m_vx = -5.0f;//左に移動
-		}
-		if (r > 135 && r < 225)
-		{
-			m_vx = +5.0f;//右に移動
-		}
-		if (r >= 225 && r < 315)
-		{
-			//敵の移動方向を主人公の位置に加算
-			m_px += ((CObjWolkEnemy*)hit_data[0]->o) -> GetVx();
 
-			CObjBlock*b=(CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-			if (m_vy <= -1.0f)
+			//敵の左右に当たったら
+			float r = hit_data[i]->r;
+			if ((r < 45 && r >= 0) || r > 315)
 			{
-
+				m_vx = -5.0f;//左に移動
 			}
-			else
+			if (r > 135 && r < 225)
 			{
-				m_vy = 0.0f;//ベクトルを0にする
-				m_hit_down = true;//地面に当たっている判定にする
+				m_vx = +5.0f;//右に移動
+			}
+			if (r >= 225 && r < 315)
+			{
+				//敵の移動方向を主人公の位置に加算
+				m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+
+				CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+				//後方スクロールライン
+				if (m_px < 80)
+				{
+					m_px = 80;//主人公はラインを超えないようにする
+					b->SetScroll(b->GetScroll() - 5.0);
+				}
+
+				//前方スクロールライン
+				if (m_px > 300)
+				{
+					m_px = 300;
+					b->SetScroll(b->GetScroll() - 5.0);
+				}
+
+				if (m_vy <= -1.0f)
+				{
+
+				}
+				else
+				{
+					m_vy = 0.0f;//ベクトルを0にする
+					m_hit_down = true;//地面に当たっている判定にする
+				}
 			}
 		}
 	}
