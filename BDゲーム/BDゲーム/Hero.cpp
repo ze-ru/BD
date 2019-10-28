@@ -125,7 +125,7 @@ void CObjHero::Action()
 		//ŽålŒö‚ª“G‚Æ‚Ç‚ÌŠp“x‚Å“–‚½‚Á‚Ä‚é‚©Šm”F
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
-		
+		m_hp++;
 
 		for (int i = 0; i < hit->GetCount(); i++)
 		{
@@ -179,7 +179,7 @@ void CObjHero::Action()
 	{
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
-
+		m_hp++;
 
 		for (int i = 0; i < hit->GetCount(); i++)
 		{
@@ -229,13 +229,7 @@ void CObjHero::Action()
 
 
 		
-		if (m_hp == 50)
-		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-
-			Scene::SetScene(new CSceneGameOver());
-		}
+		
 	}
 	
 
@@ -257,7 +251,13 @@ void CObjHero::Action()
 		m_py += 0.5f;
 	}
 
+	if (m_hp == 50)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
 
+		Scene::SetScene(new CSceneGameOver());
+	}
 	
 }
 
