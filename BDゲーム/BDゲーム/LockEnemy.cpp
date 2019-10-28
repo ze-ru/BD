@@ -42,9 +42,10 @@ void CObjLockEnemy::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
 
-	m_ex += m_vx;
-	m_ey += m_vy;
-
+	
+	//HitBox�̈ʒu�̕ύX
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_ex + block->GetScroll(), m_ey);
 }
 void CObjLockEnemy::Draw()
 {
@@ -64,8 +65,8 @@ void CObjLockEnemy::Draw()
 
 	//
 	dst.m_top = 0.0f + m_ey;
-	dst.m_left = (64.0f*m_posture) + m_ex + block->GetScroll();
-	dst.m_right = (64 - 64.0f*m_posture) + m_ex + block->GetScroll();
+	dst.m_left = 64-64.0f+ m_ex + block->GetScroll();
+	dst.m_right =  64.0f + m_ex + block->GetScroll();
 	dst.m_bottom = 64.0f + m_ey;
 
 

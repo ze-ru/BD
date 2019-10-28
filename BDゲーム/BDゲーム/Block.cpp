@@ -21,7 +21,6 @@ void CObjBlock::Init()
 {
 	m_scroll = 0.0f;
 
-	
 }
 //ƒAƒNƒVƒ‡ƒ“
 void CObjBlock::Action()
@@ -67,8 +66,9 @@ void CObjBlock::Action()
 		if (m_map[i][lx] == 6)
 		{
 
-			CObjLockEnemy*objeL = new CObjLockEnemy(lx*63.0f,i*63.0f);
+			CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f,i*63.0f);
 			Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
+			m_map[i][lx] = 0;
 		}
 		
 	}

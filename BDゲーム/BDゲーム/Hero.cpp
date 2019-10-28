@@ -125,7 +125,7 @@ void CObjHero::Action()
 		//ŽålŒö‚ª“G‚Æ‚Ç‚ÌŠp“x‚Å“–‚½‚Á‚Ä‚é‚©Šm”F
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
-		m_hp++;
+		
 
 		for (int i = 0; i < hit->GetCount(); i++)
 		{
@@ -179,7 +179,7 @@ void CObjHero::Action()
 	{
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
-		m_hp++;
+	
 
 		for (int i = 0; i < hit->GetCount(); i++)
 		{
@@ -197,7 +197,7 @@ void CObjHero::Action()
 			if (r >= 225 && r < 315)
 			{
 				//“G‚ÌˆÚ“®•ûŒü‚ðŽålŒö‚ÌˆÊ’u‚É‰ÁŽZ
-				m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+			
 
 				CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
