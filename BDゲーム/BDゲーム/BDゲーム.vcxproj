@@ -141,7 +141,9 @@
     <ClCompile Include="SceneShop.cpp" />
     <ClCompile Include="SceneStage1.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
-    <ClCompile Include="StageUi.cpp" />
+    <ClCompile Include="StageUi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="WolkEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +173,9 @@
     <ClInclude Include="SceneShop.h" />
     <ClInclude Include="SceneStage1.h" />
     <ClInclude Include="SceneTitle.h" />
-    <ClInclude Include="StageUi.h" />
+    <ClInclude Include="StageUi.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="WolkEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

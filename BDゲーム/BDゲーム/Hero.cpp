@@ -22,6 +22,8 @@ void CObjHero::Init()
 	m_ani_time = 0;
 	m_ani_frame = 1;
 
+	m_hp = 0.0f;
+
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -35,6 +37,8 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+
+	
 	//落下時
 	if (m_py > 1000.0f)
 	{
@@ -121,6 +125,7 @@ void CObjHero::Action()
 		//主人公が敵とどの角度で当たってるか確認
 		HIT_DATA** hit_data;
 		hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
+		
 
 		for (int i = 0; i < hit->GetCount(); i++)
 		{
@@ -166,6 +171,70 @@ void CObjHero::Action()
 					m_hit_down = true;//地面に当たっている判定にする
 				}
 			}
+		}
+
+		
+	}
+	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
+	{
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
+
+
+		for (int i = 0; i < hit->GetCount(); i++)
+		{
+
+			//敵の左右に当たったら
+			float r = hit_data[i]->r;
+			if ((r < 45 && r >= 0) || r > 315)
+			{
+				m_vx = -5.0f;//左に移動
+			}
+			if (r > 135 && r < 225)
+			{
+				m_vx = +5.0f;//右に移動
+			}
+			if (r >= 225 && r < 315)
+			{
+				//敵の移動方向を主人公の位置に加算
+				m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+
+				CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+				//後方スクロールライン
+				if (m_px < 80)
+				{
+					m_px = 80;//主人公はラインを超えないようにする
+					b->SetScroll(b->GetScroll() - 5.0);
+				}
+
+				//前方スクロールライン
+				if (m_px > 300)
+				{
+					m_px = 300;
+					b->SetScroll(b->GetScroll() - 5.0);
+				}
+
+				if (m_vy <= -1.0f)
+				{
+					;
+				}
+				else
+				{
+					m_vy = 0.0f;//ベクトルを0にする
+					m_hit_down = true;//地面に当たっている判定にする
+				}
+			}
+		}
+
+
+		
+		if (m_hp == 50)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+
+			Scene::SetScene(new CSceneGameOver());
 		}
 	}
 	
@@ -239,5 +308,35 @@ void CObjHero::Draw()
 
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
+
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 24.0f;
+
+
+	//表示位置の設定
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 256.0f;
+	dst.m_bottom = 48.0f;
+
+
+
+	//描画
+	Draw::Draw(5, &src, &dst, c, 0.0f);
+
+	src.m_top = 2.0f;
+	src.m_left = 128.0f;
+	src.m_right = 129.0f;
+	src.m_bottom = 22.0f;
+
+
+	dst.m_top = 4.0f;
+	dst.m_left = 4.0f;
+	dst.m_right = 256.0f - m_hp*5.0f;
+	dst.m_bottom = 44.0f;
+
+	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 }

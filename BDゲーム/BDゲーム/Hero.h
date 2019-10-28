@@ -28,6 +28,7 @@ class CObjHero :public CObj
 	void SetDown(bool b) { m_hit_down = b; }
 	void SetLeft(bool b) { m_hit_left = b; }
 	void SetRight(bool b) { m_hit_right = b; }
+	float GetHP() { return m_hp; };
 
   private:
 	  float m_px;//位置
@@ -35,6 +36,8 @@ class CObjHero :public CObj
 	  float m_vx;//移動ベクトル
 	  float m_vy;
 	  float m_posture;//姿勢
+	  float m_hp;
+
 
 	  int m_ani_time;//アニメーションフレーム動作間隔
 	  int m_ani_frame;//描画フレーム

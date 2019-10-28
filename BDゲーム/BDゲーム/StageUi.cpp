@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include "StageUi.h"
+#include"Hero.h"
 
 //使用ネームスペース
 using namespace GameL;
@@ -12,7 +13,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjStageUi::Init()
 {
-	m_hp = 0;
+	m_hp = 50.0f;
 	m_ani_time = 0;
 	m_ani_frame = 0;
 }
@@ -20,15 +21,10 @@ void CObjStageUi::Init()
 //アクション
 void CObjStageUi::Action()
 {
-	m_ani_time++;
-	if (m_ani_time > 30)
+	
+	if (m_hp == -1.0f)
 	{
-		m_hp++;
-		m_ani_time = 0;
-	}
-	if (m_hp == 51)
-	{
-		m_hp = 0;
+		m_hp = 50.0f;
 	}
 }
 
@@ -41,7 +37,7 @@ void CObjStageUi::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-	//切り取り位置の設定
+	/*//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 128.0f;
@@ -67,11 +63,11 @@ void CObjStageUi::Draw()
 	
 		dst.m_top = 4.0f;
 		dst.m_left = 4.0f;
-		dst.m_right = 256.0f-m_hp*5.0f;
+		dst.m_right = 256.0f+m_hp;
 		dst.m_bottom = 44.0f;
 
 		Draw::Draw(5, &src, &dst, c, 0.0f);
 	
-	
+	*/
 
 }
