@@ -11,6 +11,7 @@ enum OBJ_NAME
 	OBJ_WOLKENEMY,
 	OBJ_STAGEUI,
 	OBJ_SHOP,
+	OBJ_FLYENEMY,
 	OBJ_NO_NAME,	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -71,6 +72,7 @@ struct UserData
 #include"StageUi.h"
 #include "ObjShop.h"
 #include "ObjGamerule.h"
+#include"FlyEnemy.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
