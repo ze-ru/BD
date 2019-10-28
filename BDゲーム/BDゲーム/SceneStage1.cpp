@@ -79,8 +79,6 @@ void CSceneStage1::InitScene()
 	CObjStage1*objs1 = new CObjStage1();
 	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
 
-	CObjLockEnemy*objeL = new CObjLockEnemy();
-	Objs::InsertObj(objeL, OBJ_LOCKENEMY, 10);
 
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 12);

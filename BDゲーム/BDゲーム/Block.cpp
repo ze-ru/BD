@@ -63,6 +63,14 @@ void CObjBlock::Action()
 			//“GoŒ»êŠ‚ğ0‚É‚·‚é
 			m_map[i][lx] = 0;
 		}
+
+		if (m_map[i][lx] == 6)
+		{
+
+			CObjLockEnemy*objeL = new CObjLockEnemy(lx*63.0f,i*63.0f);
+			Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
+		}
+		
 	}
 }
 //ƒhƒ[
