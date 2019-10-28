@@ -51,6 +51,12 @@ void CObjWolkEnemy::Action()
 	//通常速度
 	m_speed_power = 0.3f;
 	m_ani_max_time = 4;
+	//ブロックとの当たり判定実行
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->BlockHit(&m_ex, &m_ey, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+		&m_vx, &m_vy);
+
 
 
 	/*CObjHero*m_px = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -107,11 +113,6 @@ void CObjWolkEnemy::Action()
 	//自由落下
 	m_vy += 9.8 / (16.0f);
 
-	//ブロックとの当たり判定実行
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_ex, &m_ey, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy);
 
 	//位置の更新
 	m_ex += m_vx;
