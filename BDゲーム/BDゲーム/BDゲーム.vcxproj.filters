@@ -111,6 +111,9 @@
     <ClCompile Include="SceneShop.cpp">
       <Filter>ソース ファイル\Shop</Filter>
     </ClCompile>
+    <ClCompile Include="FlyEnemy.cpp">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="SceneShop.h">
       <Filter>ソース ファイル\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyEnemy.h">
+      <Filter>ソース ファイル\chara</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
