@@ -13,6 +13,7 @@ public:
 	void Init();
 	void Action();
 	void Draw();
+	int GetHp() { return m_hp; };
 private:
 	int m_hp;
 	int m_ani_time;
