@@ -47,7 +47,7 @@ void CObjBlock::Action()
 
 	//敵出現ライン
 	//主人公の位置＋500を敵出現ラインに
-	float line = hx+(-m_scroll) + 10;
+	float line = hx+(-m_scroll) + 500;
 
 	//敵出現ラインを要素番号化
 	int lx = ((int)line) / 64;
@@ -57,7 +57,7 @@ void CObjBlock::Action()
 	{
 		if (m_map[i][lx] == 5)
 		{
-		    CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f);
+		    CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*63.0f);
 			Objs::InsertObj(objW, OBJ_WOLKENEMY,15);
 
 			//敵出現場所を0にする
@@ -167,12 +167,12 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-m_scroll) + 64.0f > bx) && (*x + (-m_scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
+				if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
 				{
 					//上下左右判定
 
 					//vectorの作成
-					float rvx = (*x + (-m_scroll)) - bx;
+					float rvx = (*x + (-scroll)) - bx;
 					float rvy = *y - by;
 
 					//長さを求める

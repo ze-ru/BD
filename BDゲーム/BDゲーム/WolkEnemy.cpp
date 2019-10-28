@@ -25,10 +25,10 @@ void CObjWolkEnemy::Init()
 	m_ani_time = 0;
 	m_ani_frame = 0;
 
-	m_speed_power = 0.5f;
+	m_speed_power = 0.1f;
 	m_ani_max_time = 4;
 
-	m_move = false;//false=右　true=左
+	m_move = true;//false=右　true=左
 
 	m_hit_up = false;
 	m_hit_down = false;
@@ -42,21 +42,11 @@ void CObjWolkEnemy::Init()
 //
 void CObjWolkEnemy::Action()
 {
-	//落下
-	if (m_ey > 1000.0f)
-	{
-		;
-	}
-
 	//通常速度
-	m_speed_power = 0.3f;
-	m_ani_max_time = 4;
-	//ブロックとの当たり判定実行
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_ex, &m_ey, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy);
+	m_speed_power = 0.1f;
+	m_ani_max_time = 6;
 
+	
 
 
 	/*CObjHero*m_px = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -121,9 +111,15 @@ void CObjWolkEnemy::Action()
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
+	//ブロックとの当たり判定実行
+	block->BlockHit(&m_ex, &m_ey, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+		&m_vx, &m_vy);
+
+
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_ex + block->GetScroll(), m_ey);
+	hit->SetPos(m_ex+ block->GetScroll(), m_ey);
 	
 }
 
@@ -152,9 +148,9 @@ void CObjWolkEnemy::Draw()
 	
 	//
 	dst.m_top = 0.0f + m_ey;
-	dst.m_left = (64.0f*m_posture) + m_ex + block->GetScroll();
-	dst.m_right = (64 - 64.0f*m_posture) + m_ex + block->GetScroll() ;
-	dst.m_bottom = 64.0f + m_ey - 1.0f;
+	dst.m_left = (64.0f*m_posture) + m_ex + block->GetScroll() ;
+	dst.m_right = (64 - 64.0f*m_posture) + m_ex + block->GetScroll();
+	dst.m_bottom = 64.0f + m_ey ;
 
 	//
 	Draw::Draw(3, &src, &dst, c, 0.0f);
