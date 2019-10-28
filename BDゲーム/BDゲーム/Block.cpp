@@ -3,6 +3,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include"GameL\SceneObjManager.h"
+#include"GameL\HitBoxManager.h"
 
 #include "GameHead.h"
 #include "Block.h"
@@ -19,6 +20,8 @@ CObjBlock::CObjBlock(int map[11][157])
 void CObjBlock::Init()
 {
 	m_scroll = 0.0f;
+
+	
 }
 //ƒAƒNƒVƒ‡ƒ“
 void CObjBlock::Action()
@@ -99,6 +102,7 @@ void CObjBlock::Draw()
 				{
 					//•`‰æ
 					BlockDraw(0.0f, 0.0f, &dst, c);
+				
 				}
 
 			}
@@ -205,7 +209,7 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 						}
 
 						//¶
-						if (r > 135 & r < 225)
+						if (r > 135 && r < 225)
 						{
 							*left = true;
 							*x = bx - 64.0f + (scroll);

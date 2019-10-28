@@ -46,8 +46,9 @@ void CObjHero::Action()
 	{
 		if (m_hit_down == true)
 		{
-			if(m_py>0)
-			m_vy = -12;
+			if(m_vy>=0)
+			m_vy += -12;
+			
 		}
 	}
 
@@ -66,23 +67,45 @@ void CObjHero::Action()
 		m_ani_time += 1;
 	}
 
-	else
+
+	if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)
+	{
+		m_ani_time++;
+		if (m_ani_time < 40)
+		{
+			m_ani_frame = 0;
+		}
+		if (m_ani_time > 80)
+		{
+			m_ani_frame = 1;
+		}
+		if (m_ani_time > 120)
+		{
+			m_ani_time = 0;
+		}
+	}
+	if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)
+	{
+		if (m_ani_time>6)
+		{
+			m_ani_frame += 1;
+			m_ani_time = 0;
+		}
+		
+	}
+	/*else
 	{
 		m_ani_frame = 0;
 		m_ani_time = 0;
-	}
-
-	if (m_ani_time > 6)
-	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
-	}
+	}*/
 
 	
 
-	if (m_ani_frame == 4)
+	
+
+	if (m_ani_frame == 5)
 	{
-		m_ani_frame = 0;
+		m_ani_frame = 2;
 	}
 
 	//摩擦
@@ -153,6 +176,7 @@ void CObjHero::Action()
 			}
 		}
 	}
+	
 
 	//位置の更新
 	m_px += m_vx;
@@ -169,16 +193,19 @@ void CObjHero::Action()
 
 	if (m_py < 0)
 	{
-		m_vy += 0.5f;
+		m_py += 0.5f;
 	}
+
+
+	
 }
 
 //ドロー
 void CObjHero::Draw()
 {
-	int AniDate[4] =
+	int AniDate[7] =
 	{
-		1,2,3,4,
+		0,1,2,3,4,5,6
 	};
 
 	//描画カラー情報
@@ -188,10 +215,29 @@ void CObjHero::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f+1.0f;
-	src.m_right = src.m_left+64.0f-2.0f;
-	src.m_bottom = 64.0f;
+	
+	if (m_hit_down == false && m_vy < 0)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + 5 * 64.0f + 1.0f;
+		src.m_right = 64.0f + 5 *64.0f+ 1.0f;
+		src.m_bottom = 64.0f;
+	}
+	else if (m_hit_down == false && m_vy >=1)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + 6 * 64.0f + 1.0f;
+		src.m_right = 64.0f + 6 * 64.0f + 1.0f;
+		src.m_bottom = 64.0f;
+	}
+	else
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f + 1.0f;
+		src.m_right = src.m_left + 64.0f - 2.0f;
+		src.m_bottom = 64.0f;
+	}
+
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
