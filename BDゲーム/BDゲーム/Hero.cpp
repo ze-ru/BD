@@ -47,7 +47,7 @@ void CObjHero::Action()
 		if (m_hit_down == true)
 		{
 			if(m_vy>=0)
-			m_vy += -12;
+			m_vy = -12;
 			
 		}
 	}
@@ -93,16 +93,8 @@ void CObjHero::Action()
 		}
 		
 	}
-	/*else
-	{
-		m_ani_frame = 0;
-		m_ani_time = 0;
-	}*/
 
 	
-
-	
-
 	if (m_ani_frame == 5)
 	{
 		m_ani_frame = 2;
