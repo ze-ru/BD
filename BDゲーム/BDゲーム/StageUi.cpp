@@ -20,24 +20,6 @@ void CObjStageUi::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjStageUi::Action()
 {
-	if (m_hp <50) 
-	{
-		m_ani_time++;
-	}
-	if (m_ani_time == 5)
-	{
-		m_ani_frame++;
-		m_ani_time = 0;
-	}
-	if (m_ani_frame == 9)
-	{
-		m_hp++;
-		m_ani_frame = 0;
-	}
-	if (m_hp >= 50)
-	{
-		//Scene::SetScene(new CSceneGameOver());
-	}
 
 }
 
