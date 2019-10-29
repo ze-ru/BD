@@ -126,6 +126,18 @@
     <ClCompile Include="ObjAttack.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Block2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjStage2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStage2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClCompile>
+    <ClCompile Include="StageUi2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -220,6 +232,18 @@
     </ClInclude>
     <ClInclude Include="ObjAttack.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Block2.h">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage2.h">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStage2.h">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClInclude>
+    <ClInclude Include="StageUi2.h">
+      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
