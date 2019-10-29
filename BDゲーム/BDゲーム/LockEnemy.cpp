@@ -10,7 +10,7 @@ using namespace GameL;
 
 CObjLockEnemy::CObjLockEnemy(float x, float y)
 {
-	m_ex = x;//
+	m_ex = x;
 	m_ey = y;
 }
 void CObjLockEnemy::Init()
