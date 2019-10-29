@@ -9,13 +9,13 @@ using namespace GameL;
 class CObjAttack :public CObj
 {
 public:
-	CObjAttack() {};
+	CObjAttack(float x,float y);
 	~CObjAttack() {};
 	void Init();//イニシャライズ
 	void Action();//アクション
 	void Draw();//ドロー
-
-	
+	float GetX() { return m_px; };
+	float GetY() { return m_py; };
 private:
 	float m_px;//位置
 	float m_py;
@@ -25,7 +25,7 @@ private:
 	float m_hp;
 	int m_time1;
 	int m_time2;
-
+	bool flag;
 
 	int m_ani_time;//アニメーションフレーム動作間隔
 	int m_ani_frame;//描画フレーム

@@ -18,7 +18,7 @@ void CObjNormalBullet::Init()
 	CObjLockEnemy*objeL = (CObjLockEnemy*)Objs::GetObj(OBJ_LOCKENEMY);
 	m_vx = 5.0f;
 	m_vy = 0.0f;
-
+	m_time = 0;
 	
 	m_px = objeL->GetX();
 	m_py = objeL->GetY()+23.0f;
@@ -32,9 +32,9 @@ void CObjNormalBullet::Init()
 }
 void CObjNormalBullet::Action()
 {
-	m_vx = -5.0f;
+	m_vx = -7.5f;
 	
-
+	m_time++;
 	m_px += m_vx;
 	m_py += m_vy;
 	
@@ -50,11 +50,11 @@ void CObjNormalBullet::Action()
 	}
 	
 	
-	/*if (m_px >m_px+block->GetScroll() || m_px < block->GetScroll() || m_py>600 || m_py < 0)
+	if (m_time>200)
 	{
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
-	}*/
+	}
 	
 }
 void CObjNormalBullet::Draw()
