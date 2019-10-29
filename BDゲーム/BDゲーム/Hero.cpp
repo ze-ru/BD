@@ -10,6 +10,8 @@
 //使用ネームスペース
 using namespace GameL;
 
+
+
 //イニシャライズ
 void CObjHero::Init()
 {
@@ -25,6 +27,8 @@ void CObjHero::Init()
 	m_hp = 0.0f;
 	m_time1 = 0;
 	m_time2 = 0;
+
+	flag = false;//false=右向き true=左向き
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -42,7 +46,7 @@ void CObjHero::Init()
 void CObjHero::Action()
 {
 	m_time1++;
-	if (m_time1 > 50)
+	if (m_time1 > 5)
 	{
 		m_attack = true;
 		m_time1 = 0;
@@ -52,17 +56,16 @@ void CObjHero::Action()
 	{
 		if (Input::GetVKey('X'))
 		{
-			m_time2 = 1;
-		}
-		else if (m_time2 > 0 && m_time2 < 2)
-		{
-			CObjAttack*obja = new CObjAttack();
+			m_time2 += 1;
+			CObjAttack*objat = (CObjAttack*)Objs::GetObj(OBJ_ATTACK);
+			CObjAttack*obja = new CObjAttack(m_px, m_py);
 			Objs::InsertObj(obja, OBJ_ATTACK, 10);
-			m_time2++;
 		}
-		if (m_time2 > 2)
+		
+		if (m_time2 >=1)
 		{
 			m_attack = false;
+			m_time2 = 0;
 		}
 	}
 	
@@ -91,6 +94,8 @@ void CObjHero::Action()
 		m_vx =+4.0f;
 		m_posture = 0.0f;
 		m_ani_time += 1;
+
+		flag = false;
 	}
 
 	else if (Input::GetVKey(VK_LEFT) == true)//左
@@ -98,6 +103,8 @@ void CObjHero::Action()
 		m_vx =-4.0f;
 		m_posture = 1.0f;
 		m_ani_time += 1;
+
+		flag = true;
 	}
 
 	

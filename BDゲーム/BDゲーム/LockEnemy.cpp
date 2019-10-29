@@ -36,7 +36,7 @@ void CObjLockEnemy::Action()
 {
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_ani_time++;
-	if (m_ani_time > 200)
+	if (m_ani_time > 100)
 	{
 		m_ani_time = 0;
 

@@ -10,24 +10,30 @@
 //使用ネームスペース
 using namespace GameL;
 
+
+CObjAttack::CObjAttack(float x, float y)
+{
+	m_px = x;
+	m_py = y;
+}
 //イニシャライズ
 void CObjAttack::Init()
 {
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-	m_px = 60.0f+objh->GetX();//位置
-	m_py = 0.0f+objh->GetY();
-	m_vx = 0.0f;//移動ベクトル
-	m_vy = 0.0f;
+	m_px = objh->GetX() + 64.0f;
+	m_py = objh->GetY();
+	m_vx = objh->GetVX();//移動ベクトル
+	m_vy = objh->GetVY();
 	m_posture = 0.0f;//右向き0.0f 左向き1.0f
-
+	
 	m_ani_time = 0;
 	m_ani_frame = 1;
 
 	m_hp = 0.0f;
 	m_time1 = 0;
 	m_time2 = 1;
-
+	flag = false;
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -35,21 +41,27 @@ void CObjAttack::Init()
 	m_hit_right = false;
 
 	m_attack = false;
-	Hits::SetHitBox(this, m_px*m_time2, m_py, 32, 64, ELEMENT_ATTACK, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px+m_vx,m_py+m_vy, 32, 64, ELEMENT_ATTACK, OBJ_HERO, 1);
 }
 
 //アクション
 void CObjAttack::Action()
 {
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	
+	
 	m_time1++;
-	if (m_px > 0)
+
+	if (objh->GetFlag(flag) == false)
 	{
 		m_time2 = 1;
 	}
-	else
+	if (objh->GetFlag(flag) == true)
 	{
 		m_time2 = -1;
 	}
+
+	m_vx = objh->GetVX();
 	
 	//自身のHitBoxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -75,8 +87,8 @@ void CObjAttack::Action()
 	}
 
 	//位置の更新
-	m_px += m_vx;
-	m_py += m_vy;
+	m_px +=(m_time2*m_vx);
+	m_py = objh->GetY();
 
 	//HitBoxの位置の変更
 	hit->SetPos(m_px, m_py);
@@ -92,8 +104,6 @@ void CObjAttack::Action()
 //ドロー
 void CObjAttack::Draw()
 {
-	
-
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -105,8 +115,8 @@ void CObjAttack::Draw()
 	src.m_bottom = 64.0f;
 
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = (32.0*m_posture) + m_px*m_time2;
-	dst.m_right = (32 - 32.0f*m_posture) + m_px*m_time2;
+	dst.m_left = 32.0f-32.0f* m_time2 + m_px * m_time2;
+	dst.m_right = 32.0f + 32.0f* m_time2 +m_px * m_time2;
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
