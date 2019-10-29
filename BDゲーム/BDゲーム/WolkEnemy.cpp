@@ -67,7 +67,7 @@ void CObjWolkEnemy::Action()
 		m_move = false;
 	}
 
-	if ( m_ex < objh->GetX())
+	if ( m_ex <= objh->GetX())
 	{
 		m_move = true;
 	}

@@ -171,11 +171,11 @@ void CObjHero::Action()
 			float r = hit_data[i]->r;
 			if ((r < 45 && r >= 0) || r > 315)
 			{
-				m_vx = -5.0f;//¶‚ÉˆÚ“®
+				m_vx = -1.0f;//¶‚ÉˆÚ“®
 			}
 			if (r > 135 && r < 225)
 			{
-				m_vx = +5.0f;//‰E‚ÉˆÚ“®
+				m_vx = +1.0f;//‰E‚ÉˆÚ“®
 			}
 			if (r >= 225 && r < 315)
 			{
