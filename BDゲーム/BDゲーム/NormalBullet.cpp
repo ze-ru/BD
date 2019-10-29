@@ -17,11 +17,11 @@ void CObjNormalBullet::Init()
 {
 	CObjLockEnemy*objeL = (CObjLockEnemy*)Objs::GetObj(OBJ_LOCKENEMY);
 	m_vx = 5.0f;
-	m_vy = 5.0f;
+	m_vy = 0.0f;
 
 	
-	m_px = objeL->GetX()-25;
-	m_py = objeL->GetY()+30;
+	m_px = objeL->GetX();
+	m_py = objeL->GetY()+23.0f;
 
 	m_hit_up = false;
 	m_hit_down = false;
@@ -35,16 +35,13 @@ void CObjNormalBullet::Action()
 	m_vx = -5.0f;
 	
 
-	m_px += m_vx ;
+	m_px += m_vx;
 	m_py += m_vy;
 	
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + block->GetScroll(), m_py);
 	
-	block->BlockHit(&m_px, &m_py, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy);
 	
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{

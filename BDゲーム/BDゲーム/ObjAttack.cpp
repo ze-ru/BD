@@ -100,14 +100,14 @@ void CObjAttack::Draw()
 	RECT_F src;//•`‰æŒ³Ø‚èæ‚èˆÊ’u
 	RECT_F dst;//•`‰ææ•\¦ˆÊ’u
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 32.0f;
-	src.m_bottom = 32.0f;
+	src.m_left = 64.0f*7.0f;
+	src.m_right = src.m_left+64.0f;
+	src.m_bottom = 64.0f;
 
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = (32.0*m_posture) + m_px*m_time2;
 	dst.m_right = (32 - 32.0f*m_posture) + m_px*m_time2;
-	dst.m_bottom = 32.0f + m_py;
+	dst.m_bottom = 64.0f + m_py;
 
 	//•`‰æ
 	Draw::Draw(1, &src, &dst, c, 0.0f);
