@@ -277,8 +277,7 @@ void CObjHero::Action()
 	}
 
 	//位置の更新
-	m_px += m_vx;
-	m_py += m_vy;
+	
 
 	//HitBoxの位置の変更
 	hit->SetPos(m_px, m_py);
@@ -301,7 +300,8 @@ void CObjHero::Action()
 
 		Scene::SetScene(new CSceneGameOver());
 	}
-	
+	m_px += m_vx;
+	m_py += m_vy;
 }
 
 //ドロー

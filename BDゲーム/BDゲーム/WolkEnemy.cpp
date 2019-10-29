@@ -29,7 +29,7 @@ void CObjWolkEnemy::Init()
 	m_ani_max_time = 4;
 	m_time = 0;
 
-	m_move = true;//false=右　true=左
+	m_move = false;//false=右　true=左
 	m_hp = 10;
 	m_hit_up = false;
 	m_hit_down = false;
@@ -60,27 +60,27 @@ void CObjWolkEnemy::Action()
 
 	}*/
 
-	/*CObjHero*m_px = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//主人公の位置で向き変更
-	if (m_move == true && m_ex < m_px)
+	if ( m_ex > objh->GetX())
 	{
 		m_move = false;
 	}
 
-	if (m_move == false && m_ex > m_px)
+	if ( m_ex < objh->GetX())
 	{
 		m_move = true;
-	}*/
+	}
 
 	//ブロック衝突で向き変更(仮)
-	if (m_hit_left == true)
+	/*if (m_hit_left == true)
 	{
 		m_move = false;
 	}
 	if (m_hit_right == true)
 	{
 		m_move = true;
-	}
+	}*/
 
 	//方向
 	if (m_move==true)
