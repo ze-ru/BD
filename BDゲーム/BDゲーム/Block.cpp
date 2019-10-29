@@ -106,6 +106,14 @@ void CObjBlock::Draw()
 				{
 					;
 				}
+				else if (m_map[i][j] == 2)
+				{
+					BlockDraw(64.0f, 0.0f, &dst, c);
+				}
+				else if (m_map[i][j] == 3)
+				{
+					BlockDraw(128.0f, 0.0f, &dst, c);
+				}
 				else
 				{
 					//•`‰æ
