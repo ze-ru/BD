@@ -46,7 +46,7 @@ void CObjHero::Init()
 void CObjHero::Action()
 {
 	m_time1++;
-	if (m_time1 > 5)
+	if (m_time1 > 20)
 	{
 		m_attack = true;
 		m_time1 = 0;
@@ -81,7 +81,7 @@ void CObjHero::Action()
 		if (m_hit_down == true)
 		{
 			if(m_vy>=0)
-			m_vy = -12;
+			m_vy = -10.5;
 			
 		}
 	}
