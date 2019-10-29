@@ -27,9 +27,10 @@ void CObjWolkEnemy::Init()
 
 	m_speed_power = 0.1f;
 	m_ani_max_time = 4;
+	m_time = 0;
 
 	m_move = true;//false=右　true=左
-
+	m_hp = 10;
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
@@ -47,7 +48,17 @@ void CObjWolkEnemy::Action()
 	m_ani_max_time = 6;
 
 	
+	/*m_time++;
+	if (m_time > 200)
+	{
+		m_time = 0;
 
+		CObjNormalBullet*objNB = (CObjNormalBullet*)Objs::GetObj(OBJ_NORMAL_BULLET);
+		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey);
+		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 10);
+
+
+	}*/
 
 	/*CObjHero*m_px = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//主人公の位置で向き変更
@@ -120,6 +131,17 @@ void CObjWolkEnemy::Action()
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_ex+ block->GetScroll(), m_ey);
+
+	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
+	{
+		m_hp -= 1;
+	}
+
+	if (m_hp <= 0)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 	
 }
 

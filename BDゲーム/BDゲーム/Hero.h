@@ -37,6 +37,8 @@ class CObjHero :public CObj
 	  float m_vy;
 	  float m_posture;//姿勢
 	  float m_hp;
+	  int m_time1;
+	  int m_time2;
 
 
 	  int m_ani_time;//アニメーションフレーム動作間隔
@@ -47,5 +49,7 @@ class CObjHero :public CObj
 	  bool m_hit_down;
 	  bool m_hit_left;
 	  bool m_hit_right;
+
+	  bool m_attack;
 
 };

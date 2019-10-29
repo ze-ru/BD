@@ -23,6 +23,8 @@ void CObjHero::Init()
 	m_ani_frame = 1;
 
 	m_hp = 0.0f;
+	m_time1 = 0;
+	m_time2 = 0;
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
@@ -30,14 +32,39 @@ void CObjHero::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	m_attack = false;
+
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 48, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
 void CObjHero::Action()
 {
+	m_time1++;
+	if (m_time1 > 50)
+	{
+		m_attack = true;
+		m_time1 = 0;
+	}
 
+	if (m_attack == true)
+	{
+		if (Input::GetVKey('X'))
+		{
+			m_time2 = 1;
+		}
+		else if (m_time2 > 0 && m_time2 < 2)
+		{
+			CObjAttack*obja = new CObjAttack();
+			Objs::InsertObj(obja, OBJ_ATTACK, 10);
+			m_time2++;
+		}
+		if (m_time2 > 2)
+		{
+			m_attack = false;
+		}
+	}
 	
 	//落下時
 	if (m_py > 1000.0f)
@@ -55,6 +82,8 @@ void CObjHero::Action()
 			
 		}
 	}
+	
+	
 
 	//キーの入力方向
 	if (Input::GetVKey(VK_RIGHT) == true)//右
@@ -71,6 +100,7 @@ void CObjHero::Action()
 		m_ani_time += 1;
 	}
 
+	
 
 	if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)
 	{
@@ -97,7 +127,7 @@ void CObjHero::Action()
 		}
 		
 	}
-
+	
 	
 	if (m_ani_frame == 5)
 	{
@@ -226,12 +256,18 @@ void CObjHero::Action()
 				}
 			}
 		}
-
+		
 
 		
 		
 	}
-	
+	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
+	{
+
+		HIT_DATA** hit_data;
+		hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
+		m_hp += 5;
+	}
 
 	//位置の更新
 	m_px += m_vx;

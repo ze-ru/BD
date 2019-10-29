@@ -12,6 +12,8 @@ public:
 	void Action();
 	void Draw();
 
+	float GetX() { return m_ex; };
+	float GetY() { return m_ey; };
 private:
 	float m_ex;
 	float m_ey;
@@ -25,4 +27,6 @@ private:
 	float x;
 	int m_ani_time;
 	int m_ani_frame;
+	float m_hp;
+
 };

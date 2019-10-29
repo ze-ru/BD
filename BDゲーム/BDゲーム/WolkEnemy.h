@@ -22,7 +22,7 @@ private:
 	float m_vx;
 	float m_vy;
 	float m_posture;
-	
+	float m_time;
 	int m_ani_time;
 	int m_ani_frame;
 
@@ -36,4 +36,5 @@ private:
 
 	//ˆÚ“®‚ÌŒü‚«—p
 	bool m_move;
+	float m_hp;
 };

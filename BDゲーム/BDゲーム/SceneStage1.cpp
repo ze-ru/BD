@@ -71,17 +71,17 @@ void CSceneStage1::InitScene()
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
-
+	
 	//Blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
-	Objs::InsertObj(objb, OBJ_BLOCK, 11);
+	Objs::InsertObj(objb, OBJ_BLOCK, 2);
 
 	CObjStage1*objs1 = new CObjStage1();
 	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
 
 
 	CObjStageUi*objui = new CObjStageUi();
-	Objs::InsertObj(objui, OBJ_STAGEUI, 12);
+	Objs::InsertObj(objui, OBJ_STAGEUI, 30);
 }
 
 //実行中メソッド

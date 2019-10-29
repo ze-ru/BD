@@ -12,6 +12,8 @@ enum OBJ_NAME
 	OBJ_STAGEUI,
 	OBJ_SHOP,
 	OBJ_FLYENEMY,
+	OBJ_NORMAL_BULLET,
+	OBJ_ATTACK,
 	OBJ_NO_NAME,	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -38,6 +40,7 @@ enum HIT_ELEMENTS
 	ELEMENT_BLACK,
 	ELEMENT_WHITE,
 	ELEMENT_BLOCK,
+	ELEMENT_ATTACK,
 };
 //------------------------------------------------
 
@@ -73,6 +76,8 @@ struct UserData
 #include "ObjShop.h"
 #include "ObjGamerule.h"
 #include"FlyEnemy.h"
+#include"NormalBullet.h"
+#include"ObjAttack.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

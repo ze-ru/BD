@@ -26,16 +26,29 @@ void CObjLockEnemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	m_hp = 10;
+
 
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_LOCKENEMY, 1);
 }
 
 void CObjLockEnemy::Action()
 {
-
-
-	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_ani_time++;
+	if (m_ani_time > 200)
+	{
+		m_ani_time = 0;
+
+		CObjNormalBullet*objNB = (CObjNormalBullet*)Objs::GetObj(OBJ_NORMAL_BULLET);
+			CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey);
+			Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 10);
+		
+		
+	}
+	
+	//ブロック情報を持ってくる
+
 
 	//ブロックとの当たり判定実行
 	block->BlockHit(&m_ex, &m_ey, false,
@@ -46,6 +59,17 @@ void CObjLockEnemy::Action()
 	//HitBoxの位置の変更
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_ex + block->GetScroll(), m_ey);
+
+	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
+	{
+		m_hp -= 1;
+	}
+
+	if (m_hp <= 0)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 }
 void CObjLockEnemy::Draw()
 {
