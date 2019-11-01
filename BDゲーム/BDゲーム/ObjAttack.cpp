@@ -21,11 +21,15 @@ void CObjAttack::Init()
 {
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-	m_px = objh->GetX() + 64.0f;
+	if(objh->GetFlag()==false)
+		m_posture = 0.0f;//右向き0.0f 左向き1.0f
+	if (objh->GetFlag() == true)
+		m_posture = 1.0f;//右向き0.0f 左向き1.0f
+	m_px = objh->GetX()-32.0f+96.0f-96.0f*m_posture;
 	m_py = objh->GetY();
 	m_vx = objh->GetVX();//移動ベクトル
 	m_vy = objh->GetVY();
-	m_posture = 0.0f;//右向き0.0f 左向き1.0f
+	
 	
 	m_ani_time = 0;
 	m_ani_frame = 1;
@@ -33,7 +37,8 @@ void CObjAttack::Init()
 	m_hp = 0.0f;
 	m_time1 = 0;
 	m_time2 = 1;
-	flag = false;
+	m_time3 = 0;
+	
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -41,28 +46,13 @@ void CObjAttack::Init()
 	m_hit_right = false;
 
 	m_attack = false;
-	Hits::SetHitBox(this, m_px+m_vx,m_py+m_vy, 32, 64, ELEMENT_ATTACK, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px+m_vx, m_py+m_vy, 32, 64, ELEMENT_ATTACK, OBJ_HERO, 1);
+
 }
 
 //アクション
 void CObjAttack::Action()
 {
-	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	
-	
-	m_time1++;
-
-	if (objh->GetFlag(flag) == false)
-	{
-		m_time2 = 1;
-	}
-	if (objh->GetFlag(flag) == true)
-	{
-		m_time2 = -1;
-	}
-
-	m_vx = objh->GetVX();
-	
 	//自身のHitBoxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
 
@@ -85,24 +75,13 @@ void CObjAttack::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-
-	//位置の更新
-	m_px +=(m_time2*m_vx);
-	m_py = objh->GetY();
-
 	//HitBoxの位置の変更
 	hit->SetPos(m_px, m_py);
-
-	if (m_time1 == 8)
-	{
-
-	}
-	
-	if (m_time1== 8)
+		m_time1++;
+	if (m_time1== 16)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-		m_time1 = 0;
 	}
 }
 
@@ -116,13 +95,13 @@ void CObjAttack::Draw()
 	RECT_F dst;//描画先表示位置
 	src.m_top = 0.0f;
 	src.m_left = 64.0f*7.0f;
-	src.m_right = src.m_left+64.0f;
-	src.m_bottom = m_time1*8;
+	src.m_right = src.m_left+32.0f;
+	src.m_bottom = m_time1*4;
 
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = 32.0f-32.0f* m_time2 + m_px * m_time2;
-	dst.m_right = 32.0f + 32.0f* m_time2 +m_px * m_time2;
-	dst.m_bottom = m_time1*8 + m_py;
+	dst.m_left = 32.0f*m_posture+ m_px;
+	dst.m_right = 32.0f-32.0f*m_posture+m_px;
+	dst.m_bottom = m_time1*4 + m_py;
 
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);

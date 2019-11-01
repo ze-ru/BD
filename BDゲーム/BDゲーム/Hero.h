@@ -32,7 +32,13 @@ class CObjHero :public CObj
 
 	
 
-	bool  GetFlag(bool b) { return flag; };
+	bool  GetFlag() 
+	{ 
+		if (flag == true)
+			return true;
+		if (flag == false)
+			return false;
+	};
 
   private:
 	  float m_px;//ˆÊ’u

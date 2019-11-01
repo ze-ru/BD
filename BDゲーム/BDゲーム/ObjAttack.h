@@ -25,6 +25,7 @@ private:
 	float m_hp;
 	int m_time1;
 	int m_time2;
+	int m_time3;
 	bool flag;
 
 	int m_ani_time;//アニメーションフレーム動作間隔
