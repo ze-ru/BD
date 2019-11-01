@@ -61,27 +61,29 @@ void CObjWolkEnemy::Action()
 	}*/
 
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//主人公の位置で向き変更
 
-	if ( m_ex > objh->GetX())
+	if ( m_ex > objh->GetX() - block->GetScroll())
 	{
 		m_move = false;
 	}
 
-	if ( m_ex < objh->GetX())
+	if ( m_ex < objh->GetX() - block->GetScroll())
 	{
 		m_move = true;
+
 	}
 
 	//ブロック衝突で向き変更(仮)
-	if (m_hit_left == true)
+	/*if (m_hit_left == true)
 	{
 		m_move = false;
 	}
 	if (m_hit_right == true)
 	{
 		m_move = true;
-	}
+	}*/
 
 	//方向
 	if (m_move==true)
@@ -121,7 +123,7 @@ void CObjWolkEnemy::Action()
 	m_ey += m_vy;
 
 	//ブロック情報を持ってくる
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	
 
 	//ブロックとの当たり判定実行
 	block->BlockHit(&m_ex, &m_ey, false,
@@ -171,8 +173,8 @@ void CObjWolkEnemy::Draw()
 	
 	//
 	dst.m_top = 0.0f + m_ey;
-	dst.m_left = (64.0f*m_posture) + m_ex + block->GetScroll() ;
-	dst.m_right = (64 - 64.0f*m_posture) + m_ex + block->GetScroll();
+	dst.m_left = (64.0f*m_posture) + m_ex +block->GetScroll();
+	dst.m_right = (64 - 64.0f*m_posture) + m_ex +block->GetScroll();
 	dst.m_bottom = 64.0f + m_ey ;
 
 	//

@@ -187,14 +187,14 @@ void CObjHero::Action()
 						//後方スクロールライン
 						if (m_px < 80)
 						{
-							///m_px = 80;//主人公はラインを超えないようにする
+							m_px = 80;//主人公はラインを超えないようにする
 							b->SetScroll(b->GetScroll() - 5.0);
 						}
 
 						//前方スクロールライン
 						if (m_px > 300)
 						{
-							//m_px = 300;
+							m_px = 300;
 							b->SetScroll(b->GetScroll() - 5.0);
 						}
 
