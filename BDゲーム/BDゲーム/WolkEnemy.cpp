@@ -134,7 +134,7 @@ void CObjWolkEnemy::Action()
 
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
-		m_hp -= 1;
+		m_hp -= 5;
 	}
 
 	if (m_hp <= 0)
