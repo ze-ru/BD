@@ -63,7 +63,7 @@ void CObjTitle::Draw()
 	float c[4] = { 1,1,1,1 };
 
 
-	Font::StrDraw(L"LOST", 230, 70, 180, c);
+	Font::StrDraw(L"L O S T", 85, 70, 180, c);
 	if (key == true)
 	{
 		Font::StrDraw(L"▶はじめから", 125, 320, 80, c);

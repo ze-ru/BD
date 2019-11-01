@@ -83,6 +83,13 @@ void CSceneStage2::InitScene()
 
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 30);
+
+	//音楽情報の読み込み
+	Audio::LoadAudio(0, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
+
+	//バックミュージックスタート
+	float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+	Audio::Start(0);//音楽スタート
 }
 
 //実行中メソッド
