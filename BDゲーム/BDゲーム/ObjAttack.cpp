@@ -70,20 +70,20 @@ void CObjAttack::Action()
 	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
 	{
 		//主人公が敵とどの角度で当たってるか確認
-		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
+		
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
 	{
-		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
+		
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 	{
-
-		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
-		
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 
 	//位置の更新
