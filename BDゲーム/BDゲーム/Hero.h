@@ -50,7 +50,7 @@ class CObjHero :public CObj
 	  int m_time1;
 	  int m_time2;
 	  bool flag;
-
+	  bool hit_flag;
 	  int m_ani_time;//アニメーションフレーム動作間隔
 	  int m_ani_frame;//描画フレーム
 

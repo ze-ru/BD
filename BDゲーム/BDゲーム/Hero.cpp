@@ -33,7 +33,7 @@ void CObjHero::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
-
+	hit_flag = true;
 	m_attack = false;
 
 	//当たり判定用のHitBoxを作成
@@ -156,111 +156,124 @@ void CObjHero::Action()
 	{
 		//主人公が敵とどの角度で当たってるか確認
 		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
-		
 
-		for (int i = 0; i < hit->GetCount(); i++)
+		if (hit_flag == true)
 		{
+			hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
+			hit_flag = false;
 
-			//敵の左右に当たったら
-			float r = hit_data[i]->r;
-			if ((r < 45 && r >= 0) || r > 315)
+			for (int i = 0; i < hit->GetCount(); i++)
 			{
-				m_vx = -1.0f;//左に移動
-			}
-			if (r > 135 && r < 225)
-			{
-				m_vx = +1.0f;//右に移動
-			}
-			if (r >= 225 && r < 315)
-			{
-				//敵の移動方向を主人公の位置に加算
-				m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
 
-				CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-				//後方スクロールライン
-				if (m_px < 80)
+				//敵の左右に当たったら
+				if (hit_data[i] != NULL)
 				{
-					///m_px = 80;//主人公はラインを超えないようにする
-					b->SetScroll(b->GetScroll() - 5.0);
-				}
+					float r = hit_data[i]->r;
+					if ((r < 45 && r >= 0) || r > 315)
+					{
+						m_vx = -1.0f;//左に移動
+					}
+					if (r > 135 && r < 225)
+					{
+						m_vx = +1.0f;//右に移動
+					}
+					if (r >= 225 && r < 315)
+					{
+						//敵の移動方向を主人公の位置に加算
+						m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
 
-				//前方スクロールライン
-				if (m_px > 300)
-				{
-					//m_px = 300;
-					b->SetScroll(b->GetScroll() - 5.0);
-				}
+						CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-				if (m_vy <= -1.0f)
-				{
+						//後方スクロールライン
+						if (m_px < 80)
+						{
+							///m_px = 80;//主人公はラインを超えないようにする
+							b->SetScroll(b->GetScroll() - 5.0);
+						}
 
-				}
-				else
-				{
-					m_vy = 0.0f;//ベクトルを0にする
-					m_hit_down = true;//地面に当たっている判定にする
+						//前方スクロールライン
+						if (m_px > 300)
+						{
+							//m_px = 300;
+							b->SetScroll(b->GetScroll() - 5.0);
+						}
+
+						if (m_vy <= -1.0f)
+						{
+
+						}
+						else
+						{
+							m_vy = 0.0f;//ベクトルを0にする
+							m_hit_down = true;//地面に当たっている判定にする
+						}
+					}
 				}
 			}
 		}
-
+		if (hit_flag == false)
+			hit_flag = true;
 		
 	}
 	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
 	{
 		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
-	
-
-		for (int i = 0; i < hit->GetCount(); i++)
+		if (hit_flag == true)
 		{
+			hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
+			hit_flag = false;
 
-			//敵の左右に当たったら
-			float r = hit_data[i]->r;
-			if ((r < 45 && r >= 0) || r > 315)
+
+			for (int i = 0; i < hit->GetCount(); i++)
 			{
-				m_vx = -5.0f;//左に移動
-			}
-			if (r > 135 && r < 225)
-			{
-				m_vx = +5.0f;//右に移動
-			}
-			if (r >= 225 && r < 315)
-			{
-				//敵の移動方向を主人公の位置に加算
-			
-				CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-				//後方スクロールライン
-				if (m_px < 80)
+				//敵の左右に当たったら
+				if (hit_data[i] != NULL)
 				{
-					//m_px = 80;//主人公はラインを超えないようにする
-					b->SetScroll(b->GetScroll() - 5.0);
-				}
+					float r = hit_data[i]->r;
+					if ((r < 45 && r >= 0) || r > 315)
+					{
+						m_vx = -5.0f;//左に移動
+					}
+					if (r > 135 && r < 225)
+					{
+						m_vx = +5.0f;//右に移動
+					}
+					if (r >= 225 && r < 315)
+					{
+						//敵の移動方向を主人公の位置に加算
 
-				//前方スクロールライン
-				if (m_px > 300)
-				{
-					//m_px = 300;
-					b->SetScroll(b->GetScroll() - 5.0);
-				}
+						CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-				if (m_vy <= -1.0f)
-				{
-					;
-				}
-				else
-				{
-					m_vy = 0.0f;//ベクトルを0にする
-					m_hit_down = true;//地面に当たっている判定にする
+						//後方スクロールライン
+						if (m_px < 80)
+						{
+							//m_px = 80;//主人公はラインを超えないようにする
+							b->SetScroll(b->GetScroll() - 5.0);
+						}
+
+						//前方スクロールライン
+						if (m_px > 300)
+						{
+							//m_px = 300;
+							b->SetScroll(b->GetScroll() - 5.0);
+						}
+
+						if (m_vy <= -1.0f)
+						{
+							;
+						}
+						else
+						{
+							m_vy = 0.0f;//ベクトルを0にする
+							m_hit_down = true;//地面に当たっている判定にする
+						}
+					}
 				}
 			}
 		}
-		
-
-		
-		
+		if (hit_flag == false)
+			hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 	{
