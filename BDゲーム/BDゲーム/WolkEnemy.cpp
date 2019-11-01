@@ -62,25 +62,26 @@ void CObjWolkEnemy::Action()
 
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//主人公の位置で向き変更
+
 	if ( m_ex > objh->GetX())
 	{
 		m_move = false;
 	}
 
-	if ( m_ex <= objh->GetX())
+	if ( m_ex < objh->GetX())
 	{
 		m_move = true;
 	}
 
 	//ブロック衝突で向き変更(仮)
-	/*if (m_hit_left == true)
+	if (m_hit_left == true)
 	{
 		m_move = false;
 	}
 	if (m_hit_right == true)
 	{
 		m_move = true;
-	}*/
+	}
 
 	//方向
 	if (m_move==true)

@@ -10,8 +10,6 @@
 //使用ネームスペース
 using namespace GameL;
 
-
-
 //イニシャライズ
 void CObjHero::Init()
 {
@@ -184,14 +182,14 @@ void CObjHero::Action()
 				//後方スクロールライン
 				if (m_px < 80)
 				{
-					m_px = 80;//主人公はラインを超えないようにする
+					///m_px = 80;//主人公はラインを超えないようにする
 					b->SetScroll(b->GetScroll() - 5.0);
 				}
 
 				//前方スクロールライン
 				if (m_px > 300)
 				{
-					m_px = 300;
+					//m_px = 300;
 					b->SetScroll(b->GetScroll() - 5.0);
 				}
 
@@ -232,20 +230,19 @@ void CObjHero::Action()
 			{
 				//敵の移動方向を主人公の位置に加算
 			
-
 				CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 				//後方スクロールライン
 				if (m_px < 80)
 				{
-					m_px = 80;//主人公はラインを超えないようにする
+					//m_px = 80;//主人公はラインを超えないようにする
 					b->SetScroll(b->GetScroll() - 5.0);
 				}
 
 				//前方スクロールライン
 				if (m_px > 300)
 				{
-					m_px = 300;
+					//m_px = 300;
 					b->SetScroll(b->GetScroll() - 5.0);
 				}
 
@@ -274,16 +271,13 @@ void CObjHero::Action()
 	}
 
 	//位置の更新
-	
+	//m_px += m_vx;
+	//m_py += m_vy;
+
 
 	//HitBoxの位置の変更
 	hit->SetPos(m_px, m_py);
 
-	//開始位置から左に行かない処理
-	if (m_px < 0)
-	{
-		m_px = 0;
-	}
 
 	if (m_py < 0)
 	{
@@ -380,3 +374,4 @@ void CObjHero::Draw()
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 }
+
