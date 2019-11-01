@@ -41,7 +41,7 @@ void CObjBlock2::Draw()
 //引数3 RECT_F* dst  :描画位置
 //引数4 float c[]  :カラー情報
 //ブロックを64×64限定描画用。リソース切り取り位置のみx,yで設定できる
-void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[])
+void CObjBlock2::BlockDraw(float x, float y, RECT_F *dst, float c[])
 {
 	RECT_F src;
 	src.m_top = y;
@@ -65,7 +65,7 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[])
 //引数10 int* bt  :下部分判定時特殊なブロックのタイプを返す
 //判定を行うobjectとブロック64×64限定で、当たり判定と上下左右判定を行う
 //その結果は引数4～10に返す
-void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
+void CObjBlock2::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 	bool *left, bool *right, float *vx, float *vy)
 {
 
