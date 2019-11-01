@@ -46,7 +46,7 @@ void CObjAttack::Init()
 	m_hit_right = false;
 
 	m_attack = false;
-	Hits::SetHitBox(this, m_px+m_vx, m_py+m_vy, 32, 64, ELEMENT_ATTACK, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px+m_vx, m_py+m_vy, 32, 63, ELEMENT_ATTACK, OBJ_HERO, 1);
 
 }
 
@@ -57,24 +57,13 @@ void CObjAttack::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	//敵と当たっているか確認
-	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
-	{
-		//主人公が敵とどの角度で当たってるか確認
-		
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
-	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
-	{
-		
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
-	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
+	
+	if (hit->CheckElementHit(ELEMENT_ENEMY))
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+	
 	//HitBoxの位置の変更
 	hit->SetPos(m_px, m_py);
 		m_time1++;
