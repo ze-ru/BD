@@ -47,7 +47,7 @@ void CObjTitle::Action()
 	{
 		if (m_key_flag == true)
 		{
-			Scene::SetScene(new CSceneGamerule());
+			Scene::SetScene(new CSceneStage2());
 			m_key_flag == false;
 		}
 	}
