@@ -45,27 +45,24 @@ void CObjHero::Init()
 //ƒAƒNƒVƒ‡ƒ“
 void CObjHero::Action()
 {
-	m_time1++;
-	if (m_time1 > 20)
-	{
-		m_attack = true;
-		m_time1 = 0;
-	}
+	
 
 	if (m_attack == true)
 	{
 		if (Input::GetVKey('X'))
 		{
-			m_time2 += 1;
-			CObjAttack*objat = (CObjAttack*)Objs::GetObj(OBJ_ATTACK);
 			CObjAttack*obja = new CObjAttack(m_px, m_py);
 			Objs::InsertObj(obja, OBJ_ATTACK, 10);
-		}
-		
-		if (m_time2 >=1)
-		{
 			m_attack = false;
-			m_time2 = 0;
+		}
+	}
+	if (m_attack == false)
+	{
+		m_time1++;
+		if (m_time1 > 30)
+		{
+			m_time1 = 0;
+			m_attack = true;
 		}
 	}
 	

@@ -93,11 +93,16 @@ void CObjAttack::Action()
 	//HitBoxの位置の変更
 	hit->SetPos(m_px, m_py);
 
+	if (m_time1 == 8)
+	{
 
-	if (m_time1 > 5)
+	}
+	
+	if (m_time1== 8)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		m_time1 = 0;
 	}
 }
 
@@ -112,12 +117,12 @@ void CObjAttack::Draw()
 	src.m_top = 0.0f;
 	src.m_left = 64.0f*7.0f;
 	src.m_right = src.m_left+64.0f;
-	src.m_bottom = 64.0f;
+	src.m_bottom = m_time1*8;
 
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = 32.0f-32.0f* m_time2 + m_px * m_time2;
 	dst.m_right = 32.0f + 32.0f* m_time2 +m_px * m_time2;
-	dst.m_bottom = 64.0f + m_py;
+	dst.m_bottom = m_time1*8 + m_py;
 
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
