@@ -14,7 +14,8 @@ enum OBJ_NAME
 	OBJ_FLYENEMY,
 	OBJ_NORMAL_BULLET,
 	OBJ_ATTACK,
-	OBJ_NO_NAME,	//オブジェクト名無し(禁止)
+	OBJ_NO_NAME,
+	OBJ_STAGE2,	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_GAME_OVER,
@@ -89,6 +90,7 @@ struct UserData
 
 //ゲームシーンクラスヘッダ------------------------
 #include"SceneStage1.h"
+#include"SceneStage2.h"
 #include"SceneTitle.h"
 #include "SceneGameOver.h"
 #include"Gamerule.h"
@@ -97,5 +99,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneTitle
+#define SET_GAME_START  CSceneStage2
 //-----------------------------------------------
