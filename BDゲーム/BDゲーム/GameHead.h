@@ -15,7 +15,9 @@ enum OBJ_NAME
 	OBJ_NORMAL_BULLET,
 	OBJ_ATTACK,
 	OBJ_NO_NAME,
-	OBJ_STAGE2,	//オブジェクト名無し(禁止)
+	OBJ_STAGE2,	
+	OBJ_BLOCK2,
+	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
 	OBJ_GAME_OVER,

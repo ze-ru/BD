@@ -13,6 +13,10 @@ public:
 	~CSceneStage1();
 	void InitScene();
 	void Scene();
+
+	
 private:
+
+	
 
 };

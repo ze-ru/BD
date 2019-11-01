@@ -8,7 +8,7 @@ using namespace GameL;
 
 void CObjStage2::Init()
 {
-
+	
 }
 
 void CObjStage2::Action()

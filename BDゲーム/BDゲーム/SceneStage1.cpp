@@ -31,6 +31,8 @@ CSceneStage1::~CSceneStage1()
 //初期化メソッド
 void CSceneStage1::InitScene()
 {
+	bool flag = true;
+
 	//外部データの読み込み
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
@@ -68,16 +70,21 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"LockEnemy.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
 
+	
+	CObjStage1*objs1 = new CObjStage1();
+	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
+
+	
+
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
+
 	
 	//Blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 2);
 
-	CObjStage1*objs1 = new CObjStage1();
-	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
 
 
 	CObjStageUi*objui = new CObjStageUi();

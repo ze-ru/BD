@@ -11,10 +11,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjBlock2::CObjBlock2(int map[11][157])
+CObjBlock2::CObjBlock2(int map2[11][156])
 {
 	//マップデータをコピー
-	memcpy(m_map, map, sizeof(int)*(11 * 157));
+	memcpy(m_map2, map2, sizeof(int)*(11 * 156));
 }
 
 //イニシャライズ
@@ -57,9 +57,9 @@ void CObjBlock2::Draw()
 	//マップチップによるbloak設置
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 156; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 5)
+			if (m_map2[i][j] > 0 && m_map2[i][j] != 5)
 			{
 				//要素番号を座標に追加
 				float bx = i * 64.0f;
@@ -70,18 +70,18 @@ void CObjBlock2::Draw()
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
 
-				if (m_map[i][j] == 2)
+				if (m_map2[i][j] == 2)
 				{
-					BlockDraw(64.0f, 0.0f, &dst, c);
+					BlockDraw2(64.0f, 0.0f, &dst, c);
 				}
-				else if (m_map[i][j] == 3)
+				else if (m_map2[i][j] == 3)
 				{
-					BlockDraw(128.0f, 0.0f, &dst, c);
+					BlockDraw2(128.0f, 0.0f, &dst, c);
 				}
 				else
 				{
 					//描画
-					BlockDraw(0.0f, 0.0f, &dst, c);
+					BlockDraw2(0.0f, 0.0f, &dst, c);
 				}
 			}
 		}
@@ -95,7 +95,7 @@ void CObjBlock2::Draw()
 //引数3 RECT_F* dst  :描画位置
 //引数4 float c[]  :カラー情報
 //ブロックを64×64限定描画用。リソース切り取り位置のみx,yで設定できる
-void CObjBlock2::BlockDraw(float x, float y, RECT_F *dst, float c[])
+void CObjBlock2::BlockDraw2(float x, float y, RECT_F *dst, float c[])
 {
 	RECT_F src;
 	src.m_top = y;
@@ -103,7 +103,7 @@ void CObjBlock2::BlockDraw(float x, float y, RECT_F *dst, float c[])
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
 	//描画
-	Draw::Draw(0, &src, dst, c, 0.0f);
+	Draw::Draw(6, &src, dst, c, 0.0f);
 }
 
 //BlockHit関数
@@ -119,7 +119,7 @@ void CObjBlock2::BlockDraw(float x, float y, RECT_F *dst, float c[])
 //引数10 int* bt  :下部分判定時特殊なブロックのタイプを返す
 //判定を行うobjectとブロック64×64限定で、当たり判定と上下左右判定を行う
 //その結果は引数4～10に返す
-void CObjBlock2::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
+void CObjBlock2::BlockHit2(float *x, float *y, bool scroll_on, bool *up, bool *down,
 	bool *left, bool *right, float *vx, float *vy)
 {
 
@@ -135,7 +135,7 @@ void CObjBlock2::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *do
 		for (int j = 0; j < 157; j++)
 		{
 			//m_mapの全要素にアクセス
-			if (m_map[i][j] > 0)
+			if (m_map2[i][j] > 0)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
