@@ -54,7 +54,7 @@ void CObjBlock2::Draw()
 	RECT_F src; //描画元切り取り位置
 	RECT_F dst; //描画先表示位置
 
-	//マップチップによるbloak設置
+	//マップチップによるblock設置
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 156; j++)

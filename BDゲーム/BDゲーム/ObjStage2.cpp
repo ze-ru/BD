@@ -23,6 +23,7 @@ void CObjStage2::Draw()
 	RECT_F src;
 	RECT_F dst;
 
+	//îwåi
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 640.0f;
