@@ -66,16 +66,23 @@ struct UserData
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include"Hero.h"
-#include"Block.h"
-#include"ObjStage1.h"
-#include"ObjTitle.h"
+
 #include"LockEnemy.h"
 #include"WolkEnemy.h"
-#include "ObjGameOver.h"
-#include"StageUi.h"
-#include "ObjShop.h"
-#include "ObjGamerule.h"
 #include"FlyEnemy.h"
+
+#include"Block.h"
+#include"Block2.h"
+
+#include"ObjStage1.h"
+#include"ObjStage2.h"
+#include"ObjTitle.h"
+#include"ObjGameOver.h"
+#include"StageUi.h"
+#include"StageUi2.h"
+#include"ObjShop.h"
+#include"ObjGamerule.h"
+
 #include"NormalBullet.h"
 #include"ObjAttack.h"
 //------------------------------------------------
