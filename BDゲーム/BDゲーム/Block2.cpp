@@ -20,19 +20,73 @@ CObjBlock2::CObjBlock2(int map[11][157])
 //イニシャライズ
 void CObjBlock2::Init()
 {
-
+	m_scroll = 0.0f;
 }
 
 //アクション
 void CObjBlock2::Action()
 {
+	//主人公の位置を取得
+	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
 
+	//後方スクロールライン
+	if (hx < 80)
+	{
+		hero->SetX(80);//主人公はラインを超えないようにする
+		m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
+	}
+	//前方スクロールライン
+	if (hx > 300)
+	{
+		hero->SetX(300);
+		m_scroll -= hero->GetVX();
+	}
 }
 
 //ドロー
 void CObjBlock2::Draw()
 {
+	//描画カラー情報
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
+	RECT_F src; //描画元切り取り位置
+	RECT_F dst; //描画先表示位置
+
+	//マップチップによるbloak設置
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 157; j++)
+		{
+			if (m_map[i][j] > 0 && m_map[i][j] != 5)
+			{
+				//要素番号を座標に追加
+				float bx = i * 64.0f;
+				float by = i * 64.0f;
+				//表示位置の設定
+				dst.m_top = i * 64.0f - 64.0f;
+				dst.m_left = j * 64.0f + m_scroll;
+				dst.m_right = dst.m_left + 64.0f;
+				dst.m_bottom = dst.m_top + 64.0f;
+
+				if (m_map[i][j] == 2)
+				{
+					BlockDraw(64.0f, 0.0f, &dst, c);
+				}
+				else if (m_map[i][j] == 3)
+				{
+					BlockDraw(128.0f, 0.0f, &dst, c);
+				}
+				else
+				{
+					//描画
+					BlockDraw(0.0f, 0.0f, &dst, c);
+				}
+			}
+		}
+
+	}
 }
 
 //BlockDrawMethod関数
