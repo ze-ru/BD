@@ -26,7 +26,7 @@ void CObjBlock2::Init()
 //アクション
 void CObjBlock2::Action()
 {
-	//主人公の位置を取得
+	/*/主人公の位置を取得
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
 	float hy = hero->GetY();
@@ -42,7 +42,7 @@ void CObjBlock2::Action()
 	{
 		hero->SetX(300);
 		m_scroll -= hero->GetVX();
-	}
+	}*/
 }
 
 //ドロー
@@ -132,7 +132,7 @@ void CObjBlock2::BlockHit2(float *x, float *y, bool scroll_on, bool *up, bool *d
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 156; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map2[i][j] > 0)
