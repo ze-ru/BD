@@ -37,6 +37,7 @@ void CObjBlock2::Action()
 		hero->SetX(80);//主人公はラインを超えないようにする
 		m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
 	}
+
 	//前方スクロールライン
 	if (hx > 300)
 	{
