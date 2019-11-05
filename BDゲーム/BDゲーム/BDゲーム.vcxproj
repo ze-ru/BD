@@ -132,6 +132,7 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="Gamerule.cpp" />
+    <ClCompile Include="Hero2.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
     <ClCompile Include="ObjAttack.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="Gamerule.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="Hero2.h" />
     <ClInclude Include="LockEnemy.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NormalBullet.h" />

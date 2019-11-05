@@ -13,6 +13,7 @@ using namespace GameL;
 
 CObjBlock::CObjBlock(int map[11][157])
 {
+	
 	//マップデータをコピー
 	memcpy(m_map, map, sizeof(int)*(11* 157));
 }
@@ -20,7 +21,7 @@ CObjBlock::CObjBlock(int map[11][157])
 void CObjBlock::Init()
 {
 	m_scroll = 0.0f;
-
+	
 }
 //アクション
 void CObjBlock::Action()
@@ -70,6 +71,18 @@ void CObjBlock::Action()
 			Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
 			m_map[i][lx] = 0;
 		}
+
+		CHitBox* hit = Hits::GetHitBox(this);
+		//	Switch削除test
+		if (m_map[i][lx] == 9)
+		{
+			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+			{
+				this->SetStatus(false);//自身に削除命令を出す
+				Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+			}
+		}
+
 		
 	}
 }
@@ -91,7 +104,7 @@ void CObjBlock::Draw()
 	{
 		for (int j = 0; j < 157; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j]!=5)
+			if (m_map[i][j] > 0)
 			{
 				//要素番号を座標に追加
 				float bx = i * 64.0f;
@@ -113,6 +126,10 @@ void CObjBlock::Draw()
 				else if (m_map[i][j] == 3)
 				{
 					BlockDraw(128.0f, 0.0f, &dst, c);
+				}
+				else if (m_map[i][j] == 9)
+				{
+					BlockDraw(256.0f, 0.0f, &dst, c);
 				}
 				else
 				{
