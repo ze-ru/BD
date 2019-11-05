@@ -63,24 +63,20 @@ void CObjBlock::Action()
 			//敵出現場所を0にする
 			m_map[i][lx] = 0;
 		}
+		if (m_map[i][lx] == 7)
+		{
+			CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*63.0f);
+			Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
 
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
 		if (m_map[i][lx] == 6)
 		{
 
 			CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f,i*63.0f);
 			Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
 			m_map[i][lx] = 0;
-		}
-
-		CHitBox* hit = Hits::GetHitBox(this);
-		//	Switch削除test
-		if (m_map[i][lx] == 9)
-		{
-			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-			{
-				this->SetStatus(false);//自身に削除命令を出す
-				Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-			}
 		}
 
 		

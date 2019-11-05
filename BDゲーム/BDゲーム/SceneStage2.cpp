@@ -36,10 +36,10 @@ void CSceneStage2::InitScene()
 	
 	//外部データの読み込み
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
-	int size;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage2.csv", &size);//外部データ読み込み
+	int size2;//ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
 
-	int map[11][156];
+	int map2[11][156];
 	int count = 1;
 
 	for (int i = 0; i < 11; i++)
@@ -50,7 +50,7 @@ void CSceneStage2::InitScene()
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 
-			map[i][j] = w;
+			map2[i][j] = w;
 
 			if (w >= 10)
 			{
@@ -74,8 +74,8 @@ void CSceneStage2::InitScene()
 	
 
 	//Block2オブジェクト作成
-	CObjBlock2*objb2 = new CObjBlock2(map);
-	Objs::InsertObj(objb2, OBJ_BLOCK2, 2);
+	CObjBlock2*objb2 = new CObjBlock2(map2);
+	Objs::InsertObj(objb2, OBJ_BLOCK2, 3);
 
 	//Stage2オブジェクト作成
 	CObjStage2*objs2 = new CObjStage2();

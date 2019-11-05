@@ -8,18 +8,45 @@
 
 using namespace GameL;
 
+CObjFlyEnemy::CObjFlyEnemy(float x, float y)
+{
+	m_px = x;
+	m_py = y;
+}
+
 void CObjFlyEnemy::Init()
 {
-	m_py = 0;
-	m_px = 600;
+	
 	m_ani_time = 0;
 	m_ani_frame = 0;
-	m_posture = 0;
+	m_posture = 1;
 
+	m_vx = 0.0f;
+	m_vx = 0.0f;
+	m_time = 0;
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
 void CObjFlyEnemy::Action()
 {
+	m_time++;
+	if (m_time < 100)
+	{
+		m_posture *= -1;
+		m_time = 0;
+	}
+	m_vx += 1.0f*m_posture;
+	m_vy -= 1.0f;
+	//位置の変更
+	m_px += m_vx;
+	if (m_py < 100)
+	{
+		m_py += m_vy;
+	}
+	if (m_py > 100)
+	{
+		m_vy = 0;
+	}
+	
 	//HitBoxの内容を更新
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
@@ -45,5 +72,5 @@ void CObjFlyEnemy::Draw()
 
 
 	//
-	Draw::Draw(4, &src, &dst, c, 0.0f);
+	Draw::Draw(6, &src, &dst, c, 0.0f);
 }

@@ -64,11 +64,13 @@ void CSceneStage1::InitScene()
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"Hero.png",1,TEX_SIZE_512);
-	Draw::LoadImageW(L"Stage2.png",0, TEX_SIZE_512);
-	Draw::LoadImageW(L"Stage2Back.png", 2, TEX_SIZE_512);
-	//Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage1.png",0, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage1Back.png", 2, TEX_SIZE_512);
+	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
 	Draw::LoadImageW(L"LockEnemy.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
+	Draw::LoadImageW(L"FlyEnemy.png", 6, TEX_SIZE_512);
+
 
 	
 	CObjStage1*objs1 = new CObjStage1();
@@ -76,9 +78,9 @@ void CSceneStage1::InitScene()
 
 	
 
-	/*/主人公オブジェクト作成
+	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
-	Objs::InsertObj(obj, OBJ_HERO, 10);*/
+	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	
 	//Blockオブジェクト作成

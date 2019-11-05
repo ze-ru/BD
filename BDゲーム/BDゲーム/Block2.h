@@ -23,7 +23,7 @@ public:
 	
 private:
 	void BlockDraw2(float x, float y, RECT_F *dst, float c[]);
-	int m_map2[11][157] ; //マップ情報
+	int m_map2[11][156] ; //マップ情報
 	float m_scroll; //左右スクロール用
 
 };

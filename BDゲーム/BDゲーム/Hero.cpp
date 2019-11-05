@@ -150,7 +150,7 @@ void CObjHero::Action()
 	
 	//Ž©g‚ÌHitBox‚ðŽ‚Á‚Ä‚­‚é
 	CHitBox* hit = Hits::GetHitBox(this);
-
+	
 	//“G‚Æ“–‚½‚Á‚Ä‚¢‚é‚©Šm”F
 	if (hit->CheckObjNameHit(OBJ_WOLKENEMY)!=nullptr)
 	{
