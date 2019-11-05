@@ -64,7 +64,7 @@ void CSceneStage2::InitScene()
 	}
 
 	//グラフィック読み込み
-	Draw::LoadImageW(L"Hero.png", 1, TEX_SIZE_512);
+	//Draw::LoadImageW(L"Hero.png", 1, TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage2.png", 6, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround2.png", 7, TEX_SIZE_512);
 	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
@@ -73,7 +73,7 @@ void CSceneStage2::InitScene()
 
 	
 
-	//Blockオブジェクト作成
+	//Block2オブジェクト作成
 	CObjBlock2*objb2 = new CObjBlock2(map2);
 	Objs::InsertObj(objb2, OBJ_BLOCK2, 2);
 
@@ -82,8 +82,8 @@ void CSceneStage2::InitScene()
 	Objs::InsertObj(objs2, OBJ_STAGE2, 1);
 	
 	//主人公オブジェクト作成
-	CObjHero*obj = new CObjHero();
-	Objs::InsertObj(obj, OBJ_HERO, 10);
+	//CObjHero*obj = new CObjHero();
+	//Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 30);

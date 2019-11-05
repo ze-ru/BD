@@ -11,9 +11,9 @@ class CObjBlock2 :public CObj
 public:
 	CObjBlock2(int map2[11][156]);
 	~CObjBlock2() {};
-	void Init();     //イニシャライズ
-	void Action();   //アクション
-	void Draw();
+	void Init();    //イニシャライズ
+	void Action();  //アクション
+	void Draw();	//ドロー
 
 	void SetScroll(float s) { m_scroll = s; }
 	float GetScroll() { return m_scroll; }
