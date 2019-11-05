@@ -9,8 +9,8 @@ using namespace GameL;
 class CObjSwitch :public CObj
 {
 public:
-	CObjSwitch();
-	~CObjSwitch();
+	CObjSwitch() {};
+	~CObjSwitch() {};
 	void Init();//イニシャライズ
 	void Action();//アクション
 	void Draw();//ドロー
