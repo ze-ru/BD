@@ -14,7 +14,7 @@ using namespace GameL;
 void CObjHero2::Init()
 {
 	m_px = 100.0f;//位置
-	m_py = 550.0f;
+	m_py = 400.0f;
 	m_vx = 0.0f;//移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;//右向き0.0f 左向き1.0f
@@ -182,7 +182,7 @@ void CObjHero2::Action()
 						//敵の移動方向を主人公の位置に加算
 						m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
 
-						CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+						CObjBlock2*b = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 
 						//後方スクロールライン
 						if (m_px < 80)
@@ -243,7 +243,7 @@ void CObjHero2::Action()
 					{
 						//敵の移動方向を主人公の位置に加算
 
-						CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+						CObjBlock2*b = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 
 						//後方スクロールライン
 						if (m_px < 80)
