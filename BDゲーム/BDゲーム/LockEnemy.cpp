@@ -36,15 +36,13 @@ void CObjLockEnemy::Action()
 {
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_ani_time++;
-	if (m_ani_time > 80)
+	if (m_ani_time > 120)
 	{
 		m_ani_time = 0;
 
 		CObjNormalBullet*objNB = (CObjNormalBullet*)Objs::GetObj(OBJ_NORMAL_BULLET);
-			CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey);
+			CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex,m_ey);
 			Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 10);
-		
-		
 	}
 	
 	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é

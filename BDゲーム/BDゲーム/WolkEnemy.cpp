@@ -47,19 +47,6 @@ void CObjWolkEnemy::Action()
 	m_speed_power = 0.1f;
 	m_ani_max_time = 6;
 
-	
-	/*m_time++;
-	if (m_time > 200)
-	{
-		m_time = 0;
-
-		CObjNormalBullet*objNB = (CObjNormalBullet*)Objs::GetObj(OBJ_NORMAL_BULLET);
-		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 10);
-
-
-	}*/
-
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//éÂêlåˆÇÃà íuÇ≈å¸Ç´ïœçX

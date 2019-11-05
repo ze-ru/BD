@@ -13,6 +13,7 @@ using namespace GameL;
 
 CObjBlock::CObjBlock(int map[11][157])
 {
+	
 	//マップデータをコピー
 	memcpy(m_map, map, sizeof(int)*(11* 157));
 }
@@ -20,7 +21,7 @@ CObjBlock::CObjBlock(int map[11][157])
 void CObjBlock::Init()
 {
 	m_scroll = 0.0f;
-
+	
 }
 //アクション
 void CObjBlock::Action()

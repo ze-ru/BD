@@ -5,13 +5,13 @@
 #include"GameL\HitBoxManager.h"
 
 #include"GameHead.h"
-#include"Hero.h"
+#include"Hero2.h"
 
 //使用ネームスペース
 using namespace GameL;
 
 //イニシャライズ
-void CObjHero::Init()
+void CObjHero2::Init()
 {
 	m_px = 100.0f;//位置
 	m_py = 550.0f;
@@ -41,9 +41,9 @@ void CObjHero::Init()
 }
 
 //アクション
-void CObjHero::Action()
+void CObjHero2::Action()
 {
-	
+
 
 	if (m_attack == true)
 	{
@@ -63,7 +63,7 @@ void CObjHero::Action()
 			m_attack = true;
 		}
 	}
-	
+
 	//落下時
 	if (m_py > 1000.0f)
 	{
@@ -75,18 +75,18 @@ void CObjHero::Action()
 	{
 		if (m_hit_down == true)
 		{
-			if(m_vy>=0)
-			m_vy = -10.5;
-			
+			if (m_vy >= 0)
+				m_vy = -10.5;
+
 		}
 	}
-	
-	
+
+
 
 	//キーの入力方向
 	if (Input::GetVKey(VK_RIGHT) == true)//右
 	{
-		m_vx =+4.0f;
+		m_vx = +4.0f;
 		m_posture = 0.0f;
 		m_ani_time += 1;
 
@@ -95,14 +95,14 @@ void CObjHero::Action()
 
 	else if (Input::GetVKey(VK_LEFT) == true)//左
 	{
-		m_vx =-4.0f;
+		m_vx = -4.0f;
 		m_posture = 1.0f;
 		m_ani_time += 1;
 
 		flag = true;
 	}
 
-	
+
 
 	if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)
 	{
@@ -122,15 +122,15 @@ void CObjHero::Action()
 	}
 	if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)
 	{
-		if (m_ani_time>6)
+		if (m_ani_time > 6)
 		{
 			m_ani_frame += 1;
 			m_ani_time = 0;
 		}
-		
+
 	}
-	
-	
+
+
 	if (m_ani_frame == 5)
 	{
 		m_ani_frame = 2;
@@ -140,19 +140,19 @@ void CObjHero::Action()
 	m_vx += -(m_vx*0.098);
 
 	//自由落下運動
-	m_vy += 5.0/(20.0f);
+	m_vy += 5.0 / (20.0f);
 
 	//ブロックとの当たり判定実行
-		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-			pb->BlockHit(&m_px, &m_py, true,
-				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
-	
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	pb2->BlockHit2(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+		&m_vx, &m_vy);
+
 	//自身のHitBoxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	//敵と当たっているか確認
-	if (hit->CheckObjNameHit(OBJ_WOLKENEMY)!=nullptr)
+	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
 	{
 		//主人公が敵とどの角度で当たってるか確認
 		HIT_DATA** hit_data;
@@ -213,7 +213,7 @@ void CObjHero::Action()
 		}
 		if (hit_flag == false)
 			hit_flag = true;
-		
+
 	}
 	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
 	{
@@ -304,11 +304,11 @@ void CObjHero::Action()
 
 		Scene::SetScene(new CSceneGameOver());
 	}
-	
+
 }
 
 //ドロー
-void CObjHero::Draw()
+void CObjHero2::Draw()
 {
 	int AniDate[7] =
 	{
@@ -322,15 +322,15 @@ void CObjHero::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	
+
 	if (m_hit_down == false && m_vy < 0)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 5 * 64.0f + 1.0f;
-		src.m_right = 64.0f + 5 *64.0f+ 1.0f;
+		src.m_right = 64.0f + 5 * 64.0f + 1.0f;
 		src.m_bottom = 64.0f;
 	}
-	else if (m_hit_down == false && m_vy >=1)
+	else if (m_hit_down == false && m_vy >= 1)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 6 * 64.0f + 1.0f;
@@ -349,7 +349,7 @@ void CObjHero::Draw()
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = (64.0*m_posture) + m_px;
-	dst.m_right = (64-64.0f*m_posture) + m_px;
+	dst.m_right = (64 - 64.0f*m_posture) + m_px;
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
@@ -380,7 +380,7 @@ void CObjHero::Draw()
 
 	dst.m_top = 4.0f;
 	dst.m_left = 4.0f;
-	dst.m_right = 256.0f - m_hp*5.0f;
+	dst.m_right = 256.0f - m_hp * 5.0f;
 	dst.m_bottom = 44.0f;
 
 	Draw::Draw(5, &src, &dst, c, 0.0f);

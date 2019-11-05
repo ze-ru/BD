@@ -1,17 +1,17 @@
 #include"GameL\DrawTexture.h"
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
-#include "GameL\HitBoxManager.h"
+#include"GameL\HitBoxManager.h"
 
 #include"GameHead.h"
 #include"NormalBullet.h"
 
 using namespace GameL;
 
-CObjNormalBullet::CObjNormalBullet(float x, float y)
+CObjNormalBullet::CObjNormalBullet(float x,float y)
 {
 	m_ex = x;
-	m_ey = y;//ƒoƒJ
+	m_ey = y+23.0f;
 }
 void CObjNormalBullet::Init()
 {
@@ -19,28 +19,25 @@ void CObjNormalBullet::Init()
 	m_vx = 5.0f;
 	m_vy = 0.0f;
 	m_time = 0;
-	
-	m_px = objeL->GetX();
-	m_py = objeL->GetY()+23.0f;
 
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
 
-	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY, OBJ_NORMAL_BULLET, 1);
+	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_ENEMY, OBJ_NORMAL_BULLET, 1);
 }
 void CObjNormalBullet::Action()
 {
 	m_vx = -7.5f;
 	
 	m_time++;
-	m_px += m_vx;
-	m_py += m_vy;
+	m_ex += m_vx;
+	m_ey += m_vy;
 	
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + block->GetScroll(), m_py);
+	hit->SetPos(m_ex + block->GetScroll(), m_ey);
 	
 	
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
@@ -73,10 +70,10 @@ void CObjNormalBullet::Draw()
 
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//
-	dst.m_top = m_py+4.0f;
-	dst.m_left = m_px+ block->GetScroll();
+	dst.m_top = m_ey+4.0f;
+	dst.m_left = m_ex+ block->GetScroll();
 	dst.m_right = dst.m_left+24.0f;
-	dst.m_bottom = 20.0f+m_py;
+	dst.m_bottom = 20.0f+m_ey;
 
 
 	//
