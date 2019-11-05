@@ -69,6 +69,8 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
 	Draw::LoadImageW(L"LockEnemy.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
+	Draw::LoadImageW(L"FlyEnemy.png", 6, TEX_SIZE_512);
+
 
 	
 	CObjStage1*objs1 = new CObjStage1();

@@ -6,7 +6,7 @@ using namespace GameL;
 class CObjFlyEnemy :public CObj
 {
 public:
-	CObjFlyEnemy() {};
+	CObjFlyEnemy(float x,float y) ;
 	~CObjFlyEnemy() {};
 	void Init();
 	void Action();
@@ -22,4 +22,5 @@ private:
 	float x;
 	int m_ani_time;
 	int m_ani_frame;
+	int m_time;
 };
