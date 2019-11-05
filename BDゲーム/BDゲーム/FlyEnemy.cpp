@@ -31,25 +31,33 @@ void CObjFlyEnemy::Action()
 	m_time++;
 	if (m_time < 100)
 	{
-		m_posture *= -1;
+		m_vx = -1.0f;
+	}
+	if (m_time > 100)
+	{
+		m_vx = 1.0f;
+	}
+	if (m_time > 200)
+	{
 		m_time = 0;
 	}
-	m_vx += 1.0f*m_posture;
-	m_vy -= 1.0f;
+	
+	
 	//位置の変更
 	m_px += m_vx;
-	if (m_py < 100)
+	if (m_py > 50)
 	{
-		m_py += m_vy;
+		
+		m_py += -1.0f;
 	}
-	if (m_py > 100)
+	if (m_py < 50)
 	{
-		m_vy = 0;
+		m_py = 50;
 	}
-	
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//HitBoxの内容を更新
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
+	CHitBox*hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + block->GetScroll(), m_py);
 }
 void CObjFlyEnemy::Draw()
 {
@@ -63,11 +71,11 @@ void CObjFlyEnemy::Draw()
 	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 
-
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//
 	dst.m_top = m_py;
-	dst.m_left = m_px;
-	dst.m_right = m_px + 64.0f;
+	dst.m_left = m_px+block->GetScroll();
+	dst.m_right = dst.m_left + 64.0f;
 	dst.m_bottom = m_py + 64.0f;
 
 
