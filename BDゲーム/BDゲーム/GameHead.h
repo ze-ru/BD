@@ -83,7 +83,7 @@ struct UserData
 #include"ObjTitle.h"
 #include"ObjGameOver.h"
 #include"StageUi.h"
-#include"StageUi2.h"
+
 #include"ObjShop.h"
 #include"ObjGamerule.h"
 
