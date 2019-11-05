@@ -63,7 +63,14 @@ void CObjBlock::Action()
 			//“GoŒ»êŠ‚ğ0‚É‚·‚é
 			m_map[i][lx] = 0;
 		}
+		if (m_map[i][lx] == 7)
+		{
+			CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*63.0f);
+			Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
 
+			//“GoŒ»êŠ‚ğ0‚É‚·‚é
+			m_map[i][lx] = 0;
+		}
 		if (m_map[i][lx] == 6)
 		{
 
