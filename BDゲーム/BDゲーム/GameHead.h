@@ -94,6 +94,7 @@ struct UserData
 #include"NormalBullet.h"
 #include"ObjAttack.h"
 #include"Hero2.h"
+
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
