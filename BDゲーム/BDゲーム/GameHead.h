@@ -3,6 +3,8 @@
 //オブジェクトネーム------------------------------
 enum OBJ_NAME
 {
+	OBJ_SWITCH,
+
 	OBJ_HERO,
 	OBJ_BLOCK,
 	OBJ_STAGE1,
@@ -69,6 +71,8 @@ struct UserData
 //------------------------------------------------
 
 //ゲームシーンオブジェクトヘッダ------------------
+#include"Switch.h"
+
 #include"Hero.h"
 
 #include"LockEnemy.h"

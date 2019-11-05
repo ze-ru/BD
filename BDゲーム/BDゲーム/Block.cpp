@@ -72,17 +72,6 @@ void CObjBlock::Action()
 			m_map[i][lx] = 0;
 		}
 
-		CHitBox* hit = Hits::GetHitBox(this);
-		//	Switchíœtest
-		if (m_map[i][lx] == 9)
-		{
-			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-			{
-				this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
-				Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
-			}
-		}
-
 		
 	}
 }
