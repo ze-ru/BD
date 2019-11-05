@@ -135,9 +135,6 @@
     <ClCompile Include="SceneStage2.cpp">
       <Filter>ソース ファイル\map2</Filter>
     </ClCompile>
-    <ClCompile Include="StageUi2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
     <ClCompile Include="Hero2.cpp">
       <Filter>ソース ファイル\map2</Filter>
     </ClCompile>
@@ -243,9 +240,6 @@
       <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
     <ClInclude Include="SceneStage2.h">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
-    <ClInclude Include="StageUi2.h">
       <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
     <ClInclude Include="Hero2.h">
