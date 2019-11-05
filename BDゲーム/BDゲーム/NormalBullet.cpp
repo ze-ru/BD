@@ -50,6 +50,7 @@ void CObjNormalBullet::Action()
 	}
 	
 	
+	
 	if (m_time>200)
 	{
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
