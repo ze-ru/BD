@@ -144,6 +144,12 @@
     <ClCompile Include="ObjAttack2.cpp">
       <Filter>ソース ファイル\map2</Filter>
     </ClCompile>
+    <ClCompile Include="WolkEnemy2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClCompile>
+    <ClCompile Include="AssaultBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -256,6 +262,12 @@
     </ClInclude>
     <ClInclude Include="AssaultBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="WolkEnemy2.h">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjAttack2.h">
+      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
