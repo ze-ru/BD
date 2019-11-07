@@ -30,4 +30,5 @@ private:
 	bool m_hit_right;
 	int m_time_flat;
 	int count;
+	int m_hp;
 };

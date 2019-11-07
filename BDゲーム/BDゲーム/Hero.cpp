@@ -405,6 +405,13 @@ void CObjHero::Action()
 				m_hp += 5;
 				m_y_num += 50;
 			}
+			if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
+			{
+				HIT_DATA** hit_data;
+				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
+				m_hp += 2;
+				m_y_num += 10;
+			}
 
 			//à íuÇÃçXêV
 			m_px += m_vx;

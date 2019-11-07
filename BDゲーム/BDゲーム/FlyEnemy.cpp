@@ -30,6 +30,7 @@ void CObjFlyEnemy::Init()
 	m_hit_right = false;
 	m_time_flat = 0;
 	count = 0;
+	m_hp = 10;
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
 void CObjFlyEnemy::Action()
@@ -51,7 +52,7 @@ void CObjFlyEnemy::Action()
 	if (count < 3)
 	{
 		m_time_flat++;
-		if (m_time_flat>10)
+		if (m_time_flat > 20)
 		{
 			CObjAssaultBullet*objAB = (CObjAssaultBullet*)Objs::GetObj(OBJ_ASSAULT_BULLET);
 			CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_px, m_py);
@@ -63,14 +64,14 @@ void CObjFlyEnemy::Action()
 	if (count >= 3)
 	{
 		m_time_flat++;
-		if (m_time_flat > 100)
+		if (m_time_flat > 200)
 			count = 0;
 	}
 	//位置の変更
 	m_px += m_vx;
 	if (m_py > 100)
 	{
-		
+
 		m_py += -1.0f;
 	}
 	if (m_py < 100)
@@ -83,10 +84,21 @@ void CObjFlyEnemy::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
 
-	
+
 	//HitBoxの内容を更新
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + block->GetScroll(), m_py);
+
+	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
+	{
+		m_hp -= 5;
+	}
+
+	if (m_hp <= 0)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 }
 void CObjFlyEnemy::Draw()
 {
