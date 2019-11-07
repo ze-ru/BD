@@ -49,14 +49,14 @@ void CObjFlyEnemy::Action()
 	
 	//位置の変更
 	m_px += m_vx;
-	if (m_py > 50)
+	if (m_py > 100)
 	{
 		
 		m_py += -1.0f;
 	}
-	if (m_py < 50)
+	if (m_py < 100)
 	{
-		m_py = 50;
+		m_py = 100;
 	}
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//ブロックとの当たり判定実行
