@@ -21,6 +21,7 @@ public :
 	//ブロックとの当たり判定
 	void BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 		bool *left, bool *right, float *vx, float *vy);
+	void SetBlock(int flag);
 private:
 	void BlockDraw(float x, float y, RECT_F *dst, float c[]);
 	int m_map[11][157] = { NULL }; //マップ情報

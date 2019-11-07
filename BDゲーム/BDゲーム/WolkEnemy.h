@@ -37,4 +37,5 @@ private:
 	//ˆÚ“®‚ÌŒü‚«—p
 	bool m_move;
 	float m_hp;
+	bool hit_flag;
 };

@@ -79,6 +79,14 @@ void CObjBlock::Action()
 			m_map[i][lx] = 0;
 		}
 
+		//switchçÏê¨test
+		if (m_map[i][lx] == 9)
+		{
+			CObjSwitch*objS = new CObjSwitch(lx*64.0f,i*64.0f-64.0f);
+			Objs::InsertObj(objS, OBJ_SWITCH, 16);
+			m_map[i][lx] = 0;
+		}
+
 		
 	}
 }
@@ -123,9 +131,9 @@ void CObjBlock::Draw()
 				{
 					BlockDraw(128.0f, 0.0f, &dst, c);
 				}
-				else if (m_map[i][j] == 9)
+				else if (m_map[i][j] == 9)//Switch
 				{
-					BlockDraw(256.0f, 0.0f, &dst, c);
+					;
 				}
 				else
 				{
@@ -258,6 +266,24 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 					}
 
 
+				}
+			}
+		}
+	}
+
+}
+
+void CObjBlock::SetBlock(int flag)
+{
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 157; j++)
+		{
+			if (flag == 1)
+			{
+				if (m_map[i][j] == 4)
+				{
+					m_map[i][j] = 0;
 				}
 			}
 		}

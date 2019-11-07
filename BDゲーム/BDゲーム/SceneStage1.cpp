@@ -76,7 +76,6 @@ void CSceneStage1::InitScene()
 	CObjStage1*objs1 = new CObjStage1();
 	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
 
-	
 
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
@@ -86,7 +85,6 @@ void CSceneStage1::InitScene()
 	//Blockオブジェクト作成
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 2);
-
 
 
 	CObjStageUi*objui = new CObjStageUi();
