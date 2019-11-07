@@ -47,6 +47,26 @@ void CObjBlock2::Action()
 		hero2->SetX2(300);
 		m_scroll -= hero2->GetVX2();
 	}
+
+	//敵出現ライン
+	//主人公の位置＋500を敵出現ラインに
+	float line = hx + (-m_scroll) + 500;
+
+	//敵出現ラインを要素番号化
+	int lx = ((int)line) / 64;
+
+	//敵出現ラインの列を検索
+	for (int i = 0; i < 11; i++)
+	{
+		if (m_map2[i][lx] == 5)
+		{
+			CObjWolkEnemy2*objW = new CObjWolkEnemy2(lx*64.0f, i*63.0f);
+			Objs::InsertObj(objW, OBJ_WOLKENEMY2, 15);
+
+			//敵出現場所を0にする
+			m_map2[i][lx] = 0;
+		}
+	}
 }
 
 //ドロー

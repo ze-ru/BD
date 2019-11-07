@@ -152,14 +152,14 @@ void CObjHero2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	//“G‚Æ“–‚½‚Á‚Ä‚¢‚é‚©Šm”F
-	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_WOLKENEMY2) != nullptr)
 	{
 		//ŽålŒö‚ª“G‚Æ‚Ç‚ÌŠp“x‚Å“–‚½‚Á‚Ä‚é‚©Šm”F
 		HIT_DATA** hit_data;
 
 		if (hit_flag == true)
 		{
-			hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
+			hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY2);
 			hit_flag = false;
 
 			for (int i = 0; i < hit->GetCount(); i++)
@@ -180,7 +180,7 @@ void CObjHero2::Action()
 					if (r >= 225 && r < 315)
 					{
 						//“G‚ÌˆÚ“®•ûŒü‚ðŽålŒö‚ÌˆÊ’u‚É‰ÁŽZ
-						m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+						m_px += ((CObjWolkEnemy2*)hit_data[i]->o)->GetVx();
 
 						CObjBlock2*b = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 
