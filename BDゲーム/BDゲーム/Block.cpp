@@ -47,7 +47,7 @@ void CObjBlock::Action()
 
 	//敵出現ライン
 	//主人公の位置＋500を敵出現ラインに
-	float line = hx+(-m_scroll) + 500;
+	float line = hx+(-m_scroll) + 515;
 
 	//敵出現ラインを要素番号化
 	int lx = ((int)line) / 64;
@@ -79,11 +79,19 @@ void CObjBlock::Action()
 			m_map[i][lx] = 0;
 		}
 
-		//switch作成test
+		//switch作成
 		if (m_map[i][lx] == 9)
 		{
 			CObjSwitch*objS = new CObjSwitch(lx*64.0f,i*64.0f-64.0f);
 			Objs::InsertObj(objS, OBJ_SWITCH, 16);
+			m_map[i][lx] = 0;
+		}
+
+		//BossBlock作成
+		if (m_map[i][lx] == 14 )
+		{
+			CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
 			m_map[i][lx] = 0;
 		}
 
@@ -119,6 +127,11 @@ void CObjBlock::Draw()
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
 
+				if (m_map[9][145])
+				{
+					m_map[9][145] = 0;
+				}
+
 				if (m_map[i][j] == 5)//WolkEnemy
 				{
 					;
@@ -137,7 +150,7 @@ void CObjBlock::Draw()
 				}
 				else if (m_map[i][j] == 14)
 				{
-					m_map[i][j] = 0;
+					;
 				}
 				else
 				{

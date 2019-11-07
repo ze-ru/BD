@@ -118,6 +118,7 @@
     <ClCompile Include="AssaultBullet.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Block2.cpp" />
+    <ClCompile Include="BossBlock.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="AssaultBullet.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Block2.h" />
+    <ClInclude Include="BossBlock.h" />
     <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
