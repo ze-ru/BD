@@ -30,7 +30,7 @@ public:
 	void SetRight2(bool b) { m_hit_right = b; }
 	float GetHP2() { return m_hp; };
 
-
+	
 
 	bool  GetFlag2()
 	{

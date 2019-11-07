@@ -37,7 +37,7 @@ void CObjHero2::Init()
 	m_attack = false;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO2, 1);
 }
 
 //アクション
@@ -49,8 +49,8 @@ void CObjHero2::Action()
 	{
 		if (Input::GetVKey('X'))
 		{
-			CObjAttack*obja = new CObjAttack(m_px, m_py);
-			Objs::InsertObj(obja, OBJ_ATTACK, 10);
+			CObjAttack2*obja = new CObjAttack2(m_px, m_py);
+			Objs::InsertObj(obja, OBJ_ATTACK2, 10);
 			m_attack = false;
 		}
 	}
