@@ -34,6 +34,7 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
+	float m_dead;
 	//ˆÚ“®‚ÌŒü‚«—p
 	bool m_move;
 	float m_hp;

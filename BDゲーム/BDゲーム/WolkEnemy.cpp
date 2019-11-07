@@ -36,7 +36,7 @@ void CObjWolkEnemy::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 	hit_flag = true;
-
+	m_dead = 0.0f;
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_WOLKENEMY, 1);
 }
@@ -125,13 +125,25 @@ void CObjWolkEnemy::Action()
 
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
+		if(m_hp>0)
 		m_hp -= 5;
 	}
 
 	if (m_hp <= 0)
 	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		m_time++;
+		if (m_time >10&&m_time<20)
+		{
+			if(m_move==false)
+			m_dead += 1.0f;
+			if (m_move == true)
+				m_dead -= 1.0f;
+		}
+		if(m_time==50)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		}
 	}
 	
 }
@@ -166,5 +178,5 @@ void CObjWolkEnemy::Draw()
 	dst.m_bottom = 64.0f + m_ey ;
 
 	//
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	Draw::Draw(3, &src, &dst, c, m_dead);
 }

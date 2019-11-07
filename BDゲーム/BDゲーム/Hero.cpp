@@ -35,6 +35,7 @@ void CObjHero::Init()
 	m_hit_right = false;
 	hit_flag = true;
 	m_attack = false;
+	m_dead = 0.0f;
 
 	//“–‚½‚è”»’è—p‚ÌHitBox‚ðì¬
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -357,12 +358,21 @@ void CObjHero::Action()
 		m_py += 0.5f;
 	}
 
-	if (m_hp == 50)
+	if (m_hp >= 50)
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		m_time2++;
+		if (m_time2 > 10 && m_time2 < 20)
+		{
+			m_dead += 1.0f;
+		}
+		if (m_time2 > 50)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
 
-		Scene::SetScene(new CSceneGameOver());
+			Scene::SetScene(new CSceneGameOver());
+
+		}
 	}
 	
 }
@@ -413,7 +423,7 @@ void CObjHero::Draw()
 	dst.m_bottom = 64.0f + m_py;
 
 	//•`‰æ
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(1, &src, &dst, c, m_dead);
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;

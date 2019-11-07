@@ -61,5 +61,6 @@ class CObjHero :public CObj
 	  bool m_hit_right;
 
 	  bool m_attack;
+	  float m_dead;
 
 };
