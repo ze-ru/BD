@@ -28,11 +28,14 @@ void CObjFlyEnemy::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+	m_time_flat = 0;
+	count = 0;
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
 void CObjFlyEnemy::Action()
 {
 	m_time++;
+
 	if (m_time < 100)
 	{
 		m_vx = -1.0f;
@@ -45,8 +48,24 @@ void CObjFlyEnemy::Action()
 	{
 		m_time = 0;
 	}
-	
-	
+	if (count < 3)
+	{
+		m_time_flat++;
+		if (m_time_flat>10)
+		{
+			CObjAssaultBullet*objAB = (CObjAssaultBullet*)Objs::GetObj(OBJ_ASSAULT_BULLET);
+			CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_px, m_py);
+			Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 10);
+			count++;
+			m_time_flat = 0;
+		}
+	}
+	if (count >= 3)
+	{
+		m_time_flat++;
+		if (m_time_flat > 100)
+			count = 0;
+	}
 	//ˆÊ’u‚Ì•ÏX
 	m_px += m_vx;
 	if (m_py > 100)

@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssaultBullet.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Block2.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="WolkEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssaultBullet.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Block2.h" />
     <ClInclude Include="FlyEnemy.h" />

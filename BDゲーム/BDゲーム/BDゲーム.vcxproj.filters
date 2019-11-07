@@ -141,6 +141,9 @@
     <ClCompile Include="Switch.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="AssaultBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Switch.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AssaultBullet.h">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
