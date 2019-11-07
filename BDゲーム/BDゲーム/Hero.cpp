@@ -275,6 +275,66 @@ void CObjHero::Action()
 		if (hit_flag == false)
 			hit_flag = true;
 	}
+	if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
+	{
+		HIT_DATA** hit_data;
+		if (hit_flag == true)
+		{
+			hit_data = hit->SearchObjNameHit(OBJ_FLYENEMY);
+			hit_flag = false;
+
+
+			for (int i = 0; i < hit->GetCount(); i++)
+			{
+
+				//敵の左右に当たったら
+				if (hit_data[i] != NULL)
+				{
+					float r = hit_data[i]->r;
+					if ((r < 45 && r >= 0) || r > 315)
+					{
+						m_vx = -5.0f;//左に移動
+					}
+					if (r > 135 && r < 225)
+					{
+						m_vx = +5.0f;//右に移動
+					}
+					if (r >= 225 && r < 315)
+					{
+						//敵の移動方向を主人公の位置に加算
+
+						CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+						//後方スクロールライン
+						if (m_px < 80)
+						{
+							//m_px = 80;//主人公はラインを超えないようにする
+							b->SetScroll(b->GetScroll() - 5.0);
+						}
+
+						//前方スクロールライン
+						if (m_px > 300)
+						{
+							//m_px = 300;
+							b->SetScroll(b->GetScroll() - 5.0);
+						}
+
+						if (m_vy <= -1.0f)
+						{
+							;
+						}
+						else
+						{
+							m_vy = 0.0f;//ベクトルを0にする
+							m_hit_down = true;//地面に当たっている判定にする
+						}
+					}
+				}
+			}
+		}
+		if (hit_flag == false)
+			hit_flag = true;
+	}
 	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 	{
 

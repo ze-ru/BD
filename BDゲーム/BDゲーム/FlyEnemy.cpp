@@ -24,6 +24,10 @@ void CObjFlyEnemy::Init()
 	m_vx = 0.0f;
 	m_vx = 0.0f;
 	m_time = 0;
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
 void CObjFlyEnemy::Action()
@@ -55,6 +59,12 @@ void CObjFlyEnemy::Action()
 		m_py = 50;
 	}
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//ブロックとの当たり判定実行
+	block->BlockHit(&m_px, &m_py, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+		&m_vx, &m_vy);
+
+	
 	//HitBoxの内容を更新
 	CHitBox*hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + block->GetScroll(), m_py);
