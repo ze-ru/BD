@@ -46,8 +46,13 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	if (m_y_num >= 50)
+	if (m_y_num >= 50&&m_y_flag==false)
 	{
+		if (m_y_num < 100)
+		{
+			m_y_num = 50;
+		}
+		m_vx = 2.0f*m_posture;
 		m_y_flag = true;
 	}
 	if (m_dead_flag == true)
@@ -74,11 +79,14 @@ void CObjHero::Action()
 		CHitBox* hit = Hits::GetHitBox(this);
 		if (m_y_flag==true)
 		{
+			
 			m_y_num--;
 			
 			//自由落下運動
 
 			m_vy += 5.0 / (20.0f);
+			
+			
 			if (m_y_num >40) {
 				if (m_posture == 0.0f)
 					m_vx -= 0.2f;
