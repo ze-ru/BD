@@ -26,6 +26,7 @@ enum OBJ_NAME
 	//OBJ_ÅõÅõÇ∆ï\ãL
 	OBJ_GAME_OVER,
 	OBJ_GAMERULE,
+	OBJ_ATTACK2,
 };
 //------------------------------------------------
 
@@ -95,8 +96,8 @@ struct UserData
 
 #include"NormalBullet.h"
 #include"ObjAttack.h"
-
-#include"WolkEnemy2.h"
+#include"Hero2.h"
+#include "ObjAttack2.h"
 
 //------------------------------------------------
 
