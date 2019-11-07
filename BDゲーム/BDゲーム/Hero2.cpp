@@ -37,7 +37,7 @@ void CObjHero2::Init()
 	m_attack = false;
 
 	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO2, 1);
 }
 
 //アクション
@@ -49,8 +49,8 @@ void CObjHero2::Action()
 	{
 		if (Input::GetVKey('X'))
 		{
-			CObjAttack*obja = new CObjAttack(m_px, m_py);
-			Objs::InsertObj(obja, OBJ_ATTACK, 10);
+			CObjAttack2*obja = new CObjAttack2(m_px, m_py);
+			Objs::InsertObj(obja, OBJ_ATTACK2, 10);
 			m_attack = false;
 		}
 	}
@@ -152,14 +152,14 @@ void CObjHero2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	//敵と当たっているか確認
-	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_WOLKENEMY2) != nullptr)
 	{
 		//主人公が敵とどの角度で当たってるか確認
 		HIT_DATA** hit_data;
 
 		if (hit_flag == true)
 		{
-			hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
+			hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY2);
 			hit_flag = false;
 
 			for (int i = 0; i < hit->GetCount(); i++)
@@ -180,7 +180,7 @@ void CObjHero2::Action()
 					if (r >= 225 && r < 315)
 					{
 						//敵の移動方向を主人公の位置に加算
-						m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+						m_px += ((CObjWolkEnemy2*)hit_data[i]->o)->GetVx();
 
 						CObjBlock2*b = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 

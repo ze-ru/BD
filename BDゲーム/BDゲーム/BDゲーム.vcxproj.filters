@@ -141,8 +141,8 @@
     <ClCompile Include="Switch.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="AssaultBullet.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
+    <ClCompile Include="ObjAttack2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
