@@ -27,7 +27,8 @@ void CObjBlock::Init()
 void CObjBlock::Action()
 {
 	//éÂêlåˆÇÃà íuÇéÊìæ
-	if (m_map[0][0] == 0) {
+	if (m_map[0][0] == 0)
+	{
 		CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
 
@@ -90,13 +91,13 @@ void CObjBlock::Action()
 				m_map[i][lx] = 0;
 			}
 
-		//BossBlockçÏê¨
-		if (m_map[i][lx] == 14 )
-		{
-			CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
-			Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
-			m_map[i][lx] = 0;
-		}
+			//BossBlockçÏê¨
+			if (m_map[i][lx] == 14)
+			{
+				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
+				m_map[i][lx] = 0;
+			}
 
 
 		}
