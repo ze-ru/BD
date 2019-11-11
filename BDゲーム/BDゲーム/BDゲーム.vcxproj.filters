@@ -135,40 +135,13 @@
     <ClCompile Include="SceneStage2.cpp">
       <Filter>ソース ファイル\map2</Filter>
     </ClCompile>
-    <ClCompile Include="Hero2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
     <ClCompile Include="Switch.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjAttack2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
-    <ClCompile Include="WolkEnemy2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
     </ClCompile>
     <ClCompile Include="AssaultBullet.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="BossBlock.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="LockEnemy2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
-    <ClCompile Include="FlyEnemy2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
-    <ClCompile Include="AssaultBullet2.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="NormalBullet2.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="Switch2.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Block3.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -275,20 +248,11 @@
     <ClInclude Include="SceneStage2.h">
       <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
-    <ClInclude Include="Hero2.h">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
     <ClInclude Include="Switch.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="AssaultBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="WolkEnemy2.h">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjAttack2.h">
-      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
     <ClInclude Include="BossBlock.h">
       <Filter>ソース ファイル</Filter>
@@ -298,18 +262,6 @@
     </ClInclude>
     <ClInclude Include="FlyEnemy2.h">
       <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
-    <ClInclude Include="AssaultBullet2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalBullet2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Switch2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Block3.h">
-      <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

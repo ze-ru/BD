@@ -20,17 +20,9 @@ enum OBJ_NAME
 	OBJ_NO_NAME,
 	OBJ_STAGE2,	
 	OBJ_BLOCK2,
-	OBJ_HERO2,
-	OBJ_WOLKENEMY2,
-	OBJ_LOCKENEMY2,
-	OBJ_FLYENEMY2,
 	OBJ_ASSAULT_BULLET,
 	OBJ_GAME_OVER,
 	OBJ_GAMERULE,
-	OBJ_ATTACK2,
-	OBJ_ASSAULT_BULLET2,
-	OBJ_NORMAL_BULLET2,
-	OBJ_SWITCH2,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -87,7 +79,6 @@ struct UserData
 #include"BossBlock.h"
 
 #include"Hero.h"
-#include"Hero2.h"
 
 #include"LockEnemy.h"
 #include"WolkEnemy.h"
@@ -107,13 +98,9 @@ struct UserData
 
 #include"NormalBullet.h"
 #include"ObjAttack.h"
-#include"ObjAttack2.h"
+
 #include"AssaultBullet.h"
-#include"WolkEnemy2.h"
-#include"LockEnemy2.h"
-#include"FlyEnemy2.h"
-#include"AssaultBullet2.h"
-#include"NormalBullet2.h"
+
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
