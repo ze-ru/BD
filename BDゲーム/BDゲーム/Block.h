@@ -17,6 +17,8 @@ public :
 	
 	void SetScroll(float s) { m_scroll = s; }
 	float GetScroll() { return m_scroll; }
+	int Getmap1() { int m = m_map[0][0]; return m; }
+	void Setmap1(int x) { m_map[0][0] = x; }
 	
 	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è
 	void BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,

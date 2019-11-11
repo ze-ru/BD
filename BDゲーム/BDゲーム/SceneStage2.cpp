@@ -36,21 +36,21 @@ void CSceneStage2::InitScene()
 	
 	//外部データの読み込み
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
-	int size2;//ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
+	int size;//ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"stage1.csv", &size);//外部データ読み込み
 
-	int map2[11][156];
+	int map[11][157];
 	int count = 1;
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 156; j++)
+		for (int j = 0; j < 157; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
 
-			map2[i][j] = w;
+			map[i][j] = w;
 
 			if (w >= 10)
 			{
@@ -63,6 +63,36 @@ void CSceneStage2::InitScene()
 		}
 	}
 
+
+	unique_ptr<wchar_t>p2;//ステージ情報ポインター
+	int size2;//ステージ情報の大きさ
+	p2 = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
+
+	int map2[11][156];
+	int count2 = 1;
+
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 156; j++)
+		{
+			int w = 0;
+			swscanf_s(&p2.get()[count2], L"%d", &w);
+
+
+			map2[i][j] = w;
+
+			if (w >= 10)
+			{
+				count2 += 3;
+			}
+			else
+			{
+				count2 += 2;
+			}
+		}
+	}
+
+	
 	//グラフィック読み込み
 	Draw::LoadImageW(L"Hero.png", 1, TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage2.png", 6, TEX_SIZE_512);
@@ -78,6 +108,11 @@ void CSceneStage2::InitScene()
 	//Block2オブジェクト作成
 	CObjBlock2*objb2 = new CObjBlock2(map2);
 	Objs::InsertObj(objb2, OBJ_BLOCK2, 3);
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	pb->Setmap1(21);
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	pb->Setmap1(0);
+
 
 	//Stage2オブジェクト作成
 	CObjStage2*objs2 = new CObjStage2();

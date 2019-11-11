@@ -13,6 +13,7 @@ public:
 	~CSceneTitle();
 	void InitScene(); //ゲームタイトルの初期化メソッド
 	void Scene();     //ゲームタイトルの実行中メソッド
+	
 private:
-
+	
 };

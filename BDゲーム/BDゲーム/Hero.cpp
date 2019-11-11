@@ -46,6 +46,21 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	//ブロックとの当たり判定実行
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	if (pb->Getmap1() == 0)
+	{
+		pb->BlockHit(&m_px, &m_py, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+	}
+	if (pb2->Getmap2() == 0)
+	{
+		pb2->BlockHit2(&m_px, &m_py, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+	}
 	if (m_y_num >= 50&&m_y_flag==false)
 	{
 		if (m_y_num < 100)
@@ -94,11 +109,9 @@ void CObjHero::Action()
 					m_vx += 0.2f;
 			}
 
-			//ブロックとの当たり判定実行
-			CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-			pb->BlockHit(&m_px, &m_py, true,
-				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+			
+
+		
 
 			m_px += m_vx;
 			m_py += m_vy;
@@ -214,10 +227,7 @@ void CObjHero::Action()
 			m_vy += 5.0 / (20.0f);
 
 			//ブロックとの当たり判定実行
-			CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-			pb->BlockHit(&m_px, &m_py, true,
-				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+			
 
 			//自身のHitBoxを持ってくる
 
@@ -252,21 +262,27 @@ void CObjHero::Action()
 							{
 								//敵の移動方向を主人公の位置に加算
 								m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
-
-								CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+								
+								
+								
 
 								//後方スクロールライン
 								if (m_px < 80)
 								{
-									m_px = 80;//主人公はラインを超えないようにする
-									b->SetScroll(b->GetScroll() - 5.0);
+									if (pb->Getmap1() == 0)
+										pb->SetScroll(pb->GetScroll() - 5.0);
+									if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);
 								}
 
 								//前方スクロールライン
 								if (m_px > 300)
 								{
 									m_px = 300;
-									b->SetScroll(b->GetScroll() - 5.0);
+									if (pb->Getmap1() == 0)
+									pb->SetScroll(pb->GetScroll() - 5.0);
+									if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);
 								}
 
 								if (m_vy <= -1.0f)
@@ -275,6 +291,7 @@ void CObjHero::Action()
 								}
 								else
 								{
+
 									m_vy = 0.0f;//ベクトルを0にする
 									m_hit_down = true;//地面に当たっている判定にする
 								}
@@ -313,21 +330,27 @@ void CObjHero::Action()
 							if (r >= 225 && r < 315)
 							{
 								//敵の移動方向を主人公の位置に加算
-
-								CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
+								
+								
 								//後方スクロールライン
 								if (m_px < 80)
 								{
-									//m_px = 80;//主人公はラインを超えないようにする
-									b->SetScroll(b->GetScroll() - 5.0);
+									
+									if (pb->Getmap1() == 0)
+										pb->SetScroll(pb->GetScroll() - 5.0);
+									if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);
+									
 								}
 
 								//前方スクロールライン
 								if (m_px > 300)
 								{
-									//m_px = 300;
-									b->SetScroll(b->GetScroll() - 5.0);
+									m_px = 300;
+									if (pb->Getmap1() == 0)
+										pb->SetScroll(pb->GetScroll() - 5.0);
+									if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);
 								}
 
 								if (m_vy <= -1.0f)
@@ -374,20 +397,25 @@ void CObjHero::Action()
 							{
 								//敵の移動方向を主人公の位置に加算
 
-								CObjBlock*b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+								
 
 								//後方スクロールライン
 								if (m_px < 80)
 								{
-									//m_px = 80;//主人公はラインを超えないようにする
-									b->SetScroll(b->GetScroll() - 5.0);
+									if (pb->Getmap1() == 0)
+										pb->SetScroll(pb->GetScroll() - 5.0);
+									if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);
 								}
 
 								//前方スクロールライン
 								if (m_px > 300)
 								{
-									//m_px = 300;
-									b->SetScroll(b->GetScroll() - 5.0);
+									m_px = 300;
+									if (pb->Getmap1() == 0)
+										pb->SetScroll(pb->GetScroll() - 5.0);
+									if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);
 								}
 
 								if (m_vy <= -1.0f)
@@ -459,7 +487,7 @@ void CObjHero::Draw()
 
 	//切り取り位置の設定
 	
-	if (m_hit_down == false && m_vy < 0)
+	if (m_hit_down == false && m_vy < 1)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 5 * 64.0f + 1.0f;

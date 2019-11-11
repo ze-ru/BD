@@ -5,6 +5,7 @@
 #include"GameL\DrawFont.h"
 
 #include"ObjTitle.h"
+#include"GameL\UserData.h"
 
 #include"GameHead.h"
 
@@ -20,6 +21,8 @@ void CObjTitle::Init()
 	m_mou_l = false;
 	m_key_flag = false;//キーフラグ
 	key = true;
+
+	
 }
 
 //アクション
