@@ -78,17 +78,17 @@ void CObjFlyEnemy2::Action()
 	{
 		m_py = 100;
 	}
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock2*block2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 
 	//ブロックとの当たり判定実行
-	block->BlockHit(&m_px, &m_py, false,
+	block2->BlockHit2(&m_px, &m_py, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
 
 
 	//HitBoxの内容を更新
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + block->GetScroll(), m_py);
+	hit->SetPos(m_px + block2->GetScroll(), m_py);
 
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
@@ -113,10 +113,10 @@ void CObjFlyEnemy2::Draw()
 	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 
-	CObjBlock2*block = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	CObjBlock2*block2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	//
 	dst.m_top = m_py;
-	dst.m_left = m_px + block->GetScroll();
+	dst.m_left = m_px + block2->GetScroll();
 	dst.m_right = dst.m_left + 64.0f;
 	dst.m_bottom = m_py + 64.0f;
 

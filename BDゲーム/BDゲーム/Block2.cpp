@@ -7,7 +7,6 @@
 
 #include "GameHead.h"
 #include "Block2.h"
-#include"Block.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -62,6 +61,15 @@ void CObjBlock2::Action()
 		{
 			CObjWolkEnemy2*objW = new CObjWolkEnemy2(lx*64.0f, i*63.0f);
 			Objs::InsertObj(objW, OBJ_WOLKENEMY2, 15);
+
+			//敵出現場所を0にする
+			m_map2[i][lx] = 0;
+		}
+
+		if (m_map2[i][lx] == 7)
+		{
+			CObjFlyEnemy2*objF = new CObjFlyEnemy2(lx*64.0f, i*63.0f);
+			Objs::InsertObj(objF, OBJ_FLYENEMY2, 15);
 
 			//敵出現場所を0にする
 			m_map2[i][lx] = 0;

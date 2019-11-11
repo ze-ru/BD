@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssaultBullet.cpp" />
+    <ClCompile Include="AssaultBullet2.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Block2.cpp" />
     <ClCompile Include="BossBlock.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="Hero2.cpp" />
     <ClCompile Include="LockEnemy2.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
+    <ClCompile Include="NormalBullet2.cpp" />
     <ClCompile Include="ObjAttack.cpp" />
     <ClCompile Include="ObjAttack2.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
@@ -162,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssaultBullet.h" />
+    <ClInclude Include="AssaultBullet2.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Block2.h" />
     <ClInclude Include="BossBlock.h" />
@@ -186,6 +189,7 @@
     <ClInclude Include="LockEnemy2.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NormalBullet.h" />
+    <ClInclude Include="NormalBullet2.h" />
     <ClInclude Include="ObjAttack.h" />
     <ClInclude Include="ObjAttack2.h" />
     <ClInclude Include="ObjGameOver.h" />
