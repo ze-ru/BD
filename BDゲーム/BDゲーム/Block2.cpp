@@ -33,23 +33,23 @@ void CObjBlock2::Action()
 		float hx = hero->GetX();
 		float hy = hero->GetY();
 
-	//後方スクロールライン
-	if (hx < 80)
-	{
-		hero2->SetX2(80);//主人公はラインを超えないようにする
-		m_scroll -= hero2->GetVX2();//主人公が本来動くべき分の値をm_scrollに加える
-	}
+		//後方スクロールライン
+		if (hx < 80)
+		{
+			hero->SetX(80);//主人公はラインを超えないようにする
+			m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
+		}
 
-	//前方スクロールライン
-	if (hx > 300)
-	{
-		hero2->SetX2(300);
-		m_scroll -= hero2->GetVX2();
-	}
+		//前方スクロールライン
+		if (hx > 300)
+		{
+			hero->SetX(300);
+			m_scroll -= hero->GetVX();
+		}
 
-	//敵出現ライン
-	//主人公の位置＋500を敵出現ラインに
-	float line = hx + (-m_scroll) + 500;
+		//敵出現ライン
+		//主人公の位置＋500を敵出現ラインに
+		float line = hx + (-m_scroll) + 500;
 
 		//敵出現ラインを要素番号化
 		int lx = ((int)line) / 64;
@@ -62,8 +62,9 @@ void CObjBlock2::Action()
 				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*63.0f);
 				Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
 
-			//敵出現場所を0にする
-			m_map2[i][lx] = 0;
+				//敵出現場所を0にする
+				m_map2[i][lx] = 0;
+			}
 		}
 	}
 }
@@ -80,20 +81,20 @@ void CObjBlock2::Draw()
 		RECT_F dst; //描画先表示位置
 
 	//マップチップによるblock設置
-	for (int i = 0; i < 11; i++)
-	{
-		for (int j = 0; j < 156; j++)
+		for (int i = 0; i < 11; i++)
 		{
-			if (m_map2[i][j] > 0 && m_map2[i][j] != 5)
+			for (int j = 0; j < 156; j++)
 			{
-				//要素番号を座標に追加
-				float bx = i * 64.0f;
-				float by = i * 64.0f;
-				//表示位置の設定
-				dst.m_top = i * 64.0f - 64.0f;
-				dst.m_left = j * 64.0f + m_scroll;
-				dst.m_right = dst.m_left + 64.0f;
-				dst.m_bottom = dst.m_top + 64.0f;
+				if (m_map2[i][j] > 0 && m_map2[i][j] != 5)
+				{
+					//要素番号を座標に追加
+					float bx = i * 64.0f;
+					float by = i * 64.0f;
+					//表示位置の設定
+					dst.m_top = i * 64.0f - 64.0f;
+					dst.m_left = j * 64.0f + m_scroll;
+					dst.m_right = dst.m_left + 64.0f;
+					dst.m_bottom = dst.m_top + 64.0f;
 
 					if (m_map2[i][j] == 2)
 					{
@@ -113,6 +114,7 @@ void CObjBlock2::Draw()
 
 		}
 	}
+	
 }
 
 //BlockDrawMethod関数
@@ -129,7 +131,7 @@ void CObjBlock2::BlockDraw2(float x, float y, RECT_F *dst, float c[])
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
 	//描画
-	Draw::Draw(6, &src, dst, c, 0.0f);
+	Draw::Draw(7, &src, dst, c, 0.0f);
 }
 
 
@@ -157,7 +159,7 @@ void CObjBlock2::BlockHit2(float *x, float *y, bool scroll_on, bool *up, bool *d
 				float by = i * 64.0f - 64.0f;
 
 				//スクロールの影響
-				float scroll = scroll_on ? m_scroll2 : 0;
+				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
 				if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
