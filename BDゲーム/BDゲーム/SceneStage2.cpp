@@ -68,10 +68,10 @@ void CSceneStage2::InitScene()
 	Draw::LoadImageW(L"Stage2.png", 6, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround2.png", 7, TEX_SIZE_512);
 	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
-	Draw::LoadImageW(L"LockEnemy2.png", 4, TEX_SIZE_512);
+	Draw::LoadImageW(L"LockEnemy.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
-	Draw::LoadImageW(L"FlyEnemy2.png", 8, TEX_SIZE_512);
-	Draw::LoadImageW(L"WolkEnemy2.png", 9, TEX_SIZE_512);
+	Draw::LoadImageW(L"FlyEnemy.png", 8, TEX_SIZE_512);
+	Draw::LoadImageW(L"WolkEnemy.png", 9, TEX_SIZE_512);
 
 	
 

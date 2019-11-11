@@ -15,8 +15,8 @@ public:
 	void Action();  //アクション
 	void Draw();	//ドロー
 
-	void SetScroll(float s) { m_scroll = s; }
-	float GetScroll() { return m_scroll; }
+	void SetScroll(float s) { m_scroll2 = s; }
+	float GetScroll() { return m_scroll2; }
 	
 	void BlockHit2(float *x, float *y, bool scroll_on, bool *up, bool *down,
 		bool *left, bool *right, float *vx, float *vy);
@@ -24,6 +24,6 @@ public:
 private:
 	void BlockDraw2(float x, float y, RECT_F *dst, float c[]);
 	int m_map2[11][156] ; //マップ情報
-	float m_scroll; //左右スクロール用
+	float m_scroll2; //左右スクロール用
 
 };
