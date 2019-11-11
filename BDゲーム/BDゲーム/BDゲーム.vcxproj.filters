@@ -31,6 +31,9 @@
     <Filter Include="ソース ファイル\map2">
       <UniqueIdentifier>{6bd3cac2-77e0-4aa1-a9d7-662eb13c5612}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\map3">
+      <UniqueIdentifier>{c85aec5a-3975-4b8b-a4cf-08f147197008}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -143,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="BossBlock.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Block3.cpp">
+      <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,11 +263,8 @@
     <ClInclude Include="BossBlock.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="LockEnemy2.h">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
-    <ClInclude Include="FlyEnemy2.h">
-      <Filter>ソース ファイル\map2</Filter>
+    <ClInclude Include="Block3.h">
+      <Filter>ソース ファイル\map3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
