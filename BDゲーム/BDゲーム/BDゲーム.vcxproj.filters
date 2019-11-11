@@ -159,6 +159,12 @@
     <ClCompile Include="FlyEnemy2.cpp">
       <Filter>ソース ファイル\map2</Filter>
     </ClCompile>
+    <ClCompile Include="AssaultBullet2.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalBullet2.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">

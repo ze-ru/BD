@@ -90,13 +90,13 @@ void CObjBlock::Action()
 				m_map[i][lx] = 0;
 			}
 
-			//BossBlockçÏê¨
-			if (m_map[i][lx] == 14)
-			{
-				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
-				m_map[i][lx] = 0;
-			}
+		//BossBlockçÏê¨
+		if (m_map[i][lx] == 14 )
+		{
+			CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
+			m_map[i][lx] = 0;
+		}
 
 
 		}

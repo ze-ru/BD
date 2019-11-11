@@ -48,7 +48,7 @@ void CObjNormalBullet::Action()
 	
 	
 	
-	if (m_time>200)
+	if (m_time>100)
 	{
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
