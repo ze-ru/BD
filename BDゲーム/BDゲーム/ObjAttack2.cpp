@@ -19,16 +19,16 @@ CObjAttack2::CObjAttack2(float x, float y)
 //イニシャライズ
 void CObjAttack2::Init()
 {
-	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO2);
+	CObjHero2*objh2 = (CObjHero2*)Objs::GetObj(OBJ_HERO2);
 
-	if (objh->GetFlag() == false)
+	if (objh2->GetFlag2() == false)
 		m_posture = 0.0f;//右向き0.0f 左向き1.0f
-	if (objh->GetFlag() == true)
+	if (objh2->GetFlag2() == true)
 		m_posture = 1.0f;//右向き0.0f 左向き1.0f
-	m_px = objh->GetX() - 32.0f + 96.0f - 96.0f*m_posture;
-	m_py = objh->GetY();
-	m_vx = objh->GetVX();//移動ベクトル
-	m_vy = objh->GetVY();
+	m_px = objh2->GetX2() - 32.0f + 96.0f - 96.0f*m_posture;
+	m_py = objh2->GetY2();
+	m_vx = objh2->GetVX2();//移動ベクトル
+	m_vy = objh2->GetVY2();
 
 
 	m_ani_time = 0;
