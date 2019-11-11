@@ -153,6 +153,12 @@
     <ClCompile Include="BossBlock.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="LockEnemy2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyEnemy2.cpp">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -274,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="BossBlock.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="LockEnemy2.h">
+      <Filter>ソース ファイル\map2</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyEnemy2.h">
+      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -120,6 +120,7 @@
     <ClCompile Include="Block2.cpp" />
     <ClCompile Include="BossBlock.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
+    <ClCompile Include="FlyEnemy2.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
     <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="Gamerule.cpp" />
     <ClCompile Include="Hero2.cpp" />
+    <ClCompile Include="LockEnemy2.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
     <ClCompile Include="ObjAttack.cpp" />
     <ClCompile Include="ObjAttack2.cpp" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Block2.h" />
     <ClInclude Include="BossBlock.h" />
     <ClInclude Include="FlyEnemy.h" />
+    <ClInclude Include="FlyEnemy2.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
     <ClInclude Include="GameL\DirectXDevice.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="Hero.h" />
     <ClInclude Include="Hero2.h" />
     <ClInclude Include="LockEnemy.h" />
+    <ClInclude Include="LockEnemy2.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NormalBullet.h" />
     <ClInclude Include="ObjAttack.h" />
