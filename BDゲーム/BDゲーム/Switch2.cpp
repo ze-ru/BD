@@ -4,20 +4,19 @@
 #include"GameL\DrawTexture.h"
 #include"GameL\HitBoxManager.h"
 
-#include"Switch.h"
-
+#include"Switch2.h"
 #include"GameHead.h"
 
 //使用するネームスペース
 using namespace GameL;
 
 //イニシャライズ
-CObjSwitch::CObjSwitch(float x, float y)
+CObjSwitch2::CObjSwitch2(float x, float y)
 {
 	m_sx = x;
 	m_sy = y;
 }
-void CObjSwitch::Init()
+void CObjSwitch2::Init()
 {
 	m_hit_up = false;
 	m_hit_down = false;
@@ -26,19 +25,19 @@ void CObjSwitch::Init()
 
 	flag = false;
 
-	Hits::SetHitBox(this,m_sx,m_sy, 64, 64, ELEMENT_ENEMY, OBJ_SWITCH, 1);
+	Hits::SetHitBox(this, m_sx, m_sy, 64, 64, ELEMENT_ENEMY, OBJ_SWITCH, 1);
 }
 
 //アクション
-void CObjSwitch::Action()
+void CObjSwitch2::Action()
 {
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK2);
 	//	Switch削除test
 	//自身のHitBoxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_sx + block->GetScroll(), m_sy);
 
-	if (hit->CheckElementHit(ELEMENT_ATTACK)==true)
+	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
 		flag += 1;
 		this->SetStatus(false);//自身に削除命令を出す
@@ -47,11 +46,11 @@ void CObjSwitch::Action()
 
 	block->SetBlock(flag);
 
-	
+
 }
 
 //ドロー
-void CObjSwitch::Draw()
+void CObjSwitch2::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -65,11 +64,11 @@ void CObjSwitch::Draw()
 	src.m_bottom = 64.0f;
 
 	//ブロック情報を持ってくる
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock2*block = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	//
 	dst.m_top = m_sy;
-	dst.m_left =  m_sx + block->GetScroll();
-	dst.m_right = dst.m_left +64.0f;
+	dst.m_left = m_sx + block->GetScroll();
+	dst.m_right = dst.m_left + 64.0f;
 	dst.m_bottom = 64.0f + m_sy;
 
 	Draw::Draw(0, &src, &dst, c, 0.0f);
