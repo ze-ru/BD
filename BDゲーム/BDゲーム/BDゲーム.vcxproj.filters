@@ -293,11 +293,5 @@
     <ClInclude Include="FlyEnemy2.h">
       <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
-    <ClInclude Include="AssaultBullet2.h">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalBullet2.h">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,8 +4,9 @@
 
 //GameLで使用するヘッダー
 #include"GameL\SceneObjManager.h"
-#include"GameL\DrawFont.h"
+#include"GameL\DrawTexture.h"
 #include"GameL\Audio.h"
+
 
 //使用するネームスペース
 using namespace GameL;
@@ -29,8 +30,11 @@ CSceneTitle::~CSceneTitle()
 //ゲームタイトル初期化メソッド
 void CSceneTitle::InitScene()
 {
-	CObjTitle* p = new CObjTitle();
-	Objs::InsertObj(p, OBJ_TITLE, 1);
+
+	
+
+	CObjTitle* t = new CObjTitle();
+	Objs::InsertObj(t, OBJ_TITLE, 1);
 
 	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"Title.wav", SOUND_TYPE::BACK_MUSIC);

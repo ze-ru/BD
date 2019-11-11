@@ -275,11 +275,11 @@ void CObjHero2::Action()
 		if (hit_flag == false)
 			hit_flag = true;
 	}
-	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET2) != nullptr)
 	{
 
 		HIT_DATA** hit_data;
-		hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
+		hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET2);
 		m_hp += 5;
 	}
 
