@@ -116,12 +116,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssaultBullet.cpp" />
-    <ClCompile Include="AssaultBullet2.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Block2.cpp" />
     <ClCompile Include="BossBlock.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
-    <ClCompile Include="FlyEnemy2.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
     <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
@@ -136,12 +134,8 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="Gamerule.cpp" />
-    <ClCompile Include="Hero2.cpp" />
-    <ClCompile Include="LockEnemy2.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
-    <ClCompile Include="NormalBullet2.cpp" />
     <ClCompile Include="ObjAttack.cpp" />
-    <ClCompile Include="ObjAttack2.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjGamerule.cpp" />
     <ClCompile Include="ObjShop.cpp" />
@@ -159,18 +153,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Switch.cpp" />
-    <ClCompile Include="Switch2.cpp" />
     <ClCompile Include="WolkEnemy.cpp" />
-    <ClCompile Include="WolkEnemy2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssaultBullet.h" />
-    <ClInclude Include="AssaultBullet2.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Block2.h" />
     <ClInclude Include="BossBlock.h" />
     <ClInclude Include="FlyEnemy.h" />
-    <ClInclude Include="FlyEnemy2.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
     <ClInclude Include="GameL\DirectXDevice.h" />
@@ -185,14 +175,10 @@
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="Gamerule.h" />
     <ClInclude Include="Hero.h" />
-    <ClInclude Include="Hero2.h" />
     <ClInclude Include="LockEnemy.h" />
-    <ClInclude Include="LockEnemy2.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NormalBullet.h" />
-    <ClInclude Include="NormalBullet2.h" />
     <ClInclude Include="ObjAttack.h" />
-    <ClInclude Include="ObjAttack2.h" />
     <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGamerule.h" />
     <ClInclude Include="ObjShop.h" />
@@ -208,9 +194,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Switch.h" />
-    <ClInclude Include="Switch2.h" />
     <ClInclude Include="WolkEnemy.h" />
-    <ClInclude Include="WolkEnemy2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
