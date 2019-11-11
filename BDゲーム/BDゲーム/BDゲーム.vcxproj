@@ -119,6 +119,7 @@
     <ClCompile Include="AssaultBullet2.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Block2.cpp" />
+    <ClCompile Include="Block3.cpp" />
     <ClCompile Include="BossBlock.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="FlyEnemy2.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="AssaultBullet2.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Block2.h" />
+    <ClInclude Include="Block3.h" />
     <ClInclude Include="BossBlock.h" />
     <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="FlyEnemy2.h" />
