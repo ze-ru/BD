@@ -30,22 +30,22 @@ void CObjBlock2::Init()
 void CObjBlock2::Action()
 {
 	//主人公の位置を取得
-	CObjHero2*hero2 = (CObjHero2*)Objs::GetObj(OBJ_HERO2);
-	float hx = hero2->GetX2();
-	float hy = hero2->GetY2();
+	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
 
 	//後方スクロールライン
 	if (hx < 80)
 	{
-		hero2->SetX2(80);//主人公はラインを超えないようにする
-		m_scroll -= hero2->GetVX2();//主人公が本来動くべき分の値をm_scrollに加える
+		hero->SetX(80);//主人公はラインを超えないようにする
+		m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
 	}
 
 	//前方スクロールライン
 	if (hx > 300)
 	{
-		hero2->SetX2(300);
-		m_scroll -= hero2->GetVX2();
+		hero->SetX(300);
+		m_scroll -= hero->GetVX();
 	}
 
 	//敵出現ライン
@@ -60,8 +60,8 @@ void CObjBlock2::Action()
 	{
 		if (m_map2[i][lx] == 5)
 		{
-			CObjWolkEnemy2*objW = new CObjWolkEnemy2(lx*64.0f, i*63.0f);
-			Objs::InsertObj(objW, OBJ_WOLKENEMY2, 15);
+			CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*63.0f);
+			Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
 
 			//敵出現場所を0にする
 			m_map2[i][lx] = 0;
@@ -127,7 +127,7 @@ void CObjBlock2::BlockDraw2(float x, float y, RECT_F *dst, float c[])
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
 	//描画
-	Draw::Draw(6, &src, dst, c, 0.0f);
+	Draw::Draw(7, &src, dst, c, 0.0f);
 }
 
 
