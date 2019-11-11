@@ -47,7 +47,7 @@ void CObjBlock::Action()
 
 	//“GoŒ»ƒ‰ƒCƒ“
 	//ŽålŒö‚ÌˆÊ’u{500‚ð“GoŒ»ƒ‰ƒCƒ“‚É
-	float line = hx+(-m_scroll) + 515;
+	float line = hx+(-m_scroll)+510;
 
 	//“GoŒ»ƒ‰ƒCƒ“‚ð—v‘f”Ô†‰»
 	int lx = ((int)line) / 64;
@@ -88,12 +88,17 @@ void CObjBlock::Action()
 		}
 
 		//BossBlockì¬
-		if (m_map[i][lx] == 14 )
+		//if (m_map[i][lx] == 14 )
+		//{
+		if (hx + (-m_scroll) > line-500)
 		{
-			CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
-			Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
-			m_map[i][lx] = 0;
+			if (m_map[i][lx] == 14)
+			{
+				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
+			}
 		}
+		//}
 
 		
 	}
