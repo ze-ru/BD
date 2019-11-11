@@ -22,6 +22,8 @@ enum OBJ_NAME
 	OBJ_BLOCK2,
 	OBJ_HERO2,
 	OBJ_WOLKENEMY2,
+	OBJ_LOCKENEMY2,
+	OBJ_FLYENEMY2,
 	OBJ_ASSAULT_BULLET,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
@@ -103,6 +105,8 @@ struct UserData
 #include"ObjAttack2.h"
 #include"AssaultBullet.h"
 #include"WolkEnemy2.h"
+#include"LockEnemy2.h"
+#include"FlyEnemy2.h"
 
 //------------------------------------------------
 
