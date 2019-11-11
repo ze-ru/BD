@@ -67,12 +67,14 @@ void CObjBlock2::Action()
 			m_map2[i][lx] = 0;
 		}
 
-		/*if (m_map2[i][lx] == 6)
+		if (m_map2[i][lx] == 7)
 		{
-			CObjLockEnemy2*objeL = new CObjLockEnemy2(lx*64.0f, i*63.0f);
-			Objs::InsertObj(objeL, OBJ_LOCKENEMY2, 15);
+			CObjFlyEnemy2*objF = new CObjFlyEnemy2(lx*64.0f, i*63.0f);
+			Objs::InsertObj(objF, OBJ_FLYENEMY2, 15);
+
+			//ìGèoåªèÍèäÇ0Ç…Ç∑ÇÈ
 			m_map2[i][lx] = 0;
-		}*/
+		}
 	}
 }
 
