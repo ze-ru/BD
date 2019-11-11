@@ -14,7 +14,6 @@ using namespace GameL;
 
 CObjBlock3::CObjBlock3(int map3[11][156])
 {
-
 	//マップデータをコピー
 	memcpy(m_map3, map3, sizeof(int)*(11 * 156));
 }
