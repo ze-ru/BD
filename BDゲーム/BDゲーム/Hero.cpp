@@ -148,18 +148,12 @@ void CObjHero::Action()
 				}
 			}
 
-			//落下時
-			if (m_py > 1000.0f)
-			{
-				;
-			}
-
 			//Spaceキーでジャンプ
 			if (Input::GetVKey(' ') == true)
 			{
-				if (m_hit_down == true || (hit->CheckElementHit(ELEMENT_ENEMY)==true))
+				if (m_hit_down == true )//|| (hit->CheckElementHit(ELEMENT_ENEMY)==true)
 				{
-					if (m_vy >= 0)
+					
 						m_vy = -10.5;
 
 				}
