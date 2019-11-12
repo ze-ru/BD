@@ -150,6 +150,12 @@
     <ClCompile Include="Block3.cpp">
       <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
+    <ClCompile Include="ObjStage3.cpp">
+      <Filter>ソース ファイル\map3</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStage3.cpp">
+      <Filter>ソース ファイル\map3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -264,6 +270,12 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Block3.h">
+      <Filter>ソース ファイル\map3</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage3.h">
+      <Filter>ソース ファイル\map3</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenestage3.h">
       <Filter>ソース ファイル\map3</Filter>
     </ClInclude>
   </ItemGroup>
