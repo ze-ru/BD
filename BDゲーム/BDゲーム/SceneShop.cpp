@@ -12,6 +12,7 @@ using namespace GameL;
 
 //使用ヘッダー
 #include "GameHead.h"
+#include"SceneShop.h"
 
 //コンストラクタ
 CSceneShop::CSceneShop()
@@ -28,12 +29,12 @@ CSceneShop::~CSceneShop()
 //ゲームメイン初期化メソッド
 void CSceneShop::InitScene()
 {
-	/*//音楽情報の読み込み
+	//音楽情報の読み込み
 	Audio::LoadAudio(0, L"shop.wav", SOUND_TYPE::BACK_MUSIC);
 
 	//バックミュージックスタート
 	float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-	Audio::Start(0);//音楽スタート*/
+	Audio::Start(0);//音楽スタート
 
 	//出力させる文字のグラフィックを作成
 	Font::SetStrTex(L"");
@@ -51,4 +52,6 @@ void CSceneShop::Scene()
 	Font::StrDraw(L"・武器を買う", 120, 100, 80, c);
 	Font::StrDraw(L"・セーブ", 2, 130, 80, c);
 	Font::StrDraw(L"・タイトルに戻る", 120, 200, 80, c);
+
+
 }

@@ -15,5 +15,7 @@ public:
 	void Action() ;
 	void Draw() ;
 private:
-
+	bool m_key_flag;
+	bool key;
+	bool keyS;
 };
