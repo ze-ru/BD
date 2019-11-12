@@ -49,19 +49,9 @@ void CObjWolkEnemy::Action()
 	m_ani_max_time = 6;
 
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	//主人公の位置で向き変更
-
-	if ( m_ex > objh->GetX() - block->GetScroll())
-	{
-		m_move = false;
-	}
-
-	if ( m_ex < objh->GetX() - block->GetScroll())
-	{
-		m_move = true;
-
-	}
+	
+	
+	
 
 	//ブロック衝突で向き変更(仮)
 	/*if (m_hit_left == true)
@@ -111,18 +101,57 @@ void CObjWolkEnemy::Action()
 	m_ey += m_vy;
 
 	//ブロック情報を持ってくる
-	
 
-	//ブロックとの当たり判定実行
-	block->BlockHit(&m_ex, &m_ey, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy);
-
-
-	//HitBoxの位置の変更
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_ex+ block->GetScroll(), m_ey);
+	if (pb->Getmap1() == 0)
+	{
+		if (m_ex > objh->GetX() - pb->GetScroll())
+		{
+			m_move = false;
+		}
 
+		if (m_ex < objh->GetX() - pb->GetScroll())
+		{
+			m_move = true;
+
+		}
+	}
+	if (pb2->Getmap2() == 0)
+	{
+		if (m_ex > objh->GetX() - pb2->GetScroll())
+		{
+			m_move = false;
+		}
+
+		if (m_ex < objh->GetX() - pb2->GetScroll())
+		{
+			m_move = true;
+
+		}
+	
+		
+	}
+	
+//HitBoxの内容を更新
+	if (pb->Getmap1() == 0) 
+	{
+		pb->BlockHit(&m_ex, &m_ey, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+	}
+//HitBoxの内容を更
+	if (pb2->Getmap2() == 0) 
+	{
+		pb2->BlockHit2(&m_ex, &m_ey, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+		hit->SetPos(m_ex + pb2->GetScroll(), m_ey);
+	}
+	
+	
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
 		if(m_hp>0)
@@ -167,15 +196,22 @@ void CObjWolkEnemy::Draw()
 	src.m_right = 64.0f + AniData[m_ani_frame] * 64;
 	src.m_bottom = 64.0f;
 
-
-	//ブロック情報を持ってくる
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	if (pb->Getmap1() == 0) {
+		dst.m_top = 0.0f + m_ey;
+		dst.m_left = (64.0f*m_posture) + m_ex + pb->GetScroll();
+		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb->GetScroll();
+		dst.m_bottom = 64.0f + m_ey;
+	}
+	if (pb2->Getmap2() == 0) {
+		dst.m_top = 0.0f + m_ey;
+		dst.m_left = (64.0f*m_posture) + m_ex + pb2->GetScroll();
+		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb2->GetScroll();
+		dst.m_bottom = 64.0f + m_ey;
+	}
 	
-	//
-	dst.m_top = 0.0f + m_ey;
-	dst.m_left = (64.0f*m_posture) + m_ex +block->GetScroll();
-	dst.m_right = (64 - 64.0f*m_posture) + m_ex +block->GetScroll();
-	dst.m_bottom = 64.0f + m_ey ;
+	
 
 	//
 	Draw::Draw(3, &src, &dst, c, m_dead);

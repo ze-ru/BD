@@ -287,7 +287,7 @@ void CObjHero::Action()
 
 								if (m_vy <= -1.0f)
 								{
-
+									;
 								}
 								else
 								{
