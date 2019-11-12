@@ -148,18 +148,12 @@ void CObjHero::Action()
 				}
 			}
 
-			//落下時
-			if (m_py > 1000.0f)
-			{
-				;
-			}
-
 			//Spaceキーでジャンプ
 			if (Input::GetVKey(' ') == true)
 			{
-				if (m_hit_down == true)
+				if (m_hit_down == true )//|| (hit->CheckElementHit(ELEMENT_ENEMY)==true)
 				{
-					if (m_vy >= 0)
+					
 						m_vy = -10.5;
 
 				}
@@ -252,11 +246,11 @@ void CObjHero::Action()
 							float r = hit_data[i]->r;
 							if ((r < 45 && r >= 0) || r > 315)
 							{
-								m_vx = -1.0f;//左に移動
+								m_vx = -1.2f;//左に移動
 							}
 							if (r > 135 && r < 225)
 							{
-								m_vx = +1.0f;//右に移動
+								m_vx = +1.2f;//右に移動
 							}
 							if (r >= 225 && r < 315)
 							{
@@ -264,8 +258,6 @@ void CObjHero::Action()
 								m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
 								
 								
-								
-
 								//後方スクロールライン
 								if (m_px < 80)
 								{
@@ -291,7 +283,6 @@ void CObjHero::Action()
 								}
 								else
 								{
-
 									m_vy = 0.0f;//ベクトルを0にする
 									m_hit_down = true;//地面に当たっている判定にする
 								}
