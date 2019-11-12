@@ -78,16 +78,32 @@ void CObjFlyEnemy::Action()
 	{
 		m_py = 100;
 	}
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//ブロックとの当たり判定実行
-	block->BlockHit(&m_px, &m_py, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy);
-
-
-	//HitBoxの内容を更新
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + block->GetScroll(), m_py);
+	if (pb->Getmap1() == 0)
+	{
+		pb->BlockHit(&m_px, &m_py, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+		//HitBoxの内容を更新
+		
+		hit->SetPos(m_px + pb->GetScroll(), m_py);
+	}
+	if (pb2->Getmap2() == 0)
+	{
+		pb2->BlockHit2(&m_px, &m_py, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+		//HitBoxの内容を更新
+		
+		hit->SetPos(m_px + pb2->GetScroll(), m_py);
+	}
+
+
+
+	
 
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
@@ -112,12 +128,21 @@ void CObjFlyEnemy::Draw()
 	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	//
-	dst.m_top = m_py;
-	dst.m_left = m_px+block->GetScroll();
-	dst.m_right = dst.m_left + 64.0f;
-	dst.m_bottom = m_py + 64.0f;
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	if (pb->Getmap1() == 0) {
+		dst.m_top = m_py;
+		dst.m_left = m_px + pb->GetScroll();
+		dst.m_right = dst.m_left + 64.0f;
+		dst.m_bottom = m_py + 64.0f;
+	}
+	if (pb2->Getmap2() == 0) {
+		dst.m_top = m_py;
+		dst.m_left = m_px + pb2->GetScroll();
+		dst.m_right = dst.m_left + 64.0f;
+		dst.m_bottom = m_py + 64.0f;
+	}
+	
 
 
 	//
