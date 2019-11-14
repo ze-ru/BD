@@ -145,7 +145,6 @@ void CSceneStage1::InitScene()
 	Objs::InsertObj(objb, OBJ_BLOCK, 2);
 	
 	
-
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->Setmap1(0);
 	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
