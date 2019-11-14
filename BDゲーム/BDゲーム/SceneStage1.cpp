@@ -62,7 +62,7 @@ void CSceneStage1::InitScene()
 		}
 	}
 	
-
+/*
 	unique_ptr<wchar_t>p2;//ステージ情報ポインター
 	int size2;//ステージ情報の大きさ
 	p2 = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
@@ -89,9 +89,9 @@ void CSceneStage1::InitScene()
 				count2 += 2;
 			}
 		}
-	}
+	}*/
 
-	unique_ptr<wchar_t>p3;//ステージ情報ポインター
+/*	unique_ptr<wchar_t>p3;//ステージ情報ポインター
 	int size3;//ステージ情報の大きさ
 	p3 = Save::ExternalDataOpen(L"stage3.csv", &size3);//外部データ読み込み
 
@@ -117,7 +117,7 @@ void CSceneStage1::InitScene()
 				count3 += 2;
 			}
 		}
-	}
+	}*/
 	
 	//グラフィック読み込み
 	Draw::LoadImageW(L"Hero.png",1,TEX_SIZE_512);
@@ -138,10 +138,10 @@ void CSceneStage1::InitScene()
 
 	
 	//Blockオブジェクト作成
-	CObjBlock2*objb2 = new CObjBlock2(map2);
+	/*CObjBlock2*objb2 = new CObjBlock2(map2);
 	Objs::InsertObj(objb2, OBJ_BLOCK2, 1);
 	CObjBlock3*objb3 = new CObjBlock3(map3);
-	Objs::InsertObj(objb3, OBJ_BLOCK3, 2);
+	Objs::InsertObj(objb3, OBJ_BLOCK3, 2);*/
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 2);
 	
@@ -149,9 +149,10 @@ void CSceneStage1::InitScene()
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->Setmap1(0);
-	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+/*	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	pb2->Setmap2(22);
-
+	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
+	pb3->Setmap3(23);*/
 
 
 	//主人公オブジェクト作成
