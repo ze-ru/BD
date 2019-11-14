@@ -275,17 +275,11 @@
     <ClInclude Include="BossBlock.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="WeaponShop.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="LockEnemy2.h">
+      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
-    <ClInclude Include="ObjStage3.h">
-      <Filter>ソース ファイル\map3</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenestage3.h">
-      <Filter>ソース ファイル\map3</Filter>
-    </ClInclude>
-    <ClInclude Include="Block3.h">
-      <Filter>ソース ファイル\map3</Filter>
+    <ClInclude Include="FlyEnemy2.h">
+      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
