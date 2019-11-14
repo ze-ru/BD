@@ -31,11 +31,6 @@ stageselect::~stageselect()
 void stageselect::InitScene()
 {
 
-
-
-	CObjTitle* t = new CObjTitle();
-	Objs::InsertObj(t, OBJ_TITLE, 1);
-
 }
 
 //ゲームタイトル実行中メソッド
