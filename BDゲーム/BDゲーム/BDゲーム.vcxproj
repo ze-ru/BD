@@ -142,6 +142,7 @@
     <ClCompile Include="ObjShop.cpp" />
     <ClCompile Include="ObjStage2.cpp" />
     <ClCompile Include="ObjStage3.cpp" />
+    <ClCompile Include="Objstageselect.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="LockEnemy.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="SceneStage2.cpp" />
     <ClCompile Include="SceneStage3.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="stageselect.cpp" />
     <ClCompile Include="StageUi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -190,6 +192,7 @@
     <ClInclude Include="ObjStage1.h" />
     <ClInclude Include="ObjStage2.h" />
     <ClInclude Include="ObjStage3.h" />
+    <ClInclude Include="Objstageselect.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneShop.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="SceneStage2.h" />
     <ClInclude Include="Scenestage3.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="stageselect.h" />
     <ClInclude Include="StageUi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
