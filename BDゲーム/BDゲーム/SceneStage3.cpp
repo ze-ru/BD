@@ -161,8 +161,8 @@ void CSceneStage3::InitScene()
 	//Audio::LoadAudio(0, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
 
 	//バックミュージックスタート
-	float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-	Audio::Start(0);//音楽スタート
+	//float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+	//Audio::Start(0);//音楽スタート
 }
 
 //実行中メソッド
