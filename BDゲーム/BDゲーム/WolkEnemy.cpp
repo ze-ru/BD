@@ -50,7 +50,57 @@ void CObjWolkEnemy::Action()
 
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	
+	CHitBox*hit = Hits::GetHitBox(this);
+	if (pb->Getmap1() == 0)
+	{
+		if (m_ex > objh->GetX() - pb->GetScroll())
+		{
+			m_move = false;
+		}
+
+		if (m_ex < objh->GetX() - pb->GetScroll())
+		{
+			m_move = true;
+
+		}
+	}
+	//HitBoxの内容を更新
+	if (pb->Getmap1() == 0)
+	{
+		pb->BlockHit(&m_ex, &m_ey, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+	}
+	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	if (pb2->Getmap2() == 0)
+	{
+		if (m_ex > objh->GetX() - pb2->GetScroll())
+		{
+			m_move = false;
+		}
+
+		if (m_ex < objh->GetX() - pb2->GetScroll())
+		{
+			m_move = true;
+
+		}
+
+
+	}
+
+	
+	//HitBoxの内容を更
+	if (pb2->Getmap2() == 0)
+	{
+		pb2->BlockHit2(&m_ex, &m_ey, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+		hit->SetPos(m_ex + pb2->GetScroll(), m_ey);
+	}
+
 	
 
 	//ブロック衝突で向き変更(仮)
@@ -102,54 +152,6 @@ void CObjWolkEnemy::Action()
 
 	//ブロック情報を持ってくる
 
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
-	CHitBox*hit = Hits::GetHitBox(this);
-	if (pb->Getmap1() == 0)
-	{
-		if (m_ex > objh->GetX() - pb->GetScroll())
-		{
-			m_move = false;
-		}
-
-		if (m_ex < objh->GetX() - pb->GetScroll())
-		{
-			m_move = true;
-
-		}
-	}
-	if (pb2->Getmap2() == 0)
-	{
-		if (m_ex > objh->GetX() - pb2->GetScroll())
-		{
-			m_move = false;
-		}
-
-		if (m_ex < objh->GetX() - pb2->GetScroll())
-		{
-			m_move = true;
-
-		}
-	
-		
-	}
-	
-//HitBoxの内容を更新
-	if (pb->Getmap1() == 0) 
-	{
-		pb->BlockHit(&m_ex, &m_ey, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy);
-		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-	}
-//HitBoxの内容を更
-	if (pb2->Getmap2() == 0) 
-	{
-		pb2->BlockHit2(&m_ex, &m_ey, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy);
-		hit->SetPos(m_ex + pb2->GetScroll(), m_ey);
-	}
 	
 	
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)

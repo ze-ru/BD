@@ -21,7 +21,7 @@ CObjBlock3::CObjBlock3(int map3[11][156])
 //イニシャライズ
 void CObjBlock3::Init()
 {
-	m_scroll = 0.0f;
+	m_scroll3 = 0.0f;
 
 }
 
@@ -39,19 +39,19 @@ void CObjBlock3::Action()
 		if (hx < 80)
 		{
 			hero->SetX(80);//主人公はラインを超えないようにする
-			m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
+			m_scroll3 -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
 		}
 
 		//前方スクロールライン
 		if (hx > 300)
 		{
 			hero->SetX(300);
-			m_scroll -= hero->GetVX();
+			m_scroll3 -= hero->GetVX();
 		}
 
 		//敵出現ライン
 		//主人公の位置＋500を敵出現ラインに
-		float line = hx + (-m_scroll) + 500;
+		float line = hx + (-m_scroll3) + 500;
 
 		//敵出現ラインを要素番号化
 		int lx = ((int)line) / 64;
@@ -92,7 +92,7 @@ void CObjBlock3::Draw()
 				float by = i * 64.0f;
 				//表示位置の設定
 				dst.m_top = i * 64.0f - 64.0f;
-				dst.m_left = j * 64.0f + m_scroll;
+				dst.m_left = j * 64.0f + m_scroll3;
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
 
@@ -157,7 +157,7 @@ void CObjBlock3::BlockHit3(float *x, float *y, bool scroll_on, bool *up, bool *d
 				float by = i * 64.0f - 64.0f;
 
 				//スクロールの影響
-				float scroll = scroll_on ? m_scroll : 0;
+				float scroll = scroll_on ? m_scroll3 : 0;
 
 				//オブジェクトとブロックの当たり判定
 				if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
