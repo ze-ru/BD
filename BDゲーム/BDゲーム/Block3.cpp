@@ -129,7 +129,7 @@ void CObjBlock3::BlockDraw3(float x, float y, RECT_F *dst, float c[])
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
 	//•`‰æ
-	Draw::Draw(7, &src, dst, c, 0.0f);
+	Draw::Draw(9, &src, dst, c, 0.0f);
 }
 
 
