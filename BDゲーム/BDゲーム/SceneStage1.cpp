@@ -90,6 +90,7 @@ void CSceneStage1::InitScene()
 			}
 		}
 	}
+
 	unique_ptr<wchar_t>p3;//ステージ情報ポインター
 	int size3;//ステージ情報の大きさ
 	p3 = Save::ExternalDataOpen(L"stage3.csv", &size3);//外部データ読み込み
@@ -102,10 +103,10 @@ void CSceneStage1::InitScene()
 		for (int j = 0; j < 156; j++)
 		{
 			int w = 0;
-			swscanf_s(&p3.get()[count3], L"%d", &w);
+			swscanf_s(&p3.get()[count2], L"%d", &w);
 
 
-			map3[i][j] = w;
+			map2[i][j] = w;
 
 			if (w >= 10)
 			{
@@ -145,12 +146,11 @@ void CSceneStage1::InitScene()
 	Objs::InsertObj(objb, OBJ_BLOCK, 2);
 	
 	
+
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->Setmap1(0);
 	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	pb2->Setmap2(22);
-	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
-	pb3->Setmap3(23);
 
 
 
