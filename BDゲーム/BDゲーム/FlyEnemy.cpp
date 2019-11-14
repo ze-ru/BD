@@ -19,7 +19,7 @@ void CObjFlyEnemy::Init()
 	
 	m_ani_time = 0;
 	m_ani_frame = 0;
-	m_posture = 1;
+	//m_posture = 1;
 
 	m_vx = 0.0f;
 	m_vx = 0.0f;
@@ -80,7 +80,7 @@ void CObjFlyEnemy::Action()
 	}
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	//CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	CHitBox*hit = Hits::GetHitBox(this);
 	if (pb->Getmap1() == 0)
 	{
@@ -91,7 +91,7 @@ void CObjFlyEnemy::Action()
 		
 		hit->SetPos(m_px + pb->GetScroll(), m_py);
 	}
-	if (pb2->Getmap2() == 0)
+	/*if (pb2->Getmap2() == 0)
 	{
 		pb2->BlockHit2(&m_px, &m_py, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
@@ -100,7 +100,7 @@ void CObjFlyEnemy::Action()
 		
 		hit->SetPos(m_px + pb2->GetScroll(), m_py);
 	}
-
+	*/
 
 
 	
@@ -136,12 +136,12 @@ void CObjFlyEnemy::Draw()
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = m_py + 64.0f;
 	}
-	if (pb2->Getmap2() == 0) {
+	/*if (pb2->Getmap2() == 0) {
 		dst.m_top = m_py;
 		dst.m_left = m_px + pb2->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = m_py + 64.0f;
-	}
+	}*/
 	
 
 

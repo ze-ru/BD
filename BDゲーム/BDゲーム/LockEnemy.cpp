@@ -50,8 +50,8 @@ void CObjLockEnemy::Action()
 
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
-	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
+//	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	//CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
 	CHitBox*hit = Hits::GetHitBox(this);
 	if (pb->Getmap1() == 0)
 	{
@@ -61,27 +61,27 @@ void CObjLockEnemy::Action()
 			&m_vx, &m_vy);
 		
 	}
-	if (pb2->Getmap2() == 0)
+/*	if (pb2->Getmap2() == 0)
 	{
 		pb2->BlockHit2(&m_ex, &m_ey, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
 		
-	}
-	if (pb3->Getmap3() == 0)
+	}*/
+	/*if (pb3->Getmap3() == 0)
 	{
 		pb3->BlockHit3(&m_ex, &m_ey, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
 
-	}
+	}*/
 
-	if (pb2->Getmap2() == 0)
-	hit->SetPos(m_ex + pb2->GetScroll(), m_ey);
+	//if (pb2->Getmap2() == 0)
+	//hit->SetPos(m_ex + pb2->GetScroll(), m_ey);
 	if (pb->Getmap1() == 0)
        	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-	if (pb3->Getmap3() == 0)
-		hit->SetPos(m_ex + pb3->GetScroll3(), m_ey);
+	//if (pb3->Getmap3() == 0)
+		//hit->SetPos(m_ex + pb3->GetScroll3(), m_ey);
 
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
@@ -111,19 +111,19 @@ void CObjLockEnemy::Draw()
 	src.m_bottom = 64.0f;
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	//CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	if (pb->Getmap1() == 0) {
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = 64 - 64.0f + m_ex + pb->GetScroll();
 		dst.m_right = 64.0f + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
 	}
-	if (pb2->Getmap2() == 0) {
+	/*if (pb2->Getmap2() == 0) {
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = 64 - 64.0f + m_ex + pb2->GetScroll();
 		dst.m_right = 64.0f + m_ex + pb2->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
-	}
+	}*/
 	//
 	
 

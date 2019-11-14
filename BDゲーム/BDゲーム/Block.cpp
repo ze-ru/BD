@@ -27,8 +27,8 @@ void CObjBlock::Init()
 void CObjBlock::Action()
 {
 	//主人公の位置を取得
-	if (m_map[0][0] == 0)
-	{
+	//if (m_map[0][0] == 0)
+	//{
 		CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
 
@@ -65,24 +65,24 @@ void CObjBlock::Action()
 			{
 				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*63.0f);
 				Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
-
+				
 				//敵出現場所を0にする
 				m_map[i][lx] = 0;
 			}
 			if (m_map[i][lx] == 7)
-			{
+			{/*
 				CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*63.0f);
 				Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
 
 				//敵出現場所を0にする
-				m_map[i][lx] = 0;
+				m_map[i][lx] = 0;*/
 			}
 			if (m_map[i][lx] == 6)
 			{
-
+				/*
 				CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*63.0f);
 				Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
-				m_map[i][lx] = 0;
+				m_map[i][lx] = 0;*/
 			}
 
 			//switch作成
@@ -103,7 +103,7 @@ void CObjBlock::Action()
 
 
 		}
-	}
+	//}
 }
 //ドロー
 void CObjBlock::Draw()
@@ -235,7 +235,7 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 					//上下左右判定
 
 					//vectorの作成
-					float rvx = (*x + (-scroll)) - bx;
+					float rvx = (*x  -scroll) - bx;
 					float rvy = *y - by;
 
 					//長さを求める
@@ -275,7 +275,7 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 						if (r > 135 && r < 225)
 						{
 							*left = true;
-							*x = bx - 64.0f + (scroll);
+							*x = bx - 64.0f+ (scroll);
 							*vx = -(*vx)*0.1f;
 						}
 

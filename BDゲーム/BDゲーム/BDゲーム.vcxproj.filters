@@ -36,9 +36,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameL\Audio.cpp">
-      <Filter>リソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="GameL\DirectXDevice.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
@@ -158,6 +155,12 @@
     </ClCompile>
     <ClCompile Include="SceneStage3.cpp">
       <Filter>ソース ファイル\map3</Filter>
+    </ClCompile>
+    <ClCompile Include="Block3.cpp">
+      <Filter>ソース ファイル\map3</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\Audio.cpp">
+      <Filter>リソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

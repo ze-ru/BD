@@ -48,15 +48,15 @@ void CObjHero::Action()
 {
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
-	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
+/*	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);*/
 	if (pb->Getmap1() == 0)
 	{
 		pb->BlockHit(&m_px, &m_py, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
 	}
-	if (pb2->Getmap2() == 0)
+	/*if (pb2->Getmap2() == 0)
 	{
 		pb2->BlockHit2(&m_px, &m_py, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
@@ -67,7 +67,7 @@ void CObjHero::Action()
 		pb3->BlockHit3(&m_px, &m_py, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
-	}
+	}*/
 	if (m_y_num >= 50&&m_y_flag==false)
 	{
 		if (m_y_num < 100)
@@ -154,13 +154,16 @@ void CObjHero::Action()
 					m_attack = true;
 				}
 			}
-
+			if (m_py > 1000.0f)
+			{
+				;
+			}
 			//Spaceキーでジャンプ
 			if (Input::GetVKey(' ') == true)
 			{
 				if (m_hit_down == true )//|| (hit->CheckElementHit(ELEMENT_ENEMY)==true)
 				{
-					
+					if (m_vy >= 0)
 						m_vy = -10.5;
 
 				}
@@ -270,8 +273,8 @@ void CObjHero::Action()
 								{
 									if (pb->Getmap1() == 0)
 										pb->SetScroll(pb->GetScroll() - 5.0);
-									if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);
+								/*	if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
 								}
 
 								//前方スクロールライン
@@ -280,8 +283,8 @@ void CObjHero::Action()
 									m_px = 300;
 									if (pb->Getmap1() == 0)
 									pb->SetScroll(pb->GetScroll() - 5.0);
-									if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);
+									/*if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
 								}
 
 								if (m_vy <= -1.0f)
@@ -336,8 +339,8 @@ void CObjHero::Action()
 									
 									if (pb->Getmap1() == 0)
 										pb->SetScroll(pb->GetScroll() - 5.0);
-									if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);
+									/*if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
 									
 								}
 
@@ -347,8 +350,8 @@ void CObjHero::Action()
 									m_px = 300;
 									if (pb->Getmap1() == 0)
 										pb->SetScroll(pb->GetScroll() - 5.0);
-									if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);
+									/*if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
 								}
 
 								if (m_vy <= -1.0f)
@@ -394,7 +397,6 @@ void CObjHero::Action()
 							if (r >= 225 && r < 315)
 							{
 								//敵の移動方向を主人公の位置に加算
-
 								
 
 								//後方スクロールライン
@@ -402,8 +404,8 @@ void CObjHero::Action()
 								{
 									if (pb->Getmap1() == 0)
 										pb->SetScroll(pb->GetScroll() - 5.0);
-									if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);
+								/*	if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
 								}
 
 								//前方スクロールライン
@@ -412,8 +414,8 @@ void CObjHero::Action()
 									m_px = 300;
 									if (pb->Getmap1() == 0)
 										pb->SetScroll(pb->GetScroll() - 5.0);
-									if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);
+									/*if (pb2->Getmap2() == 0)
+										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
 								}
 
 								if (m_vy <= -1.0f)
