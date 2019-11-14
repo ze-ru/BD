@@ -50,7 +50,7 @@ void CObjTitle::Action()
 	{
 		if (m_key_flag == true)
 		{
-			Scene::SetScene(new CSceneStage2());
+			Scene::SetScene(new CSceneStage3());
 			m_key_flag == false;
 		}
 	}

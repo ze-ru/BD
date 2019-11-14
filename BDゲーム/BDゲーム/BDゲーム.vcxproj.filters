@@ -147,6 +147,9 @@
     <ClCompile Include="BossBlock.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="WeaponShop.cpp">
+      <Filter>ソース ファイル\Shop</Filter>
+    </ClCompile>
     <ClCompile Include="Block3.cpp">
       <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
@@ -155,15 +158,6 @@
     </ClCompile>
     <ClCompile Include="SceneStage3.cpp">
       <Filter>ソース ファイル\map3</Filter>
-    </ClCompile>
-    <ClCompile Include="WeaponShop.cpp">
-      <Filter>ソース ファイル\Shop</Filter>
-    </ClCompile>
-    <ClCompile Include="stageselect.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Objstageselect.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,23 +272,11 @@
     <ClInclude Include="BossBlock.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Block3.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="LockEnemy2.h">
+      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
-    <ClInclude Include="ObjStage3.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenestage3.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="WeaponShop.h">
-      <Filter>ソース ファイル\Shop</Filter>
-    </ClInclude>
-    <ClInclude Include="stageselect.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Objstageselect.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="FlyEnemy2.h">
+      <Filter>ソース ファイル\map2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

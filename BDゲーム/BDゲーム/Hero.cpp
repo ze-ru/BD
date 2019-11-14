@@ -49,6 +49,7 @@ void CObjHero::Action()
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
+	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
 	if (pb->Getmap1() == 0)
 	{
 		pb->BlockHit(&m_px, &m_py, true,
@@ -58,6 +59,12 @@ void CObjHero::Action()
 	if (pb2->Getmap2() == 0)
 	{
 		pb2->BlockHit2(&m_px, &m_py, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
+	}
+	if (pb3->Getmap3() == 0)
+	{
+		pb3->BlockHit3(&m_px, &m_py, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
 	}
