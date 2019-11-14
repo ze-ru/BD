@@ -91,19 +91,19 @@ void CObjstageselect::Draw()
 	if (keyE == 0)
 	{
 		Font::StrDraw(L"▶stage1", 165, 320, 80, c);
-		Font::StrDraw(L"  stage2", 160, 390, 80, c);
-		Font::StrDraw(L"  stage3", 160, 460, 80, c);
+		Font::StrDraw(L"  stage2", 160, 420, 80, c);
+		Font::StrDraw(L"  stage3", 160, 510, 80, c);
 	}
 	if (keyE == 1)
 	{
 		Font::StrDraw(L"  stage1", 165, 320, 80, c);
-		Font::StrDraw(L"▶stage2", 160, 390, 80, c);
-		Font::StrDraw(L"  stage3", 160, 460, 80, c);
+		Font::StrDraw(L"▶stage2", 160, 420, 80, c);
+		Font::StrDraw(L"  stage3", 160, 510, 80, c);
 	}
 	else if(keyE==2)
 	{
 		Font::StrDraw(L"  stage1", 165, 320, 80, c);
-		Font::StrDraw(L"  stage2", 160, 390, 80, c);
-		Font::StrDraw(L"▶stage3", 160, 460, 80, c);
+		Font::StrDraw(L"  stage2", 160, 420, 80, c);
+		Font::StrDraw(L"▶stage3", 160, 510, 80, c);
 	}
 }
