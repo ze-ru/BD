@@ -140,18 +140,16 @@ void CSceneStage1::InitScene()
 	//Blockオブジェクト作成
 	CObjBlock2*objb2 = new CObjBlock2(map2);
 	Objs::InsertObj(objb2, OBJ_BLOCK2, 1);
+	CObjBlock3*objb3 = new CObjBlock3(map3);
+	Objs::InsertObj(objb3, OBJ_BLOCK3, 2);
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 2);
-	CObjBlock3*objb3 = new CObjBlock3(map3);
-	Objs::InsertObj(objb3, OBJ_BLOCK3, 1);
+	
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->Setmap1(0);
 	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
 	pb2->Setmap2(22);
-	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
-	pb2->Setmap2(23);
-
 
 
 

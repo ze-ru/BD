@@ -23,6 +23,7 @@ enum OBJ_NAME
 	OBJ_ASSAULT_BULLET,
 	OBJ_GAME_OVER,
 	OBJ_GAMERULE,
+	OBJ_WEAPONSHOP,
 	OBJ_STAGE3,
 	OBJ_BLOCK3,
 	//オブジェクト名無し(禁止)
@@ -76,7 +77,7 @@ struct UserData
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include"Switch.h"
-//#include"Switch2.h"
+
 
 #include"BossBlock.h"
 
@@ -116,6 +117,7 @@ struct UserData
 #include "SceneGameOver.h"
 #include"Gamerule.h"
 #include "SceneShop.h"
+#include"WeaponShop.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

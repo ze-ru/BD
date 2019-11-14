@@ -147,6 +147,9 @@
     <ClCompile Include="BossBlock.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="WeaponShop.cpp">
+      <Filter>ソース ファイル\Shop</Filter>
+    </ClCompile>
     <ClCompile Include="Block3.cpp">
       <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
@@ -154,6 +157,9 @@
       <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
     <ClCompile Include="SceneStage3.cpp">
+      <Filter>ソース ファイル\map3</Filter>
+    </ClCompile>
+    <ClCompile Include="Block3.cpp">
       <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
   </ItemGroup>
@@ -269,13 +275,16 @@
     <ClInclude Include="BossBlock.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Block3.h">
-      <Filter>ソース ファイル\map3</Filter>
+    <ClInclude Include="WeaponShop.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjStage3.h">
       <Filter>ソース ファイル\map3</Filter>
     </ClInclude>
     <ClInclude Include="Scenestage3.h">
+      <Filter>ソース ファイル\map3</Filter>
+    </ClInclude>
+    <ClInclude Include="Block3.h">
       <Filter>ソース ファイル\map3</Filter>
     </ClInclude>
   </ItemGroup>
