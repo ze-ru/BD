@@ -148,12 +148,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Block3.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="WeaponShop.cpp">
-      <Filter>ソース ファイル\Shop</Filter>
-    </ClCompile>
-    <ClCompile Include="Block3.cpp">
       <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
     <ClCompile Include="ObjStage3.cpp">
