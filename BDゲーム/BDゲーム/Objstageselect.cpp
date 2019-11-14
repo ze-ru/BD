@@ -17,55 +17,70 @@ void CObjstageselect::Init()
 	m_mou_y = 0.0f;
 	m_mou_r = false;
 	m_mou_l = false;
-	m_key_flag = false;//キーフラグ
-	key = true;
-
-
+	keyE = 0;
+	key = false;
+	flag = false;
+	m_time = 0;
 }
 
 //アクション
 void CObjstageselect::Action()
 {
+	m_time++;
 	if (Input::GetVKey(VK_UP) == true)
 	{
-		key = true;
-	}
-	if (Input::GetVKey(VK_DOWN) == true)
-	{
-		key = false;
-	}
-
-	if (Input::GetVKey(VK_RETURN) == true && key == false)
-	{
-
-		if (m_key_flag == 0)
+		if (flag == true)
 		{
-			Scene::SetScene(new CSceneStage1());
-			m_key_flag ==0;
+			keyE--;
+			flag = false;
 		}
+	
 	}
-	if (Input::GetVKey(VK_RETURN) == true && key == true)
+	else if (Input::GetVKey(VK_DOWN) == true)
 	{
-		if (m_key_flag == 1)
+		if (flag == true)
 		{
-			Scene::SetScene(new CSceneStage2());
-			m_key_flag == 1;
-		}
-	}
-	if (Input::GetVKey(VK_RETURN) == true && key == true)
-	{
-		if (m_key_flag == 2)
-		{
-			//Scene::SetScene(new CSceneStage3());
-			m_key_flag = 2;
+			keyE++;
+			flag = false;
 		}
 	}
 	else
 	{
-		m_key_flag = true;
+		flag = true;
+	}
+
+	//選択肢を選ぶとき
+	if (keyE >= 3)
+	{
+		keyE = 0;
+	}
+	if (keyE <= -1)
+	{
+		keyE = 2;
+	}
+	
+		
+	
+	
+	if (m_time > 10)
+	{
+		//選択肢
+		if (keyE == 0 && Input::GetVKey(VK_RETURN) == true)
+		{
+			Scene::SetScene(new CSceneStage1());
+		}
+
+		if (keyE == 1 && Input::GetVKey(VK_RETURN) == true)
+		{
+			Scene::SetScene(new CSceneStage2());
+		}
+
+		if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)
+		{
+			Scene::SetScene(new CSceneStage3());
+		}
 	}
 }
-
 //ドロー
 void CObjstageselect::Draw()
 {
@@ -73,22 +88,22 @@ void CObjstageselect::Draw()
 
 
 	Font::StrDraw(L"L O S T", 85, 70, 180, c);
-	if (key == 1)
+	if (keyE == 0)
 	{
-		Font::StrDraw(L"▶はじめから", 125, 320, 80, c);
-		Font::StrDraw(L" つづきから", 160, 450, 80, c);
-		Font::StrDraw(L" つづきから2", 160, 520, 50, c);
+		Font::StrDraw(L"▶stage1", 165, 320, 80, c);
+		Font::StrDraw(L"  stage2", 160, 390, 80, c);
+		Font::StrDraw(L"  stage3", 160, 460, 80, c);
 	}
-	if (key == 2)
+	if (keyE == 1)
 	{
-		Font::StrDraw(L" はじめから", 165, 320, 80, c);
-		Font::StrDraw(L"▶つづきから", 120, 450, 80, c);
-		Font::StrDraw(L" つづきから2", 160, 520, 50, c);
+		Font::StrDraw(L"  stage1", 165, 320, 80, c);
+		Font::StrDraw(L"▶stage2", 160, 390, 80, c);
+		Font::StrDraw(L"  stage3", 160, 460, 80, c);
 	}
-	else
+	else if(keyE==2)
 	{
-		Font::StrDraw(L" はじめから", 165, 320, 80, c);
-		Font::StrDraw(L"つづきから", 160, 450, 80, c);
-		Font::StrDraw(L"▶つづきから2", 120, 520, 50, c);
+		Font::StrDraw(L"  stage1", 165, 320, 80, c);
+		Font::StrDraw(L"  stage2", 160, 390, 80, c);
+		Font::StrDraw(L"▶stage3", 160, 460, 80, c);
 	}
 }

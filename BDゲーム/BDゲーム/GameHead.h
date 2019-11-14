@@ -26,6 +26,8 @@ enum OBJ_NAME
 	OBJ_WEAPONSHOP,
 	OBJ_STAGE3,
 	OBJ_BLOCK3,
+
+	OBJ_STAGESELECT,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -107,6 +109,8 @@ struct UserData
 
 #include"AssaultBullet.h"
 
+
+#include"Objstageselect.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -118,9 +122,12 @@ struct UserData
 #include"Gamerule.h"
 #include "SceneShop.h"
 #include"WeaponShop.h"
+
+#include"stageselect.h"
+
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  CSceneTitle
+#define SET_GAME_START  stageselect
 //-----------------------------------------------

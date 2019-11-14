@@ -5,7 +5,6 @@
 //GameLで使用するヘッダー
 #include"GameL\SceneObjManager.h"
 #include"GameL\DrawTexture.h"
-#include"GameL\Audio.h"
 
 
 //使用するネームスペース
@@ -30,7 +29,8 @@ stageselect::~stageselect()
 //ゲームタイトル初期化メソッド
 void stageselect::InitScene()
 {
-
+	CObjstageselect* t = new CObjstageselect();
+	Objs::InsertObj(t, OBJ_STAGESELECT, 1);
 }
 
 //ゲームタイトル実行中メソッド
