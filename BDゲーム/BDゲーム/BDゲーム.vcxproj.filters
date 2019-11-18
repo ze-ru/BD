@@ -132,9 +132,6 @@
     <ClCompile Include="WeaponShop.cpp">
       <Filter>ソース ファイル\Shop</Filter>
     </ClCompile>
-    <ClCompile Include="Block3.cpp">
-      <Filter>ソース ファイル\map3</Filter>
-    </ClCompile>
     <ClCompile Include="GameL\Audio.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
@@ -143,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="stageselect.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss1.cpp">
+      <Filter>ソース ファイル\chara</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="WeaponShop.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1.h">
+      <Filter>ソース ファイル\chara</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

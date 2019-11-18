@@ -134,6 +134,8 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"Stage1Back.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround2.png", 12, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround3.png", 13, TEX_SIZE_512);
+	Draw::LoadImageW(L"Boss1.png", 14, TEX_SIZE_512);
+
 
 	
 	CObjStage1*objs1 = new CObjStage1(map_flag);
