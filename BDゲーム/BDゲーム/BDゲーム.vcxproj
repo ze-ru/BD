@@ -139,6 +139,8 @@
     <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjGamerule.cpp" />
     <ClCompile Include="ObjShop.cpp" />
+    <ClCompile Include="ObjStage1Clear.cpp" />
+    <ClCompile Include="ObjStage2Clear.cpp" />
     <ClCompile Include="Objstageselect.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="Hero.cpp" />
@@ -184,6 +186,8 @@
     <ClInclude Include="ObjGamerule.h" />
     <ClInclude Include="ObjShop.h" />
     <ClInclude Include="ObjStage1.h" />
+    <ClInclude Include="ObjStage1Clear.h" />
+    <ClInclude Include="ObjStage2Clear.h" />
     <ClInclude Include="Objstageselect.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameOver.h" />
