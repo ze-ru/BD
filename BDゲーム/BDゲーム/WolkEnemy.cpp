@@ -114,8 +114,7 @@ void CObjWolkEnemy::Action()
 	m_ey += m_vy ;
 
 	//ブロック情報を持ってくる
-	if (pb->Getmap1() == 0)
-	{
+	
 		if (m_ex > objh->GetX() - pb->GetScroll())
 		{
 			m_move = false;
@@ -126,7 +125,7 @@ void CObjWolkEnemy::Action()
 			m_move = true;
 
 		}
-	}
+	
 	//HitBoxの内容を更新
 	
 		pb->BlockHit(&m_ex, &m_ey, false,

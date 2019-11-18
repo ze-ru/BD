@@ -93,5 +93,5 @@ void CObjAttack::Draw()
 	dst.m_bottom = m_time1*4 + m_py;
 
 	//•`‰æ
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(2, &src, &dst, c, 0.0f);
 }

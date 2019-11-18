@@ -18,14 +18,12 @@ enum OBJ_NAME
 	OBJ_NORMAL_BULLET,
 	OBJ_ATTACK,
 	OBJ_NO_NAME,
-	OBJ_STAGE2,	
-	OBJ_BLOCK2,
 	OBJ_ASSAULT_BULLET,
 	OBJ_GAME_OVER,
 	OBJ_GAMERULE,
 	OBJ_WEAPONSHOP,
-	OBJ_STAGE3,
-	OBJ_BLOCK3,
+	
+	
 
 	OBJ_STAGESELECT,
 	//オブジェクト名無し(禁止)
@@ -90,12 +88,10 @@ struct UserData
 #include"FlyEnemy.h"
 
 #include"Block.h"
-#include"Block2.h"
-#include"Block3.h"
+
 
 #include"ObjStage1.h"
-#include"ObjStage2.h"
-#include"ObjStage3.h"
+
 
 #include"ObjTitle.h"
 #include"ObjGameOver.h"
@@ -115,8 +111,8 @@ struct UserData
 
 //ゲームシーンクラスヘッダ------------------------
 #include"SceneStage1.h"
-#include"SceneStage2.h"
-#include"Scenestage3.h"
+
+
 #include"SceneTitle.h"
 #include "SceneGameOver.h"
 #include"Gamerule.h"

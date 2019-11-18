@@ -28,12 +28,6 @@
     <Filter Include="ソース ファイル\map1">
       <UniqueIdentifier>{57c83d14-517e-449f-b7a8-4ac1e109fca0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\map2">
-      <UniqueIdentifier>{6bd3cac2-77e0-4aa1-a9d7-662eb13c5612}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\map3">
-      <UniqueIdentifier>{c85aec5a-3975-4b8b-a4cf-08f147197008}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\DirectXDevice.cpp">
@@ -126,15 +120,6 @@
     <ClCompile Include="ObjAttack.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Block2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjStage2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneStage2.cpp">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClCompile>
     <ClCompile Include="Switch.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -146,15 +131,6 @@
     </ClCompile>
     <ClCompile Include="WeaponShop.cpp">
       <Filter>ソース ファイル\Shop</Filter>
-    </ClCompile>
-    <ClCompile Include="Block3.cpp">
-      <Filter>ソース ファイル\map3</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjStage3.cpp">
-      <Filter>ソース ファイル\map3</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneStage3.cpp">
-      <Filter>ソース ファイル\map3</Filter>
     </ClCompile>
     <ClCompile Include="Block3.cpp">
       <Filter>ソース ファイル\map3</Filter>
@@ -263,15 +239,6 @@
     <ClInclude Include="ObjAttack.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Block2.h">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjStage2.h">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneStage2.h">
-      <Filter>ソース ファイル\map2</Filter>
-    </ClInclude>
     <ClInclude Include="Switch.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -284,16 +251,7 @@
     <ClInclude Include="Objstageselect.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Scenestage3.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjStage3.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="stageselect.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Block3.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="WeaponShop.h">

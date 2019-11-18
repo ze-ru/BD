@@ -117,8 +117,6 @@
   <ItemGroup>
     <ClCompile Include="AssaultBullet.cpp" />
     <ClCompile Include="Block.cpp" />
-    <ClCompile Include="Block2.cpp" />
-    <ClCompile Include="Block3.cpp" />
     <ClCompile Include="BossBlock.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -140,8 +138,6 @@
     <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjGamerule.cpp" />
     <ClCompile Include="ObjShop.cpp" />
-    <ClCompile Include="ObjStage2.cpp" />
-    <ClCompile Include="ObjStage3.cpp" />
     <ClCompile Include="Objstageselect.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="Hero.cpp" />
@@ -150,8 +146,6 @@
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneShop.cpp" />
     <ClCompile Include="SceneStage1.cpp" />
-    <ClCompile Include="SceneStage2.cpp" />
-    <ClCompile Include="SceneStage3.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="stageselect.cpp" />
     <ClCompile Include="StageUi.cpp">
@@ -164,8 +158,6 @@
   <ItemGroup>
     <ClInclude Include="AssaultBullet.h" />
     <ClInclude Include="Block.h" />
-    <ClInclude Include="Block2.h" />
-    <ClInclude Include="Block3.h" />
     <ClInclude Include="BossBlock.h" />
     <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="GameHead.h" />
@@ -190,15 +182,11 @@
     <ClInclude Include="ObjGamerule.h" />
     <ClInclude Include="ObjShop.h" />
     <ClInclude Include="ObjStage1.h" />
-    <ClInclude Include="ObjStage2.h" />
-    <ClInclude Include="ObjStage3.h" />
     <ClInclude Include="Objstageselect.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneShop.h" />
     <ClInclude Include="SceneStage1.h" />
-    <ClInclude Include="SceneStage2.h" />
-    <ClInclude Include="Scenestage3.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="stageselect.h" />
     <ClInclude Include="StageUi.h">

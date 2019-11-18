@@ -436,20 +436,18 @@ void CObjHero::EnemyHit(int enemynum)
 					//後方スクロールライン
 					if (m_px < 80)
 					{
-						if (pb->Getmap1() == 0)
+						
 							pb->SetScroll(pb->GetScroll() - 5.0);
-						/*	if (pb2->Getmap2() == 0)
-								pb2->SetScroll(pb2->GetScroll() - 5.0);*/
+					
 					}
 
 					//前方スクロールライン
 					if (m_px > 300)
 					{
 						m_px = 300;
-						if (pb->Getmap1() == 0)
+						
 							pb->SetScroll(pb->GetScroll() - 5.0);
-						/*if (pb2->Getmap2() == 0)
-							pb2->SetScroll(pb2->GetScroll() - 5.0);*/
+						
 					}
 
 					if (m_vy <= -1.0f)
