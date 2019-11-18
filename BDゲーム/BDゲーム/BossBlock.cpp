@@ -20,6 +20,9 @@ CObjBossBlock::CObjBossBlock(float x, float y)
 }
 void CObjBossBlock::Init()
 {
+	m_vy = 0;
+	m_vx = 0;
+
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
@@ -35,9 +38,16 @@ void CObjBossBlock::Action()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
+	block->BlockHit(&m_bx, &m_by, false,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+		&m_vx, &m_vy);
+
 	//HitBox‚ÌˆÊ’u•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_bx + block->GetScroll(), m_by);
+	
+
+
 	
 
 }
@@ -52,7 +62,7 @@ void CObjBossBlock::Draw()
 
 
 	src.m_top = 0.0f;
-	src.m_left = 64.0f;
+	src.m_left = 0.0f;
 	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 

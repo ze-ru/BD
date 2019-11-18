@@ -146,10 +146,6 @@ void CObjBlock::Draw()
 					dst.m_right = dst.m_left + 64.0f;
 					dst.m_bottom = dst.m_top + 64.0f;
 
-					if (m_map[9][145])
-					{
-						m_map[9][145] = 0;
-					}
 
 					if (m_map[i][j] == 5)//WolkEnemy
 					{

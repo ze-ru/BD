@@ -3,9 +3,9 @@
 #include"GameL\SceneManager.h"
 #include"GameL\DrawTexture.h"
 #include"GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
 
 #include"Switch.h"
-
 #include"GameHead.h"
 
 //使用するネームスペース
@@ -26,6 +26,9 @@ void CObjSwitch::Init()
 
 	flag = false;
 
+	//音楽情報の読み込み
+	Audio::LoadAudio(1, L"switch.wav", SOUND_TYPE::EFFECT);
+
 	Hits::SetHitBox(this,m_sx,m_sy, 64, 64, ELEMENT_ENEMY, OBJ_SWITCH, 1);
 }
 
@@ -40,10 +43,15 @@ void CObjSwitch::Action()
 
 	if (hit->CheckElementHit(ELEMENT_ATTACK)==true)
 	{
+		
+		float Volume = Audio::Volume(10.0f,1);//ボリュームを上げる
+		Audio::Start(1);//音楽スタート
 		flag += 1;
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		
 	}
+	
 
 	block->SetBlock(flag);
 
