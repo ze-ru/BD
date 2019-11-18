@@ -18,13 +18,14 @@ enum OBJ_NAME
 	OBJ_NORMAL_BULLET,
 	OBJ_ATTACK,
 	OBJ_NO_NAME,
+	OBJ_BOSS1,
 	OBJ_ASSAULT_BULLET,
 	OBJ_GAME_OVER,
 	OBJ_GAMERULE,
 	OBJ_WEAPONSHOP,
 	OBJ_STAGE1CLEAR,
 	OBJ_STAGE2CLEAR,
-
+	OBJ_SHOPOBJ,
 	OBJ_STAGESELECT,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
@@ -52,6 +53,7 @@ enum HIT_ELEMENTS
 	ELEMENT_WHITE,
 	ELEMENT_BLOCK,
 	ELEMENT_ATTACK,
+	ELEMENT_SHOP,
 };
 //------------------------------------------------
 
@@ -80,12 +82,13 @@ struct UserData
 
 
 #include"BossBlock.h"
-
+#include"ShopOBJ.h"
 #include"Hero.h"
 
 #include"LockEnemy.h"
 #include"WolkEnemy.h"
 #include"FlyEnemy.h"
+#include"Boss1.h"
 
 #include"Block.h"
 

@@ -88,7 +88,7 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 9)
 			{
 				CObjSwitch*objS = new CObjSwitch(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objS, OBJ_SWITCH, 16);
+				Objs::InsertObj(objS, OBJ_SWITCH, 15);
 				m_map[i][lx] = 0;
 			}
 
@@ -97,6 +97,18 @@ void CObjBlock::Action()
 			{
 				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
 				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
+				m_map[i][lx] = 0;
+			}
+			if (m_map[i][lx] == 20)
+			{
+				CObjShopOBJ*objshop = new CObjShopOBJ(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objshop, OBJ_SHOPOBJ, 2);
+				m_map[i][lx] = 0;
+			}
+			if (m_map[i][lx] == 40)
+			{
+				CObjBoss1*objboss = new CObjBoss1(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objboss, OBJ_BOSS1, 15);
 				m_map[i][lx] = 0;
 			}
 

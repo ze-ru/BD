@@ -22,10 +22,7 @@ void CObjStageUi::Init()
 void CObjStageUi::Action()
 {
 	
-	if (m_hp == -1.0f)
-	{
-		m_hp = 50.0f;
-	}
+
 }
 
 //ÉhÉçÅ[
