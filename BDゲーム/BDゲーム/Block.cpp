@@ -99,6 +99,12 @@ void CObjBlock::Action()
 				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
 				m_map[i][lx] = 0;
 			}
+			if (m_map[i][lx] == 20)
+			{
+				CObjShopOBJ*objshop = new CObjShopOBJ(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objshop, OBJ_SHOPOBJ, 2);
+				m_map[i][lx] = 0;
+			}
 			if (m_map[i][lx] == 40)
 			{
 				CObjBoss1*objboss = new CObjBoss1(lx*64.0f, i*64.0f - 64.0f);
