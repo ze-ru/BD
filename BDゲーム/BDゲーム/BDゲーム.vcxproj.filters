@@ -28,6 +28,9 @@
     <Filter Include="ソース ファイル\map1">
       <UniqueIdentifier>{57c83d14-517e-449f-b7a8-4ac1e109fca0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Clear">
+      <UniqueIdentifier>{afd1e4c4-7368-4ee7-ae92-a25132e3f969}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\DirectXDevice.cpp">
@@ -132,9 +135,6 @@
     <ClCompile Include="WeaponShop.cpp">
       <Filter>ソース ファイル\Shop</Filter>
     </ClCompile>
-    <ClCompile Include="Block3.cpp">
-      <Filter>ソース ファイル\map3</Filter>
-    </ClCompile>
     <ClCompile Include="GameL\Audio.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
@@ -143,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="stageselect.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjStage1Clear.cpp">
+      <Filter>ソース ファイル\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjStage2Clear.cpp">
+      <Filter>ソース ファイル\Clear</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +262,12 @@
     </ClInclude>
     <ClInclude Include="WeaponShop.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage1Clear.h">
+      <Filter>ソース ファイル\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage2Clear.h">
+      <Filter>ソース ファイル\Clear</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

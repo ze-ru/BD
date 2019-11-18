@@ -22,8 +22,8 @@ enum OBJ_NAME
 	OBJ_GAME_OVER,
 	OBJ_GAMERULE,
 	OBJ_WEAPONSHOP,
-	
-	
+	OBJ_STAGE1CLEAR,
+	OBJ_STAGE2CLEAR,
 
 	OBJ_STAGESELECT,
 	//オブジェクト名無し(禁止)
@@ -107,6 +107,8 @@ struct UserData
 
 
 #include"Objstageselect.h"
+#include"ObjStage1Clear.h"
+#include"ObjStage2Clear.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
