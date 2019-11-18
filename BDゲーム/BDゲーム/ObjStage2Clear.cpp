@@ -20,7 +20,7 @@ void CObjStage2Clear::Init()
 //アクション
 void CObjStage2Clear::Action()
 {
-	if ()
+	if (1)
 	{
 		Sc2 = true;
 	}
