@@ -10,24 +10,38 @@ using namespace GameL;
 
 void CObjShop::Init()
 {
-	Key = false;
+	Key = true;
 	flag = 0;
 }
 
 void CObjShop::Action()
 {
-	if (Key == true && flag < 3 && flag >= 0)
+	if (Input::GetVKey(VK_DOWN) == true)
 	{
-		Key = false;
-		if (Input::GetVKey(VK_DOWN) == true)
+		if (Key == true)
 		{
 			flag++;
+			Key = false;
 		}
+	}
+	else if (Input::GetVKey(VK_UP) == true)
+	{
+		if (Key == true)
+		{
+			flag--;
+			Key = false;
+
+		}
+	}
+	else
+	{
+		Key = true;
 	}
 	if (flag >= 3)
 		flag = 0;
 	if (flag < 0)
 		flag = 2;
+	
 }
 
 void CObjShop::Draw()
@@ -38,20 +52,20 @@ void CObjShop::Draw()
 
 	if (flag == 0)
 	{
-		Font::StrDraw(L"◇ショップ", 120, 50, 120, c);
-		Font::StrDraw(L"・武器を買う", 120, 100, 80, c);
-		Font::StrDraw(L"・タイトルに戻る", 120, 200, 80, c);
+		Font::StrDraw(L"◇ショップ", 120, 100, 80, c);
+		Font::StrDraw(L"・武器を買う", 120, 300, 80, c);
+		Font::StrDraw(L"・タイトルに戻る", 120, 500, 80, c);
 	}
 	if (flag == 1)
 	{
-		Font::StrDraw(L"・ショップ", 120, 50, 120, c);
-		Font::StrDraw(L"◇武器を買う", 120, 100, 80, c);
-		Font::StrDraw(L"・タイトルに戻る", 120, 200, 80, c);
+		Font::StrDraw(L"・ショップ", 120, 100, 80, c);
+		Font::StrDraw(L"◇武器を買う", 120, 300, 80, c);
+		Font::StrDraw(L"・タイトルに戻る", 120, 500, 80, c);
 	}
 	if (flag == 2)
 	{
-		Font::StrDraw(L"・ショップ", 120, 50, 120, c);
-		Font::StrDraw(L"・武器を買う", 120, 100, 80, c);
-		Font::StrDraw(L"◇タイトルに戻る", 120, 200, 80, c);
+		Font::StrDraw(L"・ショップ", 120, 100, 80, c);
+		Font::StrDraw(L"・武器を買う", 120, 300, 80, c);
+		Font::StrDraw(L"◇タイトルに戻る", 120, 500, 80, c);
 	}
 }

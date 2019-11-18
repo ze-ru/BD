@@ -3,6 +3,7 @@
 #include"GameL\SceneManager.h"
 #include"GameL\DrawFont.h"
 #include"ObjStage1.h"
+#include"GameHead.h"
 
 using namespace GameL;
 
@@ -17,13 +18,10 @@ void CObjStage1::Init()
 
 void CObjStage1::Action()
 {
-	if (Input::GetVKey('A') == true && flag == true)
+	if (Input::GetVKey('A') == true)
 	{
-		map_flag++;
-		flag = false;
+		Scene::SetScene(new stageselect());
 	}
-	if (map_flag > 13)
-		map_flag = 1;
 	
 	
 }

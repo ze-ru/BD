@@ -26,14 +26,11 @@ void CObjShopOBJ::Action()
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
-	if (px > objh->GetX() && px + 128.0f < objh->GetX())
+	if (hit->CheckElementHit(ELEMENT_PLAYER))
 	{
-		if (py > objh->GetY() && py + 128.0f < objh->GetY())
+		if (Input::GetVKey(VK_UP) == true)
 		{
-			if (Input::GetVKey(VK_UP) == true)
-			{
-				Scene::SetScene(new CSceneShop());
-			}
+			Scene::SetScene(new CSceneShop());
 		}
 	}
 	hit->SetPos(px + pb->GetScroll(), py);
