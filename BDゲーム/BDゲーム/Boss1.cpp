@@ -25,6 +25,8 @@ void CObjBoss1::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+	//“–‚½‚è”»’è—p‚ÌHitBox‚ðì¬
+	Hits::SetHitBox(this, m_ex, m_ey, 256, 192, ELEMENT_ENEMY, OBJ_BOSS1, 1);
 }
 
 //
@@ -58,12 +60,12 @@ void CObjBoss1::Draw()
 	src.m_right = 256.0f;
 	src.m_bottom = 192.0f;
 
-
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 
 	dst.m_top = m_ey;
-	dst.m_left =m_ex ;
-	dst.m_right = m_ex+256.0f;
+	dst.m_left =m_ex+pb->GetScroll() ;
+	dst.m_right = m_ex+256.0f+pb->GetScroll();
 	dst.m_bottom = m_ey+192.0f;
 
 
