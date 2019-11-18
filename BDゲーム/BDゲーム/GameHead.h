@@ -18,6 +18,7 @@ enum OBJ_NAME
 	OBJ_NORMAL_BULLET,
 	OBJ_ATTACK,
 	OBJ_NO_NAME,
+	OBJ_BOSS1,
 	OBJ_ASSAULT_BULLET,
 	OBJ_GAME_OVER,
 	OBJ_GAMERULE,
@@ -86,6 +87,7 @@ struct UserData
 #include"LockEnemy.h"
 #include"WolkEnemy.h"
 #include"FlyEnemy.h"
+#include"Boss1.h"
 
 #include"Block.h"
 
