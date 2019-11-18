@@ -47,9 +47,6 @@ void CObjBossBlock::Action()
 	hit->SetPos(m_bx + block->GetScroll(), m_by);
 	
 
-
-	
-
 }
 
 //ドロー
@@ -68,11 +65,17 @@ void CObjBossBlock::Draw()
 
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
 	//
-	dst.m_top = m_by;
-	dst.m_left = m_bx + block->GetScroll();
-	dst.m_right = dst.m_left + 64.0f;
-	dst.m_bottom = 64.0f + m_by;
+	//if (m_bx == (hero->GetX()+block->GetScroll()))
+	//{
+		dst.m_top = m_by;
+		dst.m_left = m_bx + block->GetScroll();
+		dst.m_right = dst.m_left + 64.0f;
+		dst.m_bottom = 64.0f + m_by;
+	//}
+	
 
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 }

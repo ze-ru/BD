@@ -163,10 +163,6 @@ void CObjBlock::Draw()
 					{
 						;
 					}
-					else if (m_map[i][j] == 14)
-					{
-						;
-					}
 					else
 					{
 						//•`‰æ
