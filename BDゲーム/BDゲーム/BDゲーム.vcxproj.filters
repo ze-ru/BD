@@ -150,6 +150,9 @@
     <ClCompile Include="ObjStage2Clear.cpp">
       <Filter>ソース ファイル\Clear</Filter>
     </ClCompile>
+    <ClCompile Include="Boss1.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -262,6 +265,15 @@
     </ClInclude>
     <ClInclude Include="WeaponShop.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage1Clear.h">
+      <Filter>ソース ファイル\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage2Clear.h">
+      <Filter>ソース ファイル\Clear</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
