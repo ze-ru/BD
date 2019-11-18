@@ -129,7 +129,7 @@ void CSceneStage3::InitScene()
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	//Block3オブジェクト作成
+	/*//Block3オブジェクト作成
 	CObjBlock3*objb3 = new CObjBlock3(map3);
 	Objs::InsertObj(objb3, OBJ_BLOCK3, 5);
 
@@ -146,7 +146,7 @@ void CSceneStage3::InitScene()
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	pb->Setmap1(21);
 
-
+	*/
 
 	//Stage3オブジェクト作成
 	CObjStage3*objs3 = new CObjStage3();

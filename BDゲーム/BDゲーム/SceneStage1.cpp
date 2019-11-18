@@ -25,14 +25,16 @@ CSceneStage1::CSceneStage1()
 //デストラクタ
 CSceneStage1::~CSceneStage1()
 {
-
+	
 }
 
 //初期化メソッド
 void CSceneStage1::InitScene()
 {
 	bool flag = true;
-	
+	CObjstageselect*objss = (CObjstageselect*)Objs::GetObj(OBJ_STAGESELECT);
+	mapnum = objss->Setmap();
+	map_flag = objss->Setmapflag();
 	//外部データの読み込み
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ
@@ -62,17 +64,17 @@ void CSceneStage1::InitScene()
 		}
 	}
 	
-/*
+
 	unique_ptr<wchar_t>p2;//ステージ情報ポインター
 	int size2;//ステージ情報の大きさ
 	p2 = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
 
-	int map2[11][156];
+	int map2[11][157];
 	int count2 = 1;
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 156; j++)
+		for (int j = 0; j < 157; j++)
 		{
 			int w = 0;
 			swscanf_s(&p2.get()[count2], L"%d", &w);
@@ -89,24 +91,24 @@ void CSceneStage1::InitScene()
 				count2 += 2;
 			}
 		}
-	}*/
+	}
 
-/*	unique_ptr<wchar_t>p3;//ステージ情報ポインター
+	unique_ptr<wchar_t>p3;//ステージ情報ポインター
 	int size3;//ステージ情報の大きさ
 	p3 = Save::ExternalDataOpen(L"stage3.csv", &size3);//外部データ読み込み
 
-	int map3[11][156];
+	int map3[11][157];
 	int count3 = 1;
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 156; j++)
+		for (int j = 0; j < 157; j++)
 		{
 			int w = 0;
-			swscanf_s(&p3.get()[count2], L"%d", &w);
+			swscanf_s(&p3.get()[count3], L"%d", &w);
 
 
-			map2[i][j] = w;
+			map3[i][j] = w;
 
 			if (w >= 10)
 			{
@@ -117,44 +119,40 @@ void CSceneStage1::InitScene()
 				count3 += 2;
 			}
 		}
-	}*/
+	}
 	
 	//グラフィック読み込み
-	Draw::LoadImageW(L"Hero.png",1,TEX_SIZE_512);
-	Draw::LoadImageW(L"Stage1.png",0, TEX_SIZE_512);
-	Draw::LoadImageW(L"Stage1Back.png", 2, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage1.png", 0, TEX_SIZE_512);
+	Draw::LoadImageW(L"Back.png", 10, TEX_SIZE_512);
+	Draw::LoadImageW(L"Hero.png",2,TEX_SIZE_512);
 	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
 	Draw::LoadImageW(L"LockEnemy.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
 	Draw::LoadImageW(L"FlyEnemy.png", 6, TEX_SIZE_512);
-
+	Draw::LoadImageW(L"Stage2.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage3.png", 9, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage1Back.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"BackGround2.png", 12, TEX_SIZE_512);
+	Draw::LoadImageW(L"BackGround3.png", 13, TEX_SIZE_512);
 
 	
-	CObjStage1*objs1 = new CObjStage1();
+	CObjStage1*objs1 = new CObjStage1(map_flag);
 	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
-
-
-	
-
-	
-	//Blockオブジェクト作成
-	/*CObjBlock2*objb2 = new CObjBlock2(map2);
-	Objs::InsertObj(objb2, OBJ_BLOCK2, 1);
-	CObjBlock3*objb3 = new CObjBlock3(map3);
-	Objs::InsertObj(objb3, OBJ_BLOCK3, 2);*/
-	CObjBlock*objb = new CObjBlock(map);
-	Objs::InsertObj(objb, OBJ_BLOCK, 2);
-	
-	
-
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->Setmap1(0);
-/*	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
-	pb2->Setmap2(22);
-	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);
-	pb3->Setmap3(23);*/
-
-
+	if (mapnum == 0)
+	{
+		CObjBlock*objb = new CObjBlock(map, mapnum);
+		Objs::InsertObj(objb, OBJ_BLOCK, 2);
+	}
+	if (mapnum == 7)
+	{
+		CObjBlock*objb = new CObjBlock(map2, mapnum);
+		Objs::InsertObj(objb, OBJ_BLOCK, 2);
+	}
+	if (mapnum == 9)
+	{
+		CObjBlock*objb = new CObjBlock(map3, mapnum);
+		Objs::InsertObj(objb, OBJ_BLOCK, 2);
+	}
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);

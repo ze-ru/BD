@@ -14,9 +14,9 @@ public:
 	void InitScene();
 	void Scene();
 
-	
+	int SetScene(int scenenum) { map_flag = scenenum; }
 private:
-
-	
+	int map_flag;
+	int mapnum;
 
 };

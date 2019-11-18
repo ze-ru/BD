@@ -11,11 +11,11 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjBlock::CObjBlock(int map[11][157])
+CObjBlock::CObjBlock(int map[11][157],int mapnum)
 {
-	
 	//マップデータをコピー
 	memcpy(m_map, map, sizeof(int)*(11* 157));
+	map_num = mapnum;
 }
 //イニシャライズ
 void CObjBlock::Init()
@@ -27,8 +27,7 @@ void CObjBlock::Init()
 void CObjBlock::Action()
 {
 	//主人公の位置を取得
-	//if (m_map[0][0] == 0)
-	//{
+	
 		CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
 
@@ -63,26 +62,26 @@ void CObjBlock::Action()
 		{
 			if (m_map[i][lx] == 5)
 			{
-				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*63.0f);
+				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f-64.0f);
 				Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
 				
 				//敵出現場所を0にする
 				m_map[i][lx] = 0;
 			}
 			if (m_map[i][lx] == 7)
-			{/*
+			{
 				CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*63.0f);
 				Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
 
 				//敵出現場所を0にする
-				m_map[i][lx] = 0;*/
+				m_map[i][lx] = 0;
 			}
 			if (m_map[i][lx] == 6)
 			{
-				/*
-				CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*63.0f);
+				
+				CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*64.0f-64.0f);
 				Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
-				m_map[i][lx] = 0;*/
+				m_map[i][lx] = 0;
 			}
 
 			//switch作成
@@ -97,19 +96,18 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 14)
 			{
 				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 16);
+				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
 				m_map[i][lx] = 0;
 			}
 
 
 		}
-	//}
+	
 }
 //ドロー
 void CObjBlock::Draw()
 {
-	if (m_map[0][0] == 0)
-	{
+	
 		//描画カラー情報
 		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -147,11 +145,11 @@ void CObjBlock::Draw()
 					}
 					else if (m_map[i][j] == 2)
 					{
-						BlockDraw(64.0f, 0.0f, &dst, c);
+						BlockDraw(64.0f, 0.0f, &dst, c,map_num);
 					}
 					else if (m_map[i][j] == 3)
 					{
-						BlockDraw(128.0f, 0.0f, &dst, c);
+						BlockDraw(128.0f, 0.0f, &dst, c,map_num);
 					}
 					else if (m_map[i][j] == 9)//Switch
 					{
@@ -164,14 +162,14 @@ void CObjBlock::Draw()
 					else
 					{
 						//描画
-						BlockDraw(0.0f, 0.0f, &dst, c);
+						BlockDraw(0.0f, 0.0f, &dst, c,map_num);
 
 					}
 
 				}
 			}
 		}
-	}
+	
 }
 
 //BlockDrawMethod関数
@@ -180,7 +178,7 @@ void CObjBlock::Draw()
 //引数3 RECT_F* dst  :描画位置
 //引数4 float c[]  :カラー情報
 //ブロックを64×64限定描画用。リソース切り取り位置のみx,yで設定できる
-void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[])
+void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[],int num)
 {
 	RECT_F src;
 	src.m_top = y;
@@ -188,7 +186,7 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[])
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
 	//描画
-	Draw::Draw(0, &src, dst, c, 0.0f);
+	Draw::Draw(num, &src, dst, c, 0.0f);
 }
 
 //BlockHit関数
@@ -207,7 +205,6 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[])
 void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 	bool *left, bool *right, float *vx, float *vy)
 {
-
 	*up = false;
 	*down = false;
 	*left = false;
@@ -225,7 +222,7 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
 				float by = i * 64.0f - 64.0f;
-
+				bool flag = false;
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
@@ -249,20 +246,30 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 						r = abs(r);
 					else
 						r = 360.0f - abs(r);
+
 					//lenがある一定の長さより短い場合判定に入る
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-					//右
-						if ((r < 45 && r > 0) || r > 315)
-						{
-							*right=true;
-							*x = bx + 64.0f + (scroll);
-							*vx = -(*vx)*0.1f;
-						}
-
+					
+							 if ((r < 45 && r > 0) || r > 315 )
+							{
+								*right = true;
+								*x = bx + 64.0f + (scroll);
+								*vx = -(*vx)*0.1f;
+								
+							}
+							else if (r > 135 && r < 225 )
+							{
+								*left = true;
+								*x = bx - 64.0f + (scroll);
+								*vx = -(*vx)*0.1f;
+								
+							}
+						
+						//}
 						//上
-						if (r > 45 && r < 135)
+						else if (r > 45 && r < 135)
 						{
 							*down = true;
 							*y = by - 64.0f;
@@ -270,17 +277,9 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 						
 							*vy = 0.0f;
 						}
-
-						//左
-						if (r > 135 && r < 225)
-						{
-							*left = true;
-							*x = bx - 64.0f+ (scroll);
-							*vx = -(*vx)*0.1f;
-						}
-
+						
 						//下
-						if (r > 225 && r < 315)
+						else if (r > 225 && r < 315)
 						{
 							*up = true;
 							*y = by + 64.0f;
@@ -289,9 +288,11 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 								*vy = 0.0f;
 							}
 						}
+						/*if (flag == false)
+						{
+							flag = true;
+						}*/
 					}
-
-
 				}
 			}
 		}

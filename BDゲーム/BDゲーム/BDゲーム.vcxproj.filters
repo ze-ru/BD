@@ -162,6 +162,12 @@
     <ClCompile Include="GameL\Audio.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Objstageselect.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="stageselect.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -275,11 +281,23 @@
     <ClInclude Include="BossBlock.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="LockEnemy2.h">
-      <Filter>ソース ファイル\map2</Filter>
+    <ClInclude Include="Objstageselect.h">
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FlyEnemy2.h">
-      <Filter>ソース ファイル\map2</Filter>
+    <ClInclude Include="Scenestage3.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjStage3.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="stageselect.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Block3.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponShop.h">
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

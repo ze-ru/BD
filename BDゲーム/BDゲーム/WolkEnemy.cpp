@@ -92,13 +92,23 @@ void CObjWolkEnemy::Action()
 	{
 		m_ani_frame = 0;
 	}
-
+	if (m_hit_down == true)
+	{
+		m_vy = 0;
+	}
 	//摩擦
 	m_vx += -(m_vx*0.098);
 
 	//自由落下
 	m_vy += 9.8f / (16.0f);
-	
+
+	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+	{
+		m_vx *= -1;
+	}
+
+
+
 	//位置の更新
    	m_ex += m_vx;
 	m_ey += m_vy ;
@@ -118,40 +128,15 @@ void CObjWolkEnemy::Action()
 		}
 	}
 	//HitBoxの内容を更新
-	if (pb->Getmap1() == 0)
-	{
-		pb->BlockHit(&m_ex, &m_ey, true,
+	
+		pb->BlockHit(&m_ex, &m_ey, false,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
 	
-	}
+	
 	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-	/*CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
-	if (pb2->Getmap2() == 0)
-	{
-		if (m_ex > objh->GetX() - pb2->GetScroll())
-		{
-			m_move = false;
-		}
+	
 
-		if (m_ex < objh->GetX() - pb2->GetScroll())
-		{
-			m_move = true;
-
-		}
-
-
-	}*/
-
-
-	//HitBoxの内容を更
-	/*if (pb2->Getmap2() == 0)
-	{
-		pb2->BlockHit2(&m_ex, &m_ey, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy);
-		hit->SetPos(m_ex + pb2->GetScroll(), m_ey);
-	}*/
 
 	
 	
@@ -200,20 +185,14 @@ void CObjWolkEnemy::Draw()
 	src.m_bottom = 64.0f;
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
-	if (pb->Getmap1() == 0) {
+	
+	
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = (64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
-	}
-/*	if (pb2->Getmap2() == 0) {
-		dst.m_top = 0.0f + m_ey;
-		dst.m_left = (64.0f*m_posture) + m_ex + pb2->GetScroll();
-		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb2->GetScroll();
-		dst.m_bottom = 64.0f + m_ey;
-	}*/
 	
+
 	
 
 	//

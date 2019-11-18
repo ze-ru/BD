@@ -46,36 +46,43 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-/*	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);
-	CObjBlock3*pb3 = (CObjBlock3*)Objs::GetObj(OBJ_BLOCK3);*/
-	if (pb->Getmap1() == 0)
-	{
-		pb->BlockHit(&m_px, &m_py, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy);
-	}
-	/*if (pb2->Getmap2() == 0)
-	{
-		pb2->BlockHit2(&m_px, &m_py, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy);
-	}
-	if (pb3->Getmap3() == 0)
-	{
-		pb3->BlockHit3(&m_px, &m_py, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy);
-	}*/
+
+	CHitBox* hit = Hits::GetHitBox(this);
 	if (m_y_num >= 50&&m_y_flag==false)
 	{
+		if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
+		{
+			int enemynum = 1;
+			EnemyHit(enemynum);
+		}
+		if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
+		{
+			int enemynum = 2;
+			EnemyHit(enemynum);
+		}
+		if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
+		{
+			int enemynum = 3;
+			EnemyHit(enemynum);
+		}
+		//ブロックとの当たり判定実行
+		
+			pb->BlockHit(&m_px, &m_py, true,
+				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+				&m_vx, &m_vy);
+		
+			//敵と当たっているか確認
+	
 		if (m_y_num < 100)
 		{
 			m_y_num = 50;
 		}
 		m_vx = 2.0f*m_posture;
 		m_y_flag = true;
+		
 	}
 	if (m_dead_flag == true)
 	{
@@ -98,7 +105,16 @@ void CObjHero::Action()
 	}
 	if (m_dead_flag == false)
 	{
-		CHitBox* hit = Hits::GetHitBox(this);
+
+		
+		//ブロックとの当たり判定実行
+		
+			pb->BlockHit(&m_px, &m_py, true,
+				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+				&m_vx, &m_vy);
+		
+			
+		
 		if (m_y_flag==true)
 		{
 			
@@ -158,16 +174,7 @@ void CObjHero::Action()
 			{
 				;
 			}
-			//Spaceキーでジャンプ
-			if (Input::GetVKey(' ') == true)
-			{
-				if (m_hit_down == true )//|| (hit->CheckElementHit(ELEMENT_ENEMY)==true)
-				{
-					if (m_vy >= 0)
-						m_vy = -10.5;
-
-				}
-			}
+			
 
 
 
@@ -192,6 +199,59 @@ void CObjHero::Action()
 
 
 
+			
+
+			//摩擦
+			m_vx += -(m_vx*0.098);
+
+			//自由落下運動
+			m_vy += 5.0 / (20.0f);
+
+		
+
+			//自身のHitBoxを持ってくる
+
+
+			//敵と当たっているか確認
+			if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
+			{
+				int enemynum = 1;
+				EnemyHit(enemynum);
+			}
+			if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
+			{
+				int enemynum = 2;
+				EnemyHit(enemynum);
+			}
+			if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
+			{
+				int enemynum = 3;
+				EnemyHit(enemynum);
+			}
+			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
+			{
+				HIT_DATA** hit_data;
+				hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
+				m_hp += 5;
+				m_y_num += 50;
+			}
+			if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
+			{
+				HIT_DATA** hit_data;
+				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
+				m_hp += 2;
+				m_y_num += 10;
+			}
+			//Spaceキーでジャンプ
+			if (Input::GetVKey(' ') == true)
+			{
+				if (m_hit_down == true)
+				{
+					if (m_vy >= 0)
+						m_vy = -10.5;
+
+				}
+			}
 			if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)
 			{
 				m_ani_time++;
@@ -223,236 +283,10 @@ void CObjHero::Action()
 			{
 				m_ani_frame = 2;
 			}
-
-			//摩擦
-			m_vx += -(m_vx*0.098);
-
-			//自由落下運動
-			m_vy += 5.0 / (20.0f);
-
-			//ブロックとの当たり判定実行
-			
-
-			//自身のHitBoxを持ってくる
-
-
-			//敵と当たっているか確認
-			if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
-			{
-				//主人公が敵とどの角度で当たってるか確認
-				HIT_DATA** hit_data;
-
-				if (hit_flag == true)
-				{
-					hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
-					hit_flag = false;
-
-					for (int i = 0; i < hit->GetCount(); i++)
-					{
-
-						//敵の左右に当たったら
-						if (hit_data[i] != NULL)
-						{
-							float r = hit_data[i]->r;
-							if ((r < 45 && r >= 0) || r > 315)
-							{
-								m_vx = -1.2f;//左に移動
-							}
-							if (r > 135 && r < 225)
-							{
-								m_vx = +1.2f;//右に移動
-							}
-							if (r >= 225 && r < 315)
-							{
-								//敵の移動方向を主人公の位置に加算
-								m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
-								
-								
-								//後方スクロールライン
-								if (m_px < 80)
-								{
-									if (pb->Getmap1() == 0)
-										pb->SetScroll(pb->GetScroll() - 5.0);
-								/*	if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
-								}
-
-								//前方スクロールライン
-								if (m_px > 300)
-								{
-									m_px = 300;
-									if (pb->Getmap1() == 0)
-									pb->SetScroll(pb->GetScroll() - 5.0);
-									/*if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
-								}
-
-								if (m_vy <= -1.0f)
-								{
-									;
-								}
-								else
-								{
-									m_vy = 0.0f;//ベクトルを0にする
-									m_hit_down = true;//地面に当たっている判定にする
-								}
-							}
-						}
-					}
-				}
-				if (hit_flag == false)
-					hit_flag = true;
-
-			}
-			if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
-			{
-				HIT_DATA** hit_data;
-				if (hit_flag == true)
-				{
-					hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
-					hit_flag = false;
-
-
-					for (int i = 0; i < hit->GetCount(); i++)
-					{
-
-						//敵の左右に当たったら
-						if (hit_data[i] != NULL)
-						{
-							float r = hit_data[i]->r;
-							if ((r < 45 && r >= 0) || r > 315)
-							{
-								m_vx = -5.0f;//左に移動
-							}
-							if (r > 135 && r < 225)
-							{
-								m_vx = +5.0f;//右に移動
-							}
-							if (r >= 225 && r < 315)
-							{
-								//敵の移動方向を主人公の位置に加算
-								
-								
-								//後方スクロールライン
-								if (m_px < 80)
-								{
-									
-									if (pb->Getmap1() == 0)
-										pb->SetScroll(pb->GetScroll() - 5.0);
-									/*if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
-									
-								}
-
-								//前方スクロールライン
-								if (m_px > 300)
-								{
-									m_px = 300;
-									if (pb->Getmap1() == 0)
-										pb->SetScroll(pb->GetScroll() - 5.0);
-									/*if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
-								}
-
-								if (m_vy <= -1.0f)
-								{
-									;
-								}
-								else
-								{
-									m_vy = 0.0f;//ベクトルを0にする
-									m_hit_down = true;//地面に当たっている判定にする
-								}
-							}
-						}
-					}
-				}
-				if (hit_flag == false)
-					hit_flag = true;
-			}
-			if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
-			{
-				HIT_DATA** hit_data;
-				if (hit_flag == true)
-				{
-					hit_data = hit->SearchObjNameHit(OBJ_FLYENEMY);
-					hit_flag = false;
-
-
-					for (int i = 0; i < hit->GetCount(); i++)
-					{
-
-						//敵の左右に当たったら
-						if (hit_data[i] != NULL)
-						{
-							float r = hit_data[i]->r;
-							if ((r < 45 && r >= 0) || r > 315)
-							{
-								m_vx = -5.0f;//左に移動
-							}
-							if (r > 135 && r < 225)
-							{
-								m_vx = +5.0f;//右に移動
-							}
-							if (r >= 225 && r < 315)
-							{
-								//敵の移動方向を主人公の位置に加算
-								
-
-								//後方スクロールライン
-								if (m_px < 80)
-								{
-									if (pb->Getmap1() == 0)
-										pb->SetScroll(pb->GetScroll() - 5.0);
-								/*	if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
-								}
-
-								//前方スクロールライン
-								if (m_px > 300)
-								{
-									m_px = 300;
-									if (pb->Getmap1() == 0)
-										pb->SetScroll(pb->GetScroll() - 5.0);
-									/*if (pb2->Getmap2() == 0)
-										pb2->SetScroll(pb2->GetScroll() - 5.0);*/
-								}
-
-								if (m_vy <= -1.0f)
-								{
-									;
-								}
-								else
-								{
-									m_vy = 0.0f;//ベクトルを0にする
-									m_hit_down = true;//地面に当たっている判定にする
-								}
-							}
-						}
-					}
-				}
-				if (hit_flag == false)
-					hit_flag = true;
-			}
-			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
-			{
-				HIT_DATA** hit_data;
-				hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
-				m_hp += 5;
-				m_y_num += 50;
-			}
-			if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
-			{
-				HIT_DATA** hit_data;
-				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
-				m_hp += 2;
-				m_y_num += 10;
-			}
-
 			//位置の更新
 			m_px += m_vx;
 			m_py += m_vy;
-
+			
 
 			//HitBoxの位置の変更
 			hit->SetPos(m_px, m_py);
@@ -501,6 +335,13 @@ void CObjHero::Draw()
 		src.m_right = 64.0f + 6 * 64.0f + 1.0f;
 		src.m_bottom = 64.0f;
 	}
+	else if (m_hit_down == true && m_vx == 0)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f + 1.0f;
+		src.m_right = src.m_left + 64.0f - 2.0f;
+		src.m_bottom = 64.0f;
+	}
 	else
 	{
 		src.m_top = 0.0f;
@@ -517,7 +358,7 @@ void CObjHero::Draw()
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, m_dead);
+	Draw::Draw(2, &src, &dst, c, m_dead);
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -551,3 +392,79 @@ void CObjHero::Draw()
 
 }
 
+void CObjHero::EnemyHit(int enemynum)
+{
+	CHitBox* hit = Hits::GetHitBox(this);
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//主人公が敵とどの角度で当たってるか確認
+	HIT_DATA** hit_data=NULL;
+
+	if (hit_flag == true)
+	{
+		if (enemynum == 1)
+			hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
+		else if (enemynum == 2)
+			hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
+		else if (enemynum == 3)
+			hit_data = hit->SearchObjNameHit(OBJ_FLYENEMY);
+
+		hit_flag = false;
+
+		for (int i = 0; i < hit->GetCount(); i++)
+		{
+
+			//敵の左右に当たったら
+			if (hit_data[i] != NULL)
+			{
+				float r = hit_data[i]->r;
+				if ((r < 45 && r >= 0) || r > 315)
+				{
+					m_vx = -1.2f;//左に移動
+				}
+				if (r > 135 && r < 225)
+				{
+					m_vx = +1.2f;//右に移動
+				}
+				if (r >= 225 && r < 315)
+				{
+					//敵の移動方向を主人公の位置に加算
+					if(enemynum==1)
+					m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+					
+
+
+					//後方スクロールライン
+					if (m_px < 80)
+					{
+						if (pb->Getmap1() == 0)
+							pb->SetScroll(pb->GetScroll() - 5.0);
+						/*	if (pb2->Getmap2() == 0)
+								pb2->SetScroll(pb2->GetScroll() - 5.0);*/
+					}
+
+					//前方スクロールライン
+					if (m_px > 300)
+					{
+						m_px = 300;
+						if (pb->Getmap1() == 0)
+							pb->SetScroll(pb->GetScroll() - 5.0);
+						/*if (pb2->Getmap2() == 0)
+							pb2->SetScroll(pb2->GetScroll() - 5.0);*/
+					}
+
+					if (m_vy <= -1.0f)
+					{
+						;
+					}
+					else
+					{
+						m_vy = 0.0f;//ベクトルを0にする
+						m_hit_down = true;//地面に当たっている判定にする
+					}
+				}
+			}
+		}
+	}
+	if (hit_flag == false)
+		hit_flag = true;
+}

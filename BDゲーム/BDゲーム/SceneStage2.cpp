@@ -135,12 +135,12 @@ void CSceneStage2::InitScene()
 	
 
 	//Blockオブジェクト作成
-	CObjBlock2*objb2 = new CObjBlock2(map2);
+/*	CObjBlock2*objb2 = new CObjBlock2(map2);
 	Objs::InsertObj(objb2, OBJ_BLOCK2, 5);
 	CObjBlock*objb = new CObjBlock(map);
 	Objs::InsertObj(objb, OBJ_BLOCK, 1);
 	CObjBlock3*objb3 = new CObjBlock3(map3);
-	Objs::InsertObj(objb3, OBJ_BLOCK3, 1);
+	Objs::InsertObj(objb3, OBJ_BLOCK3, 1);*/
 
 	//マップ判別用
 	CObjBlock2*pb2 = (CObjBlock2*)Objs::GetObj(OBJ_BLOCK2);

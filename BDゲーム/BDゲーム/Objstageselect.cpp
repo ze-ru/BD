@@ -21,6 +21,7 @@ void CObjstageselect::Init()
 	key = false;
 	flag = false;
 	m_time = 0;
+	mapnum = 0;
 }
 
 //アクション
@@ -67,17 +68,23 @@ void CObjstageselect::Action()
 		//選択肢
 		if (keyE == 0 && Input::GetVKey(VK_RETURN) == true)
 		{
+			mapnum = 0;
+			mapflag = 11;
 			Scene::SetScene(new CSceneStage1());
 		}
 
 		if (keyE == 1 && Input::GetVKey(VK_RETURN) == true)
 		{
-			Scene::SetScene(new CSceneStage2());
+			mapnum = 7;
+			mapflag = 12;
+			Scene::SetScene(new CSceneStage1());
 		}
 
 		if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)
 		{
-			Scene::SetScene(new CSceneStage3());
+			mapnum = 9;
+			mapflag = 13;
+			Scene::SetScene(new CSceneStage1());
 		}
 	}
 }

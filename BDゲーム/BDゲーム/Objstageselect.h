@@ -13,10 +13,9 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-	int Getmap1(int x, int y) { return map[x][y]; }
-	int Getmap2(int x, int y) { return map2[x][y]; }
-	int Getmap3(int x, int y) { return map3[x][y]; }
-
+	
+	int Setmap() { return mapnum; }
+	int Setmapflag() { return mapflag; }
 private:
 	int map[11][157];
 	int map2[11][156];
@@ -30,4 +29,6 @@ private:
 	int keyE;
 	int m_time;
 	bool flag;
+	int mapflag;
+	int mapnum;
 };

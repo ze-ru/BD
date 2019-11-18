@@ -6,9 +6,11 @@ class CObjStage1 :public CObj
 {
 
 private:
-	bool flag = false;
+	
+	int map_flag;
+	bool flag;
 public:
-	CObjStage1() {};
+	CObjStage1(int mapdata);
 	~CObjStage1() {};
 	void Init();
 	void Action();

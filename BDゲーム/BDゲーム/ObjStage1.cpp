@@ -6,14 +6,26 @@
 
 using namespace GameL;
 
+CObjStage1::CObjStage1(int mapdata)
+{
+	map_flag = mapdata;
+}
 void CObjStage1::Init()
 {
-
+	flag = true;
 }
 
 void CObjStage1::Action()
 {
-
+	if (Input::GetVKey('A') == true && flag == true)
+	{
+		map_flag++;
+		flag = false;
+	}
+	if (map_flag > 13)
+		map_flag = 1;
+	
+	
 }
 
 void CObjStage1::Draw()
@@ -23,16 +35,32 @@ void CObjStage1::Draw()
 	RECT_F src;
 	RECT_F dst;
 
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 800.0f;
-	src.m_bottom = 600.0f;
-
+	if (map_flag == 11)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 800.0f;
+		src.m_bottom = 600.0f;
+	}
+	if (map_flag == 12)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 640.0f;
+		src.m_bottom = 480.0f;
+	}
+	if (map_flag == 13)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 640.0f;
+		src.m_bottom = 640.0f;
+	}
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
 	dst.m_bottom = 600.0f;
 
-	Draw::Draw(2, &src, &dst, c, 0.0f);
+	Draw::Draw(map_flag, &src, &dst, c, 0.0f);
 	
 }
