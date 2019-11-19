@@ -23,4 +23,10 @@ private:
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;
+	int time;
+	int m_hp;
+	int m_time;
+	float m_dead;
+	bool hit_flag;
+	int attacktime;
 };

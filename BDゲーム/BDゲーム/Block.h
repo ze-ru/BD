@@ -24,6 +24,8 @@ public :
 	void BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 		bool *left, bool *right, float *vx, float *vy);
 	void SetBlock(int flag);
+	void BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
+		bool *left, bool *right, float *vx, float *vy);
 private:
 	void BlockDraw(float x, float y, RECT_F *dst, float c[],int num);
 	int m_map[11][157]; //É}ÉbÉvèÓïÒ
