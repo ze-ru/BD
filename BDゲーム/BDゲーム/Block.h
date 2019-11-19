@@ -22,7 +22,7 @@ public :
 	
 	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è
 	void BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
-		bool *left, bool *right, float *vx, float *vy);
+		bool *left, bool *right, float *vx, float *vy,int *bt);
 	void SetBlock(int flag);
 	void BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 		bool *left, bool *right, float *vx, float *vy);

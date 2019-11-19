@@ -30,6 +30,9 @@ class CObjHero :public CObj
 	void SetRight(bool b) { m_hit_right = b; }
 	float GetHP() { return m_hp; };
 	void EnemyHit(int enemynume);
+
+	int GetBT() { return m_block_type; }
+	void SetBT(int t) { m_block_type = t; }
 	
 
 	bool  GetFlag() 
@@ -59,6 +62,8 @@ class CObjHero :public CObj
 	  bool m_hit_down;
 	  bool m_hit_left;
 	  bool m_hit_right;
+
+	  int m_block_type;
 
 	  bool m_attack;
 	  float m_dead;

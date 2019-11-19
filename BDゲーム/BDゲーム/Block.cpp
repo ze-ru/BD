@@ -52,7 +52,7 @@ void CObjBlock::Action()
 
 		//敵出現ライン
 		//主人公の位置＋500を敵出現ラインに
-		float line = hx + (-m_scroll) ;
+		float line = hx + (-m_scroll) + 515;
 
 		//敵出現ラインを要素番号化
 		int lx = ((int)line) / 64;
@@ -165,6 +165,10 @@ void CObjBlock::Draw()
 					{
 						;
 					}
+					else if (m_map[i][j] == 14)
+					{
+						;
+					}
 					else
 					{
 						//描画
@@ -205,18 +209,18 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[],int num)
 //引数7 bool* right  :上下左右判定の右部分にあたっているかどうかを返す
 //引数8 float* vx  :左右判定時の反発による移動方向・力の値に変えて返す
 //引数9 float* vy  :上下判定時による自由落下運動の移動方向・力の値に変えて返す
-//引数10 int* bt  :下部分判定時特殊なブロックのタイプを返す
+//引数10 int* bt  :右部分判定時特定のブロックのタイプを返す
 //判定を行うobjectとブロック64×64限定で、当たり判定と上下左右判定を行う
 //その結果は引数4～10に返す
 void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
-	bool *left, bool *right, float *vx, float *vy)
+	bool *left, bool *right, float *vx, float *vy,int *bt)
 {
 	*up = false;
 	*down = false;
 	*left = false;
 	*right = false;
 
-
+	*bt = 0;
 
 	for (int i = 0; i < 11; i++)
 	{
@@ -258,46 +262,54 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 					{
 						//角度で上下左右を判定
 					
-							 if ((r < 45 && r > 0) || r > 315 )
+						 if ((r < 45 && r > 0) || r > 315 )
+						{
+							*right = true;
+							*x = bx + 64.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+
+							if (m_map[i][j] == 14)
 							{
-								*right = true;
-								*x = bx + 64.0f + (scroll);
-								*vx = -(*vx)*0.1f;
-								
+								*bt = m_map[i][j];//ブロックの要素をオブジェクトに
 							}
-							else if (r > 135 && r < 225 )
-							{
-								*left = true;
-								*x = bx - 64.0f + (scroll);
-								*vx = -(*vx)*0.1f;
 								
-							}
+						}
+
+						else if (r > 135 && r < 225 )
+						{
+							*left = true;
+							*x = bx - 64.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+								
+						}
 						
-						//}
+						
 						//上
 						else if (r > 45 && r < 135)
 						{
 							*down = true;
 							*y = by - 64.0f;
-						
-						
 							*vy = 0.0f;
+							
+							
 						}
 						
 						//下
 						else if (r > 225 && r < 315)
 						{
-							*up = true;
+						 	*up = true;
 							*y = by + 64.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
 							}
+
+							
 						}
-						/*if (flag == false)
+						if (flag == false)
 						{
 							flag = true;
-						}*/
+						}
 					}
 				}
 			}
