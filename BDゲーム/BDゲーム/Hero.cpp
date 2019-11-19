@@ -223,6 +223,11 @@ void CObjHero::Action()
 				int enemynum = 3;
 				EnemyHit(enemynum);
 			}
+			if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr)
+			{
+				int enemynum = 4;
+				EnemyHit(enemynum);
+			}
 			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;
@@ -402,6 +407,8 @@ void CObjHero::EnemyHit(int enemynum)
 			hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
 		else if (enemynum == 3)
 			hit_data = hit->SearchObjNameHit(OBJ_FLYENEMY);
+		else if(enemynum==4)
+			hit_data = hit->SearchObjNameHit(OBJ_BOSS1);
 
 		hit_flag = false;
 
@@ -425,6 +432,8 @@ void CObjHero::EnemyHit(int enemynum)
 					//“G‚ÌˆÚ“®•ûŒü‚ðŽålŒö‚ÌˆÊ’u‚É‰ÁŽZ
 					if(enemynum==1)
 					m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+					if (enemynum == 4)
+						m_px += ((CObjBoss1*)hit_data[i]->o)->GetVx();
 					
 
 
