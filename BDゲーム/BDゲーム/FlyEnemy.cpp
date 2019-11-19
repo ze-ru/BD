@@ -85,7 +85,7 @@ void CObjFlyEnemy::Action()
 	
 		pb->BlockHit(&m_px, &m_py, false,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy);
+			&m_vx, &m_vy,&m_block_type);
 		//HitBox‚Ì“à—e‚ðXV
 		
 		hit->SetPos(m_px + pb->GetScroll(), m_py);

@@ -28,6 +28,8 @@ void CObjHero::Init()
 
 	flag = false;//false=右向き true=左向き
 
+	m_block_type = 0;//触れたブロックの番号判定
+
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -72,7 +74,7 @@ void CObjHero::Action()
 		
 			pb->BlockHit(&m_px, &m_py, true,
 				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+				&m_vx, &m_vy,&m_block_type);
 		
 			//敵と当たっているか確認
 	
@@ -105,16 +107,13 @@ void CObjHero::Action()
 	}
 	if (m_dead_flag == false)
 	{
-
-		
 		//ブロックとの当たり判定実行
 		
 			pb->BlockHit(&m_px, &m_py, true,
 				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+				&m_vx, &m_vy,&m_block_type);
 		
 			
-		
 		if (m_y_flag==true)
 		{
 			
@@ -131,10 +130,6 @@ void CObjHero::Action()
 				if (m_posture == 1.0f)
 					m_vx += 0.2f;
 			}
-
-			
-
-		
 
 			m_px += m_vx;
 			m_py += m_vy;
