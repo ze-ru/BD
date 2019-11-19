@@ -31,6 +31,7 @@ void CObjShopOBJ::Action()
 		if (Input::GetVKey(VK_UP) == true)
 		{
 			Scene::SetScene(new CSceneShop());
+			
 		}
 	}
 	hit->SetPos(px + pb->GetScroll(), py);

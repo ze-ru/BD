@@ -17,9 +17,10 @@ using namespace GameL;
 #include"GameHead.h"
 
 //コントラクタ
-CSceneStage1::CSceneStage1()
+CSceneStage1::CSceneStage1(int flag,int map_num)
 {
-
+	map_flag = flag;
+	mapnum = map_num;
 }
 
 //デストラクタ
@@ -33,8 +34,7 @@ void CSceneStage1::InitScene()
 {
 	bool flag = true;
 	CObjstageselect*objss = (CObjstageselect*)Objs::GetObj(OBJ_STAGESELECT);
-	mapnum = objss->Setmap();
-	map_flag = objss->Setmapflag();
+	
 	//外部データの読み込み
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;//ステージ情報の大きさ

@@ -31,7 +31,7 @@ void CObjGamerule::Action()
 	
 	if (Input::GetVKey(VK_RETURN) == true&&m_frame==1)
 	{
-		Scene::SetScene(new CSceneStage1());
+		Scene::SetScene(new CSceneStage1(11,0));
 	}
 }
 

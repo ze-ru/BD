@@ -41,7 +41,27 @@ void CObjShop::Action()
 		flag = 0;
 	if (flag < 0)
 		flag = 2;
-	
+	if (flag == 0)
+	{
+		if (Input::GetVKey(VK_RETURN) == true)
+		{
+
+		}
+	}
+	if (flag == 1)
+	{
+		if (Input::GetVKey(VK_RETURN) == true)
+		{
+			Scene::SetScene(new CSceneStage1(11,0));
+		}
+	}
+	if (flag == 2)
+	{
+		if (Input::GetVKey(VK_RETURN) == true)
+		{
+			Scene::SetScene(new stageselect());
+		}
+	}
 }
 
 void CObjShop::Draw()
@@ -52,20 +72,20 @@ void CObjShop::Draw()
 
 	if (flag == 0)
 	{
-		Font::StrDraw(L"◇ショップ", 120, 100, 80, c);
-		Font::StrDraw(L"・武器を買う", 120, 300, 80, c);
-		Font::StrDraw(L"・タイトルに戻る", 120, 500, 80, c);
+		Font::StrDraw(L"◇武器を買う", 100, 100, 80, c);
+		Font::StrDraw(L"・ショップを出る", 100, 300, 80, c);
+		Font::StrDraw(L"・タイトルに戻る", 100, 500, 80, c);
 	}
 	if (flag == 1)
 	{
-		Font::StrDraw(L"・ショップ", 120, 100, 80, c);
-		Font::StrDraw(L"◇武器を買う", 120, 300, 80, c);
+		Font::StrDraw(L"・武器を買う", 120, 100, 80, c);
+		Font::StrDraw(L"◇ショップを出る", 120, 300, 80, c);
 		Font::StrDraw(L"・タイトルに戻る", 120, 500, 80, c);
 	}
 	if (flag == 2)
 	{
-		Font::StrDraw(L"・ショップ", 120, 100, 80, c);
-		Font::StrDraw(L"・武器を買う", 120, 300, 80, c);
+		Font::StrDraw(L"・武器を買う", 120, 100, 80, c);
+		Font::StrDraw(L"・ショップを出る", 120, 300, 80, c);
 		Font::StrDraw(L"◇タイトルに戻る", 120, 500, 80, c);
 	}
 }

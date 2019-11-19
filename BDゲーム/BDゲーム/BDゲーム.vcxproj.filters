@@ -266,9 +266,6 @@
     <ClInclude Include="stageselect.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="WeaponShop.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Boss1.h">
       <Filter>ソース ファイル\chara</Filter>
     </ClInclude>
@@ -279,6 +276,9 @@
       <Filter>ソース ファイル\Clear</Filter>
     </ClInclude>
     <ClInclude Include="ShopOBJ.h">
+      <Filter>ソース ファイル\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponShop.h">
       <Filter>ソース ファイル\Shop</Filter>
     </ClInclude>
   </ItemGroup>
