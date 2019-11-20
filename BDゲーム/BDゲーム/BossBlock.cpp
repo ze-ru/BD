@@ -46,7 +46,7 @@ void CObjBossBlock::Action()
 
 	
 
-	if (hero->GetBT() == 30)
+	if (m_block_type == 14)
 	{
 		m_boss_flag = true;//
 
@@ -78,7 +78,7 @@ void CObjBossBlock::Draw()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-	if (hero->GetBT() == 14)
+	if (m_block_type == 14)
 	{
 	
 		dst.m_top = m_by;
