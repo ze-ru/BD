@@ -53,7 +53,16 @@ void CObjNormalBullet::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+	block->BulletHit(&m_ex, &m_ey, false, &m_hit_up, &m_hit_down,
+		&m_hit_left, &m_hit_right);
+	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 	
+
+
 }
 void CObjNormalBullet::Draw()
 {
@@ -79,3 +88,4 @@ void CObjNormalBullet::Draw()
 	//
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 }
+

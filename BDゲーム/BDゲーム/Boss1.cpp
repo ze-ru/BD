@@ -32,6 +32,7 @@ void CObjBoss1::Init()
 	hit_flag = false;
 	m_time = 0;
 	attacktime = 0;
+	dead_flag = false;
 }
 
 //
@@ -120,6 +121,7 @@ void CObjBoss1::Action()
 		}
 		if (m_time == 50)
 		{
+			dead_flag = true;
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 			m_time = 0;

@@ -163,8 +163,7 @@ void CSceneStage1::InitScene()
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	CObjBoss1*objboss = new CObjBoss1(500,100);
-	Objs::InsertObj(objboss, OBJ_BOSS1, 15);
+	
 
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 30);

@@ -14,6 +14,7 @@ public:
 	void Action();
 	void Draw();
 	float GetVx() { return m_vx; }
+	bool GetDead() { return dead_flag; }
 private:
 	float m_ex;
 	float m_ey;
@@ -30,4 +31,6 @@ private:
 	float m_dead;
 	bool hit_flag;
 	int attacktime;
+	bool dead_flag;
+
 };

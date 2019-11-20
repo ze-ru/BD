@@ -14,6 +14,7 @@ public:
 
 	float GetX() { return m_px; };
 	float GetY() { return m_py; };
+	
 private:
 	float m_vx;
 	float m_vy;
