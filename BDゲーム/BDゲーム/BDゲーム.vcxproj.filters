@@ -156,6 +156,9 @@
     <ClCompile Include="ShopOBJ.cpp">
       <Filter>ソース ファイル\Shop</Filter>
     </ClCompile>
+    <ClCompile Include="Boss2.cpp">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="WeaponShop.h">
       <Filter>ソース ファイル\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss2.h">
+      <Filter>ソース ファイル\chara</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

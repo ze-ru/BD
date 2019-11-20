@@ -118,6 +118,7 @@
     <ClCompile Include="AssaultBullet.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Boss1.cpp" />
+    <ClCompile Include="Boss2.cpp" />
     <ClCompile Include="BossBlock.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="AssaultBullet.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Boss1.h" />
+    <ClInclude Include="Boss2.h" />
     <ClInclude Include="BossBlock.h" />
     <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="GameHead.h" />

@@ -27,6 +27,7 @@ enum OBJ_NAME
 	OBJ_STAGE2CLEAR,
 	OBJ_SHOPOBJ,
 	OBJ_STAGESELECT,
+	OBJ_BOSS2,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -89,7 +90,7 @@ struct UserData
 #include"WolkEnemy.h"
 #include"FlyEnemy.h"
 #include"Boss1.h"
-
+#include"Boss2.h"
 #include"Block.h"
 
 
