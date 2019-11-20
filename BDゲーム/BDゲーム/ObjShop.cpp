@@ -72,20 +72,20 @@ void CObjShop::Draw()
 
 	if (flag == 0)
 	{
-		Font::StrDraw(L"◇武器を買う", 100, 100, 80, c);
-		Font::StrDraw(L"・ショップを出る", 100, 300, 80, c);
-		Font::StrDraw(L"・タイトルに戻る", 100, 500, 80, c);
+		Font::StrDraw(L"◇武器を買う", 15, 50, 80, c);
+		Font::StrDraw(L"・ショップを出る", 15, 250, 80, c);
+		Font::StrDraw(L"・タイトルに戻る", 15, 450, 80, c);
 	}
 	if (flag == 1)
 	{
-		Font::StrDraw(L"・武器を買う", 120, 100, 80, c);
-		Font::StrDraw(L"◇ショップを出る", 120, 300, 80, c);
-		Font::StrDraw(L"・タイトルに戻る", 120, 500, 80, c);
+		Font::StrDraw(L"・武器を買う", 15, 50, 80, c);
+		Font::StrDraw(L"◇ショップを出る", 15, 250, 80, c);
+		Font::StrDraw(L"・タイトルに戻る", 15, 450, 80, c);
 	}
 	if (flag == 2)
 	{
-		Font::StrDraw(L"・武器を買う", 120, 100, 80, c);
-		Font::StrDraw(L"・ショップを出る", 120, 300, 80, c);
-		Font::StrDraw(L"◇タイトルに戻る", 120, 500, 80, c);
+		Font::StrDraw(L"・武器を買う", 15, 50, 80, c);
+		Font::StrDraw(L"・ショップを出る", 15, 250, 80, c);
+		Font::StrDraw(L"◇タイトルに戻る", 15, 450, 80, c);
 	}
 }
