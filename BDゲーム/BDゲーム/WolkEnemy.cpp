@@ -132,7 +132,7 @@ void CObjWolkEnemy::Action()
 	
 		pb->BlockHit(&m_ex, &m_ey, false,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy,&m_block_type);
+			&m_vx, &m_vy);
 	
 	
 	hit->SetPos(m_ex + pb->GetScroll(), m_ey);

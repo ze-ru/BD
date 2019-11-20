@@ -21,8 +21,6 @@ private:
 	float m_vx;
 	float m_vy;
 
-	int m_block_type;
-
 	float m_posture;
 	bool m_hit_down;
 	bool m_hit_up;

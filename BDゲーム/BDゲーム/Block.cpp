@@ -209,18 +209,16 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[],int num)
 //引数7 bool* right  :上下左右判定の右部分にあたっているかどうかを返す
 //引数8 float* vx  :左右判定時の反発による移動方向・力の値に変えて返す
 //引数9 float* vy  :上下判定時による自由落下運動の移動方向・力の値に変えて返す
-//引数10 int* bt  :右部分判定時特定のブロックのタイプを返す
 //判定を行うobjectとブロック64×64限定で、当たり判定と上下左右判定を行う
 //その結果は引数4～10に返す
 void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
-	bool *left, bool *right, float *vx, float *vy,int *bt)
+	bool *left, bool *right, float *vx, float *vy)
 {
 	*up = false;
 	*down = false;
 	*left = false;
 	*right = false;
 
-	*bt = 0;
 
 	for (int i = 0; i < 11; i++)
 	{
@@ -268,11 +266,6 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 							*x = bx + 64.0f + (scroll);
 							*vx = -(*vx)*0.1f;
 
-							if (m_map[i][j] == 14)
-							{
-								*bt = m_map[i][j];//ブロックの要素をオブジェクトに
-							}
-								
 						}
 
 						else if (r > 135 && r < 225 )
