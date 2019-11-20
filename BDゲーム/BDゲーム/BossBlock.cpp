@@ -30,6 +30,7 @@ void CObjBossBlock::Init()
 
 	Hits::SetHitBox(this, m_bx, m_by, 64, 64, ELEMENT_BLOCK, OBJ_BOSSBLOCK, 1);
 	
+	m_boss_flag = false;
 }
 
 //アクション
@@ -38,9 +39,19 @@ void CObjBossBlock::Action()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
+
 	block->BlockHit(&m_bx, &m_by, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy);
+		&m_vx, &m_vy,&m_block_type);
+
+	
+
+	if (m_block_type == 14)
+	{
+		m_boss_flag = true;//
+
+	}
+	
 
 	//HitBoxの位置変更
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -67,12 +78,15 @@ void CObjBossBlock::Draw()
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-	if (m_bx == (hero->GetX()+block->GetScroll()))
+	if (m_block_type == 14)
 	{
+	
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = 64.0f + m_by;
+	
+		
 	}
 	
 

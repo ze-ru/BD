@@ -26,6 +26,8 @@ private:
 	int m_ani_time;
 	int m_ani_frame;
 
+	int m_block_type;
+
 	float m_speed_power;
 	float m_ani_max_time;
 

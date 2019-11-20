@@ -76,6 +76,13 @@ void CObjAssaultBullet::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+	block->BulletHit(&m_px, &m_py, false, &m_hit_up, &m_hit_down,
+		&m_hit_left, &m_hit_right);
+	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 
 }
 void CObjAssaultBullet::Draw()

@@ -43,7 +43,7 @@ void CObjTitle::Action()
 		if (m_key_flag == true)
 		{
 			Scene::SetScene(new CSceneStage1(11,0));
-			m_key_flag == false;
+			m_key_flag = false;
 		}
 	}
 	if (Input::GetVKey(VK_RETURN) == true && key == true)
@@ -51,7 +51,7 @@ void CObjTitle::Action()
 		if (m_key_flag == true)
 		{
 	
-			m_key_flag == false;
+			m_key_flag = false;
 		}
 	}
 	else

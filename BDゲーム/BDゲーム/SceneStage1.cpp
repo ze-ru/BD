@@ -136,6 +136,8 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"BackGround3.png", 13, TEX_SIZE_512);
 	Draw::LoadImageW(L"Boss1.png", 14, TEX_SIZE_512);
 	Draw::LoadImageW(L"Shop.png", 15, TEX_SIZE_512);
+	Draw::LoadImageW(L"Boss2.png", 16, TEX_SIZE_512);
+
 
 
 
@@ -161,6 +163,7 @@ void CSceneStage1::InitScene()
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
+	
 
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 30);

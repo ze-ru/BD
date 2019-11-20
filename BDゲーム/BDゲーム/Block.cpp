@@ -52,7 +52,7 @@ void CObjBlock::Action()
 
 		//敵出現ライン
 		//主人公の位置＋500を敵出現ラインに
-		float line = hx + (-m_scroll) ;
+		float line = hx + (-m_scroll) + 515;
 
 		//敵出現ラインを要素番号化
 		int lx = ((int)line) / 64;
@@ -165,6 +165,10 @@ void CObjBlock::Draw()
 					{
 						;
 					}
+					else if (m_map[i][j] == 14)
+					{
+						;
+					}
 					else
 					{
 						//描画
@@ -205,18 +209,18 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[],int num)
 //引数7 bool* right  :上下左右判定の右部分にあたっているかどうかを返す
 //引数8 float* vx  :左右判定時の反発による移動方向・力の値に変えて返す
 //引数9 float* vy  :上下判定時による自由落下運動の移動方向・力の値に変えて返す
-//引数10 int* bt  :下部分判定時特殊なブロックのタイプを返す
+//引数10 int* bt  :右部分判定時特定のブロックのタイプを返す
 //判定を行うobjectとブロック64×64限定で、当たり判定と上下左右判定を行う
 //その結果は引数4～10に返す
 void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
-	bool *left, bool *right, float *vx, float *vy)
+	bool *left, bool *right, float *vx, float *vy,int *bt)
 {
 	*up = false;
 	*down = false;
 	*left = false;
 	*right = false;
 
-
+	*bt = 0;
 
 	for (int i = 0; i < 11; i++)
 	{
@@ -258,46 +262,54 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 					{
 						//角度で上下左右を判定
 					
-							 if ((r < 45 && r > 0) || r > 315 )
+						 if ((r < 45 && r > 0) || r > 315 )
+						{
+							*right = true;
+							*x = bx + 64.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+
+							if (m_map[i][j] == 14)
 							{
-								*right = true;
-								*x = bx + 64.0f + (scroll);
-								*vx = -(*vx)*0.1f;
-								
+								*bt = m_map[i][j];//ブロックの要素をオブジェクトに
 							}
-							else if (r > 135 && r < 225 )
-							{
-								*left = true;
-								*x = bx - 64.0f + (scroll);
-								*vx = -(*vx)*0.1f;
 								
-							}
+						}
+
+						else if (r > 135 && r < 225 )
+						{
+							*left = true;
+							*x = bx - 64.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+								
+						}
 						
-						//}
+						
 						//上
 						else if (r > 45 && r < 135)
 						{
 							*down = true;
 							*y = by - 64.0f;
-						
-						
 							*vy = 0.0f;
+							
+							
 						}
 						
 						//下
 						else if (r > 225 && r < 315)
 						{
-							*up = true;
+						 	*up = true;
 							*y = by + 64.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
 							}
+
+							
 						}
-						/*if (flag == false)
+						if (flag == false)
 						{
 							flag = true;
-						}*/
+						}
 					}
 				}
 			}
@@ -317,6 +329,187 @@ void CObjBlock::SetBlock(int flag)
 				if (m_map[i][j] == 4)
 				{
 					m_map[i][j] = 0;
+				}
+			}
+		}
+	}
+
+}
+
+void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
+	bool *left, bool *right, float *vx, float *vy)
+{
+	*up = false;
+	*down = false;
+	*left = false;
+	*right = false;
+
+
+
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 157; j++)
+		{
+			//m_mapの全要素にアクセス
+			if (m_map[i][j] > 0)
+			{
+				//要素番号を座標に変更
+				float bx = j * 64.0f;
+				float by = i * 64.0f - 192.0f;
+				bool flag = false;
+				//スクロールの影響
+				float scroll = scroll_on ? m_scroll : 0;
+
+				//オブジェクトとブロックの当たり判定
+				if ((*x + (-scroll) + 256.0f > bx) && (*x + (-scroll) < bx + 256.0f) && (*y + 192.0f > by) && (*y < by + 192.0f))
+				{
+					//上下左右判定
+
+					//vectorの作成
+					float rvx = (*x - scroll) - bx;
+					float rvy = *y - by;
+
+					//長さを求める
+					float len = sqrt(rvx * rvx + rvy * rvy);
+
+					//角度を求める
+					float r = atan2(rvy, rvx);
+					r = r * 180.0f / 3.14f;
+
+					if (r <= 0.0f)
+						r = abs(r);
+					else
+						r = 360.0f - abs(r);
+
+					//lenがある一定の長さより短い場合判定に入る
+					if (len < 88.0f)
+					{
+						//角度で上下左右を判定
+
+						if ((r < 45 && r > 0) || r > 315)
+						{
+							*right = true;
+							*x = bx + 256.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+
+						}
+						else if (r > 135 && r < 225)
+						{
+							*left = true;
+							*x = bx - 256.0f + (scroll);
+							*vx = -(*vx)*0.1f;
+
+						}
+
+						//}
+						//上
+						else if (r > 45 && r < 135)
+						{
+							*down = true;
+							*y = by - 64.0f;
+
+
+							*vy = 0.0f;
+						}
+
+						//下
+						else if (r > 225 && r < 315)
+						{
+							*up = true;
+							*y = by + 192.0f;
+							if (*vy < 0)
+							{
+								*vy = 0.0f;
+							}
+						}
+					
+					}
+				}
+			}
+		}
+	}
+
+}
+
+void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
+	bool *left, bool *right)
+{
+	*up = false;
+	*down = false;
+	*left = false;
+	*right = false;
+
+
+
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 157; j++)
+		{
+			//m_mapの全要素にアクセス
+			if (m_map[i][j] > 0)
+			{
+				//要素番号を座標に変更
+				float bx = j * 64.0f;
+				float by = i * 64.0f - 64.0f;
+				bool flag = false;
+				//スクロールの影響
+				float scroll = scroll_on ? m_scroll : 0;
+
+				//オブジェクトとブロックの当たり判定
+				if ((*x + (-scroll) + 32.0f > bx) && (*x + (-scroll) < bx + 32.0f) && (*y + 24.0f > by) && (*y < by + 24.0f))
+				{
+					//上下左右判定
+
+					//vectorの作成
+					float rvx = (*x - scroll) - bx;
+					float rvy = *y - by;
+
+					//長さを求める
+					float len = sqrt(rvx * rvx + rvy * rvy);
+
+					//角度を求める
+					float r = atan2(rvy, rvx);
+					r = r * 180.0f / 3.14f;
+
+					if (r <= 0.0f)
+						r = abs(r);
+					else
+						r = 360.0f - abs(r);
+
+					//lenがある一定の長さより短い場合判定に入る
+					if (len < 88.0f)
+					{
+						//角度で上下左右を判定
+
+						if ((r < 45 && r > 0) || r > 315)
+						{
+							*right = true;
+
+
+						}
+						else if (r > 135 && r < 225)
+						{
+							*left = true;
+
+
+						}
+
+						//}
+						//上
+						else if (r > 45 && r < 135)
+						{
+							*down = true;
+
+						}
+
+						//下
+						else if (r > 225 && r < 315)
+						{
+							*up = true;
+
+						}
+
+					}
 				}
 			}
 		}

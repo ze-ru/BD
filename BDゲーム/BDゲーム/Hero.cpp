@@ -28,6 +28,8 @@ void CObjHero::Init()
 
 	flag = false;//false=右向き true=左向き
 
+	m_block_type = 0;//触れたブロックの番号判定
+
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -72,7 +74,7 @@ void CObjHero::Action()
 		
 			pb->BlockHit(&m_px, &m_py, true,
 				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+				&m_vx, &m_vy,&m_block_type);
 		
 			//敵と当たっているか確認
 	
@@ -105,16 +107,13 @@ void CObjHero::Action()
 	}
 	if (m_dead_flag == false)
 	{
-
-		
 		//ブロックとの当たり判定実行
 		
 			pb->BlockHit(&m_px, &m_py, true,
 				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+				&m_vx, &m_vy,&m_block_type);
 		
 			
-		
 		if (m_y_flag==true)
 		{
 			
@@ -131,10 +130,6 @@ void CObjHero::Action()
 				if (m_posture == 1.0f)
 					m_vx += 0.2f;
 			}
-
-			
-
-		
 
 			m_px += m_vx;
 			m_py += m_vy;
@@ -226,6 +221,11 @@ void CObjHero::Action()
 			if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
 			{
 				int enemynum = 3;
+				EnemyHit(enemynum);
+			}
+			if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr)
+			{
+				int enemynum = 4;
 				EnemyHit(enemynum);
 			}
 			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
@@ -407,6 +407,8 @@ void CObjHero::EnemyHit(int enemynum)
 			hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
 		else if (enemynum == 3)
 			hit_data = hit->SearchObjNameHit(OBJ_FLYENEMY);
+		else if(enemynum==4)
+			hit_data = hit->SearchObjNameHit(OBJ_BOSS1);
 
 		hit_flag = false;
 
@@ -430,6 +432,8 @@ void CObjHero::EnemyHit(int enemynum)
 					//敵の移動方向を主人公の位置に加算
 					if(enemynum==1)
 					m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+					if (enemynum == 4)
+						m_px += ((CObjBoss1*)hit_data[i]->o)->GetVx();
 					
 
 
