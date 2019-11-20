@@ -14,6 +14,7 @@ public:
 
 	float GetX() { return m_ex; };
 	float GetY() { return m_ey; };
+	int Getscore() { return score; }
 private:
 	float m_ex;
 	float m_ey;
@@ -31,5 +32,5 @@ private:
 	int m_ani_time;
 	int m_ani_frame;
 	float m_hp;
-
+	int score;
 };

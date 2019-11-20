@@ -15,7 +15,7 @@ public:
 	void Draw();
 
 	float GetVx() { return m_vx; }
-
+	int Getscore() { return score; }
 private:
 	float m_ex;
 	float m_ey;
@@ -41,4 +41,6 @@ private:
 	bool m_move;
 	float m_hp;
 	bool hit_flag;
+
+	int score;
 };

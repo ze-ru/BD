@@ -27,7 +27,7 @@ void CObjLockEnemy::Init()
 	m_hit_right = false;
 
 	m_hp = 10;
-
+	score = 0;
 
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_LOCKENEMY, 1);
 }
@@ -68,6 +68,9 @@ void CObjLockEnemy::Action()
 
 	if (m_hp <= 0)
 	{
+		CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
+		score = 100;
+		s1->Getscore(score);
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}
