@@ -27,6 +27,7 @@ private:
 	float hvx;
 	float hvy;
 
+	bool bossflag;
 
 	bool m_hit_down;
 	bool m_hit_up;

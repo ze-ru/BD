@@ -225,7 +225,7 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 		for (int j = 0; j < 157; j++)
 		{
 			//m_mapの全要素にアクセス
-			if (m_map[i][j] > 0)
+			if (m_map[i][j] > 0 && m_map[i][j]!=14)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
