@@ -43,4 +43,5 @@ private:
 	bool hit_flag;
 
 	int score;
+	int m_time_hit;
 };

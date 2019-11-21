@@ -27,7 +27,7 @@ void CObjAssaultBullet::Init()
 	m_posy = 1;
 	m_posx = 1;
 	m_count = 0;
-	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY, OBJ_ASSAULT_BULLET, 1);
+	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_ASSAULT_BULLET, 1);
 }
 void CObjAssaultBullet::Action()
 {

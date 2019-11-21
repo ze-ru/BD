@@ -30,9 +30,10 @@ void CObjFlyEnemy::Init()
 	m_hit_right = false;
 	m_time_flat = 0;
 	count = 0;
-	m_hp = 10;
-
+	m_hp = 30;
+	hit_flag = false;
 	score = 0;
+	m_time_hit = 0;
 
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
@@ -99,9 +100,25 @@ void CObjFlyEnemy::Action()
 
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
-		m_hp -= 5;
+		if (m_hp > 0)
+		m_hp -= 30;
+		hit_flag = true;
 	}
-
+	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
+	{
+		if (m_hp > 0)
+		m_hp -= 5;
+		hit_flag = true;
+	}
+	if (hit_flag == true)
+	{
+		m_time_hit++;
+		if (m_time_hit > 20)
+		{
+			hit_flag = false;
+			m_time_hit = 0;
+		}
+	}
 	if (m_hp <= 0)
 	{
 		CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
@@ -124,16 +141,15 @@ void CObjFlyEnemy::Draw()
 	src.m_bottom = 64.0f;
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	
+	if (hit_flag == false)
+	{
 		dst.m_top = m_py;
 		dst.m_left = m_px + pb->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = m_py + 64.0f;
-	
-	
-	
+	}
 
-
+	
 	//
 	Draw::Draw(6, &src, &dst, c, 0.0f);
 }

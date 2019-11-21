@@ -30,13 +30,15 @@ void CObjWolkEnemy::Init()
 	m_time = 0;
 
 	m_move = false;//false=‰E@true=¶
-	m_hp = 10;
+	m_hp = 30;
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
-	hit_flag = true;
+	hit_flag = false;
 	m_dead = 0.0f;
+
+	m_time_hit = 0;
 
 	score = 0;
 	//“–‚½‚è”»’è—p‚ÌHitBox‚ðì¬
@@ -144,9 +146,25 @@ void CObjWolkEnemy::Action()
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
 		if(m_hp>0)
-		m_hp -= 5;
+		m_hp -= 30;
+		hit_flag = true;
 	}
+	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
+	{
+		if (m_hp > 0)
+		m_hp -= 5;
+		hit_flag = true;
+	}
+	if (hit_flag == true)
+	{
+		m_time_hit++;
+		if (m_time_hit > 20)
+		{
+			hit_flag = false;
+			m_time_hit = 0;
+		}
 
+	}
 	if (m_hp <= 0)
 	{
 		m_time++;
@@ -190,12 +208,13 @@ void CObjWolkEnemy::Draw()
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	
-	
+	if (hit_flag == false)
+	{
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = (64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
-	
+	}
 
 	
 

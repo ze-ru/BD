@@ -28,6 +28,7 @@ enum OBJ_NAME
 	OBJ_SHOPOBJ,
 	OBJ_STAGESELECT,
 	OBJ_BOSS2,
+	OBJ_HEROASSULTBULLET,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -55,6 +56,8 @@ enum HIT_ELEMENTS
 	ELEMENT_BLOCK,
 	ELEMENT_ATTACK,
 	ELEMENT_SHOP,
+	ELEMENT_HEROASSULTBULLET,
+	ELEMENT_ENEMY_BULLET,
 };
 //------------------------------------------------
 
@@ -85,7 +88,7 @@ struct UserData
 #include"BossBlock.h"
 #include"ShopOBJ.h"
 #include"Hero.h"
-
+#include"HeroAssultBullet.h"
 #include"LockEnemy.h"
 #include"WolkEnemy.h"
 #include"FlyEnemy.h"

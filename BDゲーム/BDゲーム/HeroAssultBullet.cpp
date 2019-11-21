@@ -4,51 +4,66 @@
 #include"GameL\HitBoxManager.h"
 
 #include"GameHead.h"
-#include"NormalBullet.h"
+#include"HeroAssultBullet.h"
 
 using namespace GameL;
 
-CObjNormalBullet::CObjNormalBullet(float x,float y)
+CObjHeroAssultBullet::CObjHeroAssultBullet(float x, float y)
 {
-	m_ex = x;
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_ex = x ;
 	m_ey = y+23.0f;
 }
-void CObjNormalBullet::Init()
+void CObjHeroAssultBullet::Init()
 {
-	CObjLockEnemy*objeL = (CObjLockEnemy*)Objs::GetObj(OBJ_LOCKENEMY);
-	m_vx = 5.0f;
-	m_vy = 0.0f;
-	m_time = 0;
 
+	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+	m_time = 0;
+	if (h->GetFlag() == false)
+	{
+		m_vx = 10.0f;//右向き0.0f 左向き1.0f
+		
+	}
+	if (h->GetFlag() == true)
+	{
+		m_vx = -10.0f;//右向き0.0f 左向き1.0f
+		
+	}
+	m_py = h->GetY();
+	
+	m_vy = 0;
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
-
-	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_NORMAL_BULLET, 1);
+	m_posture = 0;
+	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_HEROASSULTBULLET, OBJ_HEROASSULTBULLET, 1);
 }
-void CObjNormalBullet::Action()
+void CObjHeroAssultBullet::Action()
 {
-	m_vx = -7.5f;
-	
+
+
 	m_time++;
+	
 	m_ex += m_vx;
 	m_ey += m_vy;
-	
+
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_ex + block->GetScroll(), m_ey);
-	
-	
-	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+
+	hit->SetPos(m_ex+block->GetScroll(), m_ey);
+
+
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-	
-	
-	
-	if (m_time>100)
+
+
+
+	if (m_time > 100)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
@@ -60,11 +75,11 @@ void CObjNormalBullet::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-	
+
 
 
 }
-void CObjNormalBullet::Draw()
+void CObjHeroAssultBullet::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -72,17 +87,17 @@ void CObjNormalBullet::Draw()
 	RECT_F dst;
 
 	src.m_top = 0.0f;
-	src.m_left = 64.0f;
-	src.m_right = 88.0f;
+	src.m_left = 88.0f;
+	src.m_right = 112.0f;
 	src.m_bottom = 16.0f;
 
 
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//
-	dst.m_top = m_ey+4.0f;
-	dst.m_left = m_ex+ block->GetScroll();
-	dst.m_right = dst.m_left+24.0f;
-	dst.m_bottom = 20.0f+m_ey;
+	dst.m_top = m_ey + 4.0f;
+	dst.m_left = m_ex + block->GetScroll();
+	dst.m_right = dst.m_left + 24.0f;
+	dst.m_bottom = 20.0f + m_ey;
 
 
 	//

@@ -159,6 +159,9 @@
     <ClCompile Include="Boss2.cpp">
       <Filter>ソース ファイル\chara</Filter>
     </ClCompile>
+    <ClCompile Include="HeroAssultBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -286,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="Boss2.h">
       <Filter>ソース ファイル\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="HeroAssultBullet.h">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

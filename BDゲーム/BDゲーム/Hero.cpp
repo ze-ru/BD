@@ -41,6 +41,8 @@ void CObjHero::Init()
 	m_y_flag = false;
 	m_y_num = 0;
 	m_dead_flag = false;
+	bullet_count = 0;
+	m_time_bullet = 0;
 	//ìñÇΩÇËîªíËópÇÃHitBoxÇçÏê¨
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
@@ -113,7 +115,6 @@ void CObjHero::Action()
 				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 				&m_vx, &m_vy,&m_block_type);
 		
-			
 		if (m_y_flag==true)
 		{
 			
@@ -165,6 +166,35 @@ void CObjHero::Action()
 					m_attack = true;
 				}
 			}
+			if (Input::GetVKey('C') == true)
+			{
+				if (bullet_count < 3)
+				{
+					m_time_bullet++;
+					if (m_time_bullet > 5)
+					{
+						if (flag == false)
+						{
+							CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() + 62.0f, m_py);
+							Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+						}
+						if (flag == true)
+						{
+							CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() -2.0f, m_py);
+							Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+						}
+						bullet_count++;
+						m_time_bullet = 0;
+					}
+				}
+			}
+			if (bullet_count >= 3)
+			{
+				m_time_bullet++;
+				if (m_time_bullet > 100)
+					bullet_count = 0;
+			}
+
 			if (m_py > 1000.0f)
 			{
 				;

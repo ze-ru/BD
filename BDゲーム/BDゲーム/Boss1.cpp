@@ -27,7 +27,7 @@ void CObjBoss1::Init()
 	time = 0;
 	//“–‚½‚è”»’è—p‚ÌHitBox‚ðì¬
 	Hits::SetHitBox(this, m_ex, m_ey, 256, 192, ELEMENT_ENEMY, OBJ_BOSS1, 1);
-	m_hp = 50;
+	m_hp = 120;
 	m_dead = 0;
 	hit_flag = false;
 	m_time = 0;
@@ -111,6 +111,12 @@ void CObjBoss1::Action()
 			m_hp -= 5;
 		hit_flag = true;
 	}
+	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
+	{
+		if (m_hp > 0)
+			m_hp -= 5;
+		hit_flag = true;
+	}
 
 	if (m_hp <= 0)
 	{
@@ -166,8 +172,7 @@ void CObjBoss1::Draw()
 		dst.m_bottom = m_ey + 192.0f;
 	}
 
-
-
+	
 	//
 	Draw::Draw(14, &src, &dst, c, m_dead);
 }
