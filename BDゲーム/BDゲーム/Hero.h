@@ -65,5 +65,6 @@ class CObjHero :public CObj
 	  bool m_y_flag;
 	  int m_y_num;
 	  bool m_dead_flag;
-
+	  int bullet_count;
+	  int m_time_bullet;
 };

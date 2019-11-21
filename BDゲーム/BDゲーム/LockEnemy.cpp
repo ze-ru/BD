@@ -25,9 +25,10 @@ void CObjLockEnemy::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
-
-	m_hp = 10;
+	hit_flag = false;
+	m_hp = 40;
 	score = 0;
+	m_time = 0;
 
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_LOCKENEMY, 1);
 }
@@ -63,9 +64,26 @@ void CObjLockEnemy::Action()
        	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
-		m_hp -= 5;
+		if (m_hp > 0)
+		m_hp -= 30;
+		hit_flag = true;
 	}
+	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
+	{
+		if (m_hp > 0)
+		m_hp -= 5;
+		hit_flag = true;
+	}
+	if (hit_flag == true)
+	{
+		m_time++;
+		if (m_time > 20)
+		{
+			hit_flag = false;
+			m_time = 0;
+		}
 
+	}
 	if (m_hp <= 0)
 	{
 		CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
@@ -93,12 +111,13 @@ void CObjLockEnemy::Draw()
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	
-	
+	if (hit_flag == false)
+	{
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = 64 - 64.0f + m_ex + pb->GetScroll();
 		dst.m_right = 64.0f + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
-
+	}
 	
 
 	//

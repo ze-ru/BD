@@ -31,4 +31,6 @@ private:
 	int m_ani_frame;
 	float m_hp;
 	int score;
+	bool hit_flag;
+	int m_time;
 };

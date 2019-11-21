@@ -31,6 +31,8 @@ private:
 	int m_time_flat;
 	int count;
 	int m_hp;
-
+	bool hit_flag;
 	int score;
+
+	int m_time_hit;
 };
