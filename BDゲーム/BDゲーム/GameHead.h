@@ -29,6 +29,7 @@ enum OBJ_NAME
 	OBJ_STAGESELECT,
 	OBJ_BOSS2,
 	OBJ_HEROASSULTBULLET,
+	OBJ_GOAL_BLOCK,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -95,7 +96,7 @@ struct UserData
 #include"Boss1.h"
 #include"Boss2.h"
 #include"Block.h"
-
+#include"GoalBlock.h"
 
 #include"ObjStage1.h"
 

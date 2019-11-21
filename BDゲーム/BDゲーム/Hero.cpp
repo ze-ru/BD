@@ -166,10 +166,9 @@ void CObjHero::Action()
 			}
 			if (Input::GetVKey('C') == true)
 			{
-				if (bullet_count < 3)
-				{
+				
 					m_time_bullet++;
-					if (m_time_bullet > 5)
+					if (m_time_bullet > 10)
 					{
 						if (flag == false)
 						{
@@ -181,10 +180,10 @@ void CObjHero::Action()
 							CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() -2.0f, m_py);
 							Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
 						}
-						bullet_count++;
+						
 						m_time_bullet = 0;
 					}
-				}
+				
 			}
 			if (bullet_count >= 3)
 			{

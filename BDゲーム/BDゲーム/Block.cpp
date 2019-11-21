@@ -21,7 +21,7 @@ CObjBlock::CObjBlock(int map[11][157],int mapnum)
 void CObjBlock::Init()
 {
 	m_scroll = 0.0f;
-	
+	dead_flag = false;
 }
 //アクション
 void CObjBlock::Action()
@@ -56,7 +56,7 @@ void CObjBlock::Action()
 
 		//敵出現ラインを要素番号化
 		int lx = ((int)line) / 64;
-
+		
 		//敵出現ラインの列を検索
 		for (int i = 0; i < 11; i++)
 		{
@@ -107,12 +107,23 @@ void CObjBlock::Action()
 				m_map[i][lx] = 0;
 			}
 
-			if (m_map[i][lx] == 40)
+			if (m_map[i][lx] == 41)
 			{
-				CObjBoss1*objboss = new CObjBoss1(lx*64.0f, i*64.0f - 64.0f);
+			 	CObjBoss1*objboss = new CObjBoss1(lx*64.0f, i*64.0f - 64.0f);
 				Objs::InsertObj(objboss, OBJ_BOSS1, 15);
 				m_map[i][lx] = 0;
 			}
+			if (m_map[i][lx] == 13)
+			{
+				if (dead_flag == true)
+				{
+					CObjGoalBlock*objg = new CObjGoalBlock(lx*64.0f, i*64.0f - 64.0f);
+					Objs::InsertObj(objg, OBJ_GOAL_BLOCK, 2);
+					m_map[i][lx] = 0;
+					dead_flag = 0;
+				}
+			}
+			
 
 
 		}
@@ -347,7 +358,7 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 			if (m_map[i][j] > 0)
 			{
 				//要素番号を座標に変更
-				float bx = j * 64.0f;
+				float bx = j * 64.0f ;
 				float by = i * 64.0f - 192.0f;
 				bool flag = false;
 				//スクロールの影響
