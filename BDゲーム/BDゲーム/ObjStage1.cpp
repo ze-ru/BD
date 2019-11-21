@@ -14,10 +14,13 @@ CObjStage1::CObjStage1(int mapdata)
 void CObjStage1::Init()
 {
 	flag = true;
+	score = 0;
+	time = 0;
 }
 
 void CObjStage1::Action()
 {
+	time++;
 	if (Input::GetVKey('A') == true)
 	{
 		Scene::SetScene(new stageselect());
@@ -29,6 +32,10 @@ void CObjStage1::Action()
 void CObjStage1::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	wchar_t str[100];
+	swprintf_s(str, L"Score:%d", score);
+	Font::StrDraw(str, 600, 20, 180, c);
+	
 
 	RECT_F src;
 	RECT_F dst;

@@ -15,7 +15,7 @@ public:
 	void Draw();
 
 	float GetVx() { return m_vx; }
-
+	int Getscore() { return score; }
 private:
 	float m_ex;
 	float m_ey;
@@ -25,8 +25,6 @@ private:
 	float m_time;
 	int m_ani_time;
 	int m_ani_frame;
-
-	int m_block_type;
 
 	float m_speed_power;
 	float m_ani_max_time;
@@ -41,4 +39,6 @@ private:
 	bool m_move;
 	float m_hp;
 	bool hit_flag;
+
+	int score;
 };

@@ -14,13 +14,12 @@ public:
 
 	float GetX() { return m_ex; };
 	float GetY() { return m_ey; };
+	int Getscore() { return score; }
 private:
 	float m_ex;
 	float m_ey;
 	float m_vx;
 	float m_vy;
-
-	int m_block_type;
 
 	float m_posture;
 	bool m_hit_down;
@@ -31,5 +30,5 @@ private:
 	int m_ani_time;
 	int m_ani_frame;
 	float m_hp;
-
+	int score;
 };

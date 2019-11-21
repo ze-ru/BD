@@ -11,7 +11,7 @@ public:
 	void Init();
 	void Action();
 	void Draw();
-
+	int Getscore() { return score; }
 private:
 	float m_px;
 	float m_py;
@@ -19,8 +19,6 @@ private:
 	float m_vy;
 	float m_posture;
 
-	int m_block_type;
-	
 	float x;
 	int m_ani_time;
 	int m_ani_frame;
@@ -33,4 +31,6 @@ private:
 	int m_time_flat;
 	int count;
 	int m_hp;
+
+	int score;
 };

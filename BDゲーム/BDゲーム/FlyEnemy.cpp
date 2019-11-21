@@ -31,6 +31,9 @@ void CObjFlyEnemy::Init()
 	m_time_flat = 0;
 	count = 0;
 	m_hp = 10;
+
+	score = 0;
+
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
 void CObjFlyEnemy::Action()
@@ -85,7 +88,7 @@ void CObjFlyEnemy::Action()
 	
 		pb->BlockHit(&m_px, &m_py, false,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-			&m_vx, &m_vy,&m_block_type);
+			&m_vx, &m_vy);
 		//HitBoxの内容を更新
 		
 		hit->SetPos(m_px + pb->GetScroll(), m_py);
@@ -101,6 +104,9 @@ void CObjFlyEnemy::Action()
 
 	if (m_hp <= 0)
 	{
+		CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
+		score = 100;
+		s1->Getscore(score);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
