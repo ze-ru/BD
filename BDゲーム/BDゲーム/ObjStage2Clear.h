@@ -15,9 +15,13 @@ public:
 	void Draw();   //ドロー
 	int Getmap1(int x, int y) { return map[x][y]; }
 	int Getmap2(int x, int y) { return map2[x][y]; }
+	int SetScore() { score += 100; }//スコア関数
 
 private:
 	int map[11][157];
 	int map2[11][156];
 	int Sc2;
+	int score;
+	int time;
+	int count;
 };
