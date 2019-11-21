@@ -13,12 +13,10 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-
+	int SetScore() { score += 100; }//スコア関数
 private:
-	float m_mou_x;
-	float m_mou_y;
-	bool m_mou_r;
-	bool m_mou_l;
-	bool m_key_flag;
 	bool key;
+	int score;
+	int time;
+	int count;
 };
