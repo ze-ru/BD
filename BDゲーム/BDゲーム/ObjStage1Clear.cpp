@@ -17,6 +17,7 @@ void CObjStage1Clear::Init()
 	key = true;
 	score = 0;
 	count = 0;
+	deadflag = false;
 }
 
 //アクション
@@ -25,10 +26,9 @@ void CObjStage1Clear::Action()
 	time++;
 
 	//Boss1が死んだらSTAGE CLEAR
-	CObjBoss1*b1 = (CObjBoss1*)Objs::GetObj(OBJ_BOSS1);
-	if (b1->GetDead() == true)
+	if (deadflag == true)
 	{
-
+		key = true;
 	}
 }
 

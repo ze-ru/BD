@@ -32,5 +32,6 @@ private:
 	bool hit_flag;
 	int attacktime;
 	bool dead_flag;
+	int time2;
 
 };

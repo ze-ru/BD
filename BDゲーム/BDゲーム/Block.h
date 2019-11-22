@@ -18,7 +18,7 @@ public :
 	void SetScroll(float s) { m_scroll = s; }
 	float GetScroll() { return m_scroll; }
 	int Getmap1() { int m = m_map[0][0]; return m; }
-	void Setmap1(int x) { m_map[0][0] = x; }
+	void SetDead() { dead_flag = true; }
 	
 	//ブロックとの当たり判定
 	void BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
@@ -37,5 +37,6 @@ private:
 	int m_map[11][157]; //マップ情報
 	int map_num;
 	float m_scroll; //左右スクロール用
+	bool dead_flag;
 	
 };

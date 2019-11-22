@@ -14,9 +14,11 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 	int SetScore() { score += 100; }//スコア関数
+	void Setdead() { deadflag = true; }
 private:
 	bool key;
 	int score;
 	int time;
 	int count;
+	bool deadflag;
 };
