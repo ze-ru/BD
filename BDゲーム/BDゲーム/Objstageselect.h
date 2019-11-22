@@ -17,9 +17,6 @@ public:
 	int Setmap() { return mapnum; }
 	int Setmapflag() { return mapflag; }
 private:
-	int map[11][157];
-	int map2[11][156];
-	int map3[11][156];
 	float m_mou_x;
 	float m_mou_y;
 	bool m_mou_r;
