@@ -113,19 +113,31 @@ void CObjBlock::Action()
 				Objs::InsertObj(objboss, OBJ_BOSS1, 15);
 				m_map[i][lx] = 0;
 			}
-			if (m_map[i][lx] == 13)
-			{
-				if (dead_flag == true)
-				{
-					CObjGoalBlock*objg = new CObjGoalBlock(lx*64.0f, i*64.0f - 64.0f);
-					Objs::InsertObj(objg, OBJ_GOAL_BLOCK, 2);
-					m_map[i][lx] = 0;
-					dead_flag = 0;
-				}
-			}
+			
 			
 
 
+		}
+
+		for (int i = 0; i < 11; i++)
+		{
+			for (int j = 0; j < 157; j++)
+			{
+				if (m_map[i][j] == 13)
+				{
+					if (dead_flag == true)
+					{
+						CObjStage1Clear*sb1 = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+						CObjGoalBlock*objg = new CObjGoalBlock(j*64.0f, i*64.0f - 64.0f);
+						Objs::InsertObj(objg, OBJ_GOAL_BLOCK, 2);
+						
+						m_map[i][j] = 0;
+						dead_flag = 0;
+						sb1->Setdead();
+						
+					}
+				}
+			}
 		}
 	
 }
