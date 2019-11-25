@@ -100,8 +100,10 @@ void CObjBoss1::Action()
 	pb->BlockBossHit(&m_ex, &m_ey, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
+
 	if (m_hit_down == false)
 		m_vy += 5.0 / (20.0f);
+
 	if (m_hit_down == true)
 		m_vy = 0;
 
