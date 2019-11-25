@@ -13,10 +13,11 @@
 using namespace GameL;
 
 //イニシャライズ
-CObjBossBlock::CObjBossBlock(float x,float y)
+CObjBossBlock::CObjBossBlock(float x,float y,int map_num)
 {
     m_bx = x;
     m_by = y;
+	mapnum = map_num;
 }
 
 void CObjBossBlock::Init()
@@ -130,5 +131,5 @@ void CObjBossBlock::Draw()
 		
 
 
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(mapnum, &src, &dst, c, 0.0f);
 }
