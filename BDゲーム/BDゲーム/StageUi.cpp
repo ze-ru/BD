@@ -16,6 +16,7 @@ void CObjStageUi::Init()
 	m_hp = 50.0f;
 	m_ani_time = 0;
 	m_ani_frame = 0;
+	int score = 0;
 }
 
 //アクション
@@ -33,6 +34,8 @@ void CObjStageUi::Draw()
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
+
+
 
 	/*//切り取り位置の設定
 	src.m_top = 0.0f;

@@ -18,5 +18,8 @@ private:
 	int m_hp;
 	int m_ani_time;
 	int m_ani_frame;
-
+	int map[11][157];
+	int map2[11][156];
+	int Sc2;
+	int score;
 };
