@@ -70,7 +70,7 @@ void CObjBlock::Action()
 			}
 			if (m_map[i][lx] == 7)
 			{
-				CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*63.0f);
+				CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*64.0f);
 				Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
 
 				//ìGèoåªèÍèäÇ0Ç…Ç∑ÇÈ
