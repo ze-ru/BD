@@ -45,7 +45,7 @@ void CObjBoss2::Action()
 		time2++;
 	time++;
 
-	if (time > 0 && time < 150)
+	/*if (time > 0 && time < 150)
 	{
 		m_vx = -1.0f;
 		if (time > 0 && time < 100)
@@ -91,7 +91,7 @@ void CObjBoss2::Action()
 		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
 	}
 	}
-
+	*/
 	if (time == 300)
 		time = 0;
 

@@ -70,7 +70,7 @@ void CObjBlock::Action()
 			}
 			if (m_map[i][lx] == 7)
 			{
-				CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*63.0f);
+				CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*64.0f);
 				Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
 
 				//ìGèoåªèÍèäÇ0Ç…Ç∑ÇÈ
@@ -95,9 +95,9 @@ void CObjBlock::Action()
 			//BossBlockçÏê¨
 			if (m_map[i][lx] == 14)
 			{
-				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f);
+				/*CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
 				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
-				m_map[i][lx] = 0;
+				m_map[i][lx] = 0;*/
 			}
 
 			if (m_map[i][lx] == 20)
