@@ -52,7 +52,7 @@ void CObjBlock::Action()
 
 		//敵出現ライン
 		//主人公の位置＋500を敵出現ラインに
-		float line = hx + (-m_scroll) + 515;
+		float line = hx + (-m_scroll) + 200;
 
 		//敵出現ラインを要素番号化
 		int lx = ((int)line) / 64;
@@ -95,9 +95,9 @@ void CObjBlock::Action()
 			//BossBlock作成
 			if (m_map[i][lx] == 14)
 			{
-				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
+				/*CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
 				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
-				m_map[i][lx] = 0;
+				m_map[i][lx] = 0;*/
 			}
 
 			if (m_map[i][lx] == 20)
