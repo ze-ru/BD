@@ -124,7 +124,7 @@ void CObjBoss1::Action()
 		m_vy += 5.0 / (20.0f);
 
 	if (m_hit_down == true)
-		m_vy = 0;
+ 		m_vy = 0;
 
 	
 	
