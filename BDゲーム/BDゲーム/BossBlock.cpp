@@ -13,10 +13,11 @@
 using namespace GameL;
 
 //イニシャライズ
-CObjBossBlock::CObjBossBlock(float x,float y)
+CObjBossBlock::CObjBossBlock(float x,float y,int stagenum)
 {
     m_bx = x;
     m_by = y;
+	num = stagenum;
 }
 
 void CObjBossBlock::Init()
@@ -48,7 +49,7 @@ void CObjBossBlock::Action()
 	hvy = hero->GetVY();
 
 	//主人公が一定範囲に入ると当たり判定実行
-	if ((hero->GetX() - block->GetScroll()) > 9534 || bossflag == true)
+	if ((hero->GetX() - block->GetScroll()) > 9470 || bossflag == true)
 	{
 		if ((hx + 64.0f > m_bx) && (hx < m_bx + 64.0f) && (hy + 64.0f > m_by) && (hy < m_by + 64.0f))
 		{
@@ -123,7 +124,7 @@ void CObjBossBlock::Draw()
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if ((hero->GetX() - block->GetScroll()) > 9534 || bossflag == true)
+	if ((hero->GetX() - block->GetScroll()) > 9470 || bossflag == true)
 	{
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();
@@ -135,5 +136,5 @@ void CObjBossBlock::Draw()
 		
 
 
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(num, &src, &dst, c, 0.0f);
 }

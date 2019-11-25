@@ -9,7 +9,7 @@ using namespace GameL;
 class CObjBossBlock :public CObj
 {
 public:
-	CObjBossBlock(float x,float y);
+	CObjBossBlock(float x,float y,int stagenum);
 	~CObjBossBlock() {};
 	void Init();//イニシャライズ
 	void Action();//アクション
@@ -33,5 +33,5 @@ private:
 	bool m_hit_up;
 	bool m_hit_left;
 	bool m_hit_right;
-
+	int num;
 };
