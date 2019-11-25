@@ -64,7 +64,7 @@ void CSceneStage1::InitScene()
 		}
 	}
 	
-
+	
 	unique_ptr<wchar_t>p2;//ステージ情報ポインター
 	int size2;//ステージ情報の大きさ
 	p2 = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
@@ -129,7 +129,7 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"LockEnemy.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
 	Draw::LoadImageW(L"FlyEnemy.png", 6, TEX_SIZE_512);
-	Draw::LoadImageW(L"Stage2.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage2.png", 8, TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage3.png", 9, TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage1Back.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround2.png", 12, TEX_SIZE_512);
@@ -155,7 +155,7 @@ void CSceneStage1::InitScene()
 		float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
 		Audio::Start(0);//音楽スタート
 	}
-	if (mapnum == 7)
+	if (mapnum == 8)
 	{
 		CObjBlock*objb = new CObjBlock(map2, mapnum);
 		Objs::InsertObj(objb, OBJ_BLOCK, 2);

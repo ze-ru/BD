@@ -75,9 +75,9 @@ void CObjstageselect::Action()
 
 		if (keyE == 1 && Input::GetVKey(VK_RETURN) == true)
 		{
-			mapnum = 7;
+			mapnum = 8;
 			mapflag = 12;
-			Scene::SetScene(new CSceneStage1(12,7));
+			Scene::SetScene(new CSceneStage1(12,8));
 		}
 
 		if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)
