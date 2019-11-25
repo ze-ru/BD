@@ -41,7 +41,7 @@ void CObjGoalBlock::Action()
 
 		//if (keyE == 1 && Input::GetVKey(VK_RETURN) == true)
 		//{	
-			Scene::SetScene(new CSceneStage1(12, 7));
+			Scene::SetScene(new CSceneStage1(12, 8));
 		//}
 		/*
 		if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)
