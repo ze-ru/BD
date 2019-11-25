@@ -48,7 +48,8 @@ void CObjBossBlock::Action()
 	hvx = hero->GetVX();
 	hvy = hero->GetVY();
 
-	if ((hero->GetX() - block->GetScroll()) > 9344 || bossflag == true)
+	//主人公が一定範囲に入ると当たり判定実行
+	if ((hero->GetX() - block->GetScroll()) > 9534 || bossflag == true)
 	{
 		if ((hx + 64.0f > m_bx) && (hx < m_bx + 64.0f) && (hy + 64.0f > m_by) && (hy < m_by + 64.0f))
 		{
@@ -84,7 +85,7 @@ void CObjBossBlock::Action()
 
 				}
 				//左
-				else if (r > 135 && r < 225)
+				if (r > 135 && r < 225)
 				{
 					m_hit_left = true;
 					hero->SetX(m_bx - 64.0f + block->GetScroll());
@@ -98,6 +99,11 @@ void CObjBossBlock::Action()
 		bossflag = true;
 	}
 
+	//スクロールを止める
+	if (bossflag == true)
+	{
+
+	}
 
 }
 
@@ -109,7 +115,6 @@ void CObjBossBlock::Draw()
 	RECT_F src;
 	RECT_F dst;
 
-
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 64.0f;
@@ -119,7 +124,7 @@ void CObjBossBlock::Draw()
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if ((hero->GetX() - block->GetScroll()) > 9344 || bossflag == true)
+	if ((hero->GetX() - block->GetScroll()) > 9534 || bossflag == true)
 	{
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();
