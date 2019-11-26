@@ -203,7 +203,7 @@ void CObjHero::Action()
 			//ƒL[‚Ì“ü—Í•ûŒü
 			if (Input::GetVKey(VK_RIGHT) == true)//‰E
 			{
-				m_vx = +4.0f;
+				m_vx = +15.0f;
 				m_posture = 0.0f;
 				m_ani_time += 1;
 
@@ -212,7 +212,7 @@ void CObjHero::Action()
 
 			else if (Input::GetVKey(VK_LEFT) == true)//¶
 			{
-				m_vx = -4.0f;
+				m_vx = -15.0f;
 				m_posture = 1.0f;
 				m_ani_time += 1;
 
@@ -275,7 +275,7 @@ void CObjHero::Action()
 				if (m_hit_down == true)
 				{
 					if (m_vy >= 0)
-						m_vy = -10.5;
+						m_vy = -15.5;
 
 				}
 			}

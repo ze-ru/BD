@@ -429,6 +429,8 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 						{
 							*down = true;
 							*y = by - 64.0f;
+							*vy = 0.0f;
+
 
 						}
 
@@ -436,8 +438,12 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 						else if (r > 225 && r < 315)
 						{
 							*up = true;
-							*y = by + 192.0f;
-							
+							*y = by + 64.0f;
+							if (*vy < 0)
+							{
+								*vy = 0.0f;
+							}
+
 						}
 					
 					}
