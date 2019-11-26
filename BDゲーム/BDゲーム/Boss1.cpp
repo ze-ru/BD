@@ -154,7 +154,8 @@ void CObjBoss1::Action()
 		}
 		if (m_time == 50)
 		{
-
+			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+			s1c->Setdead();
 			pb->SetDead();
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é

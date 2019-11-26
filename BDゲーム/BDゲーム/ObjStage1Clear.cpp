@@ -14,10 +14,11 @@ using namespace GameL;
 //イニシャライズ
 void CObjStage1Clear::Init()
 {
-	key = true;
+	key = false;
 	score = 0;
 	count = 0;
 	deadflag = false;
+	scorecount = 0;
 }
 
 //アクション
@@ -30,37 +31,43 @@ void CObjStage1Clear::Action()
 	{
 		key = true;
 	}
+	
 }
 
 //ドロー
 void CObjStage1Clear::Draw()
 {
 	float c[4] = { 1,1,1,1 };
-	wchar_t str[128];
-
-	//ステージ１ゲームクリア
 	if (key == true)
 	{
-		//"STAGE CLEAR"表示
-		if (time > 60)
-		{
-			Font::StrDraw(L"STAGE CLEAR", 85, 70, 180, c);
-		}
-		//"STAGE CLEAR"を点滅させる
-		if (time > 120)
-		{
-			count++;
-			time = 0;
-		}
-		//スコア表示
-		if (count > 10)
-		{
-			time = 60;
-			
-			swprintf_s(str, L"SCORE:%d", score);
-			Font::StrDraw(str, 85, 120, 180, c);
-		}
+		RECT_F src;
+		RECT_F dst;
+		
+
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 800.0f;
+		src.m_bottom = 600.0f;
+
+		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+		
+			dst.m_top = 0.0f;
+			dst.m_left = 64.0f*145 + pb->GetScroll();
+			dst.m_right = dst.m_left+800.0f;
+			dst.m_bottom = 600.0f;
+		
+
+
+		//
+		Draw::Draw(17, &src, &dst, c, 1.0f);
+
+		
+		
+
+
 	}
-	else
-		time = 0;
+
+
 }

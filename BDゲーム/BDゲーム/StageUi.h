@@ -13,13 +13,11 @@ public:
 	void Init();
 	void Action();
 	void Draw();
-	int GetHp() { return m_hp; };
+	void GetScore(int enscore) { score += enscore; }
 private:
-	int m_hp;
-	int m_ani_time;
-	int m_ani_frame;
-	int map[11][157];
-	int map2[11][156];
-	int Sc2;
+
 	int score;
+	int scoreframe[4];
+	int tall;
+
 };

@@ -62,8 +62,8 @@ void CObjGoalBlock::Draw()
 
 
 	src.m_top = 0.0f;
-	src.m_left = 256.0f;
-	src.m_right = 320.0f;
+	src.m_left = 320.0f;
+	src.m_right = 384.0f;
 	src.m_bottom = 64.0f;
 
 	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é

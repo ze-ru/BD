@@ -137,6 +137,8 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"Boss1.png", 14, TEX_SIZE_512);
 	Draw::LoadImageW(L"Shop.png", 15, TEX_SIZE_512);
 	Draw::LoadImageW(L"Boss2.png", 16, TEX_SIZE_512);
+	Draw::LoadImageW(L"StageClear.png", 17, TEX_SIZE_512);
+	Draw::LoadImageW(L"Number.png", 18, TEX_SIZE_512);
 	Audio::LoadAudio(0, L"stage1.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
 
@@ -149,7 +151,7 @@ void CSceneStage1::InitScene()
 		CObjBlock*objb = new CObjBlock(map, mapnum);
 		Objs::InsertObj(objb, OBJ_BLOCK, 2);
 		CObjStage1Clear *objc = new CObjStage1Clear();
-		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 2);
+		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 		//音楽情報の読み込み
 		
 		float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
@@ -160,7 +162,7 @@ void CSceneStage1::InitScene()
 		CObjBlock*objb = new CObjBlock(map2, mapnum);
 		Objs::InsertObj(objb, OBJ_BLOCK, 2);
 		CObjStage1Clear *objc = new CObjStage1Clear();
-		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 2);
+		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 		//音楽情報の読み込み
 		
 		float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
@@ -171,7 +173,7 @@ void CSceneStage1::InitScene()
 		CObjBlock*objb = new CObjBlock(map3, mapnum);
 		Objs::InsertObj(objb, OBJ_BLOCK, 2);
 		CObjStage1Clear *objc = new CObjStage1Clear();
-		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 2);
+		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 	}
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
@@ -180,7 +182,7 @@ void CSceneStage1::InitScene()
 	
 
 	CObjStageUi*objui = new CObjStageUi();
-	Objs::InsertObj(objui, OBJ_STAGEUI, 30);
+	Objs::InsertObj(objui, OBJ_STAGEUI, 50);
 
 	
 

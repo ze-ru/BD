@@ -13,7 +13,7 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-	int SetScore() { score += 100; }//スコア関数
+	void SetScore() { score += 100; }//スコア関数
 	void Setdead() { deadflag = true; }
 private:
 	bool key;
@@ -21,4 +21,5 @@ private:
 	int time;
 	int count;
 	bool deadflag;
+	int scorecount;
 };
