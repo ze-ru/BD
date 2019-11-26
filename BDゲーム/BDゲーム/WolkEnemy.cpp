@@ -117,7 +117,7 @@ void CObjWolkEnemy::Action()
    	m_ex += m_vx;
 	m_ey += m_vy ;
 
-	//ブロック情報を持ってくる
+	//主人公の位置で向き変更
 	
 		if (m_ex > objh->GetX() - pb->GetScroll())
 		{

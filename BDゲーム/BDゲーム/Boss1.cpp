@@ -91,37 +91,23 @@ void CObjBoss1::Action()
 		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
 	}
 	}
+
 	pb->BlockBossHit(&m_ex, &m_ey, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
-	
-		m_vy += 4.0 / (20.0f);
-	switch (time)
-	{
-	case 100:
-	{
-			m_vy = -10.5;
-	}
-	case 200:
-	{
-			m_vy = -10.5;
-	}
-	case 300:
-	{
-			m_vy = -10.5;
-	}
-	}
-	if (time == 300)
-		time = 0;
-	
-	
-	
 
-	
+	    //Ž©—R—Ž‰º
+		m_vy += 5.0 / (20.0f);
 
-
-	
-	
+		if (time%100==0)
+		{
+			if (m_hit_down == true)
+			{
+				if (m_vy >= 0)
+					m_vy = -20.5;
+			}
+			
+		}
 	
 	
 	m_ex += m_vx;
