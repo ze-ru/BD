@@ -5,16 +5,19 @@
 using namespace GameL;
 
 //オブジェクト：主人公
-class CObjStageUi :public CObj
+class CObjDamege :public CObj
 {
 public:
-	CObjStageUi() {};
-	~CObjStageUi() {};
+	CObjDamege(int dm,float x,float y);
+	~CObjDamege() {};
 	void Init();
 	void Action();
 	void Draw();
-	void GetScore(int enscore) { score += enscore; }
 private:
+	int dam;
+	int hit_time;
+	float m_px;
+	float m_py;
+	int size;
 
-	int score;
 };

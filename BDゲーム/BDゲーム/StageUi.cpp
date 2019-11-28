@@ -14,10 +14,6 @@ using namespace GameL;
 void CObjStageUi::Init()
 {
 	score = 0;
-	tall = 0;
-	hit_time = 0;
-	hit = false;
-	dam = 0;
 }
 
 //ƒAƒNƒVƒ‡ƒ“
@@ -41,26 +37,5 @@ void CObjStageUi::Draw()
 
 	Font::StrDraw(str, 650, 10, 20, c);
 
-	if (hit == true)
-	{
-		int size = 0;
-		size++;
-		hit_time++;
-		wchar_t str2[50];
-		if (hit_time < 50)
-		{
-			swprintf_s(str2, L"%d", dam);
-
-			Font::StrDraw(str2, m_px + pb->GetScroll() - 20.0f, m_py+size, 20, c);
-
-		}
-		if (hit_time > 50)
-		{
-			dam = 0;
-			hit_time = 0;
-			hit = false;
-			m_px = 0;
-			m_py = 0;
-		}
-	}
+	
 }

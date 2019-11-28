@@ -165,6 +165,9 @@
     <ClCompile Include="GoalBlock.cpp">
       <Filter>ソース ファイル\chara</Filter>
     </ClCompile>
+    <ClCompile Include="damage.cpp">
+      <Filter>ソース ファイル\map1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -298,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="GoalBlock.h">
       <Filter>ソース ファイル\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="damege.h">
+      <Filter>ソース ファイル\map1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
