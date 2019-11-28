@@ -30,4 +30,3 @@ private:
 	int m_posy;
 	int m_posx;
 };
-bool UnitVec(float *vx, float *vy);
