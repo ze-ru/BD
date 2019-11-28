@@ -36,4 +36,5 @@ private:
 
 	int jamptime;
 
+	bool moveflag;
 };
