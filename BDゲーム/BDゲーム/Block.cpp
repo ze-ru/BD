@@ -89,17 +89,26 @@ void CObjBlock::Action()
 			{
 				CObjSwitch*objS = new CObjSwitch(lx*64.0f, i*64.0f - 64.0f);
 				Objs::InsertObj(objS, OBJ_SWITCH, 15);
+				/*CObjHeal*objHeal = new CObjHeal(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objHeal, OBJ_HEAL, 15);*/
 				m_map[i][lx] = 0;
 			}
 
 			//BossBlockçÏê¨
 			if (m_map[i][lx] == 14)
 			{
-				/*CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
+				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
 				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
-				m_map[i][lx] = 0;*/
+				m_map[i][lx] = 0;
 			}
+			if (m_map[i][lx] == 18)
+			{
+				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
 
+				//ìGèoåªèÍèäÇ0Ç…Ç∑ÇÈ
+				m_map[i][lx] = 0;
+			}
 			if (m_map[i][lx] == 20)
 			{
 				CObjShopOBJ*objshop = new CObjShopOBJ(lx*64.0f, i*64.0f - 64.0f);
