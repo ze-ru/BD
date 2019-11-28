@@ -61,18 +61,26 @@ void CObjLockEnemy::Action()
 			&m_vx, &m_vy);
 	
 	}
+
+	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
        	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
 		if (m_hp > 0)
-		m_hp -= 30;
+			m_hp -= 30;
+		ui->setdm(30);
 		hit_flag = true;
+		ui->hitflag(hit_flag);
+		ui->setpos(m_ex, m_ey);
 	}
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
 	{
 		if (m_hp > 0)
-		m_hp -= 5;
+			m_hp -= 5;
+		ui->setdm(5);
 		hit_flag = true;
+		ui->hitflag(hit_flag);
+		ui->setpos(m_ex, m_ey);
 	}
 	if (hit_flag == true)
 	{

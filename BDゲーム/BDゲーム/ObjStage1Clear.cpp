@@ -63,7 +63,11 @@ void CObjStage1Clear::Draw()
 		//
 		Draw::Draw(17, &src, &dst, c, 1.0f);
 
-		
+		wchar_t str[50];
+
+		swprintf_s(str, L"%d", score);
+
+		Font::StrDraw(str, 64.0f * 153 +pb->GetScroll() , 380, 100, c);
 		
 
 
