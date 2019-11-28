@@ -119,14 +119,16 @@ void CObjBoss2::Action()
 	{
 		if (m_hp > 0)
 			m_hp -= 30;
-		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(30, m_ex, m_ey);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
 	}
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
 	{
 		if (m_hp > 0)
 			m_hp -= 5;
-		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
 	}
 

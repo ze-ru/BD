@@ -104,19 +104,15 @@ void CObjFlyEnemy::Action()
 	{
 		if (m_hp > 0)
 		m_hp -= 30;
-		ui->setdm(30);
-		hit_flag = true;
-		ui->hitflag(hit_flag);
-		ui->setpos(m_px, m_py);
+		CObjDamege*dm = new CObjDamege(30, m_px, m_py);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 	}
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
 	{
 		if (m_hp > 0)
 			m_hp -= 5;
-		ui->setdm(5);
-		hit_flag = true;
-		ui->hitflag(hit_flag);
-		ui->setpos(m_px, m_py);
+		CObjDamege*dm = new CObjDamege(5, m_px, m_py);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 	}
 	if (hit_flag == true)
 	{
