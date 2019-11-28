@@ -148,6 +148,7 @@
     <ClCompile Include="ObjStage1Clear.cpp" />
     <ClCompile Include="ObjStage2Clear.cpp" />
     <ClCompile Include="Objstageselect.cpp" />
+    <ClCompile Include="Rifle.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="LockEnemy.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="ObjStage2Clear.h" />
     <ClInclude Include="Objstageselect.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="Rifle.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneShop.h" />
     <ClInclude Include="SceneStage1.h" />
