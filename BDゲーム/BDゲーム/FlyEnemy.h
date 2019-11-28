@@ -35,4 +35,7 @@ private:
 	int score;
 
 	int m_time_hit;
+
+	int dm;
+	bool hit;
 };
