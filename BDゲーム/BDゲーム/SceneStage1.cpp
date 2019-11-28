@@ -40,12 +40,12 @@ void CSceneStage1::InitScene()
 	int size;//ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"stage1.csv", &size);//外部データ読み込み
 
-	int map[11][157];
+	int map[11][302];
 	int count = 1;
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 302; j++)
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
@@ -69,12 +69,12 @@ void CSceneStage1::InitScene()
 	int size2;//ステージ情報の大きさ
 	p2 = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
 
-	int map2[11][157];
+	int map2[11][302];
 	int count2 = 1;
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 302; j++)
 		{
 			int w = 0;
 			swscanf_s(&p2.get()[count2], L"%d", &w);
@@ -93,7 +93,7 @@ void CSceneStage1::InitScene()
 		}
 	}
 
-	unique_ptr<wchar_t>p3;//ステージ情報ポインター
+/*	unique_ptr<wchar_t>p3;//ステージ情報ポインター
 	int size3;//ステージ情報の大きさ
 	p3 = Save::ExternalDataOpen(L"stage3.csv", &size3);//外部データ読み込み
 
@@ -120,7 +120,7 @@ void CSceneStage1::InitScene()
 			}
 		}
 	}
-	
+	*/
 	//グラフィック読み込み
 	Draw::LoadImageW(L"Stage1.png", 0, TEX_SIZE_512);
 	Draw::LoadImageW(L"Back.png", 10, TEX_SIZE_512);
@@ -172,13 +172,13 @@ void CSceneStage1::InitScene()
 		float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
 		Audio::Start(0);//音楽スタート
 	}
-	if (mapnum == 9)
+	/*if (mapnum == 9)
 	{
 		CObjBlock*objb = new CObjBlock(map3, mapnum);
 		Objs::InsertObj(objb, OBJ_BLOCK, 2);
 		CObjStage1Clear *objc = new CObjStage1Clear();
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
-	}
+	}*/
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero();
 	Objs::InsertObj(obj, OBJ_HERO, 10);
