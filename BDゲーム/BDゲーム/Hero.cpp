@@ -41,6 +41,8 @@ void CObjHero::Init()
 	m_dead_flag = false;
 	bullet_count = 0;
 	m_time_bullet = 0;
+	wp = 1;
+	bullet = 30;
 	//“–‚½‚è”»’è—p‚ÌHitBox‚ğì¬
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
@@ -79,6 +81,7 @@ void CObjHero::Action()
 				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 				&m_vx, &m_vy);
 		
+			
 			//“G‚Æ“–‚½‚Á‚Ä‚¢‚é‚©Šm”F
 	
 		if (m_y_num < 100)
@@ -167,34 +170,49 @@ void CObjHero::Action()
 					m_attack = true;
 				}
 			}
-			if (Input::GetVKey('C') == true)
+			if (wp == 1)
 			{
-				
-					m_time_bullet++;
-					if (m_time_bullet > 10)
+				if (Input::GetVKey('C') == true)
+				{
+					if (bullet > 0)
 					{
-						if (flag == false)
+						m_time_bullet++;
+						if (m_time_bullet > 10)
 						{
-							CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() + 62.0f, m_py);
-							Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
-						}
-						if (flag == true)
-						{
-							CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() -2.0f, m_py);
-							Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+							if (flag == false)
+							{
+								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() + 62.0f, m_py);
+								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+								bullet--;
+							}
+							if (flag == true)
+							{
+								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() - 2.0f, m_py);
+								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+								bullet--;
+							}
+
+							m_time_bullet = 0;
 						}
 						
-						m_time_bullet = 0;
 					}
-				
+				}
 			}
-			if (bullet_count >= 3)
+			if (wp == 2)
 			{
-				m_time_bullet++;
-				if (m_time_bullet > 100)
-					bullet_count = 0;
-			}
+				if (Input::GetVKey('C') == true)
+				{
 
+				}
+			}
+			if (wp == 3)
+			{
+				if (Input::GetVKey('C') == true)
+				{
+
+				}
+			}
+			
 			if (m_py > 1000.0f)
 			{
 				;

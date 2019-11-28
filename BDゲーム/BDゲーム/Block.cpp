@@ -109,11 +109,17 @@ void CObjBlock::Action()
 				//“GoŒ»êŠ‚ð0‚É‚·‚é
 				m_map[i][lx] = 0;
 			}
+			if (m_map[i][lx] == 19)
+			{
+				CObjAssault*objW = new CObjAssault(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objW, OBJ_ASSAULT, 15);
+
+				//“GoŒ»êŠ‚ð0‚É‚·‚é
+				m_map[i][lx] = 0;
+			}
 			if (m_map[i][lx] == 20)
 			{
-				CObjShopOBJ*objshop = new CObjShopOBJ(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objshop, OBJ_SHOPOBJ, 2);
-				m_map[i][lx] = 0;
+				
 			}
 
 			if (m_map[i][lx] == 41)
@@ -385,7 +391,7 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 			if (m_map[i][j] > 0)
 			{
 				//—v‘f”Ô†‚ðÀ•W‚É•ÏX
-				float bx = j * 64.0f ;
+				float bx = j * 64.0f;
 				float by = i * 64.0f - 192.0f;
 				bool flag = false;
 				//ƒXƒNƒ[ƒ‹‚Ì‰e‹¿
@@ -445,7 +451,7 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 						else if (r > 225 && r < 315)
 						{
 							*up = true;
-							*y = by + 64.0f;
+							*y = by + 196.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
