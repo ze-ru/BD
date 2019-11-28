@@ -142,6 +142,10 @@ void CSceneStage1::InitScene()
 	Audio::LoadAudio(0, L"stage1.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
 
+	Draw::LoadImageW(L"Weapon.png", 19, TEX_SIZE_512);
+
+
+
 
 	
 	CObjStage1*objs1 = new CObjStage1(map_flag);
