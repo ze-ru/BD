@@ -49,7 +49,7 @@ void CObjBossBlock::Action()
 	hvy = hero->GetVY();
 
 	//ŽålŒö‚ªˆê’è”ÍˆÍ‚É“ü‚é‚Æ“–‚½‚è”»’èŽÀs
-	if ((hero->GetX() - block->GetScroll()) > 9470 || bossflag == true)
+	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
 		if ((hx + 64.0f > m_bx) && (hx < m_bx + 64.0f) && (hy + 64.0f > m_by) && (hy < m_by + 64.0f))
 		{
@@ -124,7 +124,7 @@ void CObjBossBlock::Draw()
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if ((hero->GetX() - block->GetScroll()) > 9470 || bossflag == true)
+	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();

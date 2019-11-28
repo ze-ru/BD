@@ -39,7 +39,7 @@ class CObjHero :public CObj
 		if (flag == false)
 			return false;
 	};
-
+	void SetHP(int i_hp) { m_hp = i_hp; }
   private:
 	  float m_px;//ˆÊ’u
 	  float m_py;
