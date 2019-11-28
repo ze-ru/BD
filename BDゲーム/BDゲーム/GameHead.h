@@ -31,6 +31,8 @@ enum OBJ_NAME
 	OBJ_HEROASSULTBULLET,
 	OBJ_GOAL_BLOCK,
 	OBJ_DAMEGE,
+	OBJ_ASSAULT,
+	OBJ_SWORD,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -114,6 +116,8 @@ struct UserData
 #include"ObjAttack.h"
 
 #include"AssaultBullet.h"
+#include"Assault.h"
+#include"Sword.h"
 
 
 #include"Objstageselect.h"

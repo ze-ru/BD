@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assault.cpp" />
     <ClCompile Include="AssaultBullet.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Boss1.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="SceneStage1.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="ShopOBJ.cpp" />
+    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="stageselect.cpp" />
     <ClCompile Include="StageUi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -164,6 +166,7 @@
     <ClCompile Include="WolkEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assault.h" />
     <ClInclude Include="AssaultBullet.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Boss1.h" />
@@ -204,6 +207,7 @@
     <ClInclude Include="SceneStage1.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="ShopOBJ.h" />
+    <ClInclude Include="Sword.h" />
     <ClInclude Include="stageselect.h" />
     <ClInclude Include="StageUi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
