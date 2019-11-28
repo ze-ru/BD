@@ -49,21 +49,17 @@ void CObjWolkEnemy::Init()
 //
 void CObjWolkEnemy::Action()
 {
+
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	CHitBox*hit = Hits::GetHitBox(this);
 	if (m_hp > 0)
 	{
-
-
 		//通常速度
 		m_speed_power = 0.1f;
 		m_ani_max_time = 6;
-
-		CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
-		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-		CHitBox*hit = Hits::GetHitBox(this);
-
-
 
 		//ブロック衝突で向き変更(仮)
 		/*if (m_hit_left == true)
@@ -181,6 +177,7 @@ void CObjWolkEnemy::Action()
 
 	if (m_hp <= 0)
 	{
+		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 		m_time++;
 		if (m_time > 10 && m_time < 20)
 		{
