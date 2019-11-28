@@ -430,8 +430,6 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 							*down = true;
 							*y = by - 64.0f;
 							*vy = 0.0f;
-
-
 						}
 
 						//‰º

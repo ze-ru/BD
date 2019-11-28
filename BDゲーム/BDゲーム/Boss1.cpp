@@ -34,6 +34,8 @@ void CObjBoss1::Init()
 	attacktime = 0;
 	dead_flag = false;
 	time2 = 0;
+
+	jamptime = 0;
 }
 
 //
@@ -99,7 +101,9 @@ void CObjBoss1::Action()
 	    //Ž©—R—Ž‰º
 		m_vy += 5.0 / (20.0f);
 
-		if (time%100==0)
+		/*jamptime++;
+
+		if (jamptime%100==0)
 		{
 			if (m_hit_down == true)
 			{
@@ -107,7 +111,7 @@ void CObjBoss1::Action()
 					m_vy = -10.5;
 			}
 			
-		}
+		}*/
 	
 	
 	m_ex += m_vx;
