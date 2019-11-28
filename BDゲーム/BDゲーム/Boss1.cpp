@@ -98,8 +98,8 @@ void CObjBoss1::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
 
-	    //Ž©—R—Ž‰º
-		m_vy += 5.0 / (20.0f);
+	//Ž©—R—Ž‰º
+	m_vy += 5.0 / (20.0f);
 
 	
 	m_ex += m_vx;
