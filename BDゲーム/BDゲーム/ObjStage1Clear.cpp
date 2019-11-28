@@ -54,7 +54,7 @@ void CObjStage1Clear::Draw()
 
 		
 			dst.m_top = 0.0f;
-			dst.m_left = 64.0f*145 + pb->GetScroll();
+			dst.m_left = 64.0f*288 + pb->GetScroll();
 			dst.m_right = dst.m_left+800.0f;
 			dst.m_bottom = 600.0f;
 		
@@ -67,7 +67,7 @@ void CObjStage1Clear::Draw()
 
 		swprintf_s(str, L"%d", score);
 
-		Font::StrDraw(str, 64.0f * 153 +pb->GetScroll() , 380, 100, c);
+		Font::StrDraw(str, 64.0f * 296 +pb->GetScroll() , 380, 100, c);
 		
 
 

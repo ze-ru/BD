@@ -34,20 +34,23 @@ void CObjBoss1::Init()
 	attacktime = 0;
 	dead_flag = false;
 	time2 = 0;
+
+	moveflag = false;//âEå¸Ç´ = true,ç∂å¸Ç´ = false;
 }
 
 //
 void CObjBoss1::Action()
 {
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
 	if(time<300)
 	time2++;
 	time++;
 
+
 	if (time > 0 && time < 150)
 	{
-		m_vx = -1.0f;
 		if (time > 0 && time < 100)
 		{
 			attacktime++;
@@ -61,7 +64,6 @@ void CObjBoss1::Action()
 	}
 	if (time > 150 && time < 300)
 	{
-		m_vx = 1.0f;
 		if (time > 150 && time < 250)
 		{
 			attacktime++;
@@ -99,19 +101,23 @@ void CObjBoss1::Action()
 	    //é©óRóéâ∫
 		m_vy += 5.0 / (20.0f);
 
-		if (time%100==0)
-		{
-			if (m_hit_down == true)
-			{
-				if (m_vy >= 0)
-					m_vy = -20.5;
-			}
-			
-		}
-	
 	
 	m_ex += m_vx;
 	m_ey += m_vy;
+
+
+
+	if (m_ex > objh->GetX() - pb->GetScroll())
+	{
+		moveflag = true;
+		m_vx = 1.0f;
+	}
+
+	if (m_ex < objh->GetX() - pb->GetScroll())
+	{
+		moveflag = false;
+		m_vx = -1.0f;
+	}
 
 	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 
@@ -173,7 +179,6 @@ void CObjBoss1::Draw()
 	RECT_F src;
 	RECT_F dst;
 
-
 	src.m_top = 32.0f;
 	src.m_left = 0.0f;
 	src.m_right = 256.0f;
@@ -181,11 +186,18 @@ void CObjBoss1::Draw()
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if (hit_flag == false)
+	if (hit_flag == false && moveflag == true)
 	{
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + pb->GetScroll();
 		dst.m_right = m_ex + 256.0f + pb->GetScroll();
+		dst.m_bottom = m_ey + 192.0f;
+	}
+	else if (hit_flag == false && moveflag == false)
+	{
+		dst.m_top = m_ey;
+		dst.m_left = m_ex + 256.0f + pb->GetScroll();
+		dst.m_right = m_ex + pb->GetScroll();
 		dst.m_bottom = m_ey + 192.0f;
 	}
 

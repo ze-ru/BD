@@ -11,10 +11,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjBlock::CObjBlock(int map[11][157],int mapnum)
+CObjBlock::CObjBlock(int map[11][300],int mapnum)
 {
 	//マップデータをコピー
-	memcpy(m_map, map, sizeof(int)*(11* 157));
+	memcpy(m_map, map, sizeof(int)*(11* 300));
 	map_num = mapnum;
 }
 //イニシャライズ
@@ -89,17 +89,26 @@ void CObjBlock::Action()
 			{
 				CObjSwitch*objS = new CObjSwitch(lx*64.0f, i*64.0f - 64.0f);
 				Objs::InsertObj(objS, OBJ_SWITCH, 15);
+				/*CObjHeal*objHeal = new CObjHeal(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objHeal, OBJ_HEAL, 15);*/
 				m_map[i][lx] = 0;
 			}
 
 			//BossBlock作成
 			if (m_map[i][lx] == 14)
 			{
-				/*CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
+				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
 				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
-				m_map[i][lx] = 0;*/
+				m_map[i][lx] = 0;
 			}
+			if (m_map[i][lx] == 18)
+			{
+				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
 
+				//敵出現場所を0にする
+				m_map[i][lx] = 0;
+			}
 			if (m_map[i][lx] == 20)
 			{
 				CObjShopOBJ*objshop = new CObjShopOBJ(lx*64.0f, i*64.0f - 64.0f);
@@ -127,7 +136,7 @@ void CObjBlock::Action()
 
 		for (int i = 0; i < 11; i++)
 		{
-			for (int j = 0; j < 157; j++)
+			for (int j = 0; j < 300; j++)
 			{
 				if (m_map[i][j] == 13)
 				{
@@ -164,7 +173,7 @@ void CObjBlock::Draw()
 
 		for (int i = 0; i < 11; i++)
 		{
-			for (int j = 0; j < 157; j++)
+			for (int j = 0; j < 300; j++)
 			{
 				if (m_map[i][j] > 0)
 				{
@@ -251,7 +260,7 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 300; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map[i][j] > 0 && m_map[i][j]!=14)
@@ -344,7 +353,7 @@ void CObjBlock::SetBlock(int flag)
 {
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 300; j++)
 		{
 			if (flag == 1)
 			{
@@ -370,7 +379,7 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 300; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map[i][j] > 0)
@@ -430,8 +439,6 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 							*down = true;
 							*y = by - 64.0f;
 							*vy = 0.0f;
-
-
 						}
 
 						//下
@@ -466,7 +473,7 @@ void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *do
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 300; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map[i][j] > 0)

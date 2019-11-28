@@ -48,7 +48,10 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-
+	if (m_hp < 0)
+	{
+		m_hp = 0;
+	}
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -203,25 +206,31 @@ void CObjHero::Action()
 			//キーの入力方向
 			if (Input::GetVKey(VK_RIGHT) == true)//右
 			{
-				m_vx = +15.0f;
+				m_vx = +5.0f;
 				m_posture = 0.0f;
 				m_ani_time += 1;
-
+				if (Input::GetVKey('M') == true)
+				{
+					m_vx = +30;
+				}
 				flag = false;
 			}
 
 			else if (Input::GetVKey(VK_LEFT) == true)//左
 			{
-				m_vx = -15.0f;
+				m_vx = -5.0f;
 				m_posture = 1.0f;
 				m_ani_time += 1;
-
+				if (Input::GetVKey('M') == true)
+				{
+					m_vx = -30;
+				}
 				flag = true;
 			}
 
-
-
 			
+
+
 
 			//摩擦
 			m_vx += -(m_vx*0.098);
@@ -275,7 +284,7 @@ void CObjHero::Action()
 				if (m_hit_down == true)
 				{
 					if (m_vy >= 0)
-						m_vy = -15.5;
+						m_vy = -10.5;
 
 				}
 			}
@@ -412,7 +421,7 @@ void CObjHero::Draw()
 
 	dst.m_top = 4.0f;
 	dst.m_left = 4.0f;
-	dst.m_right = 256.0f - m_hp*5.0f;
+	dst.m_right = 252.0f - m_hp*5.04f;
 	dst.m_bottom = 44.0f;
 
 	Draw::Draw(5, &src, &dst, c, 0.0f);

@@ -49,76 +49,80 @@ void CObjWolkEnemy::Init()
 //
 void CObjWolkEnemy::Action()
 {
-	//通常速度
-	m_speed_power = 0.1f;
-	m_ani_max_time = 6;
-
-	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	
-	CHitBox*hit = Hits::GetHitBox(this);
-	
-	
-
-	//ブロック衝突で向き変更(仮)
-	/*if (m_hit_left == true)
+	if (m_hp > 0)
 	{
-		m_move = false;
-	}
-	if (m_hit_right == true)
-	{
-		m_move = true;
-	}*/
 
-	//方向
-	if (m_move==true)
-	{
-		m_vx += m_speed_power;
-		m_posture = 1.0f;
-		m_ani_time += 1;
-		
-	}
-	if (m_move==false)
-	{
-		m_vx -= m_speed_power;
-		m_posture = 0.0f;
-		m_ani_time += 1;
-	}
 
-	if (m_ani_time > m_ani_max_time)
-	{
-		m_ani_frame += 1;
-		m_ani_time = 0;
-	}
+		//通常速度
+		m_speed_power = 0.1f;
+		m_ani_max_time = 6;
 
-	if (m_ani_frame == 4)
-	{
-		m_ani_frame = 0;
-	}
-	if (m_hit_down == true)
-	{
-		m_vy = 0;
-	}
-	//摩擦
-	m_vx += -(m_vx*0.098);
+		CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-	//自由落下
-	m_vy += 9.8f / (16.0f);
+		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
-	{
-		m_vx *= -1;
-	}
+		CHitBox*hit = Hits::GetHitBox(this);
 
 
 
-	//位置の更新
-   	m_ex += m_vx;
-	m_ey += m_vy ;
+		//ブロック衝突で向き変更(仮)
+		/*if (m_hit_left == true)
+		{
+			m_move = false;
+		}
+		if (m_hit_right == true)
+		{
+			m_move = true;
+		}*/
 
-	//主人公の位置で向き変更
-	
+		//方向
+		if (m_move == true)
+		{
+			m_vx += m_speed_power;
+			m_posture = 1.0f;
+			m_ani_time += 1;
+
+		}
+		if (m_move == false)
+		{
+			m_vx -= m_speed_power;
+			m_posture = 0.0f;
+			m_ani_time += 1;
+		}
+
+		if (m_ani_time > m_ani_max_time)
+		{
+			m_ani_frame += 1;
+			m_ani_time = 0;
+		}
+
+		if (m_ani_frame == 4)
+		{
+			m_ani_frame = 0;
+		}
+		if (m_hit_down == true)
+		{
+			m_vy = 0;
+		}
+		//摩擦
+		m_vx += -(m_vx*0.098);
+
+		//自由落下
+		m_vy += 9.8f / (16.0f);
+
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+		{
+			m_vx *= -1;
+		}
+
+
+
+		//位置の更新
+		m_ex += m_vx;
+		m_ey += m_vy;
+
+		//主人公の位置で向き変更
+
 		if (m_ex > objh->GetX() - pb->GetScroll())
 		{
 			m_move = false;
@@ -129,58 +133,66 @@ void CObjWolkEnemy::Action()
 			m_move = true;
 
 		}
-	
-	//HitBoxの内容を更新
-	
+
+		//HitBoxの内容を更新
+
 		pb->BlockHit(&m_ex, &m_ey, false,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
-	
-	
-	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-	
 
 
-	
-	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
-	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
-	{
-		if (m_hp > 0)
-			m_hp -= 30;
-		CObjDamege*dm = new CObjDamege(30, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
-	{
-		if (m_hp > 0)
-			m_hp -= 5;
-		CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit_flag == true)
-	{
-		m_time_hit++;
-		if (m_time_hit > 20)
+		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+
+
+
+
+		CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+		if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 		{
-			hit_flag = false;
-			m_time_hit = 0;
+			if (m_hp > 0)
+				m_hp -= 30;
+			CObjDamege*dm = new CObjDamege(30, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
+		{
+			if (m_hp > 0)
+				m_hp -= 5;
+			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit_flag == true)
+		{
+			m_time_hit++;
+			if (m_time_hit > 20)
+			{
+				hit_flag = false;
+				m_time_hit = 0;
+			}
+
 		}
 
+		if (Input::GetVKey('S') == true)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		}
 	}
+
 	if (m_hp <= 0)
 	{
 		m_time++;
-		if (m_time >10&&m_time<20)
+		if (m_time > 10 && m_time < 20)
 		{
-			if(m_move==false)
-			m_dead += 1.0f;
+			if (m_move == false)
+				m_dead += 1.0f;
 			if (m_move == true)
 				m_dead -= 1.0f;
 		}
-		if(m_time==50)
+		if (m_time == 50)
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
-			
+
 			s1c->SetScore();
 			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 
@@ -189,12 +201,6 @@ void CObjWolkEnemy::Action()
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
 	}
-	if (Input::GetVKey('S') == true)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
-	
 }
 
 //

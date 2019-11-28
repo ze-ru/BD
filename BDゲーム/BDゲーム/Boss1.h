@@ -34,4 +34,7 @@ private:
 	bool dead_flag;
 	int time2;
 
+	int jamptime;
+
+	bool moveflag;
 };
