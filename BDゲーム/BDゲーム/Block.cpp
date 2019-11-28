@@ -391,7 +391,7 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 			if (m_map[i][j] > 0)
 			{
 				//要素番号を座標に変更
-				float bx = j * 64.0f ;
+				float bx = j * 64.0f;
 				float by = i * 64.0f - 192.0f;
 				bool flag = false;
 				//スクロールの影響
@@ -451,7 +451,7 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 						else if (r > 225 && r < 315)
 						{
 							*up = true;
-							*y = by + 64.0f;
+							*y = by + 196.0f;
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
