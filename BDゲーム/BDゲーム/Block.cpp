@@ -109,11 +109,17 @@ void CObjBlock::Action()
 				//ìGèoåªèÍèäÇ0Ç…Ç∑ÇÈ
 				m_map[i][lx] = 0;
 			}
+			if (m_map[i][lx] == 19)
+			{
+				CObjAssault*objW = new CObjAssault(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objW, OBJ_ASSAULT, 15);
+
+				//ìGèoåªèÍèäÇ0Ç…Ç∑ÇÈ
+				m_map[i][lx] = 0;
+			}
 			if (m_map[i][lx] == 20)
 			{
-				CObjShopOBJ*objshop = new CObjShopOBJ(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objshop, OBJ_SHOPOBJ, 2);
-				m_map[i][lx] = 0;
+				
 			}
 
 			if (m_map[i][lx] == 41)

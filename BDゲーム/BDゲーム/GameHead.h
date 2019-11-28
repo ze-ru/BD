@@ -64,6 +64,7 @@ enum HIT_ELEMENTS
 	ELEMENT_SHOP,
 	ELEMENT_HEROASSULTBULLET,
 	ELEMENT_ENEMY_BULLET,
+	ELEMENT_ASSAULT,
 };
 //------------------------------------------------
 
