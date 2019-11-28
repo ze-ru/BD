@@ -11,10 +11,10 @@
 //使用するネームスペース
 using namespace GameL;
 
-CObjBlock::CObjBlock(int map[11][157],int mapnum)
+CObjBlock::CObjBlock(int map[11][302],int mapnum)
 {
 	//マップデータをコピー
-	memcpy(m_map, map, sizeof(int)*(11* 157));
+	memcpy(m_map, map, sizeof(int)*(11* 302));
 	map_num = mapnum;
 }
 //イニシャライズ
@@ -127,7 +127,7 @@ void CObjBlock::Action()
 
 		for (int i = 0; i < 11; i++)
 		{
-			for (int j = 0; j < 157; j++)
+			for (int j = 0; j < 302; j++)
 			{
 				if (m_map[i][j] == 13)
 				{
@@ -164,7 +164,7 @@ void CObjBlock::Draw()
 
 		for (int i = 0; i < 11; i++)
 		{
-			for (int j = 0; j < 157; j++)
+			for (int j = 0; j < 302; j++)
 			{
 				if (m_map[i][j] > 0)
 				{
@@ -251,7 +251,7 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 302; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map[i][j] > 0 && m_map[i][j]!=14)
@@ -344,7 +344,7 @@ void CObjBlock::SetBlock(int flag)
 {
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 302; j++)
 		{
 			if (flag == 1)
 			{
@@ -370,7 +370,7 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 302; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map[i][j] > 0)
@@ -466,7 +466,7 @@ void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *do
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 157; j++)
+		for (int j = 0; j < 302; j++)
 		{
 			//m_mapの全要素にアクセス
 			if (m_map[i][j] > 0)
