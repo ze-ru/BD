@@ -8,6 +8,11 @@
 
 //使用するネームスペース
 using namespace GameL;
+CObjGameOver::CObjGameOver(int x, int y)
+{
+	mapflag = x;
+	mapnum = y;
+}
 
 //イニシャライズ
 void CObjGameOver::Init()
@@ -42,7 +47,7 @@ void CObjGameOver::Action()
 	{
 		if (m_key_flag == true)
 		{
-			Scene::SetScene(new CSceneStage1(11,0));
+			Scene::SetScene(new CSceneStage1(mapflag,mapnum));
 			m_key_flag = false;
 		}
 	}

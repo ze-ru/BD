@@ -15,48 +15,25 @@ using namespace GameL;
 //イニシャライズ
 void CObjTitle::Init()
 {
-	m_mou_x = 0.0f;
-	m_mou_y = 0.0f;
-	m_mou_r = false;
-	m_mou_l = false;
-	m_key_flag = false;//キーフラグ
-	key = true;
-
-	
+	time = 0;
 }
 
 //アクション
 void CObjTitle::Action()
 {
-	if (Input::GetVKey(VK_UP) == true)
+	time++;
+	if (time >= 10)
 	{
-		key = true;
-	}
-	if (Input::GetVKey(VK_DOWN) == true)
-	{
-		key = false;
-	}
+		if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey(' ') == false)
+		{
 
-	if (Input::GetVKey(VK_RETURN) == true && key == false)
-	{
-		
-		if (m_key_flag == true)
-		{
-			Scene::SetScene(new CSceneStage1(11,0));
-			m_key_flag = false;
+			Scene::SetScene(new CSceneGamerule());
 		}
-	}
-	if (Input::GetVKey(VK_RETURN) == true && key == true)
-	{
-		if (m_key_flag == true)
+		if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey(' ') == true)
 		{
-	
-			m_key_flag = false;
+			Scene::SetScene(new CSceneStage1(12, 8));
 		}
-	}
-	else
-	{
-		m_key_flag = true;
+		time = 10;
 	}
 }
 
@@ -67,14 +44,6 @@ void CObjTitle::Draw()
 
 
 	Font::StrDraw(L"L O S T", 85, 70, 180, c);
-	if (key == true)
-	{
-		Font::StrDraw(L"▶はじめから", 125, 320, 80, c);
-		Font::StrDraw(L" つづきから", 160, 450, 80, c);
-	}
-	if (key == false)
-	{
-		Font::StrDraw(L" はじめから", 165, 320, 80, c);
-		Font::StrDraw(L"▶つづきから", 120, 450, 80, c);
-	}
+	
+		Font::StrDraw(L"START:EnterKey", 110, 400, 80, c);
 }

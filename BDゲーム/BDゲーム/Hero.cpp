@@ -41,8 +41,9 @@ void CObjHero::Init()
 	m_dead_flag = false;
 	bullet_count = 0;
 	m_time_bullet = 0;
-	wp = 1;
-	bullet = 30;
+	wp = 2;
+	bullet = 10;
+	bulletflag = true;
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
@@ -105,8 +106,8 @@ void CObjHero::Action()
 			{
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
-
-				Scene::SetScene(new CSceneGameOver());
+				CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
+				Scene::SetScene(new CSceneGameOver(s1->Getmapflag(),s1->Getmapnum()));
 
 			}
 		}
@@ -202,7 +203,35 @@ void CObjHero::Action()
 			{
 				if (Input::GetVKey('C') == true)
 				{
+					
+					if (bullet > 0)
+					{
+						
+						if (flag == false && bulletflag == true)
+						{
+							CObjHeroNormalBullet*objhnb = new CObjHeroNormalBullet(m_px - pb->GetScroll() + 62.0f, m_py);
+							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 10);
+							bullet--;
+							bulletflag = false;
+						}
+						if (flag == true && bulletflag == true)
+						{
+							CObjHeroNormalBullet*objhnb = new CObjHeroNormalBullet(m_px - pb->GetScroll() - 2.0f, m_py);
+							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 10);
+							bullet--;
+							bulletflag = false;
+						}
+							
+						
 
+					}
+				}
+				if (Input::GetVKey('C') == false)
+				{
+					if (bulletflag == false)
+					{
+						bulletflag = true;
+					}
 				}
 			}
 			if (wp == 3)
@@ -369,6 +398,7 @@ void CObjHero::Draw()
 
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c2[4] = { 1.0f,0.0f,1.0f,1.0f };
 
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
@@ -444,6 +474,48 @@ void CObjHero::Draw()
 
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
+	wchar_t str[50];
+
+	swprintf_s(str, L"弾数：%d", bullet);
+
+	Font::StrDraw(str, 500, 10, 20, c2);
+
+	if (wp == 1)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 192.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
+
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//
+		dst.m_top = 0.0f;
+		dst.m_left =270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top+64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
+	if (wp == 2)
+	{
+		src.m_top =-10.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//
+		dst.m_top = -10.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top+64.0f;
+
+
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
 }
 
 void CObjHero::EnemyHit(int enemynum)

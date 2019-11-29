@@ -148,7 +148,7 @@ void CSceneStage1::InitScene()
 
 
 	
-	CObjStage1*objs1 = new CObjStage1(map_flag);
+	CObjStage1*objs1 = new CObjStage1(map_flag,mapnum);
 	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
 	if (mapnum == 0)
 	{

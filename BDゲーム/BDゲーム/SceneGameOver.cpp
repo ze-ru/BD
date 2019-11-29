@@ -16,9 +16,10 @@ using namespace GameL;
 #include "GameHead.h"
 
 //コンストラクタ
-CSceneGameOver::CSceneGameOver()
+CSceneGameOver::CSceneGameOver(int mapflag,int mapnum)
 {
-
+	map_flag = mapflag;
+	map_num = mapnum;
 }
 
 //デストラクタ
@@ -38,7 +39,7 @@ void CSceneGameOver::InitScene()
 	Audio::Start(0);//音楽スタート
 
 	//ゲームオーバーオブジェクト作成
-	CObjGameOver* obj = new CObjGameOver();
+	CObjGameOver* obj = new CObjGameOver(map_flag,map_num);
 	Objs::InsertObj(obj, OBJ_GAME_OVER, 10);
 }
 

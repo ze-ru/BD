@@ -34,7 +34,8 @@ enum OBJ_NAME
 	OBJ_HEAL,
 	OBJ_ASSAULT,
 	OBJ_SWORD,
-	OBJ_RIFLE
+	OBJ_RIFLE,
+	OBJ_HERONORMALBULLET,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -65,6 +66,7 @@ enum HIT_ELEMENTS
 	ELEMENT_HEROASSULTBULLET,
 	ELEMENT_ENEMY_BULLET,
 	ELEMENT_ASSAULT,
+	ELEMENT_HERONORMALBULLET,
 };
 //------------------------------------------------
 
@@ -107,7 +109,7 @@ struct UserData
 #include"ObjStage1.h"
 #include"damege.h"
 #include"Heal.h"
-
+#include"HeroNormalBullet.h"
 #include"ObjTitle.h"
 #include"ObjGameOver.h"
 #include"StageUi.h"
@@ -138,12 +140,12 @@ struct UserData
 #include"Gamerule.h"
 #include "SceneShop.h"
 #include"WeaponShop.h"
-
+#include"SceneGameClear.h"
 #include"stageselect.h"
 
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START  stageselect
+#define SET_GAME_START  CSceneTitle
 //-----------------------------------------------

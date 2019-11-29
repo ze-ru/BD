@@ -78,6 +78,13 @@ void CObjLockEnemy::Action()
 		CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 	}
+	if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true)
+	{
+		if (m_hp > 0)
+			m_hp -= 15;
+		CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
 	if (hit_flag == true)
 	{
 		m_time++;

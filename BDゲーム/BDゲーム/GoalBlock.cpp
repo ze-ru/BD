@@ -34,20 +34,11 @@ void CObjGoalBlock::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
-		/*if (keyE == 0 && Input::GetVKey(VK_RETURN) == true)
-		{
-			Scene::SetScene(new CSceneStage1(11, 0));
-		}*/
-
-		//if (keyE == 1 && Input::GetVKey(VK_RETURN) == true)
-		//{	
+		CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
+		if(s1->Getmapnum()==0)
 			Scene::SetScene(new CSceneStage1(12, 8));
-		//}
-		/*
-		if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)
-		{
-			Scene::SetScene(new CSceneStage1(9, 13));
-		}*/
+		else
+			Scene::SetScene(new CSceneStage1(12, 8));
 	}
 	hit->SetPos(m_bx+pb->GetScroll(), m_by);
 }

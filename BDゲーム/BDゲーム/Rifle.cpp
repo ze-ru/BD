@@ -15,23 +15,28 @@ CObjRifle::CObjRifle(float x, float y)
 }
 void CObjRifle::Init()
 {
-
-	m_vx = 0.0f;
-	m_vy = 0.0f;
-	m_time = 0;
-
-	m_hit_up = false;
-	m_hit_down = false;
-	m_hit_left = false;
-	m_hit_right = false;
-	m_posy = 1;
-	m_posx = 1;
-	m_count = 0;
-	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_RIFLE, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ASSAULT, OBJ_RIFLE, 1);
 }
 void CObjRifle::Action()
 {
+	CHitBox* hit = Hits::GetHitBox(this);
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
+	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+	{
+		if (Input::GetVKey(VK_UP) == true)
+		{
+			CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
+			h->SetWeapon(2);
+			if (h->GetWeapon() == 2)
+				h->Setbulletnums(10);
+			else
+				h->Setbulletnum(10);
+			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
+			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
+		}
+	}
+	hit->SetPos(m_px + pb->GetScroll(), m_py);
 }
 void CObjRifle::Draw()
 {

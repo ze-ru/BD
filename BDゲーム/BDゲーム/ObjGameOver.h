@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjGameOver : public CObj
 {
 public:
-	CObjGameOver() {};
+	CObjGameOver(int x, int y);
 	~CObjGameOver() {};
 	void Init();    //イニシャライズ
 	void Action();  //アクション
@@ -17,4 +17,7 @@ private:
 	bool m_key_flag;//キーフラグ
 
 	bool key;
+
+	int mapflag;
+	int mapnum;
 };

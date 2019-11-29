@@ -6,11 +6,11 @@
 using namespace GameL;
 
 //オブジェクト：タイトル
-class CSceneGameOver : public CScene
+class CSceneGameClear : public CScene
 {
 public:
-	CSceneGameOver(int mapflag,int mapnum);
-	~CSceneGameOver();
+	CSceneGameClear();
+	~CSceneGameClear();
 	void InitScene();//初期化メソッド
 	void Scene();   //実行中メソッド
 private:

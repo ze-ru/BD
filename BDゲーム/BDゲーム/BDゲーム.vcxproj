@@ -140,6 +140,7 @@
     <ClCompile Include="GoalBlock.cpp" />
     <ClCompile Include="Heal.cpp" />
     <ClCompile Include="HeroAssultBullet.cpp" />
+    <ClCompile Include="HeroNormalBullet.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
     <ClCompile Include="ObjAttack.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="ObjStage2Clear.cpp" />
     <ClCompile Include="Objstageselect.cpp" />
     <ClCompile Include="Rifle.cpp" />
+    <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="LockEnemy.cpp" />
@@ -193,6 +195,7 @@
     <ClInclude Include="Heal.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HeroAssultBullet.h" />
+    <ClInclude Include="HeroNormalBullet.h" />
     <ClInclude Include="LockEnemy.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NormalBullet.h" />
@@ -206,6 +209,7 @@
     <ClInclude Include="Objstageselect.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="Rifle.h" />
+    <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneShop.h" />
     <ClInclude Include="SceneStage1.h" />

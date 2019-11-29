@@ -25,4 +25,6 @@ private:
 	bool m_mou_l;
 	bool m_key_flag;
 	bool key;
+
+	int time;
 };

@@ -7,9 +7,10 @@
 
 using namespace GameL;
 
-CObjStage1::CObjStage1(int mapdata)
+CObjStage1::CObjStage1(int mapdata,int mapnum)
 {
 	map_flag = mapdata;
+	map_num = mapnum;
 }
 void CObjStage1::Init()
 {

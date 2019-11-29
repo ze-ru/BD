@@ -180,6 +180,12 @@
     <ClCompile Include="Rifle.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="HeroNormalBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソース ファイル\Clear</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -317,9 +323,6 @@
     <ClInclude Include="damege.h">
       <Filter>ソース ファイル\map1</Filter>
     </ClInclude>
-    <ClInclude Include="Heal.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Assault.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
@@ -328,6 +331,15 @@
     </ClInclude>
     <ClInclude Include="Rifle.h">
       <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="HeroNormalBullet.h">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Heal.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\Clear</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

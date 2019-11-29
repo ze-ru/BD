@@ -20,6 +20,10 @@ class CObjHero :public CObj
 	float GetVX() { return m_vx; }
 
 	void SetWeapon(int w) { wp = w; }
+	int GetWeapon() { return wp; }
+	void Setbulletnum(int b) { bullet = b; }
+	void Setbulletnums(int b) { bullet += b; }
+
 
 	void SetX(float x) { m_px = x; }
 	void SetY(float y) { m_py = y; }
@@ -72,5 +76,5 @@ class CObjHero :public CObj
 
 	  int wp;
 	  int bullet;
-
+	  bool bulletflag;
 };

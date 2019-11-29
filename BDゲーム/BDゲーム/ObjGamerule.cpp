@@ -23,7 +23,7 @@ void CObjGamerule::Action()
 		m_time++;
 	}
 	
-	if (m_time > 60)
+	if (m_time > 10)
 	{
 		m_time = 0;
 		m_frame = 1;
@@ -55,10 +55,10 @@ void CObjGamerule::Draw()
 	Font::StrDraw(L"「ジャンプ」", 500, 250, 30, c);
 
 	Font::StrDraw(L"・Xキー", 70, 360, 30, c);
-	Font::StrDraw(L"「剣・銃の攻撃」", 70, 390, 30, c);
+	Font::StrDraw(L"「剣攻撃」", 70, 390, 30, c);
 
 	Font::StrDraw(L"・Cキー", 500, 360, 30, c);
-	Font::StrDraw(L"「武器の変更」", 500, 390, 30, c);
+	Font::StrDraw(L"「所得武器使用」", 500, 390, 30, c);
 
 	Font::StrDraw(L"START:Push[EnterKey]", 115, 500, 60, c);
 }
