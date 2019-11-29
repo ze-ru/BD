@@ -36,6 +36,9 @@ void CObjRifle::Action()
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 		}
 	}
+
+
+
 	hit->SetPos(m_px + pb->GetScroll(), m_py);
 }
 void CObjRifle::Draw()
