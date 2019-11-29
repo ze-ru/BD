@@ -27,11 +27,12 @@ void CObjRifle::Action()
 		if (Input::GetVKey(VK_UP) == true)
 		{
 			CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
-			h->SetWeapon(2);
 			if (h->GetWeapon() == 2)
 				h->Setbulletnums(10);
 			else
 				h->Setbulletnum(10);
+			h->SetWeapon(2);
+			
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 		}

@@ -38,7 +38,7 @@ void CObjGoalBlock::Action()
 		if(s1->Getmapnum()==0)
 			Scene::SetScene(new CSceneStage1(12, 8));
 		else
-			Scene::SetScene(new CSceneStage1(12, 8));
+			Scene::SetScene(new CSceneGameClear());
 	}
 	hit->SetPos(m_bx+pb->GetScroll(), m_by);
 }
