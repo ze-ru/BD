@@ -34,11 +34,12 @@ void CObjAssault::Action()
 		if (Input::GetVKey(VK_UP) == true)
 		{
 			CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
-			h->SetWeapon(1);
 			if (h->GetWeapon() == 1)
 				h->Setbulletnums(30);
 			else
 				h->Setbulletnum(30);
+			h->SetWeapon(1);
+			
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 		}

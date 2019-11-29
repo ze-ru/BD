@@ -118,6 +118,7 @@ void CObjBlock::Action()
 			{
 				CObjRifle*objL = new CObjRifle(lx*64.0f, i*64.0f - 64.0f);
 				Objs::InsertObj(objL, OBJ_RIFLE, 15);
+				m_map[i][lx] = 0;
 			}
 
 			if (m_map[i][lx] == 41)
