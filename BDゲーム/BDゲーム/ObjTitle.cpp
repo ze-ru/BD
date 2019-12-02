@@ -31,7 +31,7 @@ void CObjTitle::Action()
 		}
 		if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey(' ') == true)
 		{
-			Scene::SetScene(new CSceneStage1(12, 8));
+			Scene::SetScene(new CSceneStage1(12, 8,0,0));
 		}
 		time = 10;
 	}

@@ -70,14 +70,14 @@ void CObjstageselect::Action()
 		{
 			mapnum = 0;
 			mapflag = 11;
-			Scene::SetScene(new CSceneStage1(11,0));
+			Scene::SetScene(new CSceneStage1(11,0,0,0));
 		}
 
 		if (keyE == 1 && Input::GetVKey(VK_RETURN) == true)
 		{
 			mapnum = 8;
 			mapflag = 12;
-			Scene::SetScene(new CSceneStage1(12,8));
+			Scene::SetScene(new CSceneStage1(12,8,0,0));
 		}
 
 		/*if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)

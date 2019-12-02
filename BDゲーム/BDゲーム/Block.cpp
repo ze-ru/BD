@@ -200,9 +200,17 @@ void CObjBlock::Draw()
 					{
 						BlockDraw(128.0f, 0.0f, &dst, c,map_num);
 					}
+					else if (m_map[i][j] == 4)
+					{
+						BlockDraw(128.0f, 0.0f, &dst, c, map_num);
+					}
 					else if (m_map[i][j] == 9)//Switch
 					{
 						;
+					}
+					else if (m_map[i][j] == 10)//Switch
+					{
+						BlockDraw(192.0f, 0.0f, &dst, c, map_num);
 					}
 					else if (m_map[i][j] == 14)
 					{

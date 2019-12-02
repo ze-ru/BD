@@ -27,7 +27,7 @@ void CObjBoss1::Init()
 	time = 0;
 	//ìñÇΩÇËîªíËópÇÃHitBoxÇçÏê¨
 	Hits::SetHitBox(this, m_ex, m_ey, 256, 192, ELEMENT_ENEMY, OBJ_BOSS1, 1);
-	m_hp = 150;
+	m_hp = 300;
 	m_dead = 0;
 	hit_flag = false;
 	m_time = 0;
@@ -44,10 +44,10 @@ void CObjBoss1::Action()
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
-	if(time<300)
+	if(time<=300)
 	time2++;
 	time++;
-
+	
 
 	if (time > 0 && time < 150)
 	{
@@ -101,12 +101,6 @@ void CObjBoss1::Action()
 	//é©óRóéâ∫
 	m_vy += 5.0 / (20.0f);
 
-	
-	m_ex += m_vx;
-	m_ey += m_vy;
-
-
-
 	if (m_ex > objh->GetX() - pb->GetScroll())
 	{
 		moveflag = true;
@@ -118,7 +112,24 @@ void CObjBoss1::Action()
 		moveflag = false;
 		m_vx = -1.0f;
 	}
+	if (m_ex > 295 * 64)
+	{
+		m_vx *= -1.0f;
+	}
+	if (m_ex < 290 * 64)
+	{
+		m_vx *= -1.0f;
+	}
+	if (time == 300)
+	{
+		time = 0;
+	}
+	m_ex += m_vx;
+	m_ey += m_vy;
 
+
+
+	
 	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 
 	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);

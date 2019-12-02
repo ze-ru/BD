@@ -9,7 +9,7 @@ using namespace GameL;
 class CSceneStage1 :public CScene
 {
 public:
-	CSceneStage1(int flag,int map_num);
+	CSceneStage1(int flag,int map_num,int hbullet,int hwp);
 	~CSceneStage1();
 	void InitScene();
 	void Scene();
@@ -18,5 +18,6 @@ public:
 private:
 	int map_flag;
 	int mapnum;
-
+	int wp;
+	int bullet;
 };

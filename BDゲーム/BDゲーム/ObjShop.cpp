@@ -52,7 +52,7 @@ void CObjShop::Action()
 	{
 		if (Input::GetVKey(VK_RETURN) == true)
 		{
-			Scene::SetScene(new CSceneStage1(11,0));
+			Scene::SetScene(new CSceneStage1(11,0,0,0));
 		}
 	}
 	if (flag == 2)

@@ -10,6 +10,12 @@
 //使用ネームスペース
 using namespace GameL;
 
+CObjHero::CObjHero(int b, int w)
+{
+	wp = w;
+	bullet = b;
+}
+
 //イニシャライズ
 void CObjHero::Init()
 {
@@ -41,8 +47,7 @@ void CObjHero::Init()
 	m_dead_flag = false;
 	bullet_count = 0;
 	m_time_bullet = 0;
-	wp = 2;
-	bullet = 10;
+	
 	bulletflag = true;
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -54,6 +59,10 @@ void CObjHero::Action()
 	if (m_hp < 0)
 	{
 		m_hp = 0;
+	}
+	if (bullet == 0)
+	{
+		wp = 0;
 	}
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -107,7 +116,7 @@ void CObjHero::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 				CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
-				Scene::SetScene(new CSceneGameOver(s1->Getmapflag(),s1->Getmapnum()));
+				Scene::SetScene(new CSceneGameOver(s1->Getmapflag(),s1->Getmapnum(),wp,bullet));
 
 			}
 		}

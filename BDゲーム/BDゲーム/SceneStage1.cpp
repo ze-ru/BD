@@ -17,10 +17,12 @@ using namespace GameL;
 #include"GameHead.h"
 
 //コントラクタ
-CSceneStage1::CSceneStage1(int flag,int map_num)
+CSceneStage1::CSceneStage1(int flag,int map_num,int hwp,int hbullet)
 {
 	map_flag = flag;
 	mapnum = map_num;
+	wp = hwp;
+	bullet = hbullet;
 }
 
 //デストラクタ
@@ -180,7 +182,7 @@ void CSceneStage1::InitScene()
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 	}*/
 	//主人公オブジェクト作成
-	CObjHero*obj = new CObjHero();
+	CObjHero*obj = new CObjHero(wp,bullet);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	
