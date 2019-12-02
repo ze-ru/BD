@@ -71,13 +71,13 @@ void CObjGameOver::Draw()
 
 	if (key == false) 
 	{
-		Font::StrDraw(L"▶タイトルに戻る", 155, 380, 60, c);
-		Font::StrDraw(L" つづきから", 185, 480, 60, c);
+		Font::StrDraw(L"▶つづきから", 155, 380, 60, c);
+		Font::StrDraw(L" タイトルに戻る", 185, 480, 60, c);
 	}
 	if (key == true)
 	{
-		Font::StrDraw(L" タイトルに戻る", 185, 380, 60, c);
-		Font::StrDraw(L"▶つづきから", 155, 480, 60, c);
+		Font::StrDraw(L" つづきから", 185, 380, 60, c);
+		Font::StrDraw(L"▶タイトルに戻る", 155, 480, 60, c);
 	}
 	
 }
