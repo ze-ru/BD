@@ -31,12 +31,13 @@ void CObjGoalBlock::Action()
 {
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CHitBox* hit = Hits::GetHitBox(this);
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
 		CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
 		if(s1->Getmapnum()==0)
-			Scene::SetScene(new CSceneStage1(12, 8));
+			Scene::SetScene(new CSceneStage1(12, 8,h->Getbullet(),h->GetWeapon()));
 		else
 			Scene::SetScene(new CSceneGameClear());
 	}

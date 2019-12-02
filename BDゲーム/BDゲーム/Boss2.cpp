@@ -27,7 +27,7 @@ void CObjBoss2::Init()
 	time = 0;
 	//ìñÇΩÇËîªíËópÇÃHitBoxÇçÏê¨
 	Hits::SetHitBox(this, m_ex, m_ey, 256, 192, ELEMENT_ENEMY, OBJ_BOSS1, 1);
-	m_hp = 150;
+	m_hp = 500;
 	m_dead = 0;
 	hit_flag = false;
 	m_time = 0;
@@ -39,15 +39,16 @@ void CObjBoss2::Init()
 //
 void CObjBoss2::Action()
 {
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
-	if (time < 300)
+	if (time <= 300)
 		time2++;
 	time++;
 
-	/*if (time > 0 && time < 150)
+
+	if (time > 0 && time < 150)
 	{
-		m_vx = -1.0f;
 		if (time > 0 && time < 100)
 		{
 			attacktime++;
@@ -61,7 +62,6 @@ void CObjBoss2::Action()
 	}
 	if (time > 150 && time < 300)
 	{
-		m_vx = 1.0f;
 		if (time > 150 && time < 250)
 		{
 			attacktime++;
@@ -91,24 +91,18 @@ void CObjBoss2::Action()
 		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
 	}
 	}
-	*/
 	if (time == 300)
+	{
 		time = 0;
-
-
-
+	}
 	pb->BlockBossHit(&m_ex, &m_ey, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
-	if (m_hit_down == false)
-		m_vy += 5.0 / (20.0f);
-	if (m_hit_down == true)
-		m_vy = 0;
 
+	//é©óRóéâ∫
+	m_vy += 5.0 / (20.0f);
 
-	//	m_vx = 0;
-
-
+	
 	m_ex += m_vx;
 	m_ey += m_vy;
 

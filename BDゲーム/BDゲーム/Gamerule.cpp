@@ -28,9 +28,7 @@ CSceneGamerule::~CSceneGamerule()
 //ゲームメイン初期化メソッド
 void CSceneGamerule::InitScene()
 {
-	//出力させる文字のグラフィックを作成
-	Font::SetStrTex(L"主人公の少年(隼人)が町で過ごしていると、突然AI兵器達が襲ってきた。それで妹の桃花が連れ去られてしまった。桃花を救うために隼人は立ち上がった。");
-
+	
 	//タイトルオブジェクト作成
 	CObjGamerule* obj = new CObjGamerule();//タイトルオブジェクト作成
 	Objs::InsertObj(obj, OBJ_GAMERULE, 10);//主人公オブジェクト登録

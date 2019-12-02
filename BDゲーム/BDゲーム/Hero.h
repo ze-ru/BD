@@ -8,7 +8,7 @@ using namespace GameL;
 class CObjHero :public CObj
 {
   public:
-	CObjHero() {};
+	CObjHero(int w,int b);
 	~CObjHero() {};
 	void Init();//イニシャライズ
 	void Action();//アクション
@@ -21,6 +21,7 @@ class CObjHero :public CObj
 
 	void SetWeapon(int w) { wp = w; }
 	int GetWeapon() { return wp; }
+	int Getbullet() { return bullet; }
 	void Setbulletnum(int b) { bullet = b; }
 	void Setbulletnums(int b) { bullet += b; }
 

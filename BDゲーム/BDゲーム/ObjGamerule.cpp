@@ -31,7 +31,7 @@ void CObjGamerule::Action()
 	
 	if (Input::GetVKey(VK_RETURN) == true&&m_frame==1)
 	{
-		Scene::SetScene(new CSceneStage1(11,0));
+		Scene::SetScene(new CSceneStage1(11,0,0,0));
 	}
 }
 
@@ -42,8 +42,8 @@ void CObjGamerule::Draw()
 	Font::StrDraw(L"操作説明", 270, 30, 60, c);
 
 	Font::StrDraw(L"・↑キー", 70, 220, 30, c);
-	Font::StrDraw(L"「ショップの扉を開ける」", 70, 250, 30, c);
-	Font::StrDraw(L"「アイテムを拾う」", 70, 280, 30, c);
+
+	Font::StrDraw(L"「アイテムを拾う」", 70, 250, 30, c);
 
 	Font::StrDraw(L"・←キー", 70, 120, 30, c);
 	Font::StrDraw(L"「左に移動」", 70, 150, 30, c);
