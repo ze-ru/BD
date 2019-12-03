@@ -28,11 +28,11 @@ void CObjGameOver::Action()
 {
 	if (Input::GetVKey(VK_UP) == true)
 	{
-		key = false;
+		key = true;
 	}
 	if (Input::GetVKey(VK_DOWN) == true)
 	{
-		key = true;
+		key = false;
 	}
 
 
