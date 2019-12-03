@@ -60,10 +60,7 @@ void CObjHero::Action()
 	{
 		m_hp = 0;
 	}
-	if (bullet == 0)
-	{
-		wp = 0;
-	}
+	
 	//ブロックとの当たり判定実行
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -167,7 +164,7 @@ void CObjHero::Action()
 				if (Input::GetVKey('X'))
 				{
 					CObjAttack*obja = new CObjAttack(m_px, m_py);
-					Objs::InsertObj(obja, OBJ_ATTACK, 10);
+					Objs::InsertObj(obja, OBJ_ATTACK, 50);
 					m_attack = false;
 				}
 			}
@@ -320,18 +317,21 @@ void CObjHero::Action()
 				int enemynum = 4;
 				EnemyHit(enemynum);
 			}
+			if (hit->CheckObjNameHit(OBJ_BOSS2) != nullptr)
+			{
+				int enemynum = 5;
+				EnemyHit(enemynum);
+			}
 			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;
 				hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
-				m_hp += 5;
-				m_y_num += 50;
+				m_y_num += 30;
 			}
 			if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;
 				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
-				m_hp += 2;
 				m_y_num += 10;
 			}
 			//Spaceキーでジャンプ
@@ -542,8 +542,10 @@ void CObjHero::EnemyHit(int enemynum)
 			hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY);
 		else if (enemynum == 3)
 			hit_data = hit->SearchObjNameHit(OBJ_FLYENEMY);
-		else if(enemynum==4)
+		else if (enemynum == 4)
 			hit_data = hit->SearchObjNameHit(OBJ_BOSS1);
+		else if (enemynum == 5)
+			hit_data = hit->SearchObjNameHit(OBJ_BOSS2);
 
 		hit_flag = false;
 

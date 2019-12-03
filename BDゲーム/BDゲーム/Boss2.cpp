@@ -109,22 +109,32 @@ void CObjBoss2::Action()
 	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 
 
-	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
+	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true&&hit_flag==false)
 	{
-		if (m_hp > 0)
-			m_hp -= 30;
-		CObjDamege*dm = new CObjDamege(30, m_ex, m_ey);
+		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
 	}
-	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
+	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 	{
-		if (m_hp > 0)
-			m_hp -= 5;
-		CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
+		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
 	}
+	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
+	{
+		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		time2 = 0;
+	}
+	else if(hit_flag==true)
+	{
+		hit_flag = false;
+	}
+	
 
 	if (m_hp <= 0)
 	{
@@ -141,16 +151,7 @@ void CObjBoss2::Action()
 			m_time = 0;
 		}
 	}
-	if (hit_flag == true)
-	{
-		m_time++;
-		if (m_time > 20)
-		{
-			hit_flag = false;
-			m_time = 0;
-		}
-
-	}
+	
 
 }
 

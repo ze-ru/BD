@@ -15,6 +15,7 @@ public:
 	float GetX() { return m_ex; };
 	float GetY() { return m_ey; };
 	int Getscore() { return score; }
+	void SetDamege(int dm) { m_hp -= dm; }
 private:
 	float m_ex;
 	float m_ey;
@@ -33,4 +34,6 @@ private:
 	int score;
 	bool hit_flag;
 	int m_time;
+
+	int attack_time;
 };

@@ -38,6 +38,8 @@ void CObjHeroAssultBullet::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 	m_posture = 0;
+	hit_flag = false;
+	dm = 10;
 	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_HEROASSULTBULLET, OBJ_HEROASSULTBULLET, 1);
 }
 void CObjHeroAssultBullet::Action()
@@ -55,12 +57,7 @@ void CObjHeroAssultBullet::Action()
 	hit->SetPos(m_ex+block->GetScroll(), m_ey);
 
 
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
-
+	
 
 
 	if (m_time > 100)
@@ -76,7 +73,52 @@ void CObjHeroAssultBullet::Action()
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 
+	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjWolkEnemy*we = (CObjWolkEnemy*)Objs::GetObj(OBJ_WOLKENEMY);
+		we->SetDamege(dm);
 
+		CObjDamege*dm = new CObjDamege(10, we->GetX(), we->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjLockEnemy*le = (CObjLockEnemy*)Objs::GetObj(OBJ_LOCKENEMY);
+		le->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(10, le->GetX(), le->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjFlyEnemy*fe = (CObjFlyEnemy*)Objs::GetObj(OBJ_FLYENEMY);
+		fe->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(10, fe->GetX(), fe->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjBoss1*b1 = (CObjBoss1*)Objs::GetObj(OBJ_BOSS1);
+		b1->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(10, b1->GetX(), b1->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_BOSS2) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjBoss2*b2 = (CObjBoss2*)Objs::GetObj(OBJ_BOSS2);
+		b2->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(15, b2->GetX(), b2->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true && hit_flag == true)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 
 }
 void CObjHeroAssultBullet::Draw()

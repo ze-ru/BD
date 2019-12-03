@@ -37,7 +37,7 @@ class CObjHero :public CObj
 	void SetRight(bool b) { m_hit_right = b; }
 	float GetHP() { return m_hp; };
 	void EnemyHit(int enemynume);
-
+	void SetDamege(int dm) { m_hp += dm; }
 
 	bool  GetFlag() 
 	{ 

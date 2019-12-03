@@ -24,13 +24,13 @@ void CObjNormalBullet::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
-
+	dm = 5;
 	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_NORMAL_BULLET, 1);
 }
 void CObjNormalBullet::Action()
 {
 	m_vx = -7.5f;
-	
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	m_time++;
 	m_ex += m_vx;
 	m_ey += m_vy;
@@ -42,6 +42,7 @@ void CObjNormalBullet::Action()
 	
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
+		objh->SetDamege(dm);
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}

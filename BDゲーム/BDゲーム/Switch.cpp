@@ -46,7 +46,7 @@ void CObjSwitch::Action()
 		
 		float Volume = Audio::Volume(10.0f,1);//ボリュームを上げる
 		Audio::Start(1);//音楽スタート
-		flag += 1;
+		flag = true;
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		

@@ -38,4 +38,8 @@ private:
 	bool m_hit_right;
 
 	bool m_attack;
+	int dm;
+
+	bool hit_flag;
+	int hit_time;
 };

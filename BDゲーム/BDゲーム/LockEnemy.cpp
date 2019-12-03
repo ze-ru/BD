@@ -29,7 +29,7 @@ void CObjLockEnemy::Init()
 	m_hp = 40;
 	score = 100;
 	m_time = 0;
-
+	attack_time = 1.0f;
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_LOCKENEMY, 1);
 }
 
@@ -37,6 +37,11 @@ void CObjLockEnemy::Action()
 {
 	
 	m_ani_time++;
+
+	if (m_ani_time > 60 && m_ani_time < 100)
+	{
+		attack_time=0.0f;
+	}
 	if (m_ani_time > 120)
 	{
 		m_ani_time = 0;
@@ -44,6 +49,7 @@ void CObjLockEnemy::Action()
 		CObjNormalBullet*objNB = (CObjNormalBullet*)Objs::GetObj(OBJ_NORMAL_BULLET);
 			CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex,m_ey);
 			Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 10);
+			attack_time = 1.0f;
 	}
 	
 	
@@ -64,27 +70,21 @@ void CObjLockEnemy::Action()
 
 	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
        	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
-	{
-		if (m_hp > 0)
-			m_hp -= 30;
-		CObjDamege*dm = new CObjDamege(30, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
-	{
-		if (m_hp > 0)
-			m_hp -= 5;
-		CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true)
-	{
-		if (m_hp > 0)
-			m_hp -= 15;
-		CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
+		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
+		{
+			CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true)
+		{
+			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
+		{
+			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
 	if (hit_flag == true)
 	{
 		m_time++;
@@ -114,7 +114,7 @@ void CObjLockEnemy::Action()
 }
 void CObjLockEnemy::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 1.0f,1.0f,attack_time,1.0f };
 
 	RECT_F src;
 	RECT_F dst;

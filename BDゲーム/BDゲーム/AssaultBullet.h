@@ -29,5 +29,6 @@ private:
 	int m_count;
 	int m_posy;
 	int m_posx;
+	int dm;
 };
 bool UnitVec(float *vx, float *vy);

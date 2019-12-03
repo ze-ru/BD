@@ -12,6 +12,9 @@ public:
 	void Action();
 	void Draw();
 	int Getscore() { return score; }
+	void SetDamege(int dm) { m_hp -= dm; }
+	float GetX() { return m_px; };
+	float GetY() { return m_py; };
 private:
 	float m_px;
 	float m_py;
@@ -38,4 +41,6 @@ private:
 
 	int dm;
 	bool hit;
+
+	int attack_time;
 };

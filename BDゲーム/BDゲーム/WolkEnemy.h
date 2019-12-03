@@ -16,6 +16,9 @@ public:
 
 	float GetVx() { return m_vx; }
 	int Getscore() { return score; }
+	float GetX() { return m_ex; };
+	float GetY() { return m_ey; };
+	void SetDamege(int dm) { m_hp -= dm; }
 private:
 	float m_ex;
 	float m_ey;

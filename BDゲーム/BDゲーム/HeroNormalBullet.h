@@ -28,4 +28,8 @@ private:
 	bool m_hit_right;
 	float m_time;
 	int m_posture;
+
+	int dm;
+
+	bool hit_flag;
 };

@@ -44,6 +44,8 @@ void CObjAttack::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+	dm = 15;
+	hit_flag = false;
 
 	m_attack = false;
 	Hits::SetHitBox(this, m_px+m_vx, m_py+m_vy, 32, 63, ELEMENT_ATTACK, OBJ_HERO, 1);
@@ -56,18 +58,56 @@ void CObjAttack::Action()
 	//自身のHitBoxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
 
+	
+
 	//敵と当たっているか確認
 	
-	if (hit->CheckElementHit(ELEMENT_ENEMY))
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
 	
+	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr&&hit_flag==false)
+	{
+		hit_flag = true;
+		CObjWolkEnemy*we = (CObjWolkEnemy*)Objs::GetObj(OBJ_WOLKENEMY);
+		we->SetDamege(dm);
+		
+		CObjDamege*dm = new CObjDamege(15,we->GetX(), we->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjLockEnemy*le = (CObjLockEnemy*)Objs::GetObj(OBJ_LOCKENEMY);
+		le->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(15, le->GetX(), le->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjFlyEnemy*fe = (CObjFlyEnemy*)Objs::GetObj(OBJ_FLYENEMY);
+		fe->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(15, fe->GetX(), fe->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjBoss1*b1 = (CObjBoss1*)Objs::GetObj(OBJ_BOSS1);
+		b1->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(15, b1->GetX(), b1->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_BOSS2) != nullptr&&hit_flag == false)
+	{
+		hit_flag = true;
+		CObjBoss2*b2 = (CObjBoss2*)Objs::GetObj(OBJ_BOSS2);
+		b2->SetDamege(dm);
+		CObjDamege*dm = new CObjDamege(15, b2->GetX(), b2->GetY());
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
 	//HitBoxの位置の変更
 	hit->SetPos(m_px, m_py);
 		m_time1++;
-	if (m_time1== 16)
+	if (m_time1==8)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
@@ -85,12 +125,12 @@ void CObjAttack::Draw()
 	src.m_top = 0.0f;
 	src.m_left = 64.0f*7.0f;
 	src.m_right = src.m_left+32.0f;
-	src.m_bottom = m_time1*4;
+	src.m_bottom = m_time1*8;
 
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = 32.0f*m_posture+ m_px;
 	dst.m_right = 32.0f-32.0f*m_posture+m_px;
-	dst.m_bottom = m_time1*4 + m_py;
+	dst.m_bottom = m_time1*8 + m_py;
 
 	//描画
 	Draw::Draw(2, &src, &dst, c, 0.0f);

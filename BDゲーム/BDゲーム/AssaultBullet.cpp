@@ -27,6 +27,7 @@ void CObjAssaultBullet::Init()
 	m_posy = 1;
 	m_posx = 1;
 	m_count = 0;
+	dm = 2;
 	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_ASSAULT_BULLET, 1);
 }
 void CObjAssaultBullet::Action()
@@ -65,6 +66,7 @@ void CObjAssaultBullet::Action()
 
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
+		objh->SetDamege(dm);
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}

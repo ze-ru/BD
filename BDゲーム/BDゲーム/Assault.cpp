@@ -45,6 +45,8 @@ void CObjAssault::Action()
 		}
 	}
 	hit->SetPos(m_px + pb->GetScroll(), m_py);
+
+
 }
 void CObjAssault::Draw()
 {

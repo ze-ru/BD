@@ -35,7 +35,7 @@ void CObjFlyEnemy::Init()
 	score = 100;
 	m_time_hit = 0;
 
-	
+	attack_time = 1.0f;
 
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
@@ -69,9 +69,16 @@ void CObjFlyEnemy::Action()
 	}
 	if (count >= 3)
 	{
+
 		m_time_flat++;
+		if (m_time_flat > 150 && m_time_flat < 200)
+			attack_time = 0.0f;
 		if (m_time_flat > 200)
+		{
 			count = 0;
+			attack_time = 1.0f;
+		}
+			
 	}
 	//ˆÊ’u‚Ì•ÏX
 	m_px += m_vx;
@@ -99,29 +106,30 @@ void CObjFlyEnemy::Action()
 	
 
 		CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
-
-	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
-	{
-		if (m_hp > 0)
-		m_hp -= 30;
-		CObjDamege*dm = new CObjDamege(30, m_px, m_py);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true)
-	{
-		if (m_hp > 0)
-			m_hp -= 5;
-		CObjDamege*dm = new CObjDamege(5, m_px, m_py);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true)
-	{
-		if (m_hp > 0)
-			m_hp -= 15;
-		CObjDamege*dm = new CObjDamege(15, m_px, m_py);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit_flag == true)
+		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
+		{
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(10, m_px, m_py);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
+		{
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(20, m_px, m_py);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
+		{
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(15, m_px, m_py);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		else if (hit_flag == true)
+		{
+			hit_flag = false;
+		}
+	
+	/*if (hit_flag == true)
 	{
 		m_time_hit++;
 		if (m_time_hit > 20)
@@ -130,7 +138,7 @@ void CObjFlyEnemy::Action()
 			m_time_hit = 0;
 			dm = 0;
 		}
-	}
+	}*/
 	if (m_hp <= 0)
 	{
 		CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
@@ -150,7 +158,7 @@ void CObjFlyEnemy::Action()
 }
 void CObjFlyEnemy::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 1.0f,1.0f,attack_time,1.0f };
 
 	RECT_F src;
 	RECT_F dst;

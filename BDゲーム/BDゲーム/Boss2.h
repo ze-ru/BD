@@ -15,6 +15,9 @@ public:
 	void Draw();
 	float GetVx() { return m_vx; }
 	bool GetDead() { return dead_flag; }
+	void SetDamege(int dm) { m_hp -= dm; }
+	float GetX() { return m_ex; };
+	float GetY() { return m_ey; };
 private:
 	float m_ex;
 	float m_ey;
@@ -33,5 +36,6 @@ private:
 	int attacktime;
 	bool dead_flag;
 	int time2;
+
 
 };
