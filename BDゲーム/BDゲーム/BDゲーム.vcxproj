@@ -160,6 +160,7 @@
     <ClCompile Include="SceneStage1.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="ShopOBJ.cpp" />
+    <ClCompile Include="StaffRoll.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="stageselect.cpp" />
     <ClCompile Include="StageUi.cpp">
@@ -215,6 +216,7 @@
     <ClInclude Include="SceneStage1.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="ShopOBJ.h" />
+    <ClInclude Include="StaffRoll.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="stageselect.h" />
     <ClInclude Include="StageUi.h">

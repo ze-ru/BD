@@ -186,6 +186,9 @@
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\Clear</Filter>
     </ClCompile>
+    <ClCompile Include="StaffRoll.cpp">
+      <Filter>ソース ファイル\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="StaffRoll.h">
+      <Filter>ソース ファイル\Title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
