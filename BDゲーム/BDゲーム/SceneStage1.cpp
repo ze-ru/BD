@@ -145,6 +145,7 @@ void CSceneStage1::InitScene()
 	Audio::LoadAudio(1, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
 
 	Draw::LoadImageW(L"Weapon.png", 19, TEX_SIZE_512);
+	Draw::LoadImageW(L"LastBoss.png", 20, TEX_SIZE_512);
 
 
 

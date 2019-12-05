@@ -130,7 +130,7 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 42)
 			{
 				CObjBoss2*objboss2 = new CObjBoss2(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objboss2, OBJ_BOSS2, 15);
+				Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
 				m_map[i][lx] = 0;
 			}
 		}
