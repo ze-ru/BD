@@ -33,6 +33,11 @@ void CObjTitle::Action()
 		{
 			Scene::SetScene(new CSceneStage1(12, 8,0,0));
 		}
+		if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey('B') == true)
+		{
+			Scene::SetScene(new CSceneGameClear());
+		}
+
 		time = 10;
 	}
 }
