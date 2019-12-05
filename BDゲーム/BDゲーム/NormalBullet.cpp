@@ -25,6 +25,9 @@ void CObjNormalBullet::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 	dm = 5;
+
+	//count = 0;//ノックバック用
+
 	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_NORMAL_BULLET, 1);
 }
 void CObjNormalBullet::Action()
@@ -43,6 +46,27 @@ void CObjNormalBullet::Action()
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
 		objh->SetDamege(dm);
+		//count++;
+
+		//if (count == 3)
+		//{
+			objh->SetBack_Flag(true);//ノックバック用フラグをtrueに
+		//}
+	
+		if (objh->GetBack_Flag() == true)
+		{
+			if (objh->GetX() + 64 < m_ex)
+			{
+				objh->SetVX2(-3.0f);
+			}
+			if (objh->GetX() > m_ex)
+			{
+				objh->SetVX2(-3.0f);
+			}
+
+			objh->SetBack_Flag(false);
+			
+		}
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}

@@ -49,8 +49,12 @@ void CObjHero::Init()
 	m_time_bullet = 0;
 	
 	bulletflag = true;
+
+	m_back_flag = false;//ノックバック用フラグ
+
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	//Hits::SetHitBox(this, m_px + 32, m_py, 32, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
 }
 
 //アクション
@@ -67,6 +71,7 @@ void CObjHero::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	if (m_y_num >= 50&&m_y_flag==false)
 	{
+
 		if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
 		{
 			int enemynum = 1;
@@ -95,10 +100,11 @@ void CObjHero::Action()
 		{
 			m_y_num = 50;
 		}
-		m_vx = 2.0f*m_posture;
+		
 		m_y_flag = true;
 		
 	}
+
 	if (m_dead_flag == true)
 	{
 		if (m_hp >= 50)
@@ -136,11 +142,9 @@ void CObjHero::Action()
 			m_vy += 5.0 / (20.0f);
 			
 			
-			if (m_y_num >40) {
-				if (m_posture == 0.0f)
-					m_vx -= 0.2f;
-				if (m_posture == 1.0f)
-					m_vx += 0.2f;
+			if (m_y_num >40) 
+			{
+			
 			}
 
 			m_px += m_vx;
@@ -292,10 +296,6 @@ void CObjHero::Action()
 			m_vy += 5.0 / (20.0f);
 
 		
-
-			//自身のHitBoxを持ってくる
-
-
 			//敵と当たっているか確認
 			if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
 			{
@@ -330,6 +330,7 @@ void CObjHero::Action()
 				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
 				m_y_num += 10;
 			}
+			
 			//Spaceキーでジャンプ
 			if (Input::GetVKey(' ') == true)
 			{
@@ -573,9 +574,8 @@ void CObjHero::EnemyHit(int enemynum)
 					//後方スクロールライン
 					if (m_px < 80)
 					{
-						
-							pb->SetScroll(pb->GetScroll() - 5.0);
-					
+
+						pb->SetScroll(pb->GetScroll() - 5.0);
 					}
 
 					//前方スクロールライン
@@ -583,7 +583,7 @@ void CObjHero::EnemyHit(int enemynum)
 					{
 						m_px = 300;
 						
-							pb->SetScroll(pb->GetScroll() - 5.0);
+						pb->SetScroll(pb->GetScroll() - 5.0);
 						
 					}
 
