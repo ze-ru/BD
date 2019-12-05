@@ -40,4 +40,5 @@ private:
 	int jamptime;
 
 	bool moveflag;
+	int m_time_hit;
 };

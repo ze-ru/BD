@@ -132,7 +132,7 @@ void CObjFlyEnemy::Action()
 	if (hit_flag == true)
 	{
 		m_time_hit++;
-		if (m_time_hit > 20)
+		if (m_time_hit > 10)
 		{
 			hit_flag = false;
 			m_time_hit = 0;

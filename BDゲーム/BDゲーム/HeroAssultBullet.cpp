@@ -73,7 +73,7 @@ void CObjHeroAssultBullet::Action()
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true && hit_flag == true)
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する

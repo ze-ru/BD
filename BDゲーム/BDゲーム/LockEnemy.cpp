@@ -94,7 +94,7 @@ void CObjLockEnemy::Action()
 	if (hit_flag == true)
 	{
 		m_time++;
-		if (m_time > 20)
+		if (m_time > 10)
 		{
 			hit_flag = false;
 			m_time = 0;

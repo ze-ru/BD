@@ -37,5 +37,7 @@ private:
 	bool dead_flag;
 	int time2;
 
+	int m_time_hit;
+
 
 };

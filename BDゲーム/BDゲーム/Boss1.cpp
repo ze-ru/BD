@@ -34,6 +34,7 @@ void CObjBoss1::Init()
 	attacktime = 0;
 	dead_flag = false;
 	time2 = 0;
+	m_time_hit = 0;
 
 	moveflag = false;//‰EŒü‚« = true,¶Œü‚« = false;
 }
@@ -157,9 +158,15 @@ void CObjBoss1::Action()
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
 	}
-	else if (hit_flag == true)
+	if (hit_flag == true)
 	{
-		hit_flag = false;
+		m_time_hit++;
+		if (m_time_hit > 10)
+		{
+			hit_flag = false;
+			m_time_hit = 0;
+		}
+
 	}
 	if (m_hp <= 0)
 	{

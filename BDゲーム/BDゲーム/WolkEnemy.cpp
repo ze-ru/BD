@@ -150,14 +150,14 @@ void CObjWolkEnemy::Action()
 			CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
-		if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
+		else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 		{
 			m_hp -= 20;
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
-		if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
+		else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 		{
 			m_hp -= 15;
 			hit_flag = true;
@@ -199,7 +199,7 @@ void CObjWolkEnemy::Action()
 	if (hit_flag == true)
 	{
 		m_time_hit++;
-		if (m_time_hit > 20)
+		if (m_time_hit > 10)
 		{
 			hit_flag = false;
 			m_time_hit = 0;
