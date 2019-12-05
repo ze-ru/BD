@@ -8,10 +8,11 @@
 
 using namespace GameL;
 
-CObjBossEnemy::CObjBossEnemy(float x, float y)
+CObjBossEnemy::CObjBossEnemy(float x, float y,float kak)
 {
 	m_px = x;
 	m_py = y;
+	k = kak;
 }
 
 void CObjBossEnemy::Init()
@@ -35,6 +36,7 @@ void CObjBossEnemy::Init()
 	m_time_hit = 0;
 
 	attack_time = 1.0f;
+	
 
 	
 	Hits::SetHitBox(this, m_px, m_py, 32, 32, ELEMENT_ENEMY, OBJ_BOSSENEMY, 1);
@@ -153,5 +155,5 @@ void CObjBossEnemy::Draw()
 
 
 	//
-	Draw::Draw(20, &src, &dst, c, 90.0f);
+	Draw::Draw(20, &src, &dst, c, k);
 }

@@ -60,7 +60,7 @@ void CObjHeroAssultBullet::Action()
 	
 
 
-	if (m_time > 100)
+	if (m_time > 80) 
 	{
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é

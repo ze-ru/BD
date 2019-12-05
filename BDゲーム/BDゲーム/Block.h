@@ -38,5 +38,9 @@ private:
 	int map_num;
 	float m_scroll; //左右スクロール用
 	bool dead_flag;
+
+	int m_time;
+
+	bool bossflag;
 	
 };

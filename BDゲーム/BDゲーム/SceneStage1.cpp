@@ -132,7 +132,7 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
 	Draw::LoadImageW(L"FlyEnemy.png", 6, TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage2.png", 8, TEX_SIZE_512);
-	Draw::LoadImageW(L"Stage3.png", 9, TEX_SIZE_512);
+	Draw::LoadImageW(L"Stage3.png", 30, TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage1Back.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround2.png", 12, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround3.png", 13, TEX_SIZE_512);
@@ -184,7 +184,7 @@ void CSceneStage1::InitScene()
 	}*/
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero(wp,bullet);
-	Objs::InsertObj(obj, OBJ_HERO, 10);
+	Objs::InsertObj(obj, OBJ_HERO, 50);
 
 	
 

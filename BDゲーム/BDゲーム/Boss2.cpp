@@ -29,6 +29,8 @@ void CObjBoss2::Init()
 	m_hit_time = 0;
 	m_hit_data = 0;
 	m_hit_flag = false;
+
+	hit_count = 0;
 	Hits::SetHitBox(this, m_ex+100, m_ey+200, 200, 200, ELEMENT_BOSS2, OBJ_BOSS2, 1);
 }
 
@@ -36,6 +38,7 @@ void CObjBoss2::Init()
 void CObjBoss2::Action()
 {
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CHitBox*hit = Hits::GetHitBox(this);
 	if (hit_flag == false)
 	{
@@ -69,6 +72,7 @@ void CObjBoss2::Action()
 			{
 				hit_flag = true;
 				m_hit_data = 0;
+				hit_count++;
 			}
 		}
 	}
@@ -91,12 +95,31 @@ void CObjBoss2::Action()
 			enemy_flag = true;
 		}
 
-		if (enemy_flag == true)
+		if (enemy_flag == true&&hit_count==1)
 		{
-			CObjBossEnemy*objF = new CObjBossEnemy(m_ex-500+(enemy_count*128), m_ey+544);
+			CObjBossEnemy*objF = new CObjBossEnemy(m_ex-500+(enemy_count*128), m_ey+544,90);
 			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
 			enemy_count++;
 		}
+		if (enemy_flag == true && hit_count == 2)
+		{
+			CObjBossEnemy*objF = new CObjBossEnemy(m_ex - 500 + (enemy_count * 128), m_ey + 32,270);
+			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
+			enemy_count++;
+		}
+		if (enemy_flag == true && hit_count == 3)
+		{
+			CObjBossEnemy*objF = new CObjBossEnemy(m_ex-24.0f, m_ey+32 + (enemy_count * 128),180);
+			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
+			enemy_count++;
+		}
+		if (enemy_flag == true && hit_count == 4)
+		{
+			CObjBossEnemy*objF = new CObjBossEnemy(m_ex - (64 * 15), m_ey + (enemy_count * 128)+32.0f,0);
+			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
+			enemy_count++;
+		}
+	
 		if (enemy_count == 5)
 		{
 			enemy_flag = false;
@@ -111,14 +134,16 @@ void CObjBoss2::Action()
 	}
 	if (m_hp <= 0)
 	{
-		
-		
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 			s1c->Setdead();
 			pb->SetDead();
 			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 			
+	}
+	if (m_ex+pb->GetScroll()+20 <= h->GetX())
+	{
+		h->SetX(m_ex+pb->GetScroll()+20);
 	}
 	hit->SetPos(m_ex+100 + pb->GetScroll(), m_ey+200);
 }

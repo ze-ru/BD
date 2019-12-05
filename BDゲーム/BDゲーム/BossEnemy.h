@@ -6,7 +6,7 @@ using namespace GameL;
 class CObjBossEnemy :public CObj
 {
 public:
-	CObjBossEnemy(float x, float y);
+	CObjBossEnemy(float x, float y,float kak);
 	~CObjBossEnemy() {};
 	void Init();
 	void Action();
@@ -41,4 +41,6 @@ private:
 	bool hit;
 
 	int attack_time;
+
+	float k;
 };

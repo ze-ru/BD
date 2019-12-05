@@ -34,4 +34,7 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 	int num;
+
+	bool boss_flag;
+	int m_time;
 };

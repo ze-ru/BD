@@ -22,6 +22,8 @@ void CObjBlock::Init()
 {
 	m_scroll = 0.0f;
 	dead_flag = false;
+	m_time = 0;
+	bossflag = false;
 }
 //アクション
 void CObjBlock::Action()
@@ -35,9 +37,9 @@ void CObjBlock::Action()
 		float hy = hero->GetY();
 
 		//後方スクロールライン
-		if (hx < 80)
+		if (hx < 200)
 		{
-			hero->SetX(80);//主人公はラインを超えないようにする
+			hero->SetX(200);//主人公はラインを超えないようにする
 			m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
 		
 		}
@@ -127,12 +129,7 @@ void CObjBlock::Action()
 				Objs::InsertObj(objboss, OBJ_BOSS1, 15);
 				m_map[i][lx] = 0;
 			}
-			if (m_map[i][lx] == 42)
-			{
-				CObjBoss2*objboss2 = new CObjBoss2(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
-				m_map[i][lx] = 0;
-			}
+		
 		}
 
 		for (int i = 0; i < 11; i++)
@@ -153,9 +150,30 @@ void CObjBlock::Action()
 						
 					}
 				}
+				if (m_map[i][j] == 42 && map_num == 30)
+				{
+					CObjBoss2*objboss2 = new CObjBoss2(j*64.0f, i*64.0f - 64.0f);
+					Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
+					m_map[i][j] = 0;
+				}
 			}
 		}
-	
+		
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//主人公が一定範囲に入ると当たり判定実行
+		if ((hero->GetX() - block->GetScroll()) > 17920 && map_num == 8 && bossflag == false)
+		{
+			bossflag = true;
+		}
+		if (bossflag == true)
+		{
+			if (m_time < 150)
+				m_time++;
+		}
+		if (m_time == 150)
+		{
+			map_num = 30;
+		}
 }
 //ドロー
 void CObjBlock::Draw()
@@ -213,6 +231,10 @@ void CObjBlock::Draw()
 						BlockDraw(192.0f, 0.0f, &dst, c, map_num);
 					}
 					else if (m_map[i][j] == 14)
+					{
+						;
+					}
+					else if (m_map[i][j] == 42)
 					{
 						;
 					}
