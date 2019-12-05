@@ -4,20 +4,16 @@
 #include"GameL\HitBoxManager.h"
 
 #include"GameHead.h"
-#include"Rifle.h"
+#include"laser.h"
 
 using namespace GameL;
 
-CObjRifle::CObjRifle(float x, float y)
+
+void CObjlaser::Init()
 {
-	m_px = x;
-	m_py = y;
+
 }
-void CObjRifle::Init()
-{
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ASSAULT, OBJ_RIFLE, 1);
-}
-void CObjRifle::Action()
+void CObjlaser::Action()
 {
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -27,12 +23,12 @@ void CObjRifle::Action()
 		if (Input::GetVKey(VK_UP) == true)
 		{
 			CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
-			if (h->GetWeapon() == 3)
+			if (h->GetWeapon() == 2)
 				h->Setbulletnums(10);
 			else
 				h->Setbulletnum(10);
 			h->SetWeapon(2);
-			
+
 			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 		}
@@ -42,7 +38,7 @@ void CObjRifle::Action()
 
 	hit->SetPos(m_px + pb->GetScroll(), m_py);
 }
-void CObjRifle::Draw()
+void CObjlaser::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -50,8 +46,8 @@ void CObjRifle::Draw()
 	RECT_F dst;
 
 	src.m_top = 0.0f;
-	src.m_left = 64.0f;
-	src.m_right = 128.0f;
+	src.m_left = 128.0f;
+	src.m_right = 192.0f;
 	src.m_bottom = 64.0f;
 
 

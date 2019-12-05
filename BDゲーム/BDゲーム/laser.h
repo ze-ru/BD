@@ -3,11 +3,11 @@
 
 using namespace GameL;
 
-class CObjSword :public CObj
+class CObjlaser :public CObj
 {
 public:
-	CObjSword(float x, float y);
-	~CObjSword() {};
+	CObjlaser(float x, float y);
+	~CObjlaser() {};
 	void Init();
 	void Action();
 	void Draw();

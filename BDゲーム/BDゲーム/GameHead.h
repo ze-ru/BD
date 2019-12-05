@@ -36,6 +36,7 @@ enum OBJ_NAME
 	OBJ_SWORD,
 	OBJ_RIFLE,
 	OBJ_HERONORMALBULLET,
+	OBJ_LASER,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -122,7 +123,7 @@ struct UserData
 
 #include"AssaultBullet.h"
 #include"Assault.h"
-#include"Sword.h"
+#include"laser.h"
 #include"Rifle.h"
 
 
