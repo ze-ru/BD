@@ -27,7 +27,7 @@ void CObjRifle::Action()
 		if (Input::GetVKey(VK_UP) == true)
 		{
 			CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
-			if (h->GetWeapon() == 3)
+			if (h->GetWeapon() == 2)
 				h->Setbulletnums(10);
 			else
 				h->Setbulletnum(10);
@@ -50,8 +50,8 @@ void CObjRifle::Draw()
 	RECT_F dst;
 
 	src.m_top = 0.0f;
-	src.m_left = 64.0f;
-	src.m_right = 128.0f;
+	src.m_left = 0.0f;
+	src.m_right = 64.0f;
 	src.m_bottom = 64.0f;
 
 
