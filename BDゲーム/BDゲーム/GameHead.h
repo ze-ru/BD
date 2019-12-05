@@ -37,6 +37,7 @@ enum OBJ_NAME
 	OBJ_RIFLE,
 	OBJ_HERONORMALBULLET,
 	OBJ_LASER,
+	OBJ_BOSSENEMY,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -94,7 +95,7 @@ struct UserData
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include"Switch.h"
-
+#include"BossEnemy.h"
 
 #include"BossBlock.h"
 #include"ShopOBJ.h"
