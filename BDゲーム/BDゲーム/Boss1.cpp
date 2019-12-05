@@ -135,6 +135,7 @@ void CObjBoss1::Action()
 	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
 	{
+		m_hp -= 10;
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
@@ -142,6 +143,7 @@ void CObjBoss1::Action()
 	}
 	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 	{
+		m_hp -= 20;
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
@@ -149,6 +151,7 @@ void CObjBoss1::Action()
 	}
 	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 	{
+		m_hp -= 15;
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);

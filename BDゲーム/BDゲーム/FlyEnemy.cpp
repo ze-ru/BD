@@ -108,28 +108,28 @@ void CObjFlyEnemy::Action()
 		CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
 		{
+			m_hp -= 10;
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(10, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
 		else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 		{
+			m_hp -= 20;
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(20, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
 		else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 		{
+			m_hp -= 15;
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(15, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
-		else if (hit_flag == true)
-		{
-			hit_flag = false;
-		}
+		
 	
-	/*if (hit_flag == true)
+	if (hit_flag == true)
 	{
 		m_time_hit++;
 		if (m_time_hit > 20)
@@ -138,7 +138,7 @@ void CObjFlyEnemy::Action()
 			m_time_hit = 0;
 			dm = 0;
 		}
-	}*/
+	}
 	if (m_hp <= 0)
 	{
 		CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);

@@ -73,47 +73,6 @@ void CObjHeroAssultBullet::Action()
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}
 
-	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr&&hit_flag == false)
-	{
-		hit_flag = true;
-		CObjWolkEnemy*we = (CObjWolkEnemy*)Objs::GetObj(OBJ_WOLKENEMY);
-		we->SetDamege(dm);
-
-		CObjDamege*dm = new CObjDamege(10, we->GetX(), we->GetY());
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr&&hit_flag == false)
-	{
-		hit_flag = true;
-		CObjLockEnemy*le = (CObjLockEnemy*)Objs::GetObj(OBJ_LOCKENEMY);
-		le->SetDamege(dm);
-		CObjDamege*dm = new CObjDamege(10, le->GetX(), le->GetY());
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr&&hit_flag == false)
-	{
-		hit_flag = true;
-		CObjFlyEnemy*fe = (CObjFlyEnemy*)Objs::GetObj(OBJ_FLYENEMY);
-		fe->SetDamege(dm);
-		CObjDamege*dm = new CObjDamege(10, fe->GetX(), fe->GetY());
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr&&hit_flag == false)
-	{
-		hit_flag = true;
-		CObjBoss1*b1 = (CObjBoss1*)Objs::GetObj(OBJ_BOSS1);
-		b1->SetDamege(dm);
-		CObjDamege*dm = new CObjDamege(10, b1->GetX(), b1->GetY());
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
-	if (hit->CheckObjNameHit(OBJ_BOSS2) != nullptr&&hit_flag == false)
-	{
-		hit_flag = true;
-		CObjBoss2*b2 = (CObjBoss2*)Objs::GetObj(OBJ_BOSS2);
-		b2->SetDamege(dm);
-		CObjDamege*dm = new CObjDamege(15, b2->GetX(), b2->GetY());
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-	}
 	if (hit->CheckElementHit(ELEMENT_ENEMY) == true && hit_flag == true)
 	{
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
