@@ -115,11 +115,11 @@ void CObjBoss1::Action()
 	}
 	if (m_ex > 295 * 64)
 	{
-		m_vx *= -1.0f;
+		m_vx = -1.0f;
 	}
 	if (m_ex < 290 * 64)
 	{
-		m_vx *= -1.0f;
+		m_vx = 1.0f;
 	}
 	if (time == 300)
 	{

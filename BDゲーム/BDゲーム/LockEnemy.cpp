@@ -35,7 +35,7 @@ void CObjLockEnemy::Init()
 
 void CObjLockEnemy::Action()
 {
-	
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	m_ani_time++;
 
 	if (m_ani_time > 60 && m_ani_time < 100)
@@ -112,7 +112,7 @@ void CObjLockEnemy::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-	if (Input::GetVKey('S') == true)
+	if (Input::GetVKey('S') == true || (objh->GetX() - pb->GetScroll()) > 17920)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する

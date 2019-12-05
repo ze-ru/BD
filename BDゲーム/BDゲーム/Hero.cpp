@@ -20,7 +20,7 @@ CObjHero::CObjHero(int b, int w)
 void CObjHero::Init()
 {
 	m_px = 100.0f;//位置
-	m_py = 550.0f;
+	m_py = 400.0f;
 	m_vx = 0.0f;//移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;//右向き0.0f 左向き1.0f
@@ -317,11 +317,7 @@ void CObjHero::Action()
 				int enemynum = 4;
 				EnemyHit(enemynum);
 			}
-		/*	if (hit->CheckObjNameHit(OBJ_BOSS2) != nullptr)
-			{
-				int enemynum = 5;
-				EnemyHit(enemynum);
-			}*/
+			
 			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;

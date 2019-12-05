@@ -41,7 +41,11 @@ void CObjGameOver::Action()
 	{
 		if (m_key_flag == true)
 		{
-			Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
+			if (mapflag != 13)
+				Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
+			if (mapflag == 13)
+				Scene::SetScene(new CSceneStage1(12, mapnum, 0, 0));
+
 			m_key_flag = false;
 		}
 	}

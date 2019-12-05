@@ -12,6 +12,10 @@ private:
 	bool flag;
 	int score;
 	int time;
+
+	int m_time;
+
+	bool bossflag;
 public:
 	CObjStage1(int mapdata,int map_num);
 	~CObjStage1() {};

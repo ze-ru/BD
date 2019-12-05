@@ -32,6 +32,9 @@ void CObjBossBlock::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 
+	boss_flag = false;
+	m_time = 0;
+
 	Hits::SetHitBox(this, m_bx, m_by, 64, 64, ELEMENT_BLOCK, OBJ_BOSSBLOCK, 1);
 	
 }
@@ -47,6 +50,20 @@ void CObjBossBlock::Action()
 
 	hvx = hero->GetVX();
 	hvy = hero->GetVY();
+
+	if ((hero->GetX() - block->GetScroll()) > 17920 && num == 8 && boss_flag == false)
+	{
+		boss_flag = true;
+	}
+	if (boss_flag == true)
+	{
+		if (m_time < 150)
+			m_time++;
+	}
+	if (m_time == 150)
+	{
+		num = 30;
+	}
 
 	//ŽålŒö‚ªˆê’è”ÍˆÍ‚É“ü‚é‚Æ“–‚½‚è”»’èŽÀs
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)

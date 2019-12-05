@@ -166,7 +166,7 @@ void CObjWolkEnemy::Action()
 		}
 		
 
-		if (Input::GetVKey('S') == true)
+		if (Input::GetVKey('S') == true|| (objh->GetX() - pb->GetScroll()) > 17920)
 		{
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é

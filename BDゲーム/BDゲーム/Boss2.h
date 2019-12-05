@@ -33,4 +33,6 @@ private:
 	int m_hit_time;
 	bool m_hit_flag;
 	int m_hit_data;
+
+	int hit_count;
 };
