@@ -93,8 +93,8 @@ void CObjBoss2::Action()
 
 		if (enemy_flag == true)
 		{
-			CObjFlyEnemy*objF = new CObjFlyEnemy(m_ex-500+(enemy_count*128), m_ey+200);
-			Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
+			CObjBossEnemy*objF = new CObjBossEnemy(m_ex-500+(enemy_count*128), m_ey+544);
+			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
 			enemy_count++;
 		}
 		if (enemy_count == 5)
@@ -105,9 +105,21 @@ void CObjBoss2::Action()
 		if (dead_count == 5)
 		{
 			hit_flag = false;
+			dead_count = 0;
+			m_time = 0;
 		}
 	}
-
+	if (m_hp <= 0)
+	{
+		
+		
+			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+			s1c->Setdead();
+			pb->SetDead();
+			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
+			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
+			
+	}
 	hit->SetPos(m_ex+100 + pb->GetScroll(), m_ey+200);
 }
 

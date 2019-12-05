@@ -121,6 +121,7 @@
     <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="Boss2.cpp" />
     <ClCompile Include="BossBlock.cpp" />
+    <ClCompile Include="BossEnemy.cpp" />
     <ClCompile Include="damage.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Boss1.h" />
     <ClInclude Include="Boss2.h" />
     <ClInclude Include="BossBlock.h" />
+    <ClInclude Include="BossEnemy.h" />
     <ClInclude Include="damege.h" />
     <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="GameHead.h" />
