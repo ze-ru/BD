@@ -171,9 +171,6 @@
     <ClCompile Include="Assault.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Sword.cpp">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="Heal.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -186,8 +183,8 @@
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\Clear</Filter>
     </ClCompile>
-    <ClCompile Include="StaffRoll.cpp">
-      <Filter>ソース ファイル\Title</Filter>
+    <ClCompile Include="laser.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,9 +326,6 @@
     <ClInclude Include="Assault.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Sword.h">
-      <Filter>ソース ファイル\Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="Rifle.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
@@ -344,8 +338,8 @@
     <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\Clear</Filter>
     </ClInclude>
-    <ClInclude Include="StaffRoll.h">
-      <Filter>ソース ファイル\Title</Filter>
+    <ClInclude Include="laser.h">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

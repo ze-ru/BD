@@ -16,5 +16,9 @@ public:
 	
 
 private:
-	
+	int m_px;
+	int m_py;
+	int m_vx;
+	int m_vy;
+	int time;
 };

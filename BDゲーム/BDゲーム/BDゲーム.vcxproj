@@ -160,8 +160,7 @@
     <ClCompile Include="SceneStage1.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="ShopOBJ.cpp" />
-    <ClCompile Include="StaffRoll.cpp" />
-    <ClCompile Include="Sword.cpp" />
+    <ClCompile Include="laser.cpp" />
     <ClCompile Include="stageselect.cpp" />
     <ClCompile Include="StageUi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -216,8 +215,7 @@
     <ClInclude Include="SceneStage1.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="ShopOBJ.h" />
-    <ClInclude Include="StaffRoll.h" />
-    <ClInclude Include="Sword.h" />
+    <ClInclude Include="laser.h" />
     <ClInclude Include="stageselect.h" />
     <ClInclude Include="StageUi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
