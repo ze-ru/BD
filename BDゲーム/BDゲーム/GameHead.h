@@ -67,6 +67,7 @@ enum HIT_ELEMENTS
 	ELEMENT_ENEMY_BULLET,
 	ELEMENT_ASSAULT,
 	ELEMENT_HERONORMALBULLET,
+	ELEMENT_BOSS2,
 };
 //------------------------------------------------
 

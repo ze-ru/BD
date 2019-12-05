@@ -317,11 +317,11 @@ void CObjHero::Action()
 				int enemynum = 4;
 				EnemyHit(enemynum);
 			}
-			if (hit->CheckObjNameHit(OBJ_BOSS2) != nullptr)
+		/*	if (hit->CheckObjNameHit(OBJ_BOSS2) != nullptr)
 			{
 				int enemynum = 5;
 				EnemyHit(enemynum);
-			}
+			}*/
 			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;

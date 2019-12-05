@@ -12,155 +12,103 @@ using namespace GameL;
 
 CObjBoss2::CObjBoss2(float x, float y)
 {
-	m_ex = x + 64.0f;//
-	m_ey = y - 64.0f;
+	m_ex = x;//
+	m_ey = y;
 }
 //
 void CObjBoss2::Init()
 {
-	m_vx = 0.0f;//
-	m_vy = 0.0f;
-	m_hit_up = false;
-	m_hit_down = false;
-	m_hit_left = false;
-	m_hit_right = false;
-	time = 0;
-	//当たり判定用のHitBoxを作成
-	Hits::SetHitBox(this, m_ex, m_ey, 256, 192, ELEMENT_ENEMY, OBJ_BOSS1, 1);
-	m_hp = 500;
-	m_dead = 0;
+	m_vx = 0;
+	m_vy = 0;
 	hit_flag = false;
 	m_time = 0;
-	attacktime = 0;
-	dead_flag = false;
-	time2 = 0;
-	m_time_hit = 0;
+	enemy_flag = false;
+	enemy_count = 0;
+	dead_count = 0;
+	m_hp = 300;
+	m_hit_time = 0;
+	m_hit_data = 0;
+	m_hit_flag = false;
+	Hits::SetHitBox(this, m_ex+100, m_ey+200, 200, 200, ELEMENT_BOSS2, OBJ_BOSS2, 1);
 }
 
 //
 void CObjBoss2::Action()
 {
-	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
-	if (time <= 300)
-		time2++;
-	time++;
-
-
-	if (time > 0 && time < 150)
+	if (hit_flag == false)
 	{
-		if (time > 0 && time < 100)
+		if (hit->CheckElementHit(ELEMENT_ATTACK) == true && m_hit_flag == false)
 		{
-			attacktime++;
-			if (attacktime == 10)
+			m_hp -= 15;
+			m_hit_flag = true;
+			m_hit_data += 15;
+			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey+200);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && m_hit_flag == false)
+		{
+			m_hp -= 10;
+			m_hit_flag = true;
+			m_hit_data += 10;
+			CObjDamege*dm = new CObjDamege(10, m_ex, m_ey+200);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true&&m_hit_flag==false)
+		{
+			m_hp -= 20;
+			m_hit_flag = true;
+			m_hit_data += 20;
+			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey+200);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true)
+		{
+			if (m_hit_data >= 60)
 			{
-				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
-				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 20);
-				attacktime = 0;
+				hit_flag = true;
+				m_hit_data = 0;
 			}
 		}
 	}
-	if (time > 150 && time < 300)
+	if (m_hit_flag == true)
 	{
-		if (time > 150 && time < 250)
+		m_hit_time++;
+		if (m_hit_time > 10)
 		{
-			attacktime++;
-			if (attacktime == 10)
-			{
-				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
-				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 20);
-				attacktime = 0;
-			}
+			m_hit_flag = false;
+			m_hit_time = 0;
 		}
-	}
-	switch (time2)
-	{
-	case 50:
-	{
-		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey + 10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
-	}
-	case 100:
-	{
-		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey + 10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
-	}
-	case 150:
-	{
-		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey + 10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
-	}
-	}
-	if (time == 300)
-	{
-		time = 0;
-	}
-	pb->BlockBossHit(&m_ex, &m_ey, false,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-		&m_vx, &m_vy);
 
-	//自由落下
-	m_vy += 5.0 / (20.0f);
-
-	
-	m_ex += m_vx;
-	m_ey += m_vy;
-
-	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-
-
-	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true&&hit_flag==false)
-	{
-		m_hp -= 10;
-		hit_flag = true;
-		CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		time2 = 0;
-	}
-	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
-	{
-		m_hp -= 20;
-		hit_flag = true;
-		CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		time2 = 0;
-	}
-	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
-	{
-		m_hp -= 15;
-		hit_flag = true;
-		CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		time2 = 0;
 	}
 	if (hit_flag == true)
 	{
-		m_time_hit++;
-		if (m_time_hit > 10)
-		{
-			hit_flag = false;
-			m_time_hit = 0;
-		}
-
-	}
-	if (m_hp <= 0)
-	{
-		m_time++;
-		if (m_time > 10 && m_time < 20)
-		{
-			m_dead += 1.0f;
-		}
+		if (m_time <= 50)
+			m_time++;
 		if (m_time == 50)
 		{
-			pb->SetDead();
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-			m_time = 0;
+			enemy_flag = true;
+		}
+
+		if (enemy_flag == true)
+		{
+			CObjFlyEnemy*objF = new CObjFlyEnemy(m_ex-500+(enemy_count*128), m_ey+200);
+			Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
+			enemy_count++;
+		}
+		if (enemy_count == 5)
+		{
+			enemy_flag = false;
+			enemy_count = 0;
+		}
+		if (dead_count == 5)
+		{
+			hit_flag = false;
 		}
 	}
-	
 
+	hit->SetPos(m_ex+100 + pb->GetScroll(), m_ey+200);
 }
 
 //
@@ -173,24 +121,31 @@ void CObjBoss2::Draw()
 	RECT_F src;
 	RECT_F dst;
 
-
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 256.0f;
-	src.m_bottom = 128.0f;
+	if (hit_flag == false)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
+	}
+	if (hit_flag == true)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 256.0f;
+		src.m_right = 512.0f;
+		src.m_bottom = 256.0f;
+	}
+	
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if (hit_flag == false)
-	{
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + pb->GetScroll();
-		dst.m_right = m_ex + 256.0f + pb->GetScroll();
-		dst.m_bottom = m_ey + 192.0f;
-	}
+		dst.m_right = m_ex + 400.0f + pb->GetScroll();
+		dst.m_bottom = m_ey + 576.0f;
 
 
 
 	//
-	Draw::Draw(16, &src, &dst, c, m_dead);
+	Draw::Draw(20, &src, &dst, c, 0.0f);
 }
