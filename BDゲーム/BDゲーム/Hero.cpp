@@ -50,7 +50,7 @@ void CObjHero::Init()
 	
 	bulletflag = true;
 
-	m_back_flag = false;//ノックバック用フラグ
+	m_back_flag = true;//ノックバック用フラグ
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -87,22 +87,23 @@ void CObjHero::Action()
 			int enemynum = 3;
 			EnemyHit(enemynum);
 		}
+
 		//ブロックとの当たり判定実行
-		
-			pb->BlockHit(&m_px, &m_py, true,
-				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+		pb->BlockHit(&m_px, &m_py, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
 		
 			
-			//敵と当たっているか確認
+		//敵と当たっているか確認
 	
-		if (m_y_num < 100)
+		/*if (m_y_num < 100)
 		{
 			m_y_num = 50;
-		}
+		}*/
 		
 		m_y_flag = true;
-		
+		m_back_flag = false;
+
 	}
 
 	if (m_dead_flag == true)
@@ -127,10 +128,9 @@ void CObjHero::Action()
 	if (m_dead_flag == false)
 	{
 		//ブロックとの当たり判定実行
-		
-			pb->BlockHit(&m_px, &m_py, true,
-				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
-				&m_vx, &m_vy);
+		pb->BlockHit(&m_px, &m_py, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
+			&m_vx, &m_vy);
 		
 		if (m_y_flag==true)
 		{
@@ -138,30 +138,30 @@ void CObjHero::Action()
 			m_y_num--;
 			
 			//自由落下運動
+			//m_vy += 5.0 / (20.0f);
 
-			m_vy += 5.0 / (20.0f);
-			
-			
 			if (m_y_num >40) 
 			{
 			
 			}
+	
+			if (m_y_num < 0||m_y_num>60)
+			{
+				m_y_num = 0;
+				
+				
+				m_y_flag = false;
+				m_back_flag = true;//
+			}
 
-			m_px += m_vx;
+			/*m_px += m_vx;
 			m_py += m_vy;
 			//HitBoxの位置の変更
 			hit->SetPos(m_px, m_py);
-
-			
-			if (m_y_num < 0)
-			{
-				m_y_num = 0;
-				m_y_flag = false;
-			}
-
+			*/
 		}
-		if (m_y_flag == false)
-		{
+		//if (m_y_flag == false)
+		//{
 
 			if (m_attack == true)
 			{
@@ -394,7 +394,7 @@ void CObjHero::Action()
 				m_dead_flag = true;
 			}
 
-		}
+		//}
 	}
 }
 

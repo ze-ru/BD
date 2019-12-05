@@ -31,9 +31,11 @@ class CObjHero :public CObj
 	void SetVY(float vy) { m_vy = vy; }
 	void SetVX(float vx) { m_vx = vx; }
 
-	void SetVX2(float vx2) { m_vx += vx2; }
-	int GetBack_Flag() { return m_back_flag; }
+
+	void SetVX2(float vx2) { m_vx += vx2; }//ノックバック用
+	bool GetBack_Flag() { return m_back_flag; }
 	void SetBack_Flag(bool bf) { m_back_flag = bf; }
+
 
 	void SetUp(bool b) { m_hit_up = b; }
 	void SetDown(bool b) { m_hit_down = b; }
