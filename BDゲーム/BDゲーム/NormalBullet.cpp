@@ -45,6 +45,7 @@ void CObjNormalBullet::Action()
 
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
+		if (objh->GetYflag() == false)
 		objh->SetDamege(dm);//ƒ_ƒ[ƒW
 		if (objh->GetX() +32> m_ex)
 			objh->SetHitflag(true);

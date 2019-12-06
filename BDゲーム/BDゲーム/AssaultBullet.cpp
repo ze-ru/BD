@@ -56,6 +56,7 @@ void CObjAssaultBullet::Action()
 	
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
+		if(objh->GetYflag()==false)
 		objh->SetDamege(dm);
 		if (objh->GetX() + 32-block->GetScroll()> m_px)
 			objh->SetHitflag(true);

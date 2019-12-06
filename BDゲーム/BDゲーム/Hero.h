@@ -24,6 +24,7 @@ class CObjHero :public CObj
 	int Getbullet() { return bullet; }
 	void Setbulletnum(int b) { bullet = b; }
 	void Setbulletnums(int b) { bullet += b; }
+	bool GetYflag() { return m_y_flag; }
 
 
 	void SetX(float x) { m_px = x; }
