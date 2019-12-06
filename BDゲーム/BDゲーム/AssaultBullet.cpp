@@ -64,6 +64,11 @@ void CObjAssaultBullet::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 	m_px += m_vx;
 	m_py += m_vy;
 	hit->SetPos(m_px + block->GetScroll(), m_py);
