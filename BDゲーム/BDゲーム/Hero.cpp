@@ -153,7 +153,7 @@ void CObjHero::Action()
 				m_vx = 3.0f;
 			}
 
-	
+			
 			m_px += m_vx;
 			m_py += m_vy;
 
