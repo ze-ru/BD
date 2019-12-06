@@ -46,20 +46,10 @@ void CObjNormalBullet::Action()
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
 		objh->SetDamege(dm);//ダメージ
-		objh->GetBack_Flag();
-	//	objh->SetBack_Flag(true);
-	
-		if (objh->GetBack_Flag() == true)
-		{
-			if (objh->GetX() + 64 < m_ex)
-			{
-				objh->SetVX2(-5.0f);
-			}
-			else if (objh->GetX() > m_ex)
-			{
-				objh->SetVX2(-5.0f);
-			}
-		}
+		if (objh->GetX() +32> m_ex)
+			objh->SetHitflag(true);
+		if (objh->GetX() + 32 < m_ex)
+			objh->SetHitflag(false);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}

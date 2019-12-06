@@ -32,11 +32,6 @@ class CObjHero :public CObj
 	void SetVX(float vx) { m_vx = vx; }
 
 
-	void SetVX2(float vx2) { m_vx += vx2; }//ノックバック用
-	bool GetBack_Flag() { return m_back_flag; }
-	void SetBack_Flag(bool bf) { m_back_flag = bf; }
-
-
 	void SetUp(bool b) { m_hit_up = b; }
 	void SetDown(bool b) { m_hit_down = b; }
 	void SetLeft(bool b) { m_hit_left = b; }
@@ -44,6 +39,8 @@ class CObjHero :public CObj
 	float GetHP() { return m_hp; };
 	void EnemyHit(int enemynume);
 	void SetDamege(int dm) { m_hp += dm; }
+
+	void SetHitflag(bool hit) { m_hit_flag = hit; }
 
 	bool  GetFlag() 
 	{ 
@@ -86,4 +83,6 @@ class CObjHero :public CObj
 	  bool bulletflag;
 
 	  bool m_back_flag;
+
+	  bool m_hit_flag;
 };

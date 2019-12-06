@@ -42,34 +42,34 @@ void CObjAssaultBullet::Action()
 	m_count++;
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
-	if (objh->GetX() > m_px)
-		m_posx = 1;
-	if (objh->GetY() < m_px)
-		m_posx = -1;
-	if (objh->GetY() > m_py)
-		m_posy = 1;
-	if (objh->GetY() < m_py)
-		m_posy = -1;
 	
-
 	if (m_count == 1)
 	{
-		m_vx = (objh->GetX() - m_px- block->GetScroll());
+		m_vx = (objh->GetX()+32 - m_px- block->GetScroll());
 		m_vy = (objh->GetY() - m_py);
 	}
 	UnitVec(&m_vx, &m_vy);
-	m_px += m_vx;
-	m_py += m_vy;
 
 	CHitBox*hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + block->GetScroll(), m_py);
 
+	
+	
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
 		objh->SetDamege(dm);
+		if (objh->GetX() + 32-block->GetScroll()> m_px)
+			objh->SetHitflag(true);
+		if (objh->GetX()+32-block->GetScroll()< m_px)
+			objh->SetHitflag(false);
 		this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}
+	m_px += m_vx;
+	m_py += m_vy;
+	hit->SetPos(m_px + block->GetScroll(), m_py);
+	
+
+	
 
 
 

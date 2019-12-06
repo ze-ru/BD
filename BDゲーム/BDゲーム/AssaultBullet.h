@@ -19,8 +19,7 @@ private:
 	float m_vy;
 	float m_px;
 	float m_py;
-	float m_ex;
-	float m_ey;
+	
 	bool m_hit_up;
 	bool m_hit_down;
 	bool m_hit_left;

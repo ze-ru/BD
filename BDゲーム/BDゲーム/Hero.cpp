@@ -49,7 +49,7 @@ void CObjHero::Init()
 	m_time_bullet = 0;
 	
 	bulletflag = true;
-
+	m_hit_flag = false;
 	m_back_flag = true;//ノックバック用フラグ
 
 	//当たり判定用のHitBoxを作成
@@ -69,7 +69,7 @@ void CObjHero::Action()
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	CHitBox* hit = Hits::GetHitBox(this);
-	if (m_y_num >= 50&&m_y_flag==false)
+	if (m_y_num >= 30&&m_y_flag==false)
 	{
 
 		if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
@@ -96,13 +96,13 @@ void CObjHero::Action()
 			
 		//敵と当たっているか確認
 	
-		/*if (m_y_num < 100)
+		if (m_y_num < 40)
 		{
-			m_y_num = 50;
-		}*/
+			m_y_num = 30;
+		}
 		
 		m_y_flag = true;
-		m_back_flag = false;
+		m_back_flag = true;
 
 	}
 
@@ -136,32 +136,33 @@ void CObjHero::Action()
 		{
 			
 			m_y_num--;
-			
 			//自由落下運動
-			//m_vy += 5.0 / (20.0f);
+			m_vy += 5.0 / (20.0f);
 
-			if (m_y_num >40) 
+			if (m_hit_flag == false)
 			{
-			
+				m_vx = -3.0f;
 			}
+			if (m_hit_flag == true)
+			{
+				m_vx = 3.0f;
+			}
+
 	
-			if (m_y_num < 0||m_y_num>60)
-			{
-				m_y_num = 0;
-				
-				
-				m_y_flag = false;
-				m_back_flag = true;//
-			}
-
-			/*m_px += m_vx;
+			m_px += m_vx;
 			m_py += m_vy;
+
 			//HitBoxの位置の変更
 			hit->SetPos(m_px, m_py);
-			*/
+
+			if (m_y_num <= 0)
+			{
+				m_y_flag = false;
+			}
+			
 		}
-		//if (m_y_flag == false)
-		//{
+		if (m_y_flag == false)
+		{
 
 			if (m_attack == true)
 			{
@@ -322,13 +323,13 @@ void CObjHero::Action()
 			{
 				HIT_DATA** hit_data;
 				hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
-				m_y_num += 30;
+				m_y_num +=20;
 			}
 			if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;
 				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
-				m_y_num += 10;
+				m_y_num +=10 ;
 			}
 			
 			//Spaceキーでジャンプ
@@ -390,7 +391,7 @@ void CObjHero::Action()
 				m_dead_flag = true;
 			}
 
-		//}
+		}
 	}
 }
 
