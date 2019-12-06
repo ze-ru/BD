@@ -22,7 +22,7 @@ CObjHeal::CObjHeal(float x, float y)
 //イニシャライズ
 void CObjHeal::Init()
 {
-	hp = 0;
+	hp = 20;
 	
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_RED, OBJ_HEAL, 1);
 }

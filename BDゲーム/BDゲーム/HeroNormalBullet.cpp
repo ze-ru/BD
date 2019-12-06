@@ -39,6 +39,7 @@ void CObjHeroNormalBullet::Init()
 	m_posture = 0;
 	hit_flag = false;
 	dm = 20;
+	m_hit = 0;
 	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_HERONORMALBULLET, OBJ_HERONORMALBULLET, 1);
 }
 void CObjHeroNormalBullet::Action()
@@ -78,10 +79,22 @@ void CObjHeroNormalBullet::Action()
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true&&hit_flag==true)
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
 	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		if (hit_flag == false)
+		{
+			hit_flag = true;
+			m_hit++;
+			if (m_hit >= 3)
+			{
+				this->SetStatus(false);//自身に削除命令を出す
+				Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+			}
+		}
+	}
+	else
+	{
+		hit_flag = false;
 	}
 	
 }

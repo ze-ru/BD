@@ -64,7 +64,7 @@ void CObjFlyEnemy::Action()
 		{
 			CObjAssaultBullet*objAB = (CObjAssaultBullet*)Objs::GetObj(OBJ_ASSAULT_BULLET);
 			CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_px, m_py);
-			Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 10);
+			Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
 			count++;
 			m_time_flat = 0;
 		}

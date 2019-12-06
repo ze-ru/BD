@@ -199,13 +199,13 @@ void CObjHero::Action()
 							if (flag == false)
 							{
 								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() + 62.0f, m_py);
-								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
 								bullet--;
 							}
 							if (flag == true)
 							{
 								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() - 2.0f, m_py);
-								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
 								bullet--;
 							}
 
@@ -213,6 +213,10 @@ void CObjHero::Action()
 						}
 						
 					}
+				}
+				else
+				{
+					m_time_bullet = 10;
 				}
 			}
 			if (wp == 2)
@@ -226,14 +230,14 @@ void CObjHero::Action()
 						if (flag == false && bulletflag == true)
 						{
 							CObjHeroNormalBullet*objhnb = new CObjHeroNormalBullet(m_px - pb->GetScroll() + 62.0f, m_py);
-							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 10);
+							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 50);
 							bullet--;
 							bulletflag = false;
 						}
 						if (flag == true && bulletflag == true)
 						{
 							CObjHeroNormalBullet*objhnb = new CObjHeroNormalBullet(m_px - pb->GetScroll() - 2.0f, m_py);
-							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 10);
+							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 50);
 							bullet--;
 							bulletflag = false;
 						}

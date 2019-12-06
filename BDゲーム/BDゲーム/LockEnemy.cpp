@@ -48,7 +48,7 @@ void CObjLockEnemy::Action()
 
 		CObjNormalBullet*objNB = (CObjNormalBullet*)Objs::GetObj(OBJ_NORMAL_BULLET);
 			CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex,m_ey);
-			Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 10);
+			Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 50);
 			attack_time = 1.0f;
 	}
 	

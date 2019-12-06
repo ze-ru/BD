@@ -58,7 +58,7 @@ void CObjBoss1::Action()
 			if (attacktime == 10)
 			{
 				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
-				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 20);
+				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
 				attacktime = 0;
 			}
 		}
@@ -71,7 +71,7 @@ void CObjBoss1::Action()
 			if (attacktime == 10)
 			{
 				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
-				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 20);
+				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
 				attacktime = 0;
 			}
 		}
@@ -81,17 +81,17 @@ void CObjBoss1::Action()
 	case 50:
 	{
 		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey+10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
+		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 50);
 	}
 	case 100:
 	{
 		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey+10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
+		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 50);
 	}
 	case 150:
 	{
 		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey+10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 20);
+		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 50);
 	}
 	}
 
