@@ -28,5 +28,5 @@ private:
 	bool m_hit_right;
 	float m_time;
 	int dm;
-	//int count;//ノックバック用
+
 };
