@@ -38,6 +38,7 @@ enum OBJ_NAME
 	OBJ_HERONORMALBULLET,
 	OBJ_LASER,
 	OBJ_BOSSENEMY,
+	OBJ_SHIELDENEMY,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -108,6 +109,8 @@ struct UserData
 #include"Boss2.h"
 #include"Block.h"
 #include"GoalBlock.h"
+
+#include"ShieldEnemy.h"
 
 #include"ObjStage1.h"
 #include"damege.h"
