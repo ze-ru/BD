@@ -82,7 +82,10 @@ void CSceneManager::SceneDraw()
 	//“–‚½‚è”»’è•\Ž¦
 	if(HIT_DRAW)
 	{
-		CHitBoxManager::DrawHitBox();
+	
+
+		
+		//CHitBoxManager::DrawHitBox();
 	}
 }
 
