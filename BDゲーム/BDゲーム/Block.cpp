@@ -511,13 +511,13 @@ void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *do
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
-				float by = i * 64.0f - 64.0f;
+				float by = i * 64.0f -64.0f;
 				bool flag = false;
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//オブジェクトとブロックの当たり判定
-				if ((*x + (-scroll) + 32.0f > bx) && (*x + (-scroll) < bx + 32.0f) && (*y + 24.0f > by) && (*y < by + 24.0f))
+				if ((*x + (-scroll) + 24.0f > bx) && (*x + (-scroll) < bx + 24.0f) && (*y + 24.0f > by) && (*y < by+24.0f))
 				{
 					//上下左右判定
 

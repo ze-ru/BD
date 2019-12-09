@@ -24,17 +24,13 @@ class CObjHero :public CObj
 	int Getbullet() { return bullet; }
 	void Setbulletnum(int b) { bullet = b; }
 	void Setbulletnums(int b) { bullet += b; }
+	bool GetYflag() { return m_y_flag; }
 
 
 	void SetX(float x) { m_px = x; }
 	void SetY(float y) { m_py = y; }
 	void SetVY(float vy) { m_vy = vy; }
 	void SetVX(float vx) { m_vx = vx; }
-
-
-	void SetVX2(float vx2) { m_vx += vx2; }//ノックバック用
-	bool GetBack_Flag() { return m_back_flag; }
-	void SetBack_Flag(bool bf) { m_back_flag = bf; }
 
 
 	void SetUp(bool b) { m_hit_up = b; }
@@ -45,6 +41,8 @@ class CObjHero :public CObj
 	void EnemyHit(int enemynume);
 	void SetDamege(int dm) { m_hp += dm; }
 
+	void SetHitflag(bool hit) { m_hit_flag = hit; }
+
 	bool  GetFlag() 
 	{ 
 		if (flag == true)
@@ -52,7 +50,7 @@ class CObjHero :public CObj
 		if (flag == false)
 			return false;
 	};
-	void SetHP(int i_hp) { m_hp = i_hp; }
+	void SetHP(int i_hp) { m_hp -= i_hp; }
   private:
 	  float m_px;//位置
 	  float m_py;
@@ -86,4 +84,6 @@ class CObjHero :public CObj
 	  bool bulletflag;
 
 	  bool m_back_flag;
+
+	  bool m_hit_flag;
 };

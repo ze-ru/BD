@@ -30,7 +30,7 @@ void CObjBossEnemy::Init()
 	m_hit_right = false;
 	m_time_flat = 0;
 	count = 0;
-	m_hp = 20;
+	m_hp = 25;
 	hit_flag = false;
 	score = 100;
 	m_time_hit = 0;
@@ -45,19 +45,19 @@ void CObjBossEnemy::Action()
 {
 
 
-	if (count < 2)
+	if (count < 4)
 	{
 		m_time_flat++;
-		if (m_time_flat > 20)
+		if (m_time_flat > 50)
 		{
 			CObjAssaultBullet*objAB = (CObjAssaultBullet*)Objs::GetObj(OBJ_ASSAULT_BULLET);
 			CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_px, m_py-10);
-			Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 10);
+			Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
 			count++;
 			m_time_flat = 0;
 		}
 	}
-	if (count >= 2)
+	if (count >= 4)
 	{
 
 		m_time_flat++;

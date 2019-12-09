@@ -20,7 +20,7 @@ CObjHero::CObjHero(int b, int w)
 void CObjHero::Init()
 {
 	m_px = 100.0f;//位置
-	m_py = 400.0f;
+	m_py = 350.0f;
 	m_vx = 0.0f;//移動ベクトル
 	m_vy = 0.0f;
 	m_posture = 0.0f;//右向き0.0f 左向き1.0f
@@ -49,7 +49,7 @@ void CObjHero::Init()
 	m_time_bullet = 0;
 	
 	bulletflag = true;
-
+	m_hit_flag = false;
 	m_back_flag = true;//ノックバック用フラグ
 
 	//当たり判定用のHitBoxを作成
@@ -60,6 +60,11 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+
+	if (Input::GetVKey('R') == true)
+	{
+		bullet+=100;
+	}
 	if (m_hp < 0)
 	{
 		m_hp = 0;
@@ -69,7 +74,7 @@ void CObjHero::Action()
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	CHitBox* hit = Hits::GetHitBox(this);
-	if (m_y_num >= 50&&m_y_flag==false)
+	if (m_y_num >= 30&&m_y_flag==false)
 	{
 
 		if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
@@ -96,13 +101,13 @@ void CObjHero::Action()
 			
 		//敵と当たっているか確認
 	
-		/*if (m_y_num < 100)
+		if (m_y_num < 40)
 		{
-			m_y_num = 50;
-		}*/
+			m_y_num = 30;
+		}
 		
 		m_y_flag = true;
-		m_back_flag = false;
+		m_back_flag = true;
 
 	}
 
@@ -136,32 +141,33 @@ void CObjHero::Action()
 		{
 			
 			m_y_num--;
-			
 			//自由落下運動
-			//m_vy += 5.0 / (20.0f);
+			m_vy += 5.0 / (20.0f);
 
-			if (m_y_num >40) 
+			if (m_hit_flag == false)
 			{
-			
+				m_vx = -3.0f;
 			}
+			if (m_hit_flag == true)
+			{
+				m_vx = 3.0f;
+			}
+
 	
-			if (m_y_num < 0||m_y_num>60)
-			{
-				m_y_num = 0;
-				
-				
-				m_y_flag = false;
-				m_back_flag = true;//
-			}
-
-			/*m_px += m_vx;
+			m_px += m_vx;
 			m_py += m_vy;
+
 			//HitBoxの位置の変更
 			hit->SetPos(m_px, m_py);
-			*/
+
+			if (m_y_num <= 0)
+			{
+				m_y_flag = false;
+			}
+			
 		}
-		//if (m_y_flag == false)
-		//{
+		if (m_y_flag == false)
+		{
 
 			if (m_attack == true)
 			{
@@ -193,13 +199,13 @@ void CObjHero::Action()
 							if (flag == false)
 							{
 								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() + 62.0f, m_py);
-								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
 								bullet--;
 							}
 							if (flag == true)
 							{
 								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() - 2.0f, m_py);
-								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 10);
+								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
 								bullet--;
 							}
 
@@ -207,6 +213,10 @@ void CObjHero::Action()
 						}
 						
 					}
+				}
+				else
+				{
+					m_time_bullet = 10;
 				}
 			}
 			if (wp == 2)
@@ -220,14 +230,14 @@ void CObjHero::Action()
 						if (flag == false && bulletflag == true)
 						{
 							CObjHeroNormalBullet*objhnb = new CObjHeroNormalBullet(m_px - pb->GetScroll() + 62.0f, m_py);
-							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 10);
+							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 50);
 							bullet--;
 							bulletflag = false;
 						}
 						if (flag == true && bulletflag == true)
 						{
 							CObjHeroNormalBullet*objhnb = new CObjHeroNormalBullet(m_px - pb->GetScroll() - 2.0f, m_py);
-							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 10);
+							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 50);
 							bullet--;
 							bulletflag = false;
 						}
@@ -322,13 +332,13 @@ void CObjHero::Action()
 			{
 				HIT_DATA** hit_data;
 				hit_data = hit->SearchObjNameHit(OBJ_NORMAL_BULLET);
-				m_y_num += 30;
+				m_y_num +=20;
 			}
 			if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;
 				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
-				m_y_num += 10;
+				m_y_num +=10 ;
 			}
 			
 			//Spaceキーでジャンプ
@@ -390,7 +400,7 @@ void CObjHero::Action()
 				m_dead_flag = true;
 			}
 
-		//}
+		}
 	}
 }
 
