@@ -160,6 +160,7 @@
     <ClCompile Include="SceneShop.cpp" />
     <ClCompile Include="SceneStage1.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="ShieldEnemy.cpp" />
     <ClCompile Include="ShopOBJ.cpp" />
     <ClCompile Include="laser.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="SceneShop.h" />
     <ClInclude Include="SceneStage1.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="ShieldEnemy.h" />
     <ClInclude Include="ShopOBJ.h" />
     <ClInclude Include="laser.h" />

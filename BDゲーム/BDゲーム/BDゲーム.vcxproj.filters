@@ -192,6 +192,9 @@
     <ClCompile Include="ShieldEnemy.cpp">
       <Filter>ソース ファイル\chara</Filter>
     </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -352,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="ShieldEnemy.h">
       <Filter>ソース ファイル\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield.h">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
