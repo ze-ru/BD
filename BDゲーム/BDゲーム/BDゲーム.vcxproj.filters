@@ -195,6 +195,9 @@
     <ClCompile Include="Shield.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="LaserBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -357,6 +360,9 @@
       <Filter>ソース ファイル\chara</Filter>
     </ClInclude>
     <ClInclude Include="Shield.h">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserBullet.h">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>

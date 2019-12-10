@@ -40,6 +40,7 @@ enum OBJ_NAME
 	OBJ_BOSSENEMY,
 	OBJ_SHIELDENEMY,
 	OBJ_SHIELD,
+	OBJ_LASER_BULLET,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -72,6 +73,7 @@ enum HIT_ELEMENTS
 	ELEMENT_ASSAULT,
 	ELEMENT_HERONORMALBULLET,
 	ELEMENT_BOSS2,
+	ELEMENT_LASERBULLET,
 	ELEMENT_SHIELD,
 };
 //------------------------------------------------
@@ -130,6 +132,7 @@ struct UserData
 
 #include"AssaultBullet.h"
 #include"Assault.h"
+#include"LaserBullet.h"
 #include"laser.h"
 #include"Rifle.h"
 
