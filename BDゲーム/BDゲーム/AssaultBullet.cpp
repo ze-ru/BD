@@ -56,11 +56,11 @@ void CObjAssaultBullet::Action()
 	
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
-		if(objh->GetYflag()==false)
-		objh->SetDamege(dm);
-		if (objh->GetX() + 32-block->GetScroll()> m_px)
+		if (objh->GetYflag() == false)
+			objh->SetDamege(dm);
+		if (objh->GetX() + 32 - block->GetScroll() > m_px)
 			objh->SetHitflag(true);
-		if (objh->GetX()+32-block->GetScroll()< m_px)
+		if (objh->GetX() + 32 - block->GetScroll() < m_px)
 			objh->SetHitflag(false);
 		this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
