@@ -30,10 +30,10 @@ void CObjlaser::Action()
 		{
 			CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			if (h->GetWeapon() == 3)
-				h->Setbulletnums(10);
+				h->Setbulletnums(99);
 			else
-				h->Setbulletnum(10);
-			h->SetWeapon(2);
+				h->Setbulletnum(99);
+			h->SetWeapon(3);
 
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
