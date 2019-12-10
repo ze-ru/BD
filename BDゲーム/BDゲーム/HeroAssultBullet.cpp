@@ -89,7 +89,7 @@ void CObjHeroAssultBullet::Action()
 		this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}
-	else
+	else if(hit->CheckElementHit(ELEMENT_SHIELD)==false)
 	{
 		hit_flag = false;
 	}
