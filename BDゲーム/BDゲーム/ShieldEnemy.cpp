@@ -48,7 +48,7 @@ void CObjShieldEnemy::Init()
 	Objs::InsertObj(objs, OBJ_SHIELD, 20);
 
 	//“–‚½‚è”»’è—p‚ÌHitBox‚ðì¬
-	Hits::SetHitBox(this, m_ex+40, m_ey, 44, 64, ELEMENT_ENEMY, OBJ_SHIELDENEMY, 1);
+	Hits::SetHitBox(this, m_ex+20, m_ey, 44, 64, ELEMENT_ENEMY, OBJ_SHIELDENEMY, 1);
 
 }
 
@@ -118,8 +118,10 @@ void CObjShieldEnemy::Action()
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 			&m_vx, &m_vy);
 
-
-		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+		if (m_move == true)
+			hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+		if (m_move == false)
+			hit->SetPos(m_ex + 20 + pb->GetScroll(), m_ey);
 
 
 

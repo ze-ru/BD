@@ -9,9 +9,15 @@
 using namespace GameL;
 
 
+CObjlaser::CObjlaser(float x, float y)
+{
+	m_px = x;
+	m_py = y;
+}
+
 void CObjlaser::Init()
 {
-
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ASSAULT, OBJ_LASER, 1);
 }
 void CObjlaser::Action()
 {
