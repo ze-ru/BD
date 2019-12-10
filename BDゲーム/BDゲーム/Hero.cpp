@@ -340,6 +340,16 @@ void CObjHero::Action()
 				int enemynum = 4;
 				EnemyHit(enemynum);
 			}
+			if (hit->CheckObjNameHit(OBJ_SHIELDENEMY) != nullptr)
+			{
+				int enemynum = 5;
+				EnemyHit(enemynum);
+			}
+			if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)
+			{
+				int enemynum = 6;
+				EnemyHit(enemynum);
+			}
 			
 			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 			{
@@ -528,7 +538,7 @@ void CObjHero::Draw()
 	}
 	if (wp == 2)
 	{
-		src.m_top =-10.0f;
+		src.m_top =0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
@@ -540,6 +550,25 @@ void CObjHero::Draw()
 		dst.m_left = 270.0f;
 		dst.m_right = dst.m_left + 96.0f;
 		dst.m_bottom = dst.m_top+64.0f;
+
+
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
+	if (wp == 3)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 64.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 64.0f;
+
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//
+		dst.m_top = -10.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
 
 
 
@@ -565,7 +594,9 @@ void CObjHero::EnemyHit(int enemynum)
 		else if (enemynum == 4)
 			hit_data = hit->SearchObjNameHit(OBJ_BOSS1);
 		else if (enemynum == 5)
-			hit_data = hit->SearchObjNameHit(OBJ_BOSS2);
+			hit_data = hit->SearchObjNameHit(OBJ_SHIELDENEMY);
+		else if (enemynum == 6)
+			hit_data = hit->SearchObjNameHit(OBJ_SHIELD);
 
 		hit_flag = false;
 
