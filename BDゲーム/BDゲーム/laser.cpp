@@ -52,8 +52,8 @@ void CObjlaser::Draw()
 	RECT_F dst;
 
 	src.m_top = 0.0f;
-	src.m_left = 192.0f;
-	src.m_right = 256.0f;
+	src.m_left = 64.0f;
+	src.m_right = 128.0f;
 	src.m_bottom = 64.0f;
 
 

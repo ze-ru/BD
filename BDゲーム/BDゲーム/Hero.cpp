@@ -258,7 +258,20 @@ void CObjHero::Action()
 			{
 				if (Input::GetVKey('C') == true)
 				{
-
+					if (flag == false && bulletflag == true)
+					{
+						CObjLaserBullet*objlb = new CObjLaserBullet(m_px - pb->GetScroll() + 62.0f, m_py);
+						Objs::InsertObj(objlb, OBJ_LASER_BULLET, 50);
+						bullet--;
+						bulletflag = false;
+					}
+					if (flag == true && bulletflag == true)
+					{
+						CObjLaserBullet*objlb = new CObjLaserBullet(m_px - pb->GetScroll() + 62.0f, m_py);
+						Objs::InsertObj(objlb, OBJ_LASER_BULLET, 50);
+						bullet--;
+						bulletflag = false;
+					}
 				}
 			}
 			

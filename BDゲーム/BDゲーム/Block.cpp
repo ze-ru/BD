@@ -132,6 +132,12 @@ void CObjBlock::Action()
 				Objs::InsertObj(objL, OBJ_RIFLE, 15);
 				m_map[i][lx] = 0;
 			}
+			if (m_map[i][lx] == 21)
+			{
+				CObjlaser*objl = new CObjlaser(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objl, OBJ_LASER, 15);
+				m_map[i][lx] = 0;
+			}
 
 			if (m_map[i][lx] == 41)
 			{

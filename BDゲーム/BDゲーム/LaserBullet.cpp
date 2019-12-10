@@ -40,7 +40,7 @@ void CObjLaserBullet::Init()
 	hit_flag = false;
 	dm = 20;
 	m_hit = 0;
-	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_LASERBULLET, OBJ_LASER_BULLET, 1);
+	Hits::SetHitBox(this, m_ex, m_ey, 128, 16, ELEMENT_LASERBULLET, OBJ_LASER_BULLET, 1);
 }
 void CObjLaserBullet::Action()
 {
@@ -56,23 +56,21 @@ void CObjLaserBullet::Action()
 
 	hit->SetPos(m_ex + block->GetScroll(), m_ey);
 
-
-
-
-
-
 	if (m_time > 80)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+
 	block->BulletHit(&m_ex, &m_ey, false, &m_hit_up, &m_hit_down,
 		&m_hit_left, &m_hit_right);
+
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+
 	if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr || hit->CheckObjNameHit(OBJ_BOSS2))
 	{
 		this->SetStatus(false);//自身に削除命令を出す
@@ -115,7 +113,7 @@ void CObjLaserBullet::Draw()
 	//
 	dst.m_top = m_ey + 4.0f;
 	dst.m_left = m_ex + block->GetScroll();
-	dst.m_right = dst.m_left + 24.0f;
+	dst.m_right = dst.m_left + 128.0f;
 	dst.m_bottom = 20.0f + m_ey;
 
 
