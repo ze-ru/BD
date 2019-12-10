@@ -79,7 +79,7 @@ void CObjHeroNormalBullet::Action()
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}
 	
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true||hit->CheckElementHit(ELEMENT_SHIELD)==true)
 	{
 		if (hit_flag == false)
 		{

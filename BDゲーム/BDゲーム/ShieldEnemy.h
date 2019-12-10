@@ -18,7 +18,10 @@ public:
 	int Getscore() { return score; }
 	float GetX() { return m_ex; };
 	float GetY() { return m_ey; };
+	float GetPos() { return m_posture; }
 	void SetDamege(int dm) { m_hp -= dm; }
+
+	void SetShield() { dead = true; }
 private:
 	float m_ex;
 	float m_ey;
@@ -45,4 +48,5 @@ private:
 
 	int score;
 	int m_time_hit;
+	bool dead;
 };

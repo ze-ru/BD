@@ -41,6 +41,12 @@ void CObjShieldEnemy::Init()
 	m_time_hit = 0;
 
 	score = 100;
+
+	dead = false;
+
+	CObjShield*objs = new CObjShield(m_ex,m_ey);
+	Objs::InsertObj(objs, OBJ_SHIELD, 20);
+
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_SHIELDENEMY, 1);
 
@@ -49,7 +55,6 @@ void CObjShieldEnemy::Init()
 //
 void CObjShieldEnemy::Action()
 {
-
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -152,6 +157,7 @@ void CObjShieldEnemy::Action()
 
 	if (m_hp <= 0)
 	{
+		
 		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 		m_time++;
 		if (m_time > 10 && m_time < 20)
@@ -160,15 +166,23 @@ void CObjShieldEnemy::Action()
 				m_dead += 1.0f;
 			if (m_move == true)
 				m_dead -= 1.0f;
+
 		}
 		if (m_time == 50)
 		{
+			if (dead == false)
+			{
+				CObjShield*shield = (CObjShield*)Objs::GetObj(OBJ_SHIELD);
+				shield->SetDead();
+			}
+			
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 
 			s1c->SetScore();
 			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 
 			su->GetScore(score);
+			
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
@@ -209,9 +223,6 @@ void CObjShieldEnemy::Draw()
 		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
 	}
-
-
-
 	//
 	Draw::Draw(22, &src, &dst, c, m_dead);
 }

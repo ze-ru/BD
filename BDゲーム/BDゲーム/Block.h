@@ -42,5 +42,7 @@ private:
 	int m_time;
 
 	bool bossflag;
+
+	int count;
 	
 };

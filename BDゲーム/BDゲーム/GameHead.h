@@ -72,6 +72,7 @@ enum HIT_ELEMENTS
 	ELEMENT_ASSAULT,
 	ELEMENT_HERONORMALBULLET,
 	ELEMENT_BOSS2,
+	ELEMENT_SHIELD,
 };
 //------------------------------------------------
 

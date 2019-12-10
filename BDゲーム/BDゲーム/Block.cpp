@@ -24,6 +24,7 @@ void CObjBlock::Init()
 	dead_flag = false;
 	m_time = 0;
 	bossflag = false;
+	count = 0;
 }
 //アクション
 void CObjBlock::Action()
@@ -64,9 +65,18 @@ void CObjBlock::Action()
 		{
 			if (m_map[i][lx] == 5)
 			{
-				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f-64.0f);
-				Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
-				
+				count++;
+				if (count >= 0&&count<=3)
+				{
+					CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f - 64.0f);
+					Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
+				}
+				if (count == 4)
+				{
+					CObjShieldEnemy*objs = new CObjShieldEnemy(lx*64.0f, i*64.0f - 64.0f);
+					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 15);
+					count = 0;
+				}
 				//敵出現場所を0にする
 				m_map[i][lx] = 0;
 			}

@@ -348,7 +348,6 @@ void CObjHero::Action()
 				{
 					if (m_vy >= 0)
 						m_vy = -10.5;
-
 				}
 			}
 			if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)
@@ -391,9 +390,10 @@ void CObjHero::Action()
 			hit->SetPos(m_px, m_py);
 
 
-			if (m_py < 0)
+			if (m_py <= 0)
 			{
-				m_py += 0.5f;
+				m_py = 0;
+				m_vy = 0.0f;
 			}
 			if (m_hp >= 50)
 			{
