@@ -48,7 +48,7 @@ void CObjShieldEnemy::Init()
 	Objs::InsertObj(objs, OBJ_SHIELD, 20);
 
 	//“–‚½‚è”»’è—p‚ÌHitBox‚ğì¬
-	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_SHIELDENEMY, 1);
+	Hits::SetHitBox(this, m_ex+40, m_ey, 44, 64, ELEMENT_ENEMY, OBJ_SHIELDENEMY, 1);
 
 }
 

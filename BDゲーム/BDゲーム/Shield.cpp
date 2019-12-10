@@ -43,11 +43,7 @@ void CObjShield::Init()
 }
 void CObjShield::Action()
 {
-	if (m_dead == true)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
 
@@ -69,9 +65,9 @@ void CObjShield::Action()
 	}
 	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 	{
-		hit_flag = true;
-		CObjDamege*dm = new CObjDamege(0, m_ex, m_ey);
-		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		se->SetShield();
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 	{
@@ -89,7 +85,16 @@ void CObjShield::Action()
 		}
 
 	}
-	
+	if (m_dead == true)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
+	if (Input::GetVKey('S') == true || (objh->GetX() - block->GetScroll()) > 17920)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 
 	hit->SetPos(m_ex + block->GetScroll(), m_ey);
 }
