@@ -58,8 +58,11 @@ void CObjBoss2::Action()
 		//着弾アニメーション終了で本当にオブジェクトの破棄
 		if (ani == 8)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
+			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+			s1c->Setdead();
+			pb->SetDead();
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
 		return;//消滅処理は、ここでアクションメソッドを終了させる
 	}
@@ -103,6 +106,14 @@ void CObjBoss2::Action()
 			{
 				hit_flag = true;
 				m_hit_data = 0;
+				if (hit_count == 0)
+					m_hp = 240;
+				if (hit_count == 1)
+					m_hp = 180;
+				if (hit_count == 2)
+					m_hp = 120;
+				if (hit_count == 3)
+					m_hp = 60;
 				hit_count++;
 			}
 		}
@@ -167,11 +178,7 @@ void CObjBoss2::Action()
 	if (m_hp <= 0)
 	{
 		m_del = true;
-			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
-			s1c->Setdead();
-			pb->SetDead();
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+			
 			
 	}
 	if (m_ex+pb->GetScroll()+20 <= h->GetX())

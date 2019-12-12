@@ -78,8 +78,24 @@ void CObjShieldEnemy::Action()
 		//着弾アニメーション終了で本当にオブジェクトの破棄
 		if (ani == 8)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
+			hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+
+
+			if (dead == false)
+			{
+				CObjShield*shield = (CObjShield*)Objs::GetObj(OBJ_SHIELD);
+				shield->SetDead();
+			}
+
+			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+
+			s1c->SetScore();
+			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+
+			su->GetScore(score);
+
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
 		return;//消滅処理は、ここでアクションメソッドを終了させる
 	}
@@ -170,11 +186,18 @@ void CObjShieldEnemy::Action()
 			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
-		else if (hit->CheckElementHit(ELEMENT_ENEMY_BULLET) == true && hit_flag == false)
+		else if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr && hit_flag == false)
 		{
-			m_hp -= 15;
+			m_hp -= 3;
 			hit_flag = true;
-			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
+			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		else if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr && hit_flag == false)
+		{
+			m_hp -= 5;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
 		else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
@@ -196,34 +219,7 @@ void CObjShieldEnemy::Action()
 	if (m_hp <= 0)
 	{
 		m_del = true;
-		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-		m_time++;
-		if (m_time > 10 && m_time < 20)
-		{
-			if (m_move == false)
-				m_dead += 1.0f;
-			if (m_move == true)
-				m_dead -= 1.0f;
-
-		}
-		if (m_time == 50)
-		{
-			if (dead == false)
-			{
-				CObjShield*shield = (CObjShield*)Objs::GetObj(OBJ_SHIELD);
-				shield->SetDead();
-			}
-			
-			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
-
-			s1c->SetScore();
-			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
-
-			su->GetScore(score);
-			
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-		}
+		
 	}
 	if (hit_flag == true)
 	{
