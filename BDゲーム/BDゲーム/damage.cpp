@@ -39,7 +39,7 @@ void CObjDamege::Draw()
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//•`‰æƒJƒ‰[î•ñ
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 1.0f,0.0f,0.0f,1.0f };////
 	wchar_t str[50];
 
 	
@@ -50,7 +50,7 @@ void CObjDamege::Draw()
 		{
 			swprintf_s(str2, L"%d", dam);
 
-			Font::StrDraw(str2, m_px + pb->GetScroll() - 20.0f, m_py - size, 20, c);
+			Font::StrDraw(str2, m_px + pb->GetScroll() - 20.0f, m_py - size, 25, c);
 
 		}
 		if (hit_time > 50)
