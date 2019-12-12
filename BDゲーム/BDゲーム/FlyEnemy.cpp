@@ -37,11 +37,32 @@ void CObjFlyEnemy::Init()
 
 	attack_time = 1.0f;
 
+	m_eff.m_top = 0;
+	m_eff.m_left = 0;
+	m_eff.m_right = 0;
+	m_eff.m_bottom = 0;
+
+	ani = 0;
+	ani_time = 0;
+	m_del = false;
+
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_FLYENEMY, 1);
 }
 void CObjFlyEnemy::Action()
 {
-
+	//弾丸消滅処理
+	if (m_del == true)
+	{
+		//Resoucesの描画物のRECT
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		//着弾アニメーション終了で本当にオブジェクトの破棄
+		if (ani == 8)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		return;//消滅処理は、ここでアクションメソッドを終了させる
+	}
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	m_time++;
 
@@ -108,14 +129,7 @@ void CObjFlyEnemy::Action()
 	
 
 		CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
-		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
-		{
-			m_hp -= 10;
-			hit_flag = true;
-			CObjDamege*dm = new CObjDamege(10, m_px, m_py);
-			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		}
-		else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
+		if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 		{
 			m_hp -= 20;
 			hit_flag = true;
@@ -127,6 +141,20 @@ void CObjFlyEnemy::Action()
 			m_hp -= 15;
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(15, m_px, m_py);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
+		{
+			m_hp -= 3;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(3, m_px, m_py);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+		{
+			m_hp -= 60;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(60, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
 		
@@ -179,8 +207,13 @@ void CObjFlyEnemy::Draw()
 		dst.m_bottom = m_py + 64.0f;
 	}
 
-	
-	
 	//
 	Draw::Draw(6, &src, &dst, c, 0.0f);
+
+	dst.m_top = 0.0f + m_py;
+	dst.m_left = 0.0f + m_px + pb->GetScroll();
+	dst.m_right = 64.0f + m_px + pb->GetScroll();
+	dst.m_bottom = 64.0f + m_py;
+
+	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }

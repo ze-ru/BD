@@ -37,13 +37,33 @@ void CObjBossEnemy::Init()
 
 	attack_time = 1.0f;
 	
+/*	m_eff.m_top = 0;
+	m_eff.m_left = 0;
+	m_eff.m_right = 0;
+	m_eff.m_bottom = 0;
 
+	ani = 0;
+	ani_time = 0;
+	m_del = false;*/
 	
 	Hits::SetHitBox(this, m_px, m_py, 32, 32, ELEMENT_ENEMY, OBJ_BOSSENEMY, 1);
 }
 void CObjBossEnemy::Action()
 {
 
+	//弾丸消滅処理
+/*	if (m_del == true)
+	{
+		//Resoucesの描画物のRECT
+		//m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		//着弾アニメーション終了で本当にオブジェクトの破棄
+		if (ani == 8)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		return;//消滅処理は、ここでアクションメソッドを終了させる
+	}*/
 
 	if (count < 4)
 	{
@@ -104,6 +124,13 @@ void CObjBossEnemy::Action()
 		CObjDamege*dm = new CObjDamege(15, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 	}
+	if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+	{
+		m_hp -= 60;
+		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(60, m_px, m_py);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
 
 
 	if (hit_flag == true)
@@ -118,6 +145,7 @@ void CObjBossEnemy::Action()
 	}
 	if (m_hp <= 0)
 	{
+		//m_del = true;
 		CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 
 		s1c->SetScore();
@@ -152,8 +180,13 @@ void CObjBossEnemy::Draw()
 		dst.m_right = dst.m_left + 32.0f;
 		dst.m_bottom = m_py + 32.0f;
 
-
-
 	//
 	Draw::Draw(20, &src, &dst, c, k);
+
+	/*dst.m_top = 0.0f + m_py;
+	dst.m_left = 0.0f + m_px + pb->GetScroll();
+	dst.m_right = 32.0f + m_px + pb->GetScroll();
+	dst.m_bottom = 32.0f + m_py;
+
+	Draw::Draw(23, &m_eff, &dst, c, 0.0f);*/
 }

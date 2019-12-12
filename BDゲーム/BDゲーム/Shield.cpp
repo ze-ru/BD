@@ -10,23 +10,17 @@ using namespace GameL;
 
 CObjShield::CObjShield(float x, float y)
 {
-	m_ex = x;
+	m_ex = x-4.0f;
 	m_ey = y;
 }
 void CObjShield::Init()
 {
 	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	m_time = 0;
-	if (h->GetFlag() == false)
-	{
-		m_vx = 10.0f;//右向き0.0f 左向き1.0f
-	}
-	if (h->GetFlag() == true)
-	{
-		m_vx = -10.0f;//右向き0.0f 左向き1.0f
-	}
-	m_py = h->GetY();
-
+	
+	
+	
+	m_vx = 0;
 	m_vy = 0;
 	m_hit_up = false;
 	m_hit_down = false;
@@ -34,27 +28,39 @@ void CObjShield::Init()
 	m_hit_right = false;
 	m_posture = 0;
 	hit_flag = false;
-	dm = 20;
+	dm = 5;
 	m_hit = 0;
 	m_dead = false;
 
 	m_time_hit = false;
+
+	m_attack = false;
+
+	m_count = 0;
+	m_hit_flag = false;
 	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);
 }
 void CObjShield::Action()
 {
+	
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
 
 	CObjShieldEnemy*se = (CObjShieldEnemy*)Objs::GetObj(OBJ_SHIELDENEMY);
 	m_posture = se->GetPos();
-	m_ex = se->GetX()-4.0f;
-	m_ey = se->GetY();
+	
 	if (m_posture == 1.0f)
 	{
-		m_ex += 38.0f;
+		m_ex = se->GetX()+38.0f;
 	}
+	if (m_posture == 0.0f)
+	{
+		m_ex = se->GetX();
+	}
+	
+		
+	
 
 	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
@@ -69,12 +75,31 @@ void CObjShield::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+	if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
+	{
+		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(0, m_ex, m_ey);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
+	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
+	{
+		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(0, m_ex, m_ey);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
 	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 	{
 		se->SetShield();
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+	else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+	{
+		se->SetShield();
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
+
 	if (hit_flag == true)
 	{
 		m_time_hit++;
@@ -96,6 +121,27 @@ void CObjShield::Action()
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 
+	
+
+	
+		if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
+		{
+			if (m_hit_flag == false)
+			{
+				m_hit_flag = true;
+				if (objh->GetYflag() == false)
+					objh->SetDamege(dm);
+				if (objh->GetX() + 32 - block->GetScroll() > m_ex)
+					objh->SetHitflag(true);
+				if (objh->GetX() + 32 - block->GetScroll() < m_ex)
+					objh->SetHitflag(false);
+			}
+		}
+		else if (hit->CheckElementHit(ELEMENT_PLAYER) == false)
+		{
+			m_hit_flag = false;
+		}
+	
 	hit->SetPos(m_ex + block->GetScroll(), m_ey);
 }
 void CObjShield::Draw()

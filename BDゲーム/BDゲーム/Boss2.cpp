@@ -31,6 +31,15 @@ void CObjBoss2::Init()
 	m_hit_flag = false;
 
 	hit_count = 0;
+
+	m_eff.m_top = 0;
+	m_eff.m_left = 0;
+	m_eff.m_right = 0;
+	m_eff.m_bottom = 0;
+
+	ani = 0;
+	ani_time = 0;
+	m_del = false;
 	Hits::SetHitBox(this, m_ex+100, m_ey+200, 200, 200, ELEMENT_BOSS2, OBJ_BOSS2, 1);
 }
 
@@ -40,6 +49,20 @@ void CObjBoss2::Action()
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CHitBox*hit = Hits::GetHitBox(this);
+
+	//弾丸消滅処理
+	if (m_del == true)
+	{
+		//Resoucesの描画物のRECT
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		//着弾アニメーション終了で本当にオブジェクトの破棄
+		if (ani == 8)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		return;//消滅処理は、ここでアクションメソッドを終了させる
+	}
 	if (hit_flag == false)
 	{
 		if (hit->CheckElementHit(ELEMENT_ATTACK) == true && m_hit_flag == false)
@@ -66,7 +89,15 @@ void CObjBoss2::Action()
 			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey+200);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
-		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true)
+		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+		{
+			m_hp -= 60;
+			hit_flag = true;
+			m_hit_data += 60;
+			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true || hit->CheckElementHit(ELEMENT_LASERBULLET) == true)
 		{
 			if (m_hit_data >= 60)
 			{
@@ -75,6 +106,7 @@ void CObjBoss2::Action()
 				hit_count++;
 			}
 		}
+		
 	}
 	if (m_hit_flag == true)
 	{
@@ -134,6 +166,7 @@ void CObjBoss2::Action()
 	}
 	if (m_hp <= 0)
 	{
+		m_del = true;
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 			s1c->Setdead();
 			pb->SetDead();
@@ -185,4 +218,11 @@ void CObjBoss2::Draw()
 
 	//
 	Draw::Draw(20, &src, &dst, c, 0.0f);
+
+	dst.m_top = 88.0f + m_ey;
+	dst.m_left = 0.0f + m_ex + pb->GetScroll();
+	dst.m_right = 400.0f + m_ex + pb->GetScroll();
+	dst.m_bottom = 488.0f + m_ey;
+
+	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }

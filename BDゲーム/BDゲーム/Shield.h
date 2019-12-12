@@ -17,6 +17,8 @@ public:
 
 	void SetDead() { m_dead = true; }
 
+	
+
 private:
 	float m_vx;
 	float m_vy;
@@ -39,4 +41,9 @@ private:
 
 	bool m_dead;
 	int m_time_hit;
+
+	bool m_attack;
+
+	bool m_hit_flag;
+	int m_count;
 };

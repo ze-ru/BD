@@ -44,6 +44,15 @@ void CObjShieldEnemy::Init()
 
 	dead = false;
 
+	m_eff.m_top = 0;
+	m_eff.m_left = 0;
+	m_eff.m_right = 0;
+	m_eff.m_bottom = 0;
+
+	ani = 0;
+	ani_time = 0;
+	m_del = false;
+
 	CObjShield*objs = new CObjShield(m_ex,m_ey);
 	Objs::InsertObj(objs, OBJ_SHIELD, 20);
 
@@ -60,6 +69,20 @@ void CObjShieldEnemy::Action()
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	CHitBox*hit = Hits::GetHitBox(this);
+
+	//弾丸消滅処理
+	if (m_del == true)
+	{
+		//Resoucesの描画物のRECT
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		//着弾アニメーション終了で本当にオブジェクトの破棄
+		if (ani == 8)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		return;//消滅処理は、ここでアクションメソッドを終了させる
+	}
 	if (m_hp > 0)
 	{
 		//通常速度
@@ -109,7 +132,6 @@ void CObjShieldEnemy::Action()
 		if (m_ex < objh->GetX() - pb->GetScroll())
 		{
 			m_move = true;
-
 		}
 
 		//HitBoxの内容を更新
@@ -148,6 +170,20 @@ void CObjShieldEnemy::Action()
 			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
+		else if (hit->CheckElementHit(ELEMENT_ENEMY_BULLET) == true && hit_flag == false)
+		{
+			m_hp -= 15;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+		{
+			m_hp -= 60;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
 
 
 		if (Input::GetVKey('S') == true || (objh->GetX() - pb->GetScroll()) > 17920)
@@ -159,7 +195,7 @@ void CObjShieldEnemy::Action()
 
 	if (m_hp <= 0)
 	{
-		
+		m_del = true;
 		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 		m_time++;
 		if (m_time > 10 && m_time < 20)
@@ -227,4 +263,11 @@ void CObjShieldEnemy::Draw()
 	}
 	//
 	Draw::Draw(22, &src, &dst, c, m_dead);
+
+	dst.m_top = 0.0f + m_ey;
+	dst.m_left = 0.0f + m_ex + pb->GetScroll();
+	dst.m_right = 64.0f + m_ex + pb->GetScroll();
+	dst.m_bottom = 64.0f + m_ey;
+
+	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }

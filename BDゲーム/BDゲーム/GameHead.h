@@ -113,6 +113,7 @@ struct UserData
 #include"Boss2.h"
 #include"Block.h"
 #include"GoalBlock.h"
+#include"explosion.h"
 
 #include"ShieldEnemy.h"
 
