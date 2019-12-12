@@ -7,6 +7,7 @@
 
 #include "GameHead.h"
 #include "Block.h"
+#include"GameL/Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -25,6 +26,7 @@ void CObjBlock::Init()
 	m_time = 0;
 	bossflag = false;
 	count = 0;
+	musicflag = false;
 }
 //アクション
 void CObjBlock::Action()
@@ -190,6 +192,30 @@ void CObjBlock::Action()
 		{
 			map_num = 30;
 		}
+
+		if (musicflag == false||map_num==30)
+		{
+			if (map_num == 0)
+			{
+				musicflag = true;
+				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+				Audio::Start(2);//音楽スタート
+			}
+			if (map_num == 8)
+			{
+				musicflag = true;
+				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+				Audio::Start(5);//音楽スタート
+			}
+			if (map_num == 30)
+			{
+				musicflag = true;
+				Audio::DeleteAudio();
+				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+				Audio::Start(4);//音楽スタート
+			}
+		}
+	
 }
 //ドロー
 void CObjBlock::Draw()

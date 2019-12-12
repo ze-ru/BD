@@ -143,7 +143,18 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"Number.png", 18, TEX_SIZE_512);
 	Audio::LoadAudio(0, L"stage1.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
-
+	Audio::LoadAudio(2, L"nstage2.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(3, L"GameOver.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(4, L"lastboss.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(5, L"stage3.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(6, L"ブロック破壊.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(7, L"ライフル.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(8, L"レーザー.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(9, L"斬撃.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(10, L"盾.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(11, L"敵死亡.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(12, L"敵被ダメ.wav", SOUND_TYPE::BACK_MUSIC);
+	Audio::LoadAudio(13, L"被ダメ.wav", SOUND_TYPE::BACK_MUSIC);
 	Draw::LoadImageW(L"Weapon.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"LastBoss.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"HealBlock.png", 21, TEX_SIZE_512);
@@ -165,8 +176,7 @@ void CSceneStage1::InitScene()
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 		//音楽情報の読み込み
 		
-		float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-		Audio::Start(0);//音楽スタート
+		
 	}
 	if (mapnum == 8)
 	{
@@ -176,8 +186,7 @@ void CSceneStage1::InitScene()
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 		//音楽情報の読み込み
 		
-		float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-		Audio::Start(0);//音楽スタート
+	
 	}
 	/*if (mapnum == 9)
 	{

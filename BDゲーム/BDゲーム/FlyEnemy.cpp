@@ -54,12 +54,18 @@ void CObjFlyEnemy::Action()
 	if (m_del == true)
 	{
 		//Resoucesの描画物のRECT
-		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄
-		if (ani == 8)
+		if (ani == 4)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
+			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+
+			s1c->SetScore();
+			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+
+			su->GetScore(score);
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
 		return;//消滅処理は、ここでアクションメソッドを終了させる
 	}
@@ -171,14 +177,7 @@ void CObjFlyEnemy::Action()
 	}
 	if (m_hp <= 0)
 	{
-		CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
-		
-		s1c->SetScore();
-		CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
-
-		su->GetScore(score);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		m_del = true;
 	}
 	if (Input::GetVKey('S') == true || (objh->GetX() - pb->GetScroll()) > 17920)
 	{

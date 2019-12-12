@@ -65,9 +65,9 @@ void CObjLockEnemy::Action()
 	if (m_del == true)
 	{
 		//Resoucesの描画物のRECT
-		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄
-		if (ani == 8)
+		if (ani == 4)
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 

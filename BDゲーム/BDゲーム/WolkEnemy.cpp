@@ -68,12 +68,20 @@ void CObjWolkEnemy::Action()
 	if (m_del == true)
 	{
 		//Resoucesの描画物のRECT
-		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄
-		if (ani == 8)
+		if (ani == 4)
 		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
+			hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+
+			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+
+			s1c->SetScore();
+			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+
+			su->GetScore(score);
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
 		return;//消滅処理は、ここでアクションメソッドを終了させる
 	}
@@ -219,26 +227,8 @@ void CObjWolkEnemy::Action()
 	if (m_hp <= 0)
 	{
 		m_del = true;
-		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-		m_time++;
-		if (m_time > 10 && m_time < 20)
-		{
-			if (m_move == false)
-				m_dead += 1.0f;
-			if (m_move == true)
-				m_dead -= 1.0f;
-		}
-		if (m_time == 50)
-		{
-			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
-
-			s1c->SetScore();
-			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
-
-			su->GetScore(score);
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-		}
+		
+		
 	}
 	if (hit_flag == true)
 	{
