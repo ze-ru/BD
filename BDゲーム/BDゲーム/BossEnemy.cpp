@@ -104,6 +104,13 @@ void CObjBossEnemy::Action()
 		CObjDamege*dm = new CObjDamege(15, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 	}
+	if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+	{
+		m_hp -= 60;
+		hit_flag = true;
+		CObjDamege*dm = new CObjDamege(60, m_px, m_py);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+	}
 
 
 	if (hit_flag == true)

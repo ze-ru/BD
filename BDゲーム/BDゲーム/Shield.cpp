@@ -75,6 +75,13 @@ void CObjShield::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
+	else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+	{
+		se->SetShield();
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
+
 	if (hit_flag == true)
 	{
 		m_time_hit++;

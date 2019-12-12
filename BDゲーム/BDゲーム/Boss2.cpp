@@ -66,7 +66,15 @@ void CObjBoss2::Action()
 			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey+200);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
-		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true)
+		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+		{
+			m_hp -= 60;
+			hit_flag = true;
+			m_hit_data += 60;
+			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true || hit->CheckElementHit(ELEMENT_LASERBULLET) == true)
 		{
 			if (m_hit_data >= 60)
 			{
@@ -75,6 +83,7 @@ void CObjBoss2::Action()
 				hit_count++;
 			}
 		}
+		
 	}
 	if (m_hit_flag == true)
 	{
