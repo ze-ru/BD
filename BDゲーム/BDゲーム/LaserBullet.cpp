@@ -39,7 +39,7 @@ void CObjLaserBullet::Init()
 	hit_flag = false;
 	dm = 60;
 	m_hit = 0;
-	Hits::SetHitBox(this, m_ex, m_ey, 96, 16, ELEMENT_LASERBULLET, OBJ_LASER_BULLET, 1);
+	Hits::SetHitBox(this, m_ex, m_ey, 60, 16, ELEMENT_LASERBULLET, OBJ_LASER_BULLET, 1);
 }
 void CObjLaserBullet::Action()
 {
@@ -59,7 +59,7 @@ void CObjLaserBullet::Action()
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 
-	block->BulletHit(&m_ex+32, &m_ey, false, &m_hit_up, &m_hit_down,
+	block->LaserHit(&m_ex, &m_ey, false, &m_hit_up, &m_hit_down,
 		&m_hit_left, &m_hit_right);
 
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
@@ -72,20 +72,6 @@ void CObjLaserBullet::Action()
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
-
-	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
-	{
-		if (hit_flag == false)
-		{
-			hit_flag = true;
-			m_hit++;
-			if (m_hit >= 3)
-			{
-				this->SetStatus(false);//自身に削除命令を出す
-				Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-			}
-		}
 	}
 	else
 	{
@@ -111,7 +97,7 @@ void CObjLaserBullet::Draw()
 
 	dst.m_top = m_ey + 4.0f;
 	dst.m_left = m_ex + block->GetScroll();
-	dst.m_right = dst.m_left + 96.0f;
+	dst.m_right = dst.m_left + 60.0f;
 	dst.m_bottom = 20.0f + m_ey;
 	
 

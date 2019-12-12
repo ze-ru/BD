@@ -32,6 +32,9 @@ public :
 	void BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 		bool *left, bool *right);
 
+	void LaserHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
+		bool *left, bool *right);
+
 private:
 	void BlockDraw(float x, float y, RECT_F *dst, float c[],int num);
 	int m_map[11][300]; //É}ÉbÉvèÓïÒ

@@ -177,6 +177,13 @@ void CObjShieldEnemy::Action()
 			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
+		else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+		{
+			m_hp -= 60;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
 
 
 		if (Input::GetVKey('S') == true || (objh->GetX() - pb->GetScroll()) > 17920)
