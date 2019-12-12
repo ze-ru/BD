@@ -148,6 +148,7 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"LastBoss.png", 20, TEX_SIZE_512);
 	Draw::LoadImageW(L"HealBlock.png", 21, TEX_SIZE_512);
 	Draw::LoadImageW(L"Sield.png", 22, TEX_SIZE_512);
+	Draw::LoadImageW(L"DefeatEfect.png", 23, TEX_SIZE_512);
 
 
 

@@ -36,4 +36,9 @@ private:
 	int m_time;
 
 	int attack_time;
+
+	int ani;//着弾アニメーション用
+	int ani_time;//着弾アニメーション間隔タイム
+	bool m_del;//削除チェック
+	RECT_F m_eff;//着弾エフェクト描画用
 };

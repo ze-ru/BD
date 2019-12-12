@@ -365,6 +365,12 @@ void CObjHero::Action()
 				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
 				m_y_num +=10 ;
 			}
+			if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)
+			{
+				HIT_DATA** hit_data;
+				hit_data = hit->SearchObjNameHit(OBJ_SHIELD);
+				m_y_num += 40;
+			}
 			
 			//Spaceキーでジャンプ
 			if (Input::GetVKey(' ') == true)

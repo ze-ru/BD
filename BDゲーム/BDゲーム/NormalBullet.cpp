@@ -59,8 +59,26 @@ void CObjNormalBullet::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-	
-	
+	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
+	if (hit->CheckObjNameHit(OBJ_SHIELDENEMY) != nullptr)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
+	if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
+	if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 	
 	if (m_time>100)
 	{

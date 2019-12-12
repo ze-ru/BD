@@ -40,6 +40,15 @@ void CObjWolkEnemy::Init()
 
 	m_time_hit = 0;
 
+	m_eff.m_top = 0;
+	m_eff.m_left = 0;
+	m_eff.m_right = 0;
+	m_eff.m_bottom = 0;
+
+	ani = 0;
+	ani_time = 0;
+	m_del = false;
+
 	score = 100;
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_WOLKENEMY, 1);
@@ -55,6 +64,19 @@ void CObjWolkEnemy::Action()
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	CHitBox*hit = Hits::GetHitBox(this);
+	//弾丸消滅処理
+	if (m_del == true)
+	{
+		//Resoucesの描画物のRECT
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		//着弾アニメーション終了で本当にオブジェクトの破棄
+		if (ani == 8)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		return;//消滅処理は、ここでアクションメソッドを終了させる
+	}
 	if (m_hp > 0)
 	{
 		//通常速度
@@ -164,6 +186,20 @@ void CObjWolkEnemy::Action()
 			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		}
+		if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
+		{
+			m_hp -= 3;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(3, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
+		if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
+		{
+			m_hp -= 5;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		}
 		
 
 		if (Input::GetVKey('S') == true|| (objh->GetX() - pb->GetScroll()) > 17920)
@@ -175,6 +211,7 @@ void CObjWolkEnemy::Action()
 
 	if (m_hp <= 0)
 	{
+		m_del = true;
 		hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 		m_time++;
 		if (m_time > 10 && m_time < 20)
@@ -241,4 +278,12 @@ void CObjWolkEnemy::Draw()
 
 	//
 	Draw::Draw(3, &src, &dst, c, m_dead);
+
+
+	dst.m_top = 0.0f + m_ey;
+	dst.m_left = 0.0f + m_ex + pb->GetScroll();
+	dst.m_right = 64.0f + m_ex + pb->GetScroll();
+	dst.m_bottom = 64.0f + m_ey;
+
+	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }
