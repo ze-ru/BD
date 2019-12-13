@@ -37,4 +37,5 @@ private:
 
 	bool boss_flag;
 	int m_time;
+	bool musicflag;
 };

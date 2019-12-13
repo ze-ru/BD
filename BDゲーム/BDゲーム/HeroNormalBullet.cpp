@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include"HeroNormalBullet.h"
+#include"GameL\Audio.h"
 
 using namespace GameL;
 
@@ -40,6 +41,7 @@ void CObjHeroNormalBullet::Init()
 	hit_flag = false;
 	dm = 20;
 	m_hit = 0;
+	Audio::Start(7);
 	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_HERONORMALBULLET, OBJ_HERONORMALBULLET, 1);
 }
 void CObjHeroNormalBullet::Action()
@@ -47,6 +49,9 @@ void CObjHeroNormalBullet::Action()
 
 
 	m_time++;
+
+	if (m_time == 5)
+		Audio::Stop(7);
 
 	m_ex += m_vx;
 	m_ey += m_vy;
@@ -63,6 +68,7 @@ void CObjHeroNormalBullet::Action()
 
 	if (m_time > 80)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
@@ -70,11 +76,13 @@ void CObjHeroNormalBullet::Action()
 		&m_hit_left, &m_hit_right);
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr||hit->CheckObjNameHit(OBJ_BOSS2))
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
@@ -87,6 +95,7 @@ void CObjHeroNormalBullet::Action()
 			m_hit++;
 			if (m_hit >= 3)
 			{
+				Audio::Stop(7);
 				this->SetStatus(false);//自身に削除命令を出す
 				Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 			}

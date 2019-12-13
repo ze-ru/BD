@@ -5,6 +5,7 @@
 
 #include "GameHead.h"
 #include "Boss2.h"
+#include"GameL\Audio.h"
 
 
 //
@@ -53,14 +54,16 @@ void CObjBoss2::Action()
 	//弾丸消滅処理
 	if (m_del == true)
 	{
+		Audio::Start(11);
 		//Resoucesの描画物のRECT
-		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
+		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄
-		if (ani == 8)
+		if (ani == 4)
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 			s1c->Setdead();
 			pb->SetDead();
+			Audio::Stop(11);
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
@@ -75,6 +78,7 @@ void CObjBoss2::Action()
 			m_hit_data += 15;
 			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey+200);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && m_hit_flag == false)
 		{
@@ -83,6 +87,7 @@ void CObjBoss2::Action()
 			m_hit_data += 10;
 			CObjDamege*dm = new CObjDamege(10, m_ex, m_ey+200);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true&&m_hit_flag==false)
 		{
@@ -91,6 +96,7 @@ void CObjBoss2::Action()
 			m_hit_data += 20;
 			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey+200);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
@@ -99,6 +105,7 @@ void CObjBoss2::Action()
 			m_hit_data += 60;
 			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true || hit->CheckElementHit(ELEMENT_LASERBULLET) == true)
 		{
@@ -121,16 +128,19 @@ void CObjBoss2::Action()
 	}
 	if (m_hit_flag == true)
 	{
+		Audio::Stop(12);
 		m_hit_time++;
 		if (m_hit_time > 10)
 		{
 			m_hit_flag = false;
 			m_hit_time = 0;
+			
 		}
 
 	}
 	if (hit_flag == true)
 	{
+		Audio::Stop(12);
 		if (m_time <= 50)
 			m_time++;
 		if (m_time == 50)

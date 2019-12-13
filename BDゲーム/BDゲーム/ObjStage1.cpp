@@ -4,6 +4,7 @@
 #include"GameL\DrawFont.h"
 #include"ObjStage1.h"
 #include"GameHead.h"
+#include"GameL\Audio.h"
 
 using namespace GameL;
 
@@ -46,7 +47,6 @@ void CObjStage1::Action()
 	if (m_time == 150)
 	{
 		map_flag = 13;
-		m_time = 0;
 	}
 
 	

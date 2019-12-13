@@ -47,5 +47,7 @@ private:
 	bool bossflag;
 
 	int count;
+
+	bool musicflag;
 	
 };

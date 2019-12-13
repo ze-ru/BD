@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include"NormalBullet.h"
+#include"GameL\Audio.h"
 
 using namespace GameL;
 
@@ -25,7 +26,7 @@ void CObjNormalBullet::Init()
 	m_hit_left = false;
 	m_hit_right = false;
 	dm = 5;
-
+	Audio::Start(7);
 
 	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_NORMAL_BULLET, 1);
 }
@@ -34,6 +35,9 @@ void CObjNormalBullet::Action()
 	m_vx = -7.5f;
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	m_time++;
+
+	if (m_time == 5)
+		Audio::Stop(7);
 	m_ex += m_vx;
 	m_ey += m_vy;
 	
@@ -51,37 +55,47 @@ void CObjNormalBullet::Action()
 			objh->SetHitflag(true);
 		if (objh->GetX() + 32 < m_ex)
 			objh->SetHitflag(false);
+		Audio::Start(13);
+		Audio::Stop(7);
+		
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		Audio::Stop(13);
 	}
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELDENEMY) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	
 	if (m_time>100)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
@@ -89,6 +103,7 @@ void CObjNormalBullet::Action()
 		&m_hit_left, &m_hit_right);
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}

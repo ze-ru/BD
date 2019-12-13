@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include"AssaultBullet.h"
+#include"GameL\Audio.h"
 
 using namespace GameL;
 
@@ -28,6 +29,7 @@ void CObjAssaultBullet::Init()
 	m_posx = 1;
 	m_count = 0;
 	dm = 2;
+	Audio::Start(7);
 	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_ASSAULT_BULLET, 1);
 }
 void CObjAssaultBullet::Action()
@@ -35,7 +37,8 @@ void CObjAssaultBullet::Action()
 	
 
 	m_time++;
-	
+	if (m_time == 5)
+		Audio::Stop(7);
 
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -62,32 +65,40 @@ void CObjAssaultBullet::Action()
 			objh->SetHitflag(true);
 		if (objh->GetX() + 32 - block->GetScroll() < m_px)
 			objh->SetHitflag(false);
+		Audio::Start(13);
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		Audio::Stop(13);
 	}
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	
 	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELDENEMY) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
@@ -103,6 +114,7 @@ void CObjAssaultBullet::Action()
 
 	if (m_time > 150)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
@@ -110,6 +122,7 @@ void CObjAssaultBullet::Action()
 		&m_hit_left, &m_hit_right);
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
+		Audio::Stop(7);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}

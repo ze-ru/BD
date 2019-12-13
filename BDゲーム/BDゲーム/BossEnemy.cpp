@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include"BossEnemy.h"
+#include"GameL\Audio.h"
 
 using namespace GameL;
 
@@ -109,6 +110,7 @@ void CObjBossEnemy::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(10, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(12);
 	}
 	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 	{
@@ -116,6 +118,7 @@ void CObjBossEnemy::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(20, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(12);
 	}
 	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 	{
@@ -123,6 +126,7 @@ void CObjBossEnemy::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(15, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(12);
 	}
 	if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 	{
@@ -130,17 +134,20 @@ void CObjBossEnemy::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(60, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(12);
 	}
 
 
 	if (hit_flag == true)
 	{
+		Audio::Stop(12);
 		m_time_hit++;
 		if (m_time_hit > 10)
 		{
 			hit_flag = false;
 			m_time_hit = 0;
 			dm = 0;
+		
 		}
 	}
 	if (m_hp <= 0)
@@ -153,14 +160,12 @@ void CObjBossEnemy::Action()
 		CObjBoss2*b2 = (CObjBoss2*)Objs::GetObj(OBJ_BOSS2);
 		b2->enemycount();
 		su->GetScore(score);
+		Audio::Start(11);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		Audio::Stop(11);
 	}
-	if (Input::GetVKey('S') == true)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
+	
 }
 void CObjBossEnemy::Draw()
 {

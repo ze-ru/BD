@@ -8,6 +8,7 @@
 #include"BossBlock.h"
 
 #include"GameHead.h"
+#include"GameL\Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -34,6 +35,8 @@ void CObjBossBlock::Init()
 
 	boss_flag = false;
 	m_time = 0;
+
+	musicflag = false;
 
 	Hits::SetHitBox(this, m_bx, m_by, 64, 64, ELEMENT_BLOCK, OBJ_BOSSBLOCK, 1);
 	
@@ -64,10 +67,21 @@ void CObjBossBlock::Action()
 	{
 		num = 30;
 	}
+	
 
 	//主人公が一定範囲に入ると当たり判定実行
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
+		if (musicflag == false )
+		{
+			if (num == 0)
+			{
+				musicflag = true;
+					Audio::Stop(2);
+				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+				Audio::Start(0);//音楽スタート
+			}
+		}
 		if ((hx + 64.0f > m_bx) && (hx < m_bx + 64.0f) && (hy + 64.0f > m_by) && (hy < m_by + 64.0f))
 		{
 			//左右判定

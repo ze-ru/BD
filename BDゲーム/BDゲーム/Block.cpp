@@ -7,6 +7,7 @@
 
 #include "GameHead.h"
 #include "Block.h"
+#include"GameL/Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -25,6 +26,7 @@ void CObjBlock::Init()
 	m_time = 0;
 	bossflag = false;
 	count = 0;
+	musicflag = false;
 }
 //アクション
 void CObjBlock::Action()
@@ -66,7 +68,7 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 5)
 			{
 				count++;
-				if (count >= 0&&count<=3)
+				if (count >= 1&&count<=3)
 				{
 					CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f - 64.0f);
 					Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
@@ -74,7 +76,7 @@ void CObjBlock::Action()
 				if (count == 4)
 				{
 					CObjShieldEnemy*objs = new CObjShieldEnemy(lx*64.0f, i*64.0f - 64.0f);
-					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 15);
+					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 8);
 					count = 0;
 				}
 				//敵出現場所を0にする
@@ -166,11 +168,16 @@ void CObjBlock::Action()
 						
 					}
 				}
-				if (m_map[i][j] == 42 && map_num == 30)
+				if (m_map[i][j] == 42 && map_num == 30&&musicflag == false)
 				{
 					CObjBoss2*objboss2 = new CObjBoss2(j*64.0f, i*64.0f - 64.0f);
 					Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
 					m_map[i][j] = 0;
+						musicflag = true;
+						Audio::Stop(5);
+						float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+						Audio::Start(4);//音楽スタート
+					
 				}
 			}
 		}
@@ -189,7 +196,26 @@ void CObjBlock::Action()
 		if (m_time == 150)
 		{
 			map_num = 30;
+			musicflag = false;
 		}
+
+		if (musicflag == false)
+		{
+			if (map_num == 0)
+			{
+				musicflag = true;
+				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+				Audio::Start(2);//音楽スタート
+			}
+			if (map_num == 8)
+			{
+				musicflag = true;
+				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+				Audio::Start(5);//音楽スタート
+			}
+			
+		}
+	
 }
 //ドロー
 void CObjBlock::Draw()

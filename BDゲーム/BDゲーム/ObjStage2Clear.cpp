@@ -28,7 +28,7 @@ void CObjStage2Clear::Action()
 	
 	//for(int i=0;)
 
-	if (Input::GetVKey(VK_RETURN) == true&&m_vy>470)
+	if (Input::GetVKey(VK_RETURN) == true&&m_vy>1600)
 	{
 		Scene::SetScene(new CSceneTitle());
 	}
@@ -54,6 +54,8 @@ void CObjStage2Clear::Draw()
 	Font::StrDraw(L"プランナー　     松﨑　隼人", 50, 1350 - m_vy, 50, c);
 
 	Font::StrDraw(L"アシスタント  　 松本　和益",  50, 1450 - m_vy, 50, c);
+
+	Font::StrDraw(L"スペシャルサンクス  近コン", 50, 1550 - m_vy, 50, c);
 
 	Font::StrDraw(L"Thank you for playing!!", 120, 1800-m_vy, 50, c);
 
