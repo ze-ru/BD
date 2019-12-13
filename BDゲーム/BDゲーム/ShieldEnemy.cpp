@@ -6,6 +6,8 @@
 #include "GameHead.h"
 #include "ShieldEnemy.h"
 
+#include"GameL\Audio.h"
+
 
 //
 using namespace GameL;
@@ -79,7 +81,7 @@ void CObjShieldEnemy::Action()
 		if (ani == 4)
 		{
 			hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-
+			Audio::Start(11);
 
 			if (dead == false)
 			{
@@ -93,6 +95,7 @@ void CObjShieldEnemy::Action()
 			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 
 			su->GetScore(score);
+			Audio::Stop(11);
 
 			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
@@ -171,6 +174,7 @@ void CObjShieldEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 		{
@@ -178,6 +182,7 @@ void CObjShieldEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 		{
@@ -185,6 +190,7 @@ void CObjShieldEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		else if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr && hit_flag == false)
 		{
@@ -192,6 +198,7 @@ void CObjShieldEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		else if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr && hit_flag == false)
 		{
@@ -199,6 +206,7 @@ void CObjShieldEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
@@ -206,6 +214,7 @@ void CObjShieldEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 
 
@@ -224,10 +233,12 @@ void CObjShieldEnemy::Action()
 	if (hit_flag == true)
 	{
 		m_time_hit++;
+		Audio::Stop(12);
 		if (m_time_hit > 10)
 		{
 			hit_flag = false;
 			m_time_hit = 0;
+			
 		}
 
 	}

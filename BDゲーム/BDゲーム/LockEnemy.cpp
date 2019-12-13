@@ -6,6 +6,8 @@
 #include"GameHead.h"
 #include"LockEnemy.h"
 
+#include"GameL\Audio.h"
+
 using namespace GameL;
 
 CObjLockEnemy::CObjLockEnemy(float x, float y)
@@ -64,6 +66,7 @@ void CObjLockEnemy::Action()
 	//弾丸消滅処理
 	if (m_del == true)
 	{
+		Audio::Start(11);
 		//Resoucesの描画物のRECT
 		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄
@@ -75,8 +78,10 @@ void CObjLockEnemy::Action()
 			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 
 			su->GetScore(score);
+			
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
+			Audio::Stop(11);
 		}
 		return;//消滅処理は、ここでアクションメソッドを終了させる
 	}
@@ -103,6 +108,7 @@ void CObjLockEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 		{
@@ -110,6 +116,7 @@ void CObjLockEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		
 		if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
@@ -118,6 +125,7 @@ void CObjLockEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
 		{
@@ -125,6 +133,7 @@ void CObjLockEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(3, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
@@ -132,15 +141,18 @@ void CObjLockEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 
 	if (hit_flag == true)
 	{
 		m_time++;
+		Audio::Stop(12);
 		if (m_time > 10)
 		{
 			hit_flag = false;
 			m_time = 0;
+		
 		}
 
 	}

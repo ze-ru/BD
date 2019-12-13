@@ -7,6 +7,8 @@
 #include"GameHead.h"
 #include"Hero.h"
 
+
+
 //使用ネームスペース
 using namespace GameL;
 
@@ -64,6 +66,10 @@ void CObjHero::Action()
 	if (Input::GetVKey('R') == true)
 	{
 		bullet+=100;
+	}
+	if (Input::GetVKey('V') == true)
+	{
+		m_hp -= 1;
 	}
 	if (m_hp < 0)
 	{
@@ -231,6 +237,7 @@ void CObjHero::Action()
 						{
 							CObjHeroNormalBullet*objhnb = new CObjHeroNormalBullet(m_px - pb->GetScroll() + 62.0f, m_py);
 							Objs::InsertObj(objhnb, OBJ_HERONORMALBULLET, 50);
+
 							bullet--;
 							bulletflag = false;
 						}
@@ -254,6 +261,7 @@ void CObjHero::Action()
 						{
 							CObjLaserBullet*objlb = new CObjLaserBullet(m_px - pb->GetScroll() + 62.0f, m_py);
 							Objs::InsertObj(objlb, OBJ_LASER_BULLET, 50);
+							
 							bullet--;
 							bulletflag = false;
 						}

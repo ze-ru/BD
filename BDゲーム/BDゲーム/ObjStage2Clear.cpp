@@ -28,7 +28,7 @@ void CObjStage2Clear::Action()
 	
 	//for(int i=0;)
 
-	if (Input::GetVKey(VK_RETURN) == true&&m_vy>470)
+	if (Input::GetVKey(VK_RETURN) == true&&m_vy>1600)
 	{
 		Scene::SetScene(new CSceneTitle());
 	}

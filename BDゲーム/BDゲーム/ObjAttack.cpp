@@ -6,6 +6,7 @@
 
 #include"GameHead.h"
 #include"ObjAttack.h"
+#include"GameL\Audio.h"
 
 //使用ネームスペース
 using namespace GameL;
@@ -48,6 +49,7 @@ void CObjAttack::Init()
 	hit_flag = false;
 
 	m_attack = false;
+	Audio::Start(9);
 	Hits::SetHitBox(this, m_px+m_vx, m_py+m_vy, 32, 63, ELEMENT_ATTACK, OBJ_HERO, 1);
 
 }
@@ -57,7 +59,10 @@ void CObjAttack::Action()
 {
 	//自身のHitBoxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
-
+	if (m_time1 == 6)
+	{
+		Audio::Stop(9);
+	}
 	
 
 	//敵と当たっているか確認

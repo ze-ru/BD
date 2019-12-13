@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include"FlyEnemy.h"
+#include"GameL\Audio.h"
 
 using namespace GameL;
 
@@ -53,6 +54,7 @@ void CObjFlyEnemy::Action()
 	//弾丸消滅処理
 	if (m_del == true)
 	{
+		Audio::Start(11);
 		//Resoucesの描画物のRECT
 		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄
@@ -64,6 +66,7 @@ void CObjFlyEnemy::Action()
 			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 
 			su->GetScore(score);
+			Audio::Stop(11);
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
@@ -141,6 +144,7 @@ void CObjFlyEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(20, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 		{
@@ -148,6 +152,7 @@ void CObjFlyEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(15, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 		{
@@ -155,6 +160,7 @@ void CObjFlyEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(5, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
@@ -162,17 +168,20 @@ void CObjFlyEnemy::Action()
 			hit_flag = true;
 			CObjDamege*dm = new CObjDamege(60, m_px, m_py);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
 		}
 		
 	
 	if (hit_flag == true)
 	{
+		Audio::Stop(12);
 		m_time_hit++;
 		if (m_time_hit > 10)
 		{
 			hit_flag = false;
 			m_time_hit = 0;
 			dm = 0;
+		
 		}
 	}
 	if (m_hp <= 0)

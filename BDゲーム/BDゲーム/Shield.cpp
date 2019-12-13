@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include"HeroNormalBullet.h"
+#include"GameL\Audio.h"
 
 using namespace GameL;
 
@@ -38,6 +39,7 @@ void CObjShield::Init()
 
 	m_count = 0;
 	m_hit_flag = false;
+
 	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);
 }
 void CObjShield::Action()
@@ -68,10 +70,12 @@ void CObjShield::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(0, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(10);
 	}
 	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 	{
 		se->SetShield();
+		Audio::Stop(10);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
@@ -80,22 +84,26 @@ void CObjShield::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(0, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(10);
 	}
 	if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 	{
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(0, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(10);
 	}
 	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 	{
 		se->SetShield();
+		Audio::Stop(10);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 	else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 	{
 		se->SetShield();
+		Audio::Stop(10);
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
@@ -103,10 +111,12 @@ void CObjShield::Action()
 	if (hit_flag == true)
 	{
 		m_time_hit++;
+		Audio::Stop(10);
 		if (m_time_hit > 10)
 		{
 			hit_flag = false;
 			m_time_hit = 0;
+			
 		}
 
 	}
@@ -114,6 +124,7 @@ void CObjShield::Action()
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		
 	}
 	if (Input::GetVKey('S') == true || (objh->GetX() - block->GetScroll()) > 17920)
 	{
@@ -135,11 +146,13 @@ void CObjShield::Action()
 					objh->SetHitflag(true);
 				if (objh->GetX() + 32 - block->GetScroll() < m_ex)
 					objh->SetHitflag(false);
+				Audio::Start(13);
 			}
 		}
 		else if (hit->CheckElementHit(ELEMENT_PLAYER) == false)
 		{
 			m_hit_flag = false;
+			Audio::Stop(13);
 		}
 	
 	hit->SetPos(m_ex + block->GetScroll(), m_ey);

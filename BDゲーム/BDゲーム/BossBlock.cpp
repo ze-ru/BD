@@ -72,7 +72,16 @@ void CObjBossBlock::Action()
 	//主人公が一定範囲に入ると当たり判定実行
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
-	
+		if (musicflag == false )
+		{
+			if (num == 0)
+			{
+				musicflag = true;
+					Audio::Stop(2);
+				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+				Audio::Start(0);//音楽スタート
+			}
+		}
 		if ((hx + 64.0f > m_bx) && (hx < m_bx + 64.0f) && (hy + 64.0f > m_by) && (hy < m_by + 64.0f))
 		{
 			//左右判定

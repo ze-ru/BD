@@ -168,11 +168,16 @@ void CObjBlock::Action()
 						
 					}
 				}
-				if (m_map[i][j] == 42 && map_num == 30)
+				if (m_map[i][j] == 42 && map_num == 30&&musicflag == false)
 				{
 					CObjBoss2*objboss2 = new CObjBoss2(j*64.0f, i*64.0f - 64.0f);
 					Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
 					m_map[i][j] = 0;
+						musicflag = true;
+						Audio::Stop(5);
+						float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+						Audio::Start(4);//音楽スタート
+					
 				}
 			}
 		}
@@ -191,9 +196,10 @@ void CObjBlock::Action()
 		if (m_time == 150)
 		{
 			map_num = 30;
+			musicflag = false;
 		}
 
-		if (musicflag == false||map_num==30)
+		if (musicflag == false)
 		{
 			if (map_num == 0)
 			{
@@ -207,13 +213,7 @@ void CObjBlock::Action()
 				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
 				Audio::Start(5);//音楽スタート
 			}
-			if (map_num == 30)
-			{
-				musicflag = true;
-				Audio::DeleteAudio();
-				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-				Audio::Start(4);//音楽スタート
-			}
+			
 		}
 	
 }

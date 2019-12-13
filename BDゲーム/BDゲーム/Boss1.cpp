@@ -5,6 +5,7 @@
 
 #include "GameHead.h"
 #include "Boss1.h"
+#include"GameL\Audio.h"
 
 
 //
@@ -60,6 +61,7 @@ void CObjBoss1::Action()
 	//弾丸消滅処理
 	if (m_del == true)
 	{
+		Audio::Start(11);
 		//Resoucesの描画物のRECT
 		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄
@@ -68,6 +70,7 @@ void CObjBoss1::Action()
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 			s1c->Setdead();
 			pb->SetDead();
+			Audio::Stop(11);
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
@@ -165,6 +168,7 @@ void CObjBoss1::Action()
 		CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
+		Audio::Start(12);
 	}
 	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
 	{
@@ -173,6 +177,7 @@ void CObjBoss1::Action()
 		CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
+		Audio::Start(12);
 	}
 	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 	{
@@ -181,22 +186,28 @@ void CObjBoss1::Action()
 		CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
+		Audio::Start(12);
 	}
-	if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
+	else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 	{
 		m_hp -= 60;
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		time2 = 0;
+		Audio::Start(12);
 	}
+	
 
 	if (hit_flag == true)
 	{
+		Audio::Stop(12);
 		m_time_hit++;
 		if (m_time_hit > 10)
 		{
 			hit_flag = false;
 			m_time_hit = 0;
+			
 		}
 
 	}
