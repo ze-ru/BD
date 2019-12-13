@@ -50,6 +50,7 @@ void CObjShield::Action()
 	CHitBox*hit = Hits::GetHitBox(this);
 
 	CObjShieldEnemy*se = (CObjShieldEnemy*)Objs::GetObj(OBJ_SHIELDENEMY);
+
 	m_posture = se->GetPos();
 	
 	if (m_posture == 1.0f)
@@ -60,6 +61,8 @@ void CObjShield::Action()
 	{
 		m_ex = se->GetX();
 	}
+
+	m_ey = se->GetY();
 	
 		
 	

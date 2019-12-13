@@ -76,7 +76,7 @@ void CObjBlock::Action()
 				if (count == 4)
 				{
 					CObjShieldEnemy*objs = new CObjShieldEnemy(lx*64.0f, i*64.0f - 64.0f);
-					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 8);
+					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 15);
 					count = 0;
 				}
 				//ìGèoåªèÍèäÇ0Ç…Ç∑ÇÈ

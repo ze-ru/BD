@@ -26,7 +26,7 @@ void CObjStage1::Init()
 void CObjStage1::Action()
 {
 	time++;
-	if (Input::GetVKey('A') == true)
+	if (Input::GetVKey('T') == true)
 	{
 		Scene::SetScene(new stageselect());
 	}

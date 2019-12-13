@@ -67,7 +67,7 @@ void CObjHero::Action()
 	{
 		bullet+=100;
 	}
-	if (Input::GetVKey('V') == true)
+	if (Input::GetVKey('H') == true)
 	{
 		m_hp -= 1;
 	}

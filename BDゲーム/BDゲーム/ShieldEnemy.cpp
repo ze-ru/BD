@@ -56,7 +56,7 @@ void CObjShieldEnemy::Init()
 	m_del = false;
 
 	CObjShield*objs = new CObjShield(m_ex,m_ey);
-	Objs::InsertObj(objs, OBJ_SHIELD, 9);
+	Objs::InsertObj(objs, OBJ_SHIELD, 20);
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_ex+20, m_ey, 44, 64, ELEMENT_ENEMY, OBJ_SHIELDENEMY, 1);
@@ -218,7 +218,7 @@ void CObjShieldEnemy::Action()
 		}
 
 
-		if (Input::GetVKey('S') == true || (objh->GetX() - pb->GetScroll()) > 17920)
+		if (Input::GetVKey('U') == true || (objh->GetX() - pb->GetScroll()) > 17920)
 		{
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
