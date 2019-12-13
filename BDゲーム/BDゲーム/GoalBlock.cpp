@@ -52,11 +52,23 @@ void CObjGoalBlock::Draw()
 	RECT_F src;
 	RECT_F dst;
 
+	CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
 
-	src.m_top = 0.0f;
-	src.m_left = 320.0f;
-	src.m_right = 384.0f;
-	src.m_bottom = 64.0f;
+	if (s1->Getmapnum() == 0)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+	}
+	else
+	{
+		src.m_top = 0.0f;
+		src.m_left = 64.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 64.0f;
+	}
+	
 
 	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -66,5 +78,5 @@ void CObjGoalBlock::Draw()
 	dst.m_right = dst.m_left + 64.0f;
 	dst.m_bottom = 64.0f + m_by;
 
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(24, &src, &dst, c, 0.0f);
 }
