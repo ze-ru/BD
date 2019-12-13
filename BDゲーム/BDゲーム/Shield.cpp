@@ -124,7 +124,6 @@ void CObjShield::Action()
 	{
 		this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
-		
 	}
 	if (Input::GetVKey('S') == true || (objh->GetX() - block->GetScroll()) > 17920)
 	{

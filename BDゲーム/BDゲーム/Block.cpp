@@ -68,7 +68,7 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 5)
 			{
 				count++;
-				if (count >= 0&&count<=3)
+				if (count >= 1&&count<=3)
 				{
 					CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f - 64.0f);
 					Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
@@ -76,7 +76,7 @@ void CObjBlock::Action()
 				if (count == 4)
 				{
 					CObjShieldEnemy*objs = new CObjShieldEnemy(lx*64.0f, i*64.0f - 64.0f);
-					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 15);
+					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 8);
 					count = 0;
 				}
 				//“GoŒ»êŠ‚ğ0‚É‚·‚é

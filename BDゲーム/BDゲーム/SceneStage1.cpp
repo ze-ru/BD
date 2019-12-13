@@ -171,7 +171,7 @@ void CSceneStage1::InitScene()
 	if (mapnum == 0)
 	{
 		CObjBlock*objb = new CObjBlock(map, mapnum);
-		Objs::InsertObj(objb, OBJ_BLOCK, 2);
+		Objs::InsertObj(objb, OBJ_BLOCK, 10);
 		CObjStage1Clear *objc = new CObjStage1Clear();
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 		//âπäyèÓïÒÇÃì«Ç›çûÇ›
@@ -181,7 +181,7 @@ void CSceneStage1::InitScene()
 	if (mapnum == 8)
 	{
 		CObjBlock*objb = new CObjBlock(map2, mapnum);
-		Objs::InsertObj(objb, OBJ_BLOCK, 2);
+		Objs::InsertObj(objb, OBJ_BLOCK, 10);
 		CObjStage1Clear *objc = new CObjStage1Clear();
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 		//âπäyèÓïÒÇÃì«Ç›çûÇ›

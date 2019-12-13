@@ -56,7 +56,7 @@ void CObjShieldEnemy::Init()
 	m_del = false;
 
 	CObjShield*objs = new CObjShield(m_ex,m_ey);
-	Objs::InsertObj(objs, OBJ_SHIELD, 20);
+	Objs::InsertObj(objs, OBJ_SHIELD, 9);
 
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_ex+20, m_ey, 44, 64, ELEMENT_ENEMY, OBJ_SHIELDENEMY, 1);
@@ -72,12 +72,12 @@ void CObjShieldEnemy::Action()
 
 	CHitBox*hit = Hits::GetHitBox(this);
 
-	//弾丸消滅処理
+	//消滅処理
 	if (m_del == true)
 	{
 		//Resoucesの描画物のRECT
 		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
-		//着弾アニメーション終了で本当にオブジェクトの破棄
+		//アニメーション終了で本当にオブジェクトの破棄
 		if (ani == 4)
 		{
 			hit->SetPos(m_ex + pb->GetScroll(), m_ey);

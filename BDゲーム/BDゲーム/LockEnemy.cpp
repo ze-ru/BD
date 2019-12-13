@@ -166,6 +166,16 @@ void CObjLockEnemy::Action()
 		this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}
+
+	if (m_ex-700 > objh->GetX() - pb->GetScroll())
+	{
+		m_ani_time = 0;
+	}
+
+	if (m_ex+700 < objh->GetX() - pb->GetScroll())
+	{
+		m_ani_time = 0;
+	}
 }
 void CObjLockEnemy::Draw()
 {

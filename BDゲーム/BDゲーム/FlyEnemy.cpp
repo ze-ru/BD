@@ -193,6 +193,17 @@ void CObjFlyEnemy::Action()
 		this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 		Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 	}
+	if (m_px - 700 > objh->GetX() - pb->GetScroll())
+	{
+		m_time_flat = 0;
+		count = 0;
+	}
+
+	if (m_px + 700 < objh->GetX() - pb->GetScroll())
+	{
+		m_time_flat = 0;
+		count = 0;
+	}
 }
 void CObjFlyEnemy::Draw()
 {
