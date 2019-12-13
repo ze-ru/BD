@@ -114,9 +114,9 @@ void CObjFlyEnemy::Action()
 	}
 	//ˆÊ’u‚Ì•ÏX
 	m_px += m_vx;
+
 	if (m_py > 100)
 	{
-
 		m_py += -1.0f;
 	}
 	if (m_py < 100)

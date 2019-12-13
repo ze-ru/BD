@@ -42,23 +42,23 @@ void CObjGamerule::Draw()
 	Font::StrDraw(L"操作説明", 270, 30, 60, c);
 
 	Font::StrDraw(L"・↑キー", 70, 220, 30, c);
-
-	Font::StrDraw(L"「アイテムを拾う」", 70, 250, 30, c);
+	Font::StrDraw(L"「アイテムを拾う」", 70, 260, 30, c);
 
 	Font::StrDraw(L"・←キー", 70, 120, 30, c);
-	Font::StrDraw(L"「左に移動」", 70, 150, 30, c);
+	Font::StrDraw(L"「左に移動」", 70, 160, 30, c);
 
 	Font::StrDraw(L"・→キー", 500, 120, 30, c);
-	Font::StrDraw(L"「右に移動」", 500, 150, 30, c);
+	Font::StrDraw(L"「右に移動」", 500, 160, 30, c);
 
 	Font::StrDraw(L"・スペースキー", 500, 220, 30, c);
-	Font::StrDraw(L"「ジャンプ」", 500, 250, 30, c);
+	Font::StrDraw(L"「ジャンプ」", 500, 260, 30, c);
 
-	Font::StrDraw(L"・Xキー", 70, 360, 30, c);
-	Font::StrDraw(L"「剣攻撃」", 70, 390, 30, c);
+	Font::StrDraw(L"・Xキー", 70, 320, 30, c);
+	Font::StrDraw(L"「剣攻撃」", 70, 360, 30, c);
+	Font::StrDraw(L"「スイッチの起動」", 70, 400, 30, c);
 
-	Font::StrDraw(L"・Cキー", 500, 360, 30, c);
-	Font::StrDraw(L"「所得武器使用」", 500, 390, 30, c);
+	Font::StrDraw(L"・Cキー", 500, 320, 30, c);
+	Font::StrDraw(L"「所得武器使用」", 500, 360, 30, c);
 
 	Font::StrDraw(L"START:Push[EnterKey]", 115, 500, 60, c);
 }
