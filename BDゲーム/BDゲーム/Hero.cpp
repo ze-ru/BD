@@ -459,7 +459,25 @@ void CObjHero::Draw()
 	RECT_F dst;//•`‰ææ•\Ž¦ˆÊ’u
 
 	//Ø‚èŽæ‚èˆÊ’u‚ÌÝ’è
+	//Œ•
+	src.m_top = 0.0f;
+	src.m_left = 128.0f;
+	src.m_right = 192.0f;
+	src.m_bottom = 64.0f;
 
+	if (Input::GetVKey('X') == true && swordcount > -25)
+	{
+		swordcount--;
+		dst.m_top = 10.0f + m_py;
+		dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 24;
+		dst.m_right = (48 - 96.0f*m_posture) + m_px + 24;
+		dst.m_bottom = 58.0f + m_py;
+		Draw::Draw(19, &src, &dst, c, 60 + swordcount * 4.8f);
+	}
+	if (swordcount <= -25 || Input::GetVKey('X') == false)
+	{
+		swordcount = 0;
+	}
 	if (wp == 1)
 	{
 		src.m_top = 0.0f;
@@ -476,18 +494,20 @@ void CObjHero::Draw()
 		dst.m_bottom = dst.m_top + 64.0f;
 
 		Draw::Draw(19, &src, &dst, c, 0.0f);
+		if (Input::GetVKey('C') == true)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 192.0f;
+			src.m_right = 256.0f;
+			src.m_bottom = 64.0f;
 
-		src.m_top = 0.0f;
-		src.m_left = 192.0f;
-		src.m_right = 256.0f;
-		src.m_bottom = 64.0f;
+			dst.m_top = 10.0f + m_py;
+			dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
+			dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
+			dst.m_bottom = 58.0f + m_py;
 
-		dst.m_top = 10.0f + m_py;
-		dst.m_left = ((48.0-48.0f)*m_posture) + m_px + 32;
-		dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
-		dst.m_bottom = 58.0f + m_py;
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
+			Draw::Draw(19, &src, &dst, c, 0.0f);
+		}
 	}
 	if (wp == 2)
 	{
@@ -506,17 +526,20 @@ void CObjHero::Draw()
 
 		Draw::Draw(19, &src, &dst, c, 0.0f);
 
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		if (Input::GetVKey('C') == true)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 0.0f;
+			src.m_right = 64.0f;
+			src.m_bottom = 64.0f;
 
-		dst.m_top = 10.0f + m_py;
-		dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
-		dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
-		dst.m_bottom = 58.0f + m_py;
+			dst.m_top = 10.0f + m_py;
+			dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
+			dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
+			dst.m_bottom = 58.0f + m_py;
 
-		Draw::Draw(19, &src, &dst, c, 0.0f);
+			Draw::Draw(19, &src, &dst, c, 0.0f);
+		}
 	}
 	if (wp == 3)
 	{
@@ -535,18 +558,20 @@ void CObjHero::Draw()
 
 		Draw::Draw(19, &src, &dst, c, 0.0f);
 
+		if (Input::GetVKey('C') == true)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 64.0f;
+			src.m_right = 128.0f;
+			src.m_bottom = 64.0f;
 
-		src.m_top = 0.0f;
-		src.m_left = 64.0f;
-		src.m_right = 128.0f;
-		src.m_bottom = 64.0f;
+			dst.m_top = 10.0f + m_py;
+			dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
+			dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
+			dst.m_bottom = 58.0f + m_py;
 
-		dst.m_top = 10.0f + m_py;
-		dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
-		dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
-		dst.m_bottom = 58.0f + m_py;
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
+			Draw::Draw(19, &src, &dst, c, 0.0f);
+		}
 	}
 	
 	if (m_hit_down == false && m_vy < 1)
@@ -617,6 +642,10 @@ void CObjHero::Draw()
 	dst.m_bottom = 44.0f;
 
 	Draw::Draw(5, &src, &dst, c, 0.0f);
+
+	
+
+	
 
 	wchar_t str[50];
 	if(wp!=0)
