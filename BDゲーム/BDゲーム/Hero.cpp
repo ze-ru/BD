@@ -459,6 +459,95 @@ void CObjHero::Draw()
 	RECT_F dst;//ï`âÊêÊï\é¶à íu
 
 	//êÿÇËéÊÇËà íuÇÃê›íË
+
+	if (wp == 1)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 192.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
+
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//
+		dst.m_top = 0.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+
+		src.m_top = 0.0f;
+		src.m_left = 192.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 10.0f + m_py;
+		dst.m_left = ((48.0-48.0f)*m_posture) + m_px + 32;
+		dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
+		dst.m_bottom = 58.0f + m_py;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
+	if (wp == 2)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//
+		dst.m_top = -10.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 10.0f + m_py;
+		dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
+		dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
+		dst.m_bottom = 58.0f + m_py;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
+	if (wp == 3)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 64.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 64.0f;
+
+
+		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		//
+		dst.m_top = -10.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+
+
+		src.m_top = 0.0f;
+		src.m_left = 64.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 64.0f;
+
+		dst.m_top = 10.0f + m_py;
+		dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
+		dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
+		dst.m_bottom = 58.0f + m_py;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
 	
 	if (m_hit_down == false && m_vy < 1)
 	{
@@ -530,66 +619,14 @@ void CObjHero::Draw()
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	wchar_t str[50];
-
-	swprintf_s(str, L"íeêîÅF%d", bullet);
-
-	Font::StrDraw(str, 500, 10, 20, c2);
-
-	if (wp == 1)
+	if(wp!=0)
 	{
-		src.m_top = 0.0f;
-		src.m_left = 192.0f;
-		src.m_right = 256.0f;
-		src.m_bottom = 64.0f;
+		swprintf_s(str, L"íeêîÅF%d", bullet);
 
-
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//
-		dst.m_top = 0.0f;
-		dst.m_left =270.0f;
-		dst.m_right = dst.m_left + 96.0f;
-		dst.m_bottom = dst.m_top+64.0f;
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
+		Font::StrDraw(str, 272, 64, 20, c2);
 	}
-	if (wp == 2)
-	{
-		src.m_top =0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//
-		dst.m_top = -10.0f;
-		dst.m_left = 270.0f;
-		dst.m_right = dst.m_left + 96.0f;
-		dst.m_bottom = dst.m_top+64.0f;
-
-
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
-	}
-	if (wp == 3)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 64.0f;
-		src.m_right = 128.0f;
-		src.m_bottom = 64.0f;
-
-
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//
-		dst.m_top = -10.0f;
-		dst.m_left = 270.0f;
-		dst.m_right = dst.m_left + 96.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
-
-
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
-	}
+	
+	
 }
 
 void CObjHero::EnemyHit(int enemynum)
