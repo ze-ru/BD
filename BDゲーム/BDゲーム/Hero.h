@@ -86,4 +86,6 @@ class CObjHero :public CObj
 	  bool m_back_flag;
 
 	  bool m_hit_flag;
+
+	  int swordcount;
 };
