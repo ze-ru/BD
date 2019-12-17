@@ -146,6 +146,14 @@ void CObjFlyEnemy::Action()
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
+		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
+		{
+			m_hp -= 10;
+			hit_flag = true;
+			CObjDamege*dm = new CObjDamege(10, m_px, m_py);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 10);
+			Audio::Start(12);
+		}
 		else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
 		{
 			m_hp -= 15;
