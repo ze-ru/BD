@@ -155,7 +155,7 @@ void CObjBossEnemy::Action()
 		//m_del = true;
 		CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 
-		s1c->SetScore();
+		s1c->SetScore(score);
 		CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 		CObjBoss2*b2 = (CObjBoss2*)Objs::GetObj(OBJ_BOSS2);
 		b2->enemycount();

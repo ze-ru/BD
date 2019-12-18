@@ -41,6 +41,7 @@ void CObjBoss2::Init()
 	ani = 0;
 	ani_time = 0;
 	m_del = false;
+	score = 1300;
 	Hits::SetHitBox(this, m_ex+100, m_ey+200, 200, 200, ELEMENT_BOSS2, OBJ_BOSS2, 1);
 }
 
@@ -61,9 +62,12 @@ void CObjBoss2::Action()
 		if (ani == 4)
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+			s1c->SetScore(score);
 			s1c->Setdead();
 			pb->SetDead();
 			Audio::Stop(11);
+			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+			su->GetScore(score);
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 		}

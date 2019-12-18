@@ -62,7 +62,7 @@ void CObjFlyEnemy::Action()
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 
-			s1c->SetScore();
+			s1c->SetScore(score);
 			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 
 			su->GetScore(score);

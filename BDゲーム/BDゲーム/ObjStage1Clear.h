@@ -13,7 +13,7 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-	void SetScore() { score += 100; }//スコア関数
+	void SetScore(int s) { score += s; }//スコア関数
 	void Setdead() { deadflag = true; }
 private:
 	bool key;

@@ -45,6 +45,7 @@ void CObjBoss1::Init()
 	ani = 0;
 	ani_time = 0;
 	m_del = false;
+	score = 1000;
 
 	moveflag = false;//右向き = true,左向き = false;
 }
@@ -68,9 +69,12 @@ void CObjBoss1::Action()
 		if (ani == 4)
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+			s1c->SetScore(score);
 			s1c->Setdead();
 			pb->SetDead();
 			Audio::Stop(11);
+			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+			su->GetScore(score);
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
