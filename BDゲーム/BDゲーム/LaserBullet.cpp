@@ -39,7 +39,7 @@ void CObjLaserBullet::Init()
 	m_hit_right = false;
 	m_posture = 0;
 	hit_flag = false;
-	dm = 60;
+	dm = 40;
 	m_hit = 0;
 	Audio::Start(8);
 	Hits::SetHitBox(this, m_ex, m_ey, 60, 16, ELEMENT_LASERBULLET, OBJ_LASER_BULLET, 1);

@@ -130,9 +130,9 @@ void CObjBossEnemy::Action()
 	}
 	if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 	{
-		m_hp -= 60;
+		m_hp -= 40;
 		hit_flag = true;
-		CObjDamege*dm = new CObjDamege(60, m_px, m_py);
+		CObjDamege*dm = new CObjDamege(40, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		Audio::Start(12);
 	}
