@@ -127,14 +127,6 @@ void CObjLockEnemy::Action()
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
-		if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
-		{
-			m_hp -= 3;
-			hit_flag = true;
-			CObjDamege*dm = new CObjDamege(3, m_ex, m_ey);
-			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-			Audio::Start(12);
-		}
 		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
 			m_hp -= 40;

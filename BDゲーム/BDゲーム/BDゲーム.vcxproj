@@ -166,6 +166,7 @@
     <ClCompile Include="ShieldEnemy.cpp" />
     <ClCompile Include="ShopOBJ.cpp" />
     <ClCompile Include="laser.cpp" />
+    <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="stageselect.cpp" />
     <ClCompile Include="StageUi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -226,6 +227,7 @@
     <ClInclude Include="ShieldEnemy.h" />
     <ClInclude Include="ShopOBJ.h" />
     <ClInclude Include="laser.h" />
+    <ClInclude Include="ShotGun.h" />
     <ClInclude Include="stageselect.h" />
     <ClInclude Include="StageUi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

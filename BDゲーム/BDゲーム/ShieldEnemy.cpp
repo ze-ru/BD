@@ -192,22 +192,6 @@ void CObjShieldEnemy::Action()
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
-		else if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr && hit_flag == false)
-		{
-			m_hp -= 3;
-			hit_flag = true;
-			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
-			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-			Audio::Start(12);
-		}
-		else if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr && hit_flag == false)
-		{
-			m_hp -= 5;
-			hit_flag = true;
-			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
-			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-			Audio::Start(12);
-		}
 		else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
 			m_hp -= 40;
@@ -216,8 +200,6 @@ void CObjShieldEnemy::Action()
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
-
-
 		if (Input::GetVKey('U') == true || (objh->GetX() - pb->GetScroll()) > 17920)
 		{
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·

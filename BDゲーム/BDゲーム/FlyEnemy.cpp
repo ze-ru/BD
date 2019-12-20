@@ -162,14 +162,6 @@ void CObjFlyEnemy::Action()
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
-		if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
-		{
-			m_hp -= 5;
-			hit_flag = true;
-			CObjDamege*dm = new CObjDamege(5, m_px, m_py);
-			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-			Audio::Start(12);
-		}
 		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
 			m_hp -= 40;
