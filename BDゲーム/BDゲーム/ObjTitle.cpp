@@ -48,7 +48,7 @@ void CObjTitle::Draw()
 	float c[4] = { 1,1,1,1 };
 
 
-	Font::StrDraw(L"L O S T", 85, 70, 180, c);
+	Font::StrDraw(L"Lost World", 50, 90, 140, c);
 	
 		Font::StrDraw(L"START:EnterKey", 110, 400, 80, c);
 }

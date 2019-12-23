@@ -182,6 +182,7 @@ void CObjHero::Action()
 					CObjAttack*obja = new CObjAttack(m_px, m_py);
 					Objs::InsertObj(obja, OBJ_ATTACK, 50);
 					m_attack = false;
+					bulletflag = false;
 				}
 			}
 			if (m_attack == false)
@@ -197,27 +198,32 @@ void CObjHero::Action()
 			{
 				if (Input::GetVKey('C') == true)
 				{
-					if (bullet > 0)
+					if (bulletflag == true)
 					{
-						m_time_bullet++;
-						if (m_time_bullet > 10)
+
+
+						if (bullet > 0)
 						{
-							if (flag == false)
+							m_time_bullet++;
+							if (m_time_bullet > 10)
 							{
-								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() + 62.0f, m_py);
-								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
-								bullet--;
-							}
-							if (flag == true)
-							{
-								CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() - 2.0f, m_py);
-								Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
-								bullet--;
+								if (flag == false)
+								{
+									CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() + 62.0f, m_py);
+									Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
+									bullet--;
+								}
+								if (flag == true)
+								{
+									CObjHeroAssultBullet*objhBullet = new CObjHeroAssultBullet(m_px - pb->GetScroll() - 2.0f, m_py);
+									Objs::InsertObj(objhBullet, OBJ_HEROASSULTBULLET, 50);
+									bullet--;
+								}
+
+								m_time_bullet = 0;
 							}
 
-							m_time_bullet = 0;
 						}
-						
 					}
 				}
 				else
@@ -279,10 +285,14 @@ void CObjHero::Action()
 
 			if (Input::GetVKey('C') == false)
 			{
-				if (bulletflag == false)
+				if (Input::GetVKey('X') == false)
 				{
-					bulletflag = true;
+					if (bulletflag == false)
+					{
+						bulletflag = true;
+					}
 				}
+				
 			}
 			
 			if (m_py > 1000.0f)
@@ -373,6 +383,12 @@ void CObjHero::Action()
 				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
 				m_y_num +=10 ;
 			}
+			if (hit->CheckObjNameHit(OBJ_SHOT_BULLET) != nullptr)
+			{
+				HIT_DATA** hit_data;
+				hit_data = hit->SearchObjNameHit(OBJ_ASSAULT_BULLET);
+				m_y_num += 10;
+			}
 			if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)
 			{
 				HIT_DATA** hit_data;
@@ -446,6 +462,7 @@ void CObjHero::Action()
 //ドロー
 void CObjHero::Draw()
 {
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	int AniDate[7] =
 	{
 		0,1,2,3,4,5,6
@@ -474,27 +491,11 @@ void CObjHero::Draw()
 		dst.m_bottom = 58.0f + m_py;
 		Draw::Draw(19, &src, &dst, c, 60 + swordcount * 4.8f);
 	}
-	if (swordcount <= -25 || Input::GetVKey('X') == false)
+	else if (Input::GetVKey('C') == true)
 	{
-		swordcount = 0;
-	}
-	if (wp == 1)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 192.0f;
-		src.m_right = 256.0f;
-		src.m_bottom = 64.0f;
 
 
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//
-		dst.m_top = 0.0f;
-		dst.m_left = 270.0f;
-		dst.m_right = dst.m_left + 96.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
-		if (Input::GetVKey('C') == true)
+		if (wp == 1)
 		{
 			src.m_top = 0.0f;
 			src.m_left = 192.0f;
@@ -508,25 +509,7 @@ void CObjHero::Draw()
 
 			Draw::Draw(19, &src, &dst, c, 0.0f);
 		}
-	}
-	if (wp == 2)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
-
-
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//
-		dst.m_top = -10.0f;
-		dst.m_left = 270.0f;
-		dst.m_right = dst.m_left + 96.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
-
-		if (Input::GetVKey('C') == true)
+		if (wp == 2)
 		{
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
@@ -540,25 +523,7 @@ void CObjHero::Draw()
 
 			Draw::Draw(19, &src, &dst, c, 0.0f);
 		}
-	}
-	if (wp == 3)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 64.0f;
-		src.m_right = 128.0f;
-		src.m_bottom = 64.0f;
-
-
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//
-		dst.m_top = -10.0f;
-		dst.m_left = 270.0f;
-		dst.m_right = dst.m_left + 96.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
-
-		Draw::Draw(19, &src, &dst, c, 0.0f);
-
-		if (Input::GetVKey('C') == true)
+		if (wp == 3)
 		{
 			src.m_top = 0.0f;
 			src.m_left = 64.0f;
@@ -573,7 +538,65 @@ void CObjHero::Draw()
 			Draw::Draw(19, &src, &dst, c, 0.0f);
 		}
 	}
-	
+	if (wp == 1)
+	{
+
+
+		src.m_top = 0.0f;
+		src.m_left = 192.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 64.0f;
+
+		//
+		dst.m_top = 0.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+
+	}
+	if (wp == 2)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+
+
+		//
+		dst.m_top = -10.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
+		
+
+	if (wp == 3)
+	{
+
+
+
+		src.m_top = 0.0f;
+		src.m_left = 64.0f;
+		src.m_right = 128.0f;
+		src.m_bottom = 64.0f;
+
+
+
+		//
+		dst.m_top = -10.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
+		
+
 	if (m_hit_down == false && m_vy < 1)
 	{
 		src.m_top = 0.0f;
@@ -602,7 +625,10 @@ void CObjHero::Draw()
 		src.m_right = src.m_left + 64.0f - 2.0f;
 		src.m_bottom = 64.0f;
 	}
-
+	if (swordcount <= -25 || Input::GetVKey('X') == false)
+	{
+		swordcount = 0;
+	}
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;

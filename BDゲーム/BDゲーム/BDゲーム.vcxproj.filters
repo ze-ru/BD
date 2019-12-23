@@ -201,6 +201,9 @@
     <ClCompile Include="explosion.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ShotGun.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="explosion.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotGun.h">
+      <Filter>ソース ファイル\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

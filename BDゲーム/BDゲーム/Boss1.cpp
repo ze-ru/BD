@@ -45,6 +45,7 @@ void CObjBoss1::Init()
 	ani = 0;
 	ani_time = 0;
 	m_del = false;
+	score = 1000;
 
 	moveflag = false;//‰EŒü‚« = true,¶Œü‚« = false;
 }
@@ -68,21 +69,24 @@ void CObjBoss1::Action()
 		if (ani == 4)
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+			s1c->SetScore(score);
 			s1c->Setdead();
 			pb->SetDead();
 			Audio::Stop(11);
+			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+			su->GetScore(score);
 			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 		}
 		return;//Á–Åˆ—‚ÍA‚±‚±‚ÅƒAƒNƒVƒ‡ƒ“ƒƒ\ƒbƒh‚ðI—¹‚³‚¹‚é
 	}
 
-	if (time > 0 && time < 150)
+	if (time > 0 && time < 300)
 	{
-		if (time > 0 && time < 100)
+		if (time > 50 && time < 250)
 		{
 			attacktime++;
-			if (attacktime == 10)
+			if (attacktime == 25)
 			{
 				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
 				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
@@ -90,12 +94,12 @@ void CObjBoss1::Action()
 			}
 		}
 	}
-	if (time > 150 && time < 300)
+	if (time > 300 && time < 600)
 	{
-		if (time > 150 && time < 250)
+		if (time > 350 && time < 550)
 		{
 			attacktime++;
-			if (attacktime == 10)
+			if (attacktime == 25)
 			{
 				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
 				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
@@ -105,20 +109,86 @@ void CObjBoss1::Action()
 	}
 	switch (time2)
 	{
-	case 50:
+	case 70:
 	{
-		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey+10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 50);
+		if (moveflag == true)
+		{
+			for (int i = 120; i <= 240; i += 120 / 6)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+		}
+		if (moveflag == false)
+		{
+			for (int i = 300; i < 360; i += 60 / 3)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex+256, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+			for (int i = 0; i < 60; i += 60 / 3)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex+256, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+		}
 	}
-	case 100:
+	case 140:
 	{
-		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey+10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 50);
+		if (moveflag == true)
+		{
+			for (int i = 120; i <= 240; i += 120 / 6)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+		}
+		if (moveflag == false)
+		{
+			for (int i = 300; i < 360; i += 60 / 3)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex+256, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+			for (int i = 0; i < 60; i += 60 / 3)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex+256, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+		}
 	}
-	case 150:
+	case 210:
 	{
-		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey+10);
-		Objs::InsertObj(objbullet, OBJ_NORMAL_BULLET, 50);
+		if (moveflag == true)
+		{
+			for (int i = 120; i <= 240; i += 120 / 6)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+		}
+		if (moveflag == false)
+		{
+			for (int i = 300; i < 360; i += 60 / 3)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex+256, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+			for (int i = 0; i < 60; i += 60 / 3)
+			{
+				//Šp“xi‚ÅŠp“x’eŠÛ”­ŽË
+				CObjShotBullet*objsg = new CObjShotBullet(m_ex+256, m_ey + 10, i);
+				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
+			}
+		}
 	}
 	}
 
@@ -148,7 +218,7 @@ void CObjBoss1::Action()
 	{
 		m_vx = 1.0f;
 	}
-	if (time == 300)
+	if (time == 600)
 	{
 		time = 0;
 	}
@@ -190,9 +260,9 @@ void CObjBoss1::Action()
 	}
 	else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 	{
-		m_hp -= 60;
+		m_hp -= 40;
 		hit_flag = true;
-		CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
+		CObjDamege*dm = new CObjDamege(40, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		time2 = 0;
 		Audio::Start(12);

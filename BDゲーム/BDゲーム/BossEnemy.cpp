@@ -130,9 +130,9 @@ void CObjBossEnemy::Action()
 	}
 	if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 	{
-		m_hp -= 60;
+		m_hp -= 40;
 		hit_flag = true;
-		CObjDamege*dm = new CObjDamege(60, m_px, m_py);
+		CObjDamege*dm = new CObjDamege(40, m_px, m_py);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 		Audio::Start(12);
 	}
@@ -155,7 +155,7 @@ void CObjBossEnemy::Action()
 		//m_del = true;
 		CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
 
-		s1c->SetScore();
+		s1c->SetScore(score);
 		CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 		CObjBoss2*b2 = (CObjBoss2*)Objs::GetObj(OBJ_BOSS2);
 		b2->enemycount();

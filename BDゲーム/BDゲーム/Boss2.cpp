@@ -41,6 +41,7 @@ void CObjBoss2::Init()
 	ani = 0;
 	ani_time = 0;
 	m_del = false;
+	score = 1300;
 	Hits::SetHitBox(this, m_ex+100, m_ey+200, 200, 200, ELEMENT_BOSS2, OBJ_BOSS2, 1);
 }
 
@@ -61,9 +62,12 @@ void CObjBoss2::Action()
 		if (ani == 4)
 		{
 			CObjStage1Clear*s1c = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+			s1c->SetScore(score);
 			s1c->Setdead();
 			pb->SetDead();
 			Audio::Stop(11);
+			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+			su->GetScore(score);
 			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
 		}
@@ -100,10 +104,10 @@ void CObjBoss2::Action()
 		}
 		if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 		{
-			m_hp -= 60;
+			m_hp -= 40;
 			hit_flag = true;
-			m_hit_data += 60;
-			CObjDamege*dm = new CObjDamege(60, m_ex, m_ey);
+			m_hit_data += 40;
+			CObjDamege*dm = new CObjDamege(40, m_ex, m_ey);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
