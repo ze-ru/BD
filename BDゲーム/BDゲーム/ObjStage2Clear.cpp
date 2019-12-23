@@ -22,7 +22,7 @@ void CObjStage2Clear::Init()
 void CObjStage2Clear::Action()
 {
 	//time++;
-	if(m_vy<=1600)
+	if(m_vy<=1700)
 	m_vy ++;
 
 	
@@ -57,8 +57,8 @@ void CObjStage2Clear::Draw()
 
 	Font::StrDraw(L"スペシャルサンクス  近コン", 50, 1550 - m_vy, 50, c);
 
-	Font::StrDraw(L"Thank you for playing!!", 120, 1800-m_vy, 50, c);
+	Font::StrDraw(L"Thank you for playing!!", 120, 1900-m_vy, 50, c);
 
-	Font::StrDraw(L"Team BD.", 330,2000-m_vy, 30, c);
+	Font::StrDraw(L"Team BD.", 330,2100-m_vy, 30, c);
 
 }

@@ -8,8 +8,8 @@
 #include"GameL\Audio.h"
 
 
-//
 using namespace GameL;
+//
 
 CObjBoss1::CObjBoss1(float x, float y)
 {
