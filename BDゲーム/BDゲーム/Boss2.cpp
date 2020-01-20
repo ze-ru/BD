@@ -134,6 +134,7 @@ void CObjBoss2::Action()
 	{
 		Audio::Stop(12);
 		m_hit_time++;
+
 		if (m_hit_time > 10)
 		{
 			m_hit_flag = false;
