@@ -186,10 +186,10 @@ void CObjLockEnemy2::Draw()
 	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é
 
 
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_top = 64.0f;
+	src.m_left = 256.0f;
+	src.m_right = 320.0f;
+	src.m_bottom = 128.0f;
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
