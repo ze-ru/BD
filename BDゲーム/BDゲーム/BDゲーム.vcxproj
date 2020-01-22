@@ -146,6 +146,7 @@
     <ClCompile Include="HeroShotBullet.cpp" />
     <ClCompile Include="HeroShotGun.cpp" />
     <ClCompile Include="LaserBullet.cpp" />
+    <ClCompile Include="LockEnemy2.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
     <ClCompile Include="ObjAttack.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="HeroShotGun.h" />
     <ClInclude Include="LaserBullet.h" />
     <ClInclude Include="LockEnemy.h" />
+    <ClInclude Include="LockEnemy2.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="NormalBullet.h" />
     <ClInclude Include="ObjAttack.h" />
