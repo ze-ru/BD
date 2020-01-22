@@ -81,9 +81,6 @@
     <ClCompile Include="LockEnemy.cpp">
       <Filter>ソース ファイル\chara</Filter>
     </ClCompile>
-    <ClCompile Include="WolkEnemy.cpp">
-      <Filter>ソース ファイル\chara</Filter>
-    </ClCompile>
     <ClCompile Include="ObjGameOver.cpp">
       <Filter>ソース ファイル\Title</Filter>
     </ClCompile>
@@ -203,6 +200,18 @@
     </ClCompile>
     <ClCompile Include="ShotGun.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="HeroShotGun.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="HeroShotBullet.cpp">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="WolkEnemy.cpp">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjSelectBack.cpp">
+      <Filter>ソース ファイル\map1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +385,15 @@
     </ClInclude>
     <ClInclude Include="ShotGun.h">
       <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="HeroShotGun.h">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="HeroShotBullet.h">
+      <Filter>ソース ファイル\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjSelectBack.h">
+      <Filter>ソース ファイル\map1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
