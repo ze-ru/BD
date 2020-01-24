@@ -42,6 +42,7 @@ enum OBJ_NAME
 	OBJ_SHIELD,
 	OBJ_LASER_BULLET,
 	OBJ_SHOT_BULLET,
+	OBJ_GAMERULE2
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -128,6 +129,7 @@ struct UserData
 
 #include"ObjShop.h"
 #include"ObjGamerule.h"
+#include"ObjGamerule2.h"
 
 #include"NormalBullet.h"
 #include"ObjAttack.h"
@@ -153,6 +155,7 @@ struct UserData
 #include"SceneTitle.h"
 #include "SceneGameOver.h"
 #include"Gamerule.h"
+#include"ObjGamerule2.h"
 #include "SceneShop.h"
 #include"WeaponShop.h"
 #include"SceneGameClear.h"
