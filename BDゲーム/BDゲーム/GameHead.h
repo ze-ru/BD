@@ -11,6 +11,7 @@ enum OBJ_NAME
 	OBJ_STAGE1,
 	OBJ_TITLE,
 	OBJ_LOCKENEMY,
+	OBJ_LOCKENEMY2,
 	OBJ_WOLKENEMY,
 	OBJ_STAGEUI,
 	OBJ_SHOP,
@@ -42,6 +43,7 @@ enum OBJ_NAME
 	OBJ_SHIELD,
 	OBJ_LASER_BULLET,
 	OBJ_SHOT_BULLET,
+	OBJ_SELECTBACK,
 	OBJ_GAMERULE2
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
@@ -109,6 +111,7 @@ struct UserData
 #include"Hero.h"
 #include"HeroAssultBullet.h"
 #include"LockEnemy.h"
+#include"LockEnemy2.h"
 #include"WolkEnemy.h"
 #include"FlyEnemy.h"
 #include"Boss1.h"
@@ -146,6 +149,7 @@ struct UserData
 #include"Objstageselect.h"
 #include"ObjStage1Clear.h"
 #include"ObjStage2Clear.h"
+#include"ObjSelectBack.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

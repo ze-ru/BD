@@ -50,11 +50,12 @@ void CObjNormalBullet::Action()
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
 		if (objh->GetYflag() == false)
-		objh->SetDamege(dm);//ダメージ
+			objh->SetDamege(dm);//ダメージ
 		if (objh->GetX() +32> m_ex)
 			objh->SetHitflag(true);
 		if (objh->GetX() + 32 < m_ex)
 			objh->SetHitflag(false);
+		
 		Audio::Start(13);
 		Audio::Stop(7);
 		

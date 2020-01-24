@@ -162,6 +162,8 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"DefeatEfect.png", 23, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"GOAL3.png", 24, TEX_SIZE_512);
+	Draw::LoadImageW(L"SelectBack.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"Select.png", 26, TEX_SIZE_512);
 
 
 
@@ -205,6 +207,9 @@ void CSceneStage1::InitScene()
 
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 50);
+
+	CObjSelectBack*objsbc = new CObjSelectBack();
+	Objs::InsertObj(objsbc, OBJ_SELECTBACK, 80);
 
 	
 

@@ -88,4 +88,8 @@ class CObjHero :public CObj
 	  bool m_hit_flag;
 
 	  int swordcount;
+
+	  bool wolk;
+	  bool stop;
+	  bool fly;
 };
