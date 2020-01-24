@@ -93,8 +93,8 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 6)
 			{
 				
-				CObjLockEnemy2*objeL = new CObjLockEnemy2(lx*64.0f, i*64.0f-64.0f);
-				Objs::InsertObj(objeL, OBJ_LOCKENEMY2, 15);
+				CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*64.0f-64.0f);
+				Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
 				m_map[i][lx] = 0;
 			}
 
@@ -138,6 +138,13 @@ void CObjBlock::Action()
 			{
 				CObjlaser*objl = new CObjlaser(lx*64.0f, i*64.0f - 64.0f);
 				Objs::InsertObj(objl, OBJ_LASER, 15);
+				m_map[i][lx] = 0;
+			}
+			if (m_map[i][lx] == 22)
+			{
+				
+				CObjLockEnemy2*objeL2 = new CObjLockEnemy2(lx*64.0f, i*64.0f-64.0f);
+				Objs::InsertObj(objeL2, OBJ_LOCKENEMY2, 15);
 				m_map[i][lx] = 0;
 			}
 
