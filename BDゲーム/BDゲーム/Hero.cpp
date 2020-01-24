@@ -54,6 +54,10 @@ void CObjHero::Init()
 	m_hit_flag = false;
 	m_back_flag = true;//ノックバック用フラグ
 
+	fly = false;
+	stop = false;
+	wolk = false;
+
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 	//Hits::SetHitBox(this, m_px + 32, m_py, 32, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -420,6 +424,7 @@ void CObjHero::Action()
 				{
 					m_ani_time = 0;
 				}
+				stop = true;
 			}
 			if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)
 			{
@@ -428,7 +433,7 @@ void CObjHero::Action()
 					m_ani_frame += 1;
 					m_ani_time = 0;
 				}
-
+				wolk = true;
 			}
 
 
@@ -597,7 +602,7 @@ void CObjHero::Draw()
 	}
 		
 
-	if (m_hit_down == false && m_vy < 0)
+	if (m_hit_down == false && m_vy <= 0)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 5 * 64.0f + 1.0f;
@@ -611,14 +616,14 @@ void CObjHero::Draw()
 		src.m_right = 64.0f + 6 * 64.0f + 1.0f;
 		src.m_bottom = 64.0f;
 	}
-	else if (m_hit_down == true && m_vx == 0)
+	else if (m_hit_down == true &&stop==true)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f + 1.0f;
 		src.m_right = src.m_left + 64.0f - 2.0f;
 		src.m_bottom = 64.0f;
 	}
-	else
+	else if(m_hit_down==true&&wolk==true)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f + 1.0f;

@@ -56,8 +56,8 @@ void CObjBoss1::Action()
 	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CHitBox*hit = Hits::GetHitBox(this);
-	if(time<=300)
-	time2++;
+	if (time2 < 300)
+		time2++;
 	time++;
 	//’eŠÛÁ–Åˆ—
 	if (m_del == true)
@@ -237,7 +237,8 @@ void CObjBoss1::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(10, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		time2 = 0;
+		if (time2 >= 300)
+			time2 = 0;
 		Audio::Start(12);
 	}
 	else if (hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true && hit_flag == false)
@@ -246,7 +247,8 @@ void CObjBoss1::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(20, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		time2 = 0;
+		if (time2 >= 300)
+			time2 = 0;
 		Audio::Start(12);
 	}
 	else if (hit->CheckElementHit(ELEMENT_ATTACK) == true && hit_flag == false)
@@ -255,7 +257,8 @@ void CObjBoss1::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(15, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		time2 = 0;
+		if (time2 >= 300)
+			time2 = 0;
 		Audio::Start(12);
 	}
 	else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
@@ -264,7 +267,8 @@ void CObjBoss1::Action()
 		hit_flag = true;
 		CObjDamege*dm = new CObjDamege(40, m_ex, m_ey);
 		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
-		time2 = 0;
+		if (time2 >= 300)
+			time2 = 0;
 		Audio::Start(12);
 	}
 	
