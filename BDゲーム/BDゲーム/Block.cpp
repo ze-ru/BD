@@ -93,8 +93,8 @@ void CObjBlock::Action()
 			if (m_map[i][lx] == 6)
 			{
 				
-				CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*64.0f-64.0f);
-				Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
+				CObjLockEnemy2*objeL = new CObjLockEnemy2(lx*64.0f, i*64.0f-64.0f);
+				Objs::InsertObj(objeL, OBJ_LOCKENEMY2, 15);
 				m_map[i][lx] = 0;
 			}
 

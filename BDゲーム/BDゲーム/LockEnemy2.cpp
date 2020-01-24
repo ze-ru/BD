@@ -53,7 +53,7 @@ void CObjLockEnemy2::Action()
 	{
 		attack_time = 0.0f;
 	}
-	if (m_ani_time = 120)
+	if (m_ani_time == 120)
 	{
 		CObjNormalBullet*objNB = (CObjNormalBullet*)Objs::GetObj(OBJ_NORMAL_BULLET);
 		CObjNormalBullet*objbullet = new CObjNormalBullet(m_ex, m_ey);
