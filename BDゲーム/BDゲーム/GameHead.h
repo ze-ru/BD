@@ -11,6 +11,7 @@ enum OBJ_NAME
 	OBJ_STAGE1,
 	OBJ_TITLE,
 	OBJ_LOCKENEMY,
+	OBJ_LOCKENEMY2,
 	OBJ_WOLKENEMY,
 	OBJ_STAGEUI,
 	OBJ_SHOP,
@@ -109,6 +110,7 @@ struct UserData
 #include"Hero.h"
 #include"HeroAssultBullet.h"
 #include"LockEnemy.h"
+#include"LockEnemy2.h"
 #include"WolkEnemy.h"
 #include"FlyEnemy.h"
 #include"Boss1.h"

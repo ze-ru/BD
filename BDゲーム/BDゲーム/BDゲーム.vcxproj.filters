@@ -213,6 +213,9 @@
     <ClCompile Include="ObjSelectBack.cpp">
       <Filter>ソース ファイル\map1</Filter>
     </ClCompile>
+    <ClCompile Include="LockEnemy2.cpp">
+      <Filter>ソース ファイル\chara</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -394,6 +397,9 @@
     </ClInclude>
     <ClInclude Include="ObjSelectBack.h">
       <Filter>ソース ファイル\map1</Filter>
+    </ClInclude>
+    <ClInclude Include="LockEnemy2.h">
+      <Filter>ソース ファイル\chara</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
