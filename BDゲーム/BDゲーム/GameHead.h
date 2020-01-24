@@ -42,6 +42,7 @@ enum OBJ_NAME
 	OBJ_SHIELD,
 	OBJ_LASER_BULLET,
 	OBJ_SHOT_BULLET,
+	OBJ_SELECTBACK,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -144,6 +145,7 @@ struct UserData
 #include"Objstageselect.h"
 #include"ObjStage1Clear.h"
 #include"ObjStage2Clear.h"
+#include"ObjSelectBack.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

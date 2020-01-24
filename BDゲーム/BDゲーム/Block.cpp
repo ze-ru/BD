@@ -163,7 +163,6 @@ void CObjBlock::Action()
 						Objs::InsertObj(objg, OBJ_GOAL_BLOCK, 2);
 						
 						m_map[i][j] = 0;
-						dead_flag = 0;
 						sb1->Setdead();
 						
 					}

@@ -597,14 +597,14 @@ void CObjHero::Draw()
 	}
 		
 
-	if (m_hit_down == false && m_vy < 1)
+	if (m_hit_down == false && m_vy < 0)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 5 * 64.0f + 1.0f;
 		src.m_right = 64.0f + 5 *64.0f+ 1.0f;
 		src.m_bottom = 64.0f;
 	}
-	else if (m_hit_down == false && m_vy >=1)
+	else if (m_hit_down == false && m_vy >= 1)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 6 * 64.0f + 1.0f;
