@@ -374,7 +374,11 @@ void CObjHero::Action()
 				int enemynum = 6;
 				EnemyHit(enemynum);
 			}
-			
+			if (hit->CheckObjNameHit(OBJ_LOCKENEMY2) != nullptr)
+			{
+				int enemynum = 7;
+				EnemyHit(enemynum);
+			}
 			if (hit->CheckObjNameHit(OBJ_NORMAL_BULLET) != nullptr)
 			{
 				HIT_DATA** hit_data;
@@ -408,6 +412,7 @@ void CObjHero::Action()
 					if (m_vy >= 0)
 						m_vy = -10.5;
 				}
+				fly = true;
 			}
 			if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)
 			{
@@ -425,15 +430,17 @@ void CObjHero::Action()
 					m_ani_time = 0;
 				}
 				stop = true;
+				wolk = false;
+				fly = false;
 			}
 			if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)
 			{
-				if (m_ani_time > 6)
-				{
-					m_ani_frame += 1;
-					m_ani_time = 0;
-				}
-				wolk = true;
+					if (m_ani_time > 6)
+					{
+						m_ani_frame += 1;
+						m_ani_time = 0;
+					}
+					
 			}
 
 
@@ -602,34 +609,34 @@ void CObjHero::Draw()
 	}
 		
 
-	if (m_hit_down == false && m_vy <= 0)
+	if (m_hit_down == false && m_vy <= 1&&fly==true)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 5 * 64.0f + 1.0f;
 		src.m_right = 64.0f + 5 *64.0f+ 1.0f;
 		src.m_bottom = 64.0f;
 	}
-	else if (m_hit_down == false && m_vy >= 1)
+	else if (m_hit_down == false && m_vy >= 1&&fly==true)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + 6 * 64.0f + 1.0f;
 		src.m_right = 64.0f + 6 * 64.0f + 1.0f;
 		src.m_bottom = 64.0f;
 	}
-	else if (m_hit_down == true &&stop==true)
+	else
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f + 1.0f;
 		src.m_right = src.m_left + 64.0f - 2.0f;
 		src.m_bottom = 64.0f;
 	}
-	else if(m_hit_down==true&&wolk==true)
+	/*else if(m_hit_down==true&&wolk==true)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f + 1.0f;
 		src.m_right = src.m_left + 64.0f - 2.0f;
 		src.m_bottom = 64.0f;
-	}
+	}*/
 	if (swordcount <= -25 || Input::GetVKey('X') == false)
 	{
 		swordcount = 0;
@@ -710,6 +717,8 @@ void CObjHero::EnemyHit(int enemynum)
 			hit_data = hit->SearchObjNameHit(OBJ_SHIELDENEMY);
 		else if (enemynum == 6)
 			hit_data = hit->SearchObjNameHit(OBJ_SHIELD);
+		else if (enemynum == 7)
+			hit_data = hit->SearchObjNameHit(OBJ_LOCKENEMY2);
 
 		hit_flag = false;
 
