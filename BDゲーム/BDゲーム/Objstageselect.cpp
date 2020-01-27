@@ -94,7 +94,7 @@ void CObjstageselect::Draw()
 	float c[4] = { 1,1,1,1 };
 
 
-	Font::StrDraw(L"L O S T", 85, 70, 180, c);
+	Font::StrDraw(L"Lost World", 50, 90, 140, c);
 	if (keyE == 0)
 	{
 		Font::StrDraw(L"▶stage1", 165, 320, 80, c);

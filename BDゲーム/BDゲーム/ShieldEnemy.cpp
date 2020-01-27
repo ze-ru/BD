@@ -200,7 +200,7 @@ void CObjShieldEnemy::Action()
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
-		if (Input::GetVKey('U') == true || (objh->GetX() - pb->GetScroll()) > 17920)
+		if (/*Input::GetVKey('U') == true ||*/ (objh->GetX() - pb->GetScroll()) > 17920)
 		{
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
