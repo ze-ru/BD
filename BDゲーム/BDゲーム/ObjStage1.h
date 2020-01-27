@@ -25,7 +25,4 @@ public:
 	void Getscore(int num) { score += num; }
 	int Getmapnum() { return map_num; }
 	int Getmapflag() { return map_flag; }
-
-	
-
 };

@@ -67,14 +67,14 @@ void CObjHero::Init()
 void CObjHero::Action()
 {
 
-	if (Input::GetVKey('R') == true)
+	/*if (Input::GetVKey('R') == true)
 	{
 		bullet+=100;
 	}
 	if (Input::GetVKey('H') == true)
 	{
 		m_hp -= 1;
-	}
+	}*/
 	if (m_hp < 0)
 	{
 		m_hp = 0;
@@ -313,10 +313,10 @@ void CObjHero::Action()
 				m_vx = +5.0f;
 				m_posture = 0.0f;
 				m_ani_time += 1;
-				if (Input::GetVKey('M') == true)
+				/*if (Input::GetVKey('M') == true)
 				{
 					m_vx = +30;
-				}
+				}*/
 				flag = false;
 			}
 
@@ -325,10 +325,10 @@ void CObjHero::Action()
 				m_vx = -5.0f;
 				m_posture = 1.0f;
 				m_ani_time += 1;
-				if (Input::GetVKey('M') == true)
+				/*if (Input::GetVKey('M') == true)
 				{
 					m_vx = -30;
-				}
+				}*/
 				flag = true;
 			}
 
