@@ -66,5 +66,5 @@ void CObjGamerule::Draw()
 	Font::StrDraw(L"・Cキー", 500, 320, 30, c);
 	Font::StrDraw(L"「所得武器使用」", 500, 360, 30, c);
 
-	Font::StrDraw(L"START:Push[EnterKey]", 115, 500, 60, c);
+	Font::StrDraw(L"Push[EnterKey]", 185, 500, 60, c);
 }

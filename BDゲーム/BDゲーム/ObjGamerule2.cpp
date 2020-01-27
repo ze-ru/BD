@@ -43,11 +43,16 @@ void CObjGamerule2::Draw()
 	{
 		Font::StrDraw(L"操作説明", 270, 30, 60, c);
 
-		Font::StrDraw(L"", 455, 220, 30, c);
-		Font::StrDraw(L"", 40, 260, 30, c);
+		Font::StrDraw(L"・アサルトライフル", 50, 120, 40, c);
+		Font::StrDraw(L"「連射攻撃できる」", 70, 160, 40, c);
 
-		Font::StrDraw(L"", 2, 120, 30, c);
-		Font::StrDraw(L"", 40, 160, 30, c);
+		Font::StrDraw(L"・スナイパーライフル", 50, 240, 40, c);
+		Font::StrDraw(L"「敵を貫通して攻撃できる」", 70, 280, 40, c);
+
+		Font::StrDraw(L"・レーザー銃", 50, 360, 40, c);
+		Font::StrDraw(L"「敵を貫通して攻撃できる」", 70, 400, 40, c);
+
+		Font::StrDraw(L"START:Push[EnterKey]", 115, 500, 60, c);
 	}
 
 	
