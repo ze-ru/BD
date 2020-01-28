@@ -18,6 +18,7 @@ public:
 	void SetDamege(int dm) { m_hp -= dm; }
 	float GetX() { return m_ex; }
 	float GetY() { return m_ey; }
+
 private:
 	float m_ex;
 	float m_ey;
@@ -39,7 +40,8 @@ private:
 
 	int jamptime;
 
-	bool moveflag;
+	bool moveflag;//Boss1の移動方向用
+
 	int m_time_hit;
 
 	int ani;//着弾アニメーション用

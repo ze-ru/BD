@@ -19,16 +19,21 @@ CObjBoss1::CObjBoss1(float x, float y)
 //
 void CObjBoss1::Init()
 {
-	m_vx = 0.0f;//
+	//変数の初期化
+	m_vx = 0.0f;
 	m_vy = 0.0f;
+
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
 	time = 0;
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_ex, m_ey, 256, 192, ELEMENT_ENEMY, OBJ_BOSS1, 1);
-	m_hp = 300;
+
+	m_hp = 300;//HPを300に設定
+
 	m_dead = 0;
 	hit_flag = false;
 	m_time = 0;
@@ -53,12 +58,14 @@ void CObjBoss1::Init()
 //
 void CObjBoss1::Action()
 {
-	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);//Heroの情報を持ってくる
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//Blockの情報を持ってくる
+
 	CHitBox*hit = Hits::GetHitBox(this);
 	if (time2 < 300)
 		time2++;
 	time++;
+
 	//弾丸消滅処理
 	if (m_del == true)
 	{
@@ -75,12 +82,14 @@ void CObjBoss1::Action()
 			Audio::Stop(11);
 			CObjStageUi*su = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 			su->GetScore(score);
+
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
 		return;//消滅処理は、ここでアクションメソッドを終了させる
 	}
 
+	//Boss1の攻撃間隔設定
 	if (time > 0 && time < 300)
 	{
 		if (time > 50 && time < 250)
@@ -88,6 +97,7 @@ void CObjBoss1::Action()
 			attacktime++;
 			if (attacktime == 25)
 			{
+				//AssaultBullet作成
 				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
 				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
 				attacktime = 0;
@@ -101,6 +111,7 @@ void CObjBoss1::Action()
 			attacktime++;
 			if (attacktime == 25)
 			{
+				//AssaultBullet作成
 				CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_ex + 70, m_ey + 70);
 				Objs::InsertObj(objABullet, OBJ_ASSAULT_BULLET, 50);
 				attacktime = 0;
@@ -111,7 +122,7 @@ void CObjBoss1::Action()
 	{
 	case 70:
 	{
-		if (moveflag == true)
+		if (moveflag == true)//Boss1が左向きの時
 		{
 			for (int i = 120; i <= 240; i += 120 / 6)
 			{
@@ -120,7 +131,7 @@ void CObjBoss1::Action()
 				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
 			}
 		}
-		if (moveflag == false)
+		if (moveflag == false)//Boss1が右向きの時
 		{
 			for (int i = 300; i < 360; i += 60 / 3)
 			{
@@ -138,7 +149,7 @@ void CObjBoss1::Action()
 	}
 	case 140:
 	{
-		if (moveflag == true)
+		if (moveflag == true)//Boss1が左向きの時
 		{
 			for (int i = 120; i <= 240; i += 120 / 6)
 			{
@@ -147,7 +158,7 @@ void CObjBoss1::Action()
 				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
 			}
 		}
-		if (moveflag == false)
+		if (moveflag == false)//Boss1が右向きの時
 		{
 			for (int i = 300; i < 360; i += 60 / 3)
 			{
@@ -165,7 +176,7 @@ void CObjBoss1::Action()
 	}
 	case 210:
 	{
-		if (moveflag == true)
+		if (moveflag == true)//Boss1が左向きの時
 		{
 			for (int i = 120; i <= 240; i += 120 / 6)
 			{
@@ -174,7 +185,7 @@ void CObjBoss1::Action()
 				Objs::InsertObj(objsg, OBJ_SHOT_BULLET, 15);
 			}
 		}
-		if (moveflag == false)
+		if (moveflag == false)//Boss1が右向きの時
 		{
 			for (int i = 300; i < 360; i += 60 / 3)
 			{
@@ -192,6 +203,7 @@ void CObjBoss1::Action()
 	}
 	}
 
+	//Boss1の当たり判定作成
 	pb->BlockBossHit(&m_ex, &m_ey, false,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right,
 		&m_vx, &m_vy);
@@ -199,38 +211,45 @@ void CObjBoss1::Action()
 	//自由落下
 	m_vy += 5.0 / (20.0f);
 
+	//HeroがBoss1より左にいるとき
 	if (m_ex > objh->GetX() - pb->GetScroll())
 	{
-		moveflag = true;
-		m_vx = 1.0f;
+		moveflag = true;//Boss1の向きを右向きに
+		m_vx = 1.0f;//右に移動
 	}
-
+	//HeroがBoss1より右にいるとき
 	if (m_ex < objh->GetX() - pb->GetScroll())
 	{
-		moveflag = false;
-		m_vx = -1.0f;
+		moveflag = false;//Boss1の向きを左向きに
+		m_vx = -1.0f;//左に移動
 	}
+
 	if (m_ex > 295 * 64)
 	{
 		m_vx = -1.0f;
 	}
+
 	if (m_ex < 290 * 64)
 	{
 		m_vx = 1.0f;
 	}
+
+	//timeが600になったらtimeを初期化
 	if (time == 600)
 	{
 		time = 0;
 	}
+
+	//位置の更新
 	m_ex += m_vx;
 	m_ey += m_vy;
-
-
-
-	
+	//HitBoxの更新
 	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
 
+	//UIの作成
 	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+
+	//攻撃を受けたとき
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
 	{
 		m_hp -= 10;
