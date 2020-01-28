@@ -135,7 +135,7 @@ void CObjHero::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 				CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
-				Scene::SetScene(new CSceneGameOver(s1->Getmapflag(),s1->Getmapnum(),wp,bullet));
+				Scene::SetScene(new CSceneGameOver(s1->Getmapflag(),s1->Getmapnum()));
 
 			}
 		}

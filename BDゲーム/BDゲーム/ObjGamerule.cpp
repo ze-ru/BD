@@ -12,14 +12,15 @@ using namespace GameL;
 //イニシャライズ
 void CObjGamerule::Init()
 {
-	m_time = 0;
-	m_frame = 0;
-	Hits::SetHitBox(this, 0, 0, 64, 64, ELEMENT_ENEMY, OBJ_WOLKENEMY, 1);
+	m_time = 0;//
+	m_frame = 0;//
+	Hits::SetHitBox(this, 0, 0, 64, 64, ELEMENT_ENEMY, OBJ_WOLKENEMY, 1);//仮の当たり判定
 }
 
 //アクション
 void CObjGamerule::Action()
 {
+
 	if (m_frame == 0)
 	{
 		m_time++;

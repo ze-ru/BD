@@ -8,24 +8,23 @@
 
 //使用するネームスペース
 using namespace GameL;
-CObjGameOver::CObjGameOver(int x, int y,int w,int b)
+CObjGameOver::CObjGameOver(int x, int y)
 {
-	mapflag = x;
-	mapnum = y;
-	wp = w;
-	bullet = b;
+	mapflag = x;//背景番号
+	mapnum = y;//ブロック描画番号
 }
 
 //イニシャライズ
 void CObjGameOver::Init()
 {
 	m_key_flag = false;//キーフラグ
-	key = false;
+	key = false;//キー判定
 }
 
 //アクション
 void CObjGameOver::Action()
 {
+	//上下キーの判定
 	if (Input::GetVKey(VK_UP) == true)
 	{
 		key = false;
@@ -41,20 +40,20 @@ void CObjGameOver::Action()
 	{
 		if (m_key_flag == true)
 		{
-			if (mapflag != 13)
+			if (mapflag != 13)//マップ1に移行
 				Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
-			if (mapflag == 13)
-				Scene::SetScene(new CSceneStage1(12, mapnum, 0, 0));
+			if (mapflag == 13)//マップ2に移行
+				Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
 
-			m_key_flag = false;
+			m_key_flag = false;//初期化
 		}
 	}
 	if (Input::GetVKey(VK_RETURN) == true && key == true)
 	{
 		if (m_key_flag == true)
 		{
-			Scene::SetScene(new CSceneTitle());
-			m_key_flag = false;
+			Scene::SetScene(new CSceneTitle());//タイトルに移行
+			m_key_flag = false;//初期化
 		}
 	}
 	else
