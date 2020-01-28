@@ -30,6 +30,7 @@ CSceneGameClear::~CSceneGameClear()
 //ゲームメイン初期化メソッド
 void CSceneGameClear::InitScene()
 {
+	//
 	Audio::LoadAudio(15, L"normal.wav", SOUND_TYPE::BACK_MUSIC);
 
 	//ゲームオーバーオブジェクト作成

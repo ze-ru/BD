@@ -1,9 +1,11 @@
-﻿#include "GameL\DrawTexture.h"
-#include "GameL\WinInputs.h"
-#include "GameHead.h"
-#include "ObjStage2Clear.h"
+﻿//使用するヘッダーファイル
+#include"GameL\WinInputs.h"
 #include"GameL\SceneObjManager.h"
 
+#include"ObjStage2Clear.h"
+#include"GameL\DrawTexture.h"
+
+#include"GameHead.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -22,13 +24,14 @@ void CObjStage2Clear::Init()
 void CObjStage2Clear::Action()
 {
 	//time++;
+	//
 	if(m_vy<=1700)
-	m_vy ++;
+		m_vy ++;
 
-	
 	//for(int i=0;)
 
-	if (Input::GetVKey(VK_RETURN) == true&&m_vy>1600)
+	//
+	if (Input::GetVKey(VK_RETURN) == true && m_vy > 1600)
 	{
 		Scene::SetScene(new CSceneTitle());
 	}
@@ -37,8 +40,10 @@ void CObjStage2Clear::Action()
 //ドロー
 void CObjStage2Clear::Draw()
 {
+	//描画カラー情報
 	float c[4] = { 1,1,1,1 };
 
+	//スタッフロールを表示
 	Font::StrDraw(L"Congratulation!!", 100, 600 - m_vy, 80, c);
 
 	Font::StrDraw(L"GAME CLEAR!!", 180, 750 - m_vy, 80, c);
@@ -60,5 +65,4 @@ void CObjStage2Clear::Draw()
 	Font::StrDraw(L"Thank you for playing!!", 120, 1900-m_vy, 50, c);
 
 	Font::StrDraw(L"Team BD.", 330,2100-m_vy, 30, c);
-
 }
