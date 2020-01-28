@@ -1,22 +1,19 @@
 #pragma once
+//使用するヘッダーファイル
 #include"GameL\SceneObjManager.h"
 
 using namespace GameL;
 
+//オブジェクト：アサルトライフル
 class CObjAssault :public CObj
 {
 public:
 	CObjAssault(float x, float y);
 	~CObjAssault() {};
-	void Init();
-	void Action();
-	void Draw();
+	void Init();//イニシャライズ
+	void Action();//アクション
+	void Draw();//ドロー
 private:
-	float m_vx;
-	float m_vy;
-	float m_px;
-	float m_py;
-	float m_time;
-
-	
+	float m_px;//位置X
+	float m_py;//位置Y
 };

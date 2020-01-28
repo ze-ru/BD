@@ -1,3 +1,4 @@
+//使用するヘッダーファイル
 #include"GameL\DrawTexture.h"
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
@@ -8,11 +9,11 @@
 #include"GameL\Audio.h"
 
 using namespace GameL;
-
+//コンストラクタ
 CObjAssaultBullet::CObjAssaultBullet(float x, float y)
 {
-	m_px = x;
-	m_py = y;
+	m_px = x;//位置X
+	m_py = y;//位置Y
 }
 void CObjAssaultBullet::Init()
 {
