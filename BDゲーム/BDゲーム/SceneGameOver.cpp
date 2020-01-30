@@ -18,8 +18,8 @@ using namespace GameL;
 //コンストラクタ
 CSceneGameOver::CSceneGameOver(int mapflag,int mapnum)
 {
-	map_flag = mapflag;
-	map_num = mapnum;
+	map_flag = mapflag;//背景番号
+	map_num = mapnum;  //ブロック描画番号
 }
 
 //デストラクタ

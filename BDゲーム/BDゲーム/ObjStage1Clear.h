@@ -16,10 +16,7 @@ public:
 	void SetScore(int s) { score += s; }//スコア関数
 	void Setdead() { deadflag = true; }
 private:
-	bool key;
+	bool key;//キーフラグ
 	int score;
-	int time;
-	int count;
-	bool deadflag;
-	int scorecount;
+	bool deadflag;//BOSS撃破フラグ
 };

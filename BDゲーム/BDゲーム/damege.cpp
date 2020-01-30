@@ -36,27 +36,26 @@ void CObjDamege::Action()
 //ドロー
 void CObjDamege::Draw()
 {
-
+	//ブロックオブジェクト登録
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//描画カラー情報
-	float c[4] = { 1.0f,0.0f,0.0f,1.0f };////
+	float c[4] = { 1.0f,0.0f,0.0f,1.0f };
 	wchar_t str[50];
 
-	
-		size++;
-		hit_time++;
-		wchar_t str2[50];
-		if (hit_time < 50)
-		{
-			swprintf_s(str2, L"%d", dam);
+	size++;
+	hit_time++;
 
-			Font::StrDraw(str2, m_px + pb->GetScroll() - 20.0f, m_py - size, 25, c);
-
-		}
-		if (hit_time > 50)
-		{
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-		}
+	wchar_t str2[50];
+	if (hit_time < 50)
+	{
+		swprintf_s(str2, L"%d", dam);
+		Font::StrDraw(str2, m_px + pb->GetScroll() - 20.0f, m_py - size, 25, c);
+	}
+	if (hit_time > 50)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 	
 }

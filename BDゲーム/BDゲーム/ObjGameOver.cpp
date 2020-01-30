@@ -11,14 +11,14 @@ using namespace GameL;
 CObjGameOver::CObjGameOver(int x, int y)
 {
 	mapflag = x;//背景番号
-	mapnum = y;//ブロック描画番号
+	mapnum = y; //ブロック描画番号
 }
 
 //イニシャライズ
 void CObjGameOver::Init()
 {
 	m_key_flag = false;//キーフラグ
-	key = false;//キー判定
+	key = false;       //キー判定
 }
 
 //アクション
@@ -43,7 +43,7 @@ void CObjGameOver::Action()
 			if (mapflag != 13)//マップ1に移行
 				Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
 			if (mapflag == 13)//マップ2に移行
-				Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
+				Scene::SetScene(new CSceneStage1(12, mapnum, 0, 0));
 
 			m_key_flag = false;//初期化
 		}
@@ -53,7 +53,7 @@ void CObjGameOver::Action()
 		if (m_key_flag == true)
 		{
 			Scene::SetScene(new CSceneTitle());//タイトルに移行
-			m_key_flag = false;//初期化
+			m_key_flag = false;                //初期化
 		}
 	}
 	else
@@ -72,6 +72,7 @@ void CObjGameOver::Draw()
 	Font::StrDraw(L"YOU LOST", 240, 70, 80, c);
 	Font::StrDraw(L"GAME OVER", 125, 200, 120, c);
 
+	//上下キーで選択
 	if (key == false) 
 	{
 		Font::StrDraw(L"▶つづきから", 155, 380, 60, c);

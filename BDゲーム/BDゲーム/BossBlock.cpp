@@ -13,7 +13,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//イニシャライズ
+//コンストラクタ
 CObjBossBlock::CObjBossBlock(float x,float y,int stagenum)
 {
     m_bx = x;
@@ -21,6 +21,7 @@ CObjBossBlock::CObjBossBlock(float x,float y,int stagenum)
 	num = stagenum;
 }
 
+//イニシャライズ
 void CObjBossBlock::Init()
 {
 	m_vy = 0;
@@ -45,9 +46,9 @@ void CObjBossBlock::Init()
 //アクション
 void CObjBossBlock::Action()
 {
+	//
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
     hx = hero->GetX() - block->GetScroll();
     hy = hero->GetY();
 
@@ -68,7 +69,6 @@ void CObjBossBlock::Action()
 		num = 30;
 	}
 	
-
 	//主人公が一定範囲に入ると当たり判定実行
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
@@ -77,15 +77,15 @@ void CObjBossBlock::Action()
 			if (num == 0)
 			{
 				musicflag = true;
-					Audio::Stop(2);
+				Audio::Stop(2);//音楽ストップ
 				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
 				Audio::Start(0);//音楽スタート
 			}
 		}
+		//主人公とブロックの当たり判定
 		if ((hx + 64.0f > m_bx) && (hx < m_bx + 64.0f) && (hy + 64.0f > m_by) && (hy < m_by + 64.0f))
 		{
 			//左右判定
-
 			//vectorの作成
 			float rvx = hx - m_bx;
 			float rvy = hy - m_by;
@@ -123,9 +123,7 @@ void CObjBossBlock::Action()
 					hero->SetVX(-hero->GetVX()*0.1f);
 
 				}
-
 			}
-
 		}
 		bossflag = true;
 	}
@@ -135,17 +133,18 @@ void CObjBossBlock::Action()
 	{
 
 	}
-
 }
 
 //ドロー
 void CObjBossBlock::Draw()
 {
+	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	RECT_F src;
-	RECT_F dst;
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画元表示位置
 
+	//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 64.0f;
@@ -155,8 +154,10 @@ void CObjBossBlock::Draw()
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
+	//
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
+		//表示位置の設定
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_left = m_bx + block->GetScroll();
@@ -164,8 +165,6 @@ void CObjBossBlock::Draw()
 		dst.m_bottom = 64.0f + m_by;
 	}
 	
-		
-
-
+	//グラフィックをsrc・dst・cの情報を元に描画
 	Draw::Draw(num, &src, &dst, c, 0.0f);
 }

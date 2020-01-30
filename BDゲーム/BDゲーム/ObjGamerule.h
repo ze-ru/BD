@@ -15,6 +15,6 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:
-	int m_time;
-	int m_frame;
+	int m_time;    //画面切り替えの時間管理
+	int m_frame;   //画面切り替えのフラグ
 };

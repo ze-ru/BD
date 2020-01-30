@@ -13,10 +13,6 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-private:
-	int m_px;
-	int m_py;
-	int m_vx;
-	int m_vy;
-	int time;
+private:	
+	int m_vy;//スタッフロールY移動ベクトル	
 };
