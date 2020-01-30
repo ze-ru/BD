@@ -24,13 +24,14 @@ void CObjStage2Clear::Init()
 void CObjStage2Clear::Action()
 {
 	//time++;
-	//
+
+	//スタッフロールを上にスクロールさせる
 	if(m_vy<=1700)
 		m_vy ++;
 
 	//for(int i=0;)
 
-	//
+	//スタッフロールの終わり際に、Enterキーでタイトルへ移行
 	if (Input::GetVKey(VK_RETURN) == true && m_vy > 1600)
 	{
 		Scene::SetScene(new CSceneTitle());

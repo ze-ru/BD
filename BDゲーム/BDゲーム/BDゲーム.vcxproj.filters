@@ -159,9 +159,6 @@
     <ClCompile Include="GoalBlock.cpp">
       <Filter>ソース ファイル\chara</Filter>
     </ClCompile>
-    <ClCompile Include="damage.cpp">
-      <Filter>ソース ファイル\map1</Filter>
-    </ClCompile>
     <ClCompile Include="Assault.cpp">
       <Filter>ソース ファイル\Bullet</Filter>
     </ClCompile>
@@ -217,6 +214,9 @@
       <Filter>ソース ファイル\Title</Filter>
     </ClCompile>
     <ClCompile Include="BossBlock.cpp">
+      <Filter>ソース ファイル\map1</Filter>
+    </ClCompile>
+    <ClCompile Include="damege.cpp">
       <Filter>ソース ファイル\map1</Filter>
     </ClCompile>
   </ItemGroup>
