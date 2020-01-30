@@ -16,11 +16,10 @@ public:
 private:
 	bool m_key_flag;//キーフラグ
 
-	bool key;//上下キーの判定
+	bool key;       //上下キーの判定
 
-	int mapflag;//
-	int mapnum;//
+	int mapflag;    //背景番号
+	int mapnum;     //ブロック描画番号
 
-	int wp;//
-	int bullet;//
+	
 };
