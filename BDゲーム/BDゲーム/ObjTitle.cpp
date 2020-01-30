@@ -27,17 +27,9 @@ void CObjTitle::Action()
 		if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey(' ') == false)
 		{
 
-			Scene::SetScene(new CSceneGamerule());
+			Scene::SetScene(new CSceneGamerule());//ゲームルールのシーンに移行
 		}
-		if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey(' ') == true)
-		{
-			Scene::SetScene(new CSceneStage1(12, 8,0,0));
-		}
-		if (Input::GetVKey(VK_RETURN) == true && Input::GetVKey('B') == true)
-		{
-			Scene::SetScene(new CSceneGameClear());
-		}
-
+		
 		time = 10;
 	}
 }

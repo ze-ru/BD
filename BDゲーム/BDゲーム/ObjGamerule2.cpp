@@ -11,7 +11,7 @@ using namespace GameL;
 //イニシャライズ
 void CObjGamerule2::Init()
 {
-	m_time = 0;
+	m_time =  0;
 	m_frame = 0;
 	s = false;
 }
@@ -21,6 +21,7 @@ void CObjGamerule2::Action()
 {
 	if (Input::GetVKey(VK_RETURN) == true && s == true)
 	{
+		//m_frameを1にする間隔
 		if (m_frame == 0)
 		{
 			m_time++;
