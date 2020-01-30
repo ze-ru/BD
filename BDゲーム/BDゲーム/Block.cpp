@@ -12,6 +12,7 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
 CObjBlock::CObjBlock(int map[11][300],int mapnum)
 {
 	//マップデータをコピー
@@ -32,271 +33,298 @@ void CObjBlock::Init()
 void CObjBlock::Action()
 {
 	//主人公の位置を取得
+	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
+
+	//後方スクロールライン
+	if (hx < 200)
+	{
+		hero->SetX(200);//主人公はラインを超えないようにする
+		m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
 	
-		CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	}
 
+	//前方スクロールライン
+	if (hx > 300)
+	{
+		hero->SetX(300);
+		m_scroll -= hero->GetVX();
+	}
 
-		float hx = hero->GetX();
-		float hy = hero->GetY();
+	//敵出現ライン
+	//主人公の位置＋500を敵出現ラインに
+	float line = hx + (-m_scroll) + 515;
 
-		//後方スクロールライン
-		if (hx < 200)
-		{
-			hero->SetX(200);//主人公はラインを超えないようにする
-			m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
+	//敵出現ラインを要素番号化
+	int lx = ((int)line) / 64;
 		
+	//敵出現ラインの列を検索
+	for (int i = 0; i < 11; i++)
+	{
+		if (m_map[i][lx] == 5)
+		{
+			count++;
+
+			//WolkEnemy作成
+			if (count >= 1&&count<=3)
+			{			
+				CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
+			}
+
+			//ShieldEnemy作成
+			if (count == 4)
+			{				
+				CObjShieldEnemy*objs = new CObjShieldEnemy(lx*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objs, OBJ_SHIELDENEMY, 15);
+				count = 0;
+			}
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
 		}
 
-		//前方スクロールライン
-		if (hx > 300)
+		//FlyEnemy作成
+		if (m_map[i][lx] == 7)
 		{
-			hero->SetX(300);
-			m_scroll -= hero->GetVX();
-		
+			CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*64.0f);
+			Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
 		}
 
-		//敵出現ライン
-		//主人公の位置＋500を敵出現ラインに
-		float line = hx + (-m_scroll) + 515;
+		//JockEnemy作成
+		if (m_map[i][lx] == 6)
+		{				
+			CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*64.0f-64.0f);
+			Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
 
-		//敵出現ラインを要素番号化
-		int lx = ((int)line) / 64;
-		
-		//敵出現ラインの列を検索
-		for (int i = 0; i < 11; i++)
-		{
-			if (m_map[i][lx] == 5)
-			{
-				count++;
-				if (count >= 1&&count<=3)
-				{
-					CObjWolkEnemy*objW = new CObjWolkEnemy(lx*64.0f, i*64.0f - 64.0f);
-					Objs::InsertObj(objW, OBJ_WOLKENEMY, 15);
-				}
-				if (count == 4)
-				{
-					CObjShieldEnemy*objs = new CObjShieldEnemy(lx*64.0f, i*64.0f - 64.0f);
-					Objs::InsertObj(objs, OBJ_SHIELDENEMY, 15);
-					count = 0;
-				}
-				//敵出現場所を0にする
-				m_map[i][lx] = 0;
-			}
-			if (m_map[i][lx] == 7)
-			{
-				CObjFlyEnemy*objF = new CObjFlyEnemy(lx*64.0f, i*64.0f);
-				Objs::InsertObj(objF, OBJ_FLYENEMY, 15);
-
-				//敵出現場所を0にする
-				m_map[i][lx] = 0;
-			}
-			if (m_map[i][lx] == 6)
-			{
-				
-				CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*64.0f-64.0f);
-				Objs::InsertObj(objeL, OBJ_LOCKENEMY, 15);
-				m_map[i][lx] = 0;
-			}
-
-			//switch作成
-			if (m_map[i][lx] == 9)
-			{
-				CObjSwitch*objS = new CObjSwitch(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objS, OBJ_SWITCH, 15);
-				
-				m_map[i][lx] = 0;
-			}
-
-			//BossBlock作成
-			if (m_map[i][lx] == 14)
-			{
-				CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
-				Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
-				m_map[i][lx] = 0;
-			}
-			if (m_map[i][lx] == 18)
-			{
-				CObjHeal*objHeal = new CObjHeal(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objHeal, OBJ_HEAL, 15);
-				m_map[i][lx] = 0;
-			}
-			if (m_map[i][lx] == 19)
-			{
-				CObjAssault*objW = new CObjAssault(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objW, OBJ_ASSAULT, 15);
-
-				//敵出現場所を0にする
-				m_map[i][lx] = 0;
-			}
-			if (m_map[i][lx] == 20)
-			{
-				CObjRifle*objL = new CObjRifle(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objL, OBJ_RIFLE, 15);
-				m_map[i][lx] = 0;
-			}
-			if (m_map[i][lx] == 21)
-			{
-				CObjlaser*objl = new CObjlaser(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objl, OBJ_LASER, 15);
-				m_map[i][lx] = 0;
-			}
-			if (m_map[i][lx] == 22)
-			{
-				
-				CObjLockEnemy2*objeL2 = new CObjLockEnemy2(lx*64.0f, i*64.0f-64.0f);
-				Objs::InsertObj(objeL2, OBJ_LOCKENEMY2, 15);
-				m_map[i][lx] = 0;
-			}
-
-			if (m_map[i][lx] == 41)
-			{
-			 	CObjBoss1*objboss = new CObjBoss1(lx*64.0f, i*64.0f - 64.0f);
-				Objs::InsertObj(objboss, OBJ_BOSS1, 15);
-				m_map[i][lx] = 0;
-			}
-		
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
 		}
 
-		for (int i = 0; i < 11; i++)
+		//switch作成
+		if (m_map[i][lx] == 9)
 		{
-			for (int j = 0; j < 300; j++)
+			CObjSwitch*objS = new CObjSwitch(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objS, OBJ_SWITCH, 15);
+				
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+
+		//BossBlock作成
+		if (m_map[i][lx] == 14)
+		{
+			CObjBossBlock*objB = new CObjBossBlock(lx*64.0f, i*64.0f - 64.0f,map_num);
+			Objs::InsertObj(objB, OBJ_BOSSBLOCK, 2);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+
+		//Heal作成
+		if (m_map[i][lx] == 18)
+		{
+			CObjHeal*objHeal = new CObjHeal(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objHeal, OBJ_HEAL, 15);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+
+		//Assault作成
+		if (m_map[i][lx] == 19)
+		{
+			CObjAssault*objW = new CObjAssault(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objW, OBJ_ASSAULT, 15);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+
+		//Rifle作成
+		if (m_map[i][lx] == 20)
+		{
+			CObjRifle*objL = new CObjRifle(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objL, OBJ_RIFLE, 15);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+
+		//laser作成
+		if (m_map[i][lx] == 21)
+		{
+			CObjlaser*objl = new CObjlaser(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objl, OBJ_LASER, 15);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+
+		//LockEnemy2作成
+		if (m_map[i][lx] == 22)
+		{			
+			CObjLockEnemy2*objeL2 = new CObjLockEnemy2(lx*64.0f, i*64.0f-64.0f);
+			Objs::InsertObj(objeL2, OBJ_LOCKENEMY2, 15);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}
+
+		//BOSS1作成
+		if (m_map[i][lx] == 41)
+		{
+		 	CObjBoss1*objboss = new CObjBoss1(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objboss, OBJ_BOSS1, 15);
+
+			//敵出現場所を0にする
+			m_map[i][lx] = 0;
+		}		
+	}
+
+	//m_mapの全要素にアクセス
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 300; j++)
+		{
+			if (m_map[i][j] == 13)
 			{
-				if (m_map[i][j] == 13)
+				if (dead_flag == true)
 				{
-					if (dead_flag == true)
-					{
-						CObjStage1Clear*sb1 = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
-						CObjGoalBlock*objg = new CObjGoalBlock(j*64.0f, i*64.0f - 64.0f);
-						Objs::InsertObj(objg, OBJ_GOAL_BLOCK, 2);
-						
-						m_map[i][j] = 0;
-						sb1->Setdead();
-						
-					}
-				}
-				if (m_map[i][j] == 42 && map_num == 30&&musicflag == false)
-				{
-					CObjBoss2*objboss2 = new CObjBoss2(j*64.0f, i*64.0f - 64.0f);
-					Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
-					m_map[i][j] = 0;
-						musicflag = true;
-						Audio::Stop(5);
-						float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-						Audio::Start(4);//音楽スタート
+					//BOSSが死んだらゴールブロック出現
+					CObjStage1Clear*sb1 = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+					CObjGoalBlock*objg = new CObjGoalBlock(j*64.0f, i*64.0f - 64.0f);
+					Objs::InsertObj(objg, OBJ_GOAL_BLOCK, 2);
 					
+					m_map[i][j] = 0;
+					sb1->Setdead();					
 				}
 			}
-		}
-		
-		CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//主人公が一定範囲に入ると当たり判定実行
-		if ((hero->GetX() - block->GetScroll()) > 17920 && map_num == 8 && bossflag == false)
-		{
-			bossflag = true;
-		}
-		if (bossflag == true)
-		{
-			if (m_time < 150)
-				m_time++;
-		}
-		if (m_time == 150)
-		{
-			map_num = 30;
-			musicflag = false;
-		}
+			//音楽フラグ
+			if (m_map[i][j] == 42 && map_num == 30&&musicflag == false)
+			{
+				//
+				CObjBoss2*objboss2 = new CObjBoss2(j*64.0f, i*64.0f - 64.0f);
+				Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
 
-		if (musicflag == false)
-		{
-			if (map_num == 0)
-			{
+				m_map[i][j] = 0;
 				musicflag = true;
+				Audio::Stop(5);//音楽終了
 				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-				Audio::Start(2);//音楽スタート
+				Audio::Start(4);//音楽スタート				
 			}
-			if (map_num == 8)
-			{
-				musicflag = true;
-				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
-				Audio::Start(5);//音楽スタート
-			}
-			
 		}
+	}
+		
+	//
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	//主人公が一定範囲に入ると当たり判定実行
+	if ((hero->GetX() - block->GetScroll()) > 17920 && map_num == 8 && bossflag == false)
+	{
+		bossflag = true;
+	}
+	if (bossflag == true)
+	{
+		if (m_time < 150)
+			m_time++;
+	}
+	if (m_time == 150)
+	{
+		map_num = 30;
+		musicflag = false;
+	}
+
+	if (musicflag == false)
+	{
+		if (map_num == 0)
+		{
+			musicflag = true;
+			float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+			Audio::Start(2);//音楽スタート
+		}
+		if (map_num == 8)
+		{
+			musicflag = true;
+			float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
+			Audio::Start(5);//音楽スタート
+		}
+	}
 	
 }
 //ドロー
 void CObjBlock::Draw()
-{
-	
-		//描画カラー情報
-		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+{	
+	//描画カラー情報
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-		RECT_F src; //描画元切り取り位置
-		RECT_F dst; //描画先表示位置
+	RECT_F src; //描画元切り取り位置
+	RECT_F dst; //描画先表示位置
 
-		//背景表示
-
-
-		//マップチップによるblock設置
-
-		for (int i = 0; i < 11; i++)
+	//背景表示
+	//マップチップによるblock設置
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 300; j++)
 		{
-			for (int j = 0; j < 300; j++)
+			if (m_map[i][j] > 0)
 			{
-				if (m_map[i][j] > 0)
+				//要素番号を座標に追加
+				float bx = i * 64.0f;
+				float by = i * 64.0f;
+
+				//表示位置の設定
+				dst.m_top = i * 64.0f - 64.0f;
+				dst.m_left = j * 64.0f + m_scroll;
+				dst.m_right = dst.m_left + 64.0f;
+				dst.m_bottom = dst.m_top + 64.0f;
+
+				//WolkEnemy
+				if (m_map[i][j] == 5)
 				{
-					//要素番号を座標に追加
-					float bx = i * 64.0f;
-					float by = i * 64.0f;
-					//表示位置の設定
-					dst.m_top = i * 64.0f - 64.0f;
-					dst.m_left = j * 64.0f + m_scroll;
-					dst.m_right = dst.m_left + 64.0f;
-					dst.m_bottom = dst.m_top + 64.0f;
-
-
-					if (m_map[i][j] == 5)//WolkEnemy
-					{
-						;
-					}
-					else if (m_map[i][j] == 2)
-					{
-						BlockDraw(64.0f, 0.0f, &dst, c,map_num);
-					}
-					else if (m_map[i][j] == 3)
-					{
-						BlockDraw(128.0f, 0.0f, &dst, c,map_num);
-					}
-					else if (m_map[i][j] == 4)
-					{
-						BlockDraw(128.0f, 0.0f, &dst, c, map_num);
-					}
-					else if (m_map[i][j] == 9)//Switch
-					{
-						;
-					}
-					else if (m_map[i][j] == 10)//Switch
-					{
-						BlockDraw(192.0f, 0.0f, &dst, c, map_num);
-					}
-					else if (m_map[i][j] == 14)
-					{
-						;
-					}
-					else if (m_map[i][j] == 42)
-					{
-						;
-					}
-					else
-					{
-						//描画
-						BlockDraw(0.0f, 0.0f, &dst, c,map_num);
-
-					}
-
+					;
+				}
+				else if (m_map[i][j] == 2)
+				{
+					BlockDraw(64.0f, 0.0f, &dst, c,map_num);
+				}
+				else if (m_map[i][j] == 3)
+				{
+					BlockDraw(128.0f, 0.0f, &dst, c,map_num);
+				}
+				else if (m_map[i][j] == 4)
+				{
+					BlockDraw(128.0f, 0.0f, &dst, c, map_num);
+				}
+				//Switch
+				else if (m_map[i][j] == 9)
+				{
+					;
+				}
+				//Switch
+				else if (m_map[i][j] == 10)
+				{
+					BlockDraw(192.0f, 0.0f, &dst, c, map_num);
+				}
+				else if (m_map[i][j] == 14)
+				{
+					;
+				}
+				else if (m_map[i][j] == 42)
+				{
+					;
+				}
+				else
+				{
+					//描画
+					BlockDraw(0.0f, 0.0f, &dst, c,map_num);
 				}
 			}
 		}
-	
+	}	
 }
 
 //BlockDrawMethod関数
@@ -548,8 +576,6 @@ void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *do
 	*left = false;
 	*right = false;
 
-
-
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 300; j++)
@@ -634,8 +660,6 @@ void CObjBlock::LaserHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 	*left = false;
 	*right = false;
 
-
-
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 300; j++)
@@ -675,18 +699,13 @@ void CObjBlock::LaserHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-
 						if ((r < 45 && r > 0) || r > 315)
 						{
 							*right = true;
-
-
 						}
 						else if (r > 135 && r < 225)
 						{
 							*left = true;
-
-
 						}
 
 						//}
@@ -694,20 +713,16 @@ void CObjBlock::LaserHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 						else if (r > 45 && r < 135)
 						{
 							*down = true;
-
 						}
 
 						//下
 						else if (r > 225 && r < 315)
 						{
 							*up = true;
-
 						}
-
 					}
 				}
 			}
 		}
 	}
-
 }
