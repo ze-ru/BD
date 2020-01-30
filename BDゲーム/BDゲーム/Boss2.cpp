@@ -213,23 +213,14 @@ void CObjBoss2::Draw()
 	RECT_F src;
 	RECT_F dst;
 
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	if (hit_flag == false)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 256.0f;
 		src.m_bottom = 256.0f;
-	}
-	if (hit_flag == true)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 256.0f;
-		src.m_right = 512.0f;
-		src.m_bottom = 256.0f;
-	}
-	
-
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + pb->GetScroll();
@@ -238,8 +229,31 @@ void CObjBoss2::Draw()
 
 
 
-	//
-	Draw::Draw(20, &src, &dst, c, 0.0f);
+		//
+		Draw::Draw(20, &src, &dst, c, 0.0f);
+	}
+	if (hit_flag == true)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 256.0f;
+		src.m_right = 512.0f;
+		src.m_bottom = 256.0f;
+
+		dst.m_top = m_ey;
+		dst.m_left = m_ex + pb->GetScroll();
+		dst.m_right = m_ex + 400.0f + pb->GetScroll();
+		dst.m_bottom = m_ey + 576.0f;
+
+
+
+		//
+		Draw::Draw(20, &src, &dst, c, 0.0f);
+	}
+	
+
+
+
+		
 
 	dst.m_top = 88.0f + m_ey;
 	dst.m_left = 0.0f + m_ex + pb->GetScroll();

@@ -178,27 +178,27 @@ void CObjLockEnemy::Draw()
 
 
 	//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
-	
-
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
-
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	
+
 	if (hit_flag == false)
 	{
+
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = 64 - 64.0f + m_ex + pb->GetScroll();
 		dst.m_right = 64.0f + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
+
+
+
+		//
+		Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
-	
-
-	//
-	Draw::Draw(4, &src, &dst, c, 0.0f);
-
 	dst.m_top = 0.0f + m_ey;
 	dst.m_left = 0.0f + m_ex + pb->GetScroll();
 	dst.m_right = 64.0f + m_ex + pb->GetScroll();

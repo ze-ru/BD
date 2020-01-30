@@ -28,6 +28,8 @@ void CObjNormalBullet::Init()
 	dm = 5;
 	Audio::Start(7);
 
+	hit_flag = false;
+
 	Hits::SetHitBox(this, m_ex, m_ey, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_NORMAL_BULLET, 1);
 }
 void CObjNormalBullet::Action()
@@ -59,39 +61,33 @@ void CObjNormalBullet::Action()
 		Audio::Start(13);
 		Audio::Stop(7);
 		
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		hit_flag = true;
 		Audio::Stop(13);
 	}
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELDENEMY) != nullptr)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_FLYENEMY) != nullptr)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		hit_flag = true;
 	}
 	
 	if (m_time>100)
@@ -105,10 +101,13 @@ void CObjNormalBullet::Action()
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		Audio::Stop(7);
+		hit_flag = true;
+	}
+	if (hit_flag == true)
+	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-	
 
 
 }

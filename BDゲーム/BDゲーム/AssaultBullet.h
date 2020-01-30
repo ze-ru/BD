@@ -28,5 +28,7 @@ private:
 	float m_time;//弾丸削除用
 	int m_count;//弾丸の方向決定用
 	int dm;//ダメージ
+
+	bool dm_hit_flag;
 };
 bool UnitVec(float *vx, float *vy);//正規化関数

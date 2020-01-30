@@ -28,6 +28,8 @@ void CObjAssaultBullet::Init()
 	m_hit_right = false;//当たり判定：右
 	m_count = 0;//一度だけ弾丸の方向をとるためのカウント
 	dm = 2;//ダメージ数
+
+	dm_hit_flag = false;
 	Audio::Start(7);//発射音
 	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_ASSAULT_BULLET, 1);//当たり判定作成
 }
@@ -65,40 +67,34 @@ void CObjAssaultBullet::Action()
 			objh->SetHitflag(false);//当たっている方向を左にする
 		Audio::Start(13);
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 		Audio::Stop(13);
 	}
 	if (hit->CheckElementHit(ELEMENT_ATTACK) == true)//主人公の剣攻撃に当たると弾丸を削除する。
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	
 	if (hit->CheckObjNameHit(OBJ_WOLKENEMY) != nullptr)//歩行敵に当たった時
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELDENEMY) != nullptr)//盾を持つ敵に当たった時
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_SHIELD) != nullptr)//盾に当たった時
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_LOCKENEMY) != nullptr)//砲台に当たった時
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	//位置の更新
 	m_px += m_vx;
@@ -110,8 +106,7 @@ void CObjAssaultBullet::Action()
 	if (m_time > 150)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	//ブロックとの当たり判定
 	block->BulletHit(&m_px, &m_py, false, &m_hit_up, &m_hit_down,
@@ -120,6 +115,12 @@ void CObjAssaultBullet::Action()
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		Audio::Stop(7);
+		dm_hit_flag = true;
+	}
+
+
+	if (dm_hit_flag == true)
+	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}

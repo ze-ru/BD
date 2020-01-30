@@ -31,4 +31,6 @@ private:
 
 	int dm;
 	bool hit_flag;
+
+	bool dm_hit_flag;
 };

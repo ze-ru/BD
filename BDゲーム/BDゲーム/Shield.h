@@ -46,4 +46,6 @@ private:
 
 	bool m_hit_flag;
 	int m_count;
+
+	bool dm_hit_flag;
 };

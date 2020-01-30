@@ -29,4 +29,6 @@ private:
 	float m_time;
 	int dm;
 
+	bool hit_flag;
+
 };

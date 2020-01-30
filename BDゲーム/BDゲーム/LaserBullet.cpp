@@ -41,6 +41,8 @@ void CObjLaserBullet::Init()
 	hit_flag = false;
 	dm = 40;
 	m_hit = 0;
+
+	dm_hit_flag = false;
 	Audio::Start(8);
 	Hits::SetHitBox(this, m_ex, m_ey, 60, 16, ELEMENT_LASERBULLET, OBJ_LASER_BULLET, 1);
 }
@@ -62,8 +64,7 @@ void CObjLaserBullet::Action()
 	if (m_time > 80)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 
 	block->LaserHit(&m_ex, &m_ey, false, &m_hit_up, &m_hit_down,
@@ -72,21 +73,24 @@ void CObjLaserBullet::Action()
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 
 	if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr || hit->CheckObjNameHit(OBJ_BOSS2))
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	else
 	{
 		hit_flag = false;
 	}
 
+	if (dm_hit_flag == true)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
 	
 }
 void CObjLaserBullet::Draw()

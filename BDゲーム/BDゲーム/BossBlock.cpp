@@ -146,26 +146,30 @@ void CObjBossBlock::Draw()
 	RECT_F src;
 	RECT_F dst;
 
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
-
 	//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+		
+
+
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = 64.0f + m_by;
+
+
+
+
+
+		Draw::Draw(num, &src, &dst, c, 0.0f);
 	}
-	
-		
-
-
-	Draw::Draw(num, &src, &dst, c, 0.0f);
 }

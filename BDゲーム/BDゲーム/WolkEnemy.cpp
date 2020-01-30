@@ -249,27 +249,28 @@ void CObjWolkEnemy::Draw()
 
 	RECT_F src;
 	RECT_F dst;
-
-
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	if (hit_flag == false)
+	{
 	src.m_top = 0.0f;
 	src.m_left = 0.0f + AniData[m_ani_frame] * 64;
 	src.m_right = 64.0f + AniData[m_ani_frame] * 64;
 	src.m_bottom = 64.0f;
 
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	
-	if (hit_flag == false)
-	{
+	
+	
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = (64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
+
+
+
+
+		//
+		Draw::Draw(3, &src, &dst, c, m_dead);
 	}
-
-	
-
-	//
-	Draw::Draw(3, &src, &dst, c, m_dead);
 
 
 	dst.m_top = 0.0f + m_ey;

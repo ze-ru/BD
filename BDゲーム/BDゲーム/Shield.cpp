@@ -40,6 +40,8 @@ void CObjShield::Init()
 	m_count = 0;
 	m_hit_flag = false;
 
+	dm_hit_flag = false;
+
 	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);
 }
 void CObjShield::Action()
@@ -79,8 +81,7 @@ void CObjShield::Action()
 	{
 		se->SetShield();
 		Audio::Stop(10);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	if (hit->CheckObjNameHit(OBJ_ASSAULT_BULLET) != nullptr)
 	{
@@ -100,15 +101,13 @@ void CObjShield::Action()
 	{
 		se->SetShield();
 		Audio::Stop(10);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	else if (hit->CheckElementHit(ELEMENT_LASERBULLET) == true && hit_flag == false)
 	{
 		se->SetShield();
 		Audio::Stop(10);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 
 	if (hit_flag == true)
@@ -123,16 +122,7 @@ void CObjShield::Action()
 		}
 
 	}
-	if (m_dead == true)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
-	if (/*Input::GetVKey('U') == true ||*/ (objh->GetX() - block->GetScroll()) > 17920)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
+	
 
 	
 
@@ -155,6 +145,22 @@ void CObjShield::Action()
 		{
 			m_hit_flag = false;
 			Audio::Stop(13);
+		}
+		if (m_dead == true)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		}
+		if (/*Input::GetVKey('U') == true ||*/ (objh->GetX() - block->GetScroll()) > 17920)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		}
+
+		if (dm_hit_flag == true)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 		}
 	
 	hit->SetPos(m_ex + block->GetScroll(), m_ey);

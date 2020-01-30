@@ -321,32 +321,42 @@ void CObjBoss1::Draw()
 
 	RECT_F src;
 	RECT_F dst;
-
-	src.m_top = 32.0f;
-	src.m_left = 0.0f;
-	src.m_right = 256.0f;
-	src.m_bottom = 192.0f;
-
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	if (hit_flag == false && moveflag == true)
 	{
+		src.m_top = 32.0f;
+		src.m_left = 0.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 192.0f;
+
+
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + pb->GetScroll();
 		dst.m_right = m_ex + 256.0f + pb->GetScroll();
 		dst.m_bottom = m_ey + 192.0f;
+
+		//
+		Draw::Draw(14, &src, &dst, c, m_dead);
 	}
 	else if (hit_flag == false && moveflag == false)
 	{
+		src.m_top = 32.0f;
+		src.m_left = 0.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 192.0f;
+
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + 256.0f + pb->GetScroll();
 		dst.m_right = m_ex + pb->GetScroll();
 		dst.m_bottom = m_ey + 192.0f;
+
+		//
+		Draw::Draw(14, &src, &dst, c, m_dead);
 	}
 
 	
-	//
-	Draw::Draw(14, &src, &dst, c, m_dead);
+	
 
 	dst.m_top = 0.0f + m_ey;
 	dst.m_left = 32.0f + m_ex + pb->GetScroll();

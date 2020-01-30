@@ -125,19 +125,7 @@
     <ClCompile Include="damege.cpp" />
     <ClCompile Include="explosion.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
-    <ClCompile Include="GameL\Audio.cpp" />
-    <ClCompile Include="GameL\DirectXDevice.cpp" />
-    <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
-    <ClCompile Include="GameL\DrawFont.cpp" />
-    <ClCompile Include="GameL\DrawTexture.cpp" />
     <ClCompile Include="GameL\GameL_Main.cpp" />
-    <ClCompile Include="GameL\HitBoxManager.cpp" />
-    <ClCompile Include="GameL\MultiThread.cpp" />
-    <ClCompile Include="GameL\SceneManager.cpp" />
-    <ClCompile Include="GameL\SceneObjManager.cpp" />
-    <ClCompile Include="GameL\SetWindow.cpp" />
-    <ClCompile Include="GameL\UserData.cpp" />
-    <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="Gamerule.cpp" />
     <ClCompile Include="GoalBlock.cpp" />
     <ClCompile Include="Heal.cpp" />
@@ -243,6 +231,9 @@
     <ClInclude Include="Switch.h" />
     <ClInclude Include="WeaponShop.h" />
     <ClInclude Include="WolkEnemy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib化.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

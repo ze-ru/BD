@@ -212,23 +212,24 @@ void CObjFlyEnemy::Draw()
 	RECT_F src;
 	RECT_F dst;
 
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
-
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	if (hit_flag == false)
 	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
+
+
 		dst.m_top = m_py;
 		dst.m_left = m_px + pb->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = m_py + 64.0f;
+
+
+		//
+		Draw::Draw(6, &src, &dst, c, 0.0f);
 	}
-
-	//
-	Draw::Draw(6, &src, &dst, c, 0.0f);
-
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = 0.0f + m_px + pb->GetScroll();
 	dst.m_right = 64.0f + m_px + pb->GetScroll();
