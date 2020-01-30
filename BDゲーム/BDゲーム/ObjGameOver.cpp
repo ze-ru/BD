@@ -43,7 +43,7 @@ void CObjGameOver::Action()
 			if (mapflag != 13)//マップ1に移行
 				Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
 			if (mapflag == 13)//マップ2に移行
-				Scene::SetScene(new CSceneStage1(mapflag, mapnum, 0, 0));
+				Scene::SetScene(new CSceneStage1(12, mapnum, 0, 0));
 
 			m_key_flag = false;//初期化
 		}

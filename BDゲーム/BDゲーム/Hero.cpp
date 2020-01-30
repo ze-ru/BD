@@ -741,7 +741,7 @@ void CObjHero::EnemyHit(int enemynum)
 				{
 					//“G‚ÌˆÚ“®•ûŒü‚ðŽålŒö‚ÌˆÊ’u‚É‰ÁŽZ
 					if(enemynum==1)
-					m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
+						m_px += ((CObjWolkEnemy*)hit_data[i]->o)->GetVx();
 					if (enemynum == 4)
 						m_px += ((CObjBoss1*)hit_data[i]->o)->GetVx();
 					
