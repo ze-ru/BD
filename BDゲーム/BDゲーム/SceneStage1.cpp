@@ -66,7 +66,6 @@ void CSceneStage1::InitScene()
 		}
 	}
 	
-	
 	unique_ptr<wchar_t>p2;//ステージ情報ポインター
 	int size2;//ステージ情報の大きさ
 	p2 = Save::ExternalDataOpen(L"stage2.csv", &size2);//外部データ読み込み
@@ -164,11 +163,6 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"GOAL3.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"SelectBack.png", 25, TEX_SIZE_512);
 	Draw::LoadImageW(L"Select.png", 26, TEX_SIZE_512);
-
-
-
-
-
 	
 	CObjStage1*objs1 = new CObjStage1(map_flag,mapnum);
 	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
@@ -178,9 +172,7 @@ void CSceneStage1::InitScene()
 		Objs::InsertObj(objb, OBJ_BLOCK, 10);
 		CObjStage1Clear *objc = new CObjStage1Clear();
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
-		//音楽情報の読み込み
-		
-		
+		//音楽情報の読み込み	
 	}
 	if (mapnum == 8)
 	{
@@ -188,9 +180,7 @@ void CSceneStage1::InitScene()
 		Objs::InsertObj(objb, OBJ_BLOCK, 10);
 		CObjStage1Clear *objc = new CObjStage1Clear();
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
-		//音楽情報の読み込み
-		
-	
+		//音楽情報の読み込み	
 	}
 	/*if (mapnum == 9)
 	{
@@ -199,11 +189,10 @@ void CSceneStage1::InitScene()
 		CObjStage1Clear *objc = new CObjStage1Clear();
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 	}*/
+
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero(wp,bullet);
 	Objs::InsertObj(obj, OBJ_HERO, 50);
-
-	
 
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 50);
@@ -211,10 +200,7 @@ void CSceneStage1::InitScene()
 	CObjSelectBack*objsbc = new CObjSelectBack();
 	Objs::InsertObj(objsbc, OBJ_SELECTBACK, 80);
 
-	
-
-	//バックミュージックスタート
-	
+	//バックミュージックスタート	
 }
 
 //実行中メソッド

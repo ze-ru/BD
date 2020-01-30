@@ -72,6 +72,7 @@ void CObjGameOver::Draw()
 	Font::StrDraw(L"YOU LOST", 240, 70, 80, c);
 	Font::StrDraw(L"GAME OVER", 125, 200, 120, c);
 
+	//上下キーで選択
 	if (key == false) 
 	{
 		Font::StrDraw(L"▶つづきから", 155, 380, 60, c);

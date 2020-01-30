@@ -25,17 +25,16 @@ void CObjStageUi::Action()
 //ドロー
 void CObjStageUi::Draw()
 {
-
+	//ブロックオブジェクト登録
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	wchar_t str[50];
 
-
-
+	//画面右上にSCORE表示
 	swprintf_s(str, L"スコア：%d", score);
 
-	Font::StrDraw(str, 650, 10, 20, c);
-
-	
+	//SCOREのフォント設定
+	Font::StrDraw(str, 650, 10, 20, c);	
 }

@@ -14,19 +14,15 @@ using namespace GameL;
 //イニシャライズ
 void CObjStage1Clear::Init()
 {
-	key = false;
+	key = false;//キーフラグ
 	score = 0;
-	count = 0;
-	deadflag = false;
-	scorecount = 0;
+	deadflag = false;//BOSS撃破フラグ
 }
 
 //アクション
 void CObjStage1Clear::Action()
 {	
-	time++;
-
-	//Boss1が死んだらSTAGE CLEAR
+	//Bossが死んだらSTAGE CLEAR
 	if (deadflag == true)
 	{
 		key = true;
@@ -39,7 +35,7 @@ void CObjStage1Clear::Draw()
 	//描画カラー情報
 	float c[4] = { 1,1,1,1 };
 	
-	//Boss1が死んだらSTAGE CLEARとクリア時のSCOREをゲーム画面に表示
+	//Bossが死んだらSTAGE CLEARとクリア時のSCOREをゲーム画面に表示
 	if (key == true)
 	{
 		RECT_F src;//描画元切り取り位置
@@ -63,10 +59,9 @@ void CObjStage1Clear::Draw()
 		
 		//17番目に登録したグラフィックをsrc・dst・cの情報を元に描画
 		Draw::Draw(17, &src, &dst, c, 1.0f);
-
-		wchar_t str[50];
-
+		
 		//クリア時のSCOREを表示
+		wchar_t str[50];
 		swprintf_s(str, L"%d", score);
 
 		//クリア時のSCOREのフォント設定

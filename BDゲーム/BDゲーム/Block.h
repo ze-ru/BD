@@ -11,9 +11,9 @@ class CObjBlock :public CObj
 public :
 	CObjBlock(int map[11][300],int mapnum);
 	~CObjBlock() {};
-	void Init();     //イニシャライズ
-	void Action();   //アクション
-	void Draw();   
+	void Init();    //イニシャライズ
+	void Action();  //アクション
+	void Draw();	//ドロー
 	
 	void SetScroll(float s) { m_scroll = s; }
 	float GetScroll() { return m_scroll; }
