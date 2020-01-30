@@ -154,20 +154,11 @@ void CObjBossBlock::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-		
-
-
-	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
-	{
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = 64.0f + m_by;
-
-
-
-
 
 		Draw::Draw(num, &src, &dst, c, 0.0f);
 	}
