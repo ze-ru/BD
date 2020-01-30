@@ -31,8 +31,6 @@ CSceneTitle::~CSceneTitle()
 void CSceneTitle::InitScene()
 {
 
-	
-
 	CObjTitle* t = new CObjTitle();
 	Objs::InsertObj(t, OBJ_TITLE, 1);
 

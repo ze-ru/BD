@@ -30,10 +30,10 @@ CSceneGameClear::~CSceneGameClear()
 //ゲームメイン初期化メソッド
 void CSceneGameClear::InitScene()
 {
-	//
+	//音楽情報の読み込み
 	Audio::LoadAudio(15, L"normal.wav", SOUND_TYPE::BACK_MUSIC);
 
-	//ゲームオーバーオブジェクト作成
+	//スタッフロールオブジェクト作成
 	CObjStage2Clear* obj = new CObjStage2Clear();
 	Objs::InsertObj(obj, OBJ_STAGE2CLEAR, 10);
 

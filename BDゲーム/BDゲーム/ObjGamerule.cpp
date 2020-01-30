@@ -12,15 +12,15 @@ using namespace GameL;
 //イニシャライズ
 void CObjGamerule::Init()
 {
-	m_time = 0;//
-	m_frame = 0;//
+	m_time = 0; 
+	m_frame = 0;
 	Hits::SetHitBox(this, 0, 0, 64, 64, ELEMENT_ENEMY, OBJ_WOLKENEMY, 1);//仮の当たり判定
 }
 
 //アクション
 void CObjGamerule::Action()
 {
-
+	//m_frameを1にする間隔
 	if (m_frame == 0)
 	{
 		m_time++;
@@ -36,7 +36,7 @@ void CObjGamerule::Action()
 	{
 		CObjGamerule2 *objg = (CObjGamerule2*)Objs::GetObj(OBJ_GAMERULE2);
 		objg->Getf();
-		this->SetStatus(false);//自身に削除命令を出す
+		this->SetStatus(false);  //自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 }
