@@ -11,36 +11,37 @@ using namespace GameL;
 
 CObjShield::CObjShield(float x, float y)
 {
+	//シールド出現位置
 	m_ex = x-4.0f;
 	m_ey = y;
 }
 void CObjShield::Init()
 {
-	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	m_time = 0;
+	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公の情報取得
+	m_time = 0;//時間
 	
 	
 	
 	m_vx = 0;
 	m_vy = 0;
-	m_hit_up = false;
-	m_hit_down = false;
-	m_hit_left = false;
-	m_hit_right = false;
-	m_posture = 0;
-	hit_flag = false;
-	dm = 5;
-	m_hit = 0;
-	m_dead = false;
+	m_hit_up = false;//上の当たり判定
+	m_hit_down = false;//下の当たり判定
+	m_hit_left = false;//左の当たり判定
+	m_hit_right = false;//右の当たり判定
+	m_posture = 0;//
+	hit_flag = false;//
+	dm = 5;//ダメージ値
+	m_hit = 0;//
+	m_dead = false;//
 
-	m_time_hit = false;
+	m_time_hit = false;//
 
-	m_attack = false;
+	m_attack = false;//
 
-	m_count = 0;
-	m_hit_flag = false;
+	m_count = 0;//
+	m_hit_flag = false;//
 
-	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);
+	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);//ヒットボックス作成
 }
 void CObjShield::Action()
 {
@@ -128,7 +129,8 @@ void CObjShield::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-	if (/*Input::GetVKey('U') == true ||*/ (objh->GetX() - block->GetScroll()) > 17920)
+	//X軸を一定方向に移動した場合、ボス以外の敵を削除
+	if ( (objh->GetX() - block->GetScroll()) > 17920)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する

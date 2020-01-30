@@ -15,22 +15,20 @@ public:
 	float GetX() { return m_px; };
 	float GetY() { return m_py; };
 private:
-	float m_vx;
-	float m_vy;
-	float m_px;
-	float m_py;
+	float m_vx;//主人子のX軸距離
+	float m_vy;//主人子のY軸距離
+	float m_px;//主人公のX軸
+	float m_py;//主人公のY軸
 
-	bool m_hit_up;
-	bool m_hit_down;
-	bool m_hit_left;
-	bool m_hit_right;
-	float m_time;
-	int m_count;
-	int m_posy;
-	int m_posx;
-	int dm;
+	bool m_hit_up;//上判定
+	bool m_hit_down;//下判定
+	bool m_hit_left;//左判定
+	bool m_hit_right;//右判定
+	float m_time;//時間を測る
+	int m_count;//カウントを測る
+	int dm;//ダメージ
 
-	int r_rad;
+	int r_rad;//角度
 
 	float m_v;
 };
