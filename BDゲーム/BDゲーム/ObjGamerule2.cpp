@@ -11,8 +11,8 @@ using namespace GameL;
 //イニシャライズ
 void CObjGamerule2::Init()
 {
-	m_time =  0;
-	m_frame = 0;
+	m_time =  0;//画面切り替えの時間管理
+	m_frame = 0;//画面切り替えのフラグ
 	s = false;
 }
 
