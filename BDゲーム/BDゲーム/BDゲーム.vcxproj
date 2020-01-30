@@ -122,7 +122,7 @@
     <ClCompile Include="Boss2.cpp" />
     <ClCompile Include="BossBlock.cpp" />
     <ClCompile Include="BossEnemy.cpp" />
-    <ClCompile Include="damage.cpp" />
+    <ClCompile Include="damege.cpp" />
     <ClCompile Include="explosion.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
