@@ -81,7 +81,7 @@ void CObjShieldEnemy::Action()
 		if (ani == 4)
 		{
 			hit->SetPos(m_ex + pb->GetScroll(), m_ey);
-			Audio::Start(11);
+			
 
 			if (dead == false)
 			{

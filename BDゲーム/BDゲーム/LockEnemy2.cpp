@@ -67,7 +67,7 @@ void CObjLockEnemy2::Action()
 	//弾丸消滅処理
 	if (m_del == true)
 	{
-		Audio::Start(11);
+		
 		//Resoucesの描画物のRECT
 		m_eff = GetBulletEffect(&ani, &ani_time, m_del, 2);
 		//着弾アニメーション終了で本当にオブジェクトの破棄

@@ -32,25 +32,25 @@ void CObjShield::Init()
 	hit_flag = false;//
 	dm = 5;//ダメージ値
 	m_hit = 0;//
-	m_dead = false;//
+	m_dead = false;//死亡判定
 
 	m_time_hit = false;//
 
-	m_attack = false;//
+	m_attack = false;//攻撃判定
 
 	m_count = 0;//
 	m_hit_flag = false;//
 
-	dm_hit_flag = false;
+	dm_hit_flag = false;//ダメージ判定
 
-	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);
+	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);//ヒットボックス作成
 }
 void CObjShield::Action()
 {
 	
-	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CHitBox*hit = Hits::GetHitBox(this);
+	CObjHero*objh = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公情報取得
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);////ブロック情報取得
+	CHitBox*hit = Hits::GetHitBox(this);//ヒットボックス情報取得
 
 	CObjShieldEnemy*se = (CObjShieldEnemy*)Objs::GetObj(OBJ_SHIELDENEMY);
 
