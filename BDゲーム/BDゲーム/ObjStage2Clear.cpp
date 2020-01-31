@@ -19,13 +19,9 @@ void CObjStage2Clear::Init()
 //アクション
 void CObjStage2Clear::Action()
 {
-	
-
 	//スタッフロールを上にスクロールさせる
 	if(m_vy<=1700)
 		m_vy ++;
-
-	
 
 	//スタッフロールの終わり際に、Enterキーでタイトルへ移行
 	if (Input::GetVKey(VK_RETURN) == true && m_vy > 1600)

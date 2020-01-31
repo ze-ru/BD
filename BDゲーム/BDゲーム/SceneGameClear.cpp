@@ -7,7 +7,6 @@
 #include "GameL\DrawFont.h"
 #include "GameL\Audio.h"
 
-
 //使用するネームスペース
 using namespace GameL;
 
@@ -39,7 +38,6 @@ void CSceneGameClear::InitScene()
 
 	float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
 	Audio::Start(15);//音楽スタート
-
 }
 
 //ゲームメイン実行中メソッド

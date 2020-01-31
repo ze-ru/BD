@@ -16,7 +16,7 @@ using namespace GameL;
 #include"SceneStage1.h"
 #include"GameHead.h"
 
-//コントラクタ
+//コンストラクタ
 CSceneStage1::CSceneStage1(int flag,int map_num,int hwp,int hbullet)
 {
 	map_flag = flag;
@@ -52,7 +52,6 @@ void CSceneStage1::InitScene()
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
 
-
 			map[i][j] = w;
 
 			if (w >= 10)
@@ -80,7 +79,6 @@ void CSceneStage1::InitScene()
 			int w = 0;
 			swscanf_s(&p2.get()[count2], L"%d", &w);
 
-
 			map2[i][j] = w;
 
 			if (w >= 10)
@@ -94,34 +92,6 @@ void CSceneStage1::InitScene()
 		}
 	}
 
-/*	unique_ptr<wchar_t>p3;//ステージ情報ポインター
-	int size3;//ステージ情報の大きさ
-	p3 = Save::ExternalDataOpen(L"stage3.csv", &size3);//外部データ読み込み
-
-	int map3[11][157];
-	int count3 = 1;
-
-	for (int i = 0; i < 11; i++)
-	{
-		for (int j = 0; j < 157; j++)
-		{
-			int w = 0;
-			swscanf_s(&p3.get()[count3], L"%d", &w);
-
-
-			map3[i][j] = w;
-
-			if (w >= 10)
-			{
-				count3 += 3;
-			}
-			else
-			{
-				count3 += 2;
-			}
-		}
-	}
-	*/
 	//グラフィック読み込み
 	Draw::LoadImageW(L"Stage1.png", 0, TEX_SIZE_512);
 	Draw::LoadImageW(L"Back.png", 10, TEX_SIZE_512);
@@ -164,8 +134,10 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"SelectBack.png", 25, TEX_SIZE_512);
 	Draw::LoadImageW(L"Select.png", 26, TEX_SIZE_512);
 	
+	//ステージ1オブジェクト作成
 	CObjStage1*objs1 = new CObjStage1(map_flag,mapnum);
 	Objs::InsertObj(objs1, OBJ_STAGE1, 1);
+
 	if (mapnum == 0)
 	{
 		CObjBlock*objb = new CObjBlock(map, mapnum);
@@ -182,21 +154,16 @@ void CSceneStage1::InitScene()
 		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
 		//音楽情報の読み込み	
 	}
-	/*if (mapnum == 9)
-	{
-		CObjBlock*objb = new CObjBlock(map3, mapnum);
-		Objs::InsertObj(objb, OBJ_BLOCK, 2);
-		CObjStage1Clear *objc = new CObjStage1Clear();
-		Objs::InsertObj(objc, OBJ_STAGE1CLEAR, 50);
-	}*/
 
 	//主人公オブジェクト作成
 	CObjHero*obj = new CObjHero(wp,bullet);
 	Objs::InsertObj(obj, OBJ_HERO, 50);
 
+	//ステージUIオブジェクト作成
 	CObjStageUi*objui = new CObjStageUi();
 	Objs::InsertObj(objui, OBJ_STAGEUI, 50);
 
+	//
 	CObjSelectBack*objsbc = new CObjSelectBack();
 	Objs::InsertObj(objsbc, OBJ_SELECTBACK, 80);
 
