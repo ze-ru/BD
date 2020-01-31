@@ -1,3 +1,4 @@
+//使用するヘッダーファイル
 #include"GameL\DrawTexture.h"
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
@@ -9,42 +10,28 @@
 
 using namespace GameL;
 
+//コンストラクタ
 CObjShield::CObjShield(float x, float y)
 {
 	//シールド出現位置
 	m_ex = x-4.0f;
 	m_ey = y;
 }
+//イニシャライズ
 void CObjShield::Init()
 {
-	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公の情報取得
 	m_time = 0;//時間
-	
-	
-	
-	m_vx = 0;
-	m_vy = 0;
-	m_hit_up = false;//上の当たり判定
-	m_hit_down = false;//下の当たり判定
-	m_hit_left = false;//左の当たり判定
-	m_hit_right = false;//右の当たり判定
 	m_posture = 0;//
 	hit_flag = false;//
 	dm = 5;//ダメージ値
-	m_hit = 0;//
 	m_dead = false;//死亡判定
-
 	m_time_hit = false;//
-
-	m_attack = false;//攻撃判定
-
-	m_count = 0;//
 	m_hit_flag = false;//
-
 	dm_hit_flag = false;//ダメージ判定
 
 	Hits::SetHitBox(this, m_ex, m_ey, 32, 64, ELEMENT_SHIELD, OBJ_SHIELD, 1);//ヒットボックス作成
 }
+//アクション
 void CObjShield::Action()
 {
 	
@@ -175,6 +162,7 @@ void CObjShield::Action()
 	
 	hit->SetPos(m_ex + block->GetScroll(), m_ey);
 }
+//ドロー
 void CObjShield::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };

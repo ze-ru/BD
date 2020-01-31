@@ -10,12 +10,14 @@
 
 using namespace GameL;
 
+//コンストラクタ
 CObjShotBullet::CObjShotBullet(float x, float y,int r)
 {
 	m_px = x;//X座標の場所
 	m_py = y;//Y座標の場所
 	r_rad = r;//角度
 }
+//イニシャライズ
 void CObjShotBullet::Init()
 {
 
@@ -31,9 +33,13 @@ void CObjShotBullet::Init()
 	m_count = 0;//弾の数をカウント
 	m_v = 1.0f;//弾の速度
 	dm = 3;//ダメージ値
+
+	dm_hit_flag = false;
+
 	Audio::Start(7);
 	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_SHOT_BULLET, 1);//ヒットボックス作成
 }
+//アクション
 void CObjShotBullet::Action()
 {
 	m_time++;
@@ -50,8 +56,7 @@ void CObjShotBullet::Action()
 
 	if (m_time > 50)
 	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 	//ブロックとの当たり判定
 	block->BulletHit(&m_px, &m_py, false, &m_hit_up, &m_hit_down,
@@ -61,8 +66,7 @@ void CObjShotBullet::Action()
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 	}
 
 	//主人公に弾が当たった場合、主人公にダメージを与える
@@ -76,12 +80,18 @@ void CObjShotBullet::Action()
 			objh->SetHitflag(false);
 		Audio::Start(13);
 		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;
 		Audio::Stop(13);
 	}
 
+	if (dm_hit_flag == true)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+	}
+
 }
+//ドロー
 void CObjShotBullet::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };

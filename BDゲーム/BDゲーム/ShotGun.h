@@ -31,4 +31,6 @@ private:
 	int r_rad;//Šp“x
 
 	float m_v;
+
+	bool dm_hit_flag;
 };
