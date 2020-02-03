@@ -57,7 +57,7 @@ void CObjWolkEnemy::Init()
 
 }
 
-//
+
 void CObjWolkEnemy::Action()
 {
 
