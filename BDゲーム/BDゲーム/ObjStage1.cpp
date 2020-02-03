@@ -13,6 +13,8 @@ CObjStage1::CObjStage1(int mapdata,int mapnum)
 	map_flag = mapdata;
 	map_num = mapnum;
 }
+
+//イニシャライズ
 void CObjStage1::Init()
 {
 	flag = true;
@@ -23,19 +25,20 @@ void CObjStage1::Init()
 	m_time = 0;
 }
 
+//アクション
 void CObjStage1::Action()
 {
 	time++;
 
-	//Tキーでステージセレクト画面
+	//Tキー入力でステージセレクト画面
 	if (Input::GetVKey('T') == true)
 	{
 		Scene::SetScene(new stageselect());
 	}
 
-	//オブジェクト登録
-	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//オブジェクト情報を取得
+	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公オブジェクト情報を取得
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報を取得
 
 	//主人公が一定範囲に入ると当たり判定実行
 	if ((hero->GetX() - block->GetScroll()) > 17920 && map_flag == 12 && bossflag == false)
@@ -54,6 +57,7 @@ void CObjStage1::Action()
 	}	
 }
 
+//ドロー
 void CObjStage1::Draw()
 {
 	//描画カラー情報

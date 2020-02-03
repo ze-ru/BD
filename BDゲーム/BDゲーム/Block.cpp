@@ -12,7 +12,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-//コンストラクタ
 CObjBlock::CObjBlock(int map[11][300],int mapnum)
 {
 	//マップデータをコピー
@@ -32,7 +31,7 @@ void CObjBlock::Init()
 //アクション
 void CObjBlock::Action()
 {
-	//主人公の位置を取得
+	//主人公の位置情報を取得
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	float hx = hero->GetX();
 	float hy = hero->GetY();
@@ -41,8 +40,7 @@ void CObjBlock::Action()
 	if (hx < 200)
 	{
 		hero->SetX(200);//主人公はラインを超えないようにする
-		m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える
-	
+		m_scroll -= hero->GetVX();//主人公が本来動くべき分の値をm_scrollに加える	
 	}
 
 	//前方スクロールライン
@@ -94,7 +92,7 @@ void CObjBlock::Action()
 			m_map[i][lx] = 0;
 		}
 
-		//JockEnemy作成
+		//LockEnemy作成
 		if (m_map[i][lx] == 6)
 		{				
 			CObjLockEnemy*objeL = new CObjLockEnemy(lx*64.0f, i*64.0f-64.0f);
@@ -174,7 +172,7 @@ void CObjBlock::Action()
 			m_map[i][lx] = 0;
 		}
 
-		//BOSS1作成
+		//Boss1作成
 		if (m_map[i][lx] == 41)
 		{
 		 	CObjBoss1*objboss = new CObjBoss1(lx*64.0f, i*64.0f - 64.0f);
@@ -192,10 +190,11 @@ void CObjBlock::Action()
 		{
 			if (m_map[i][j] == 13)
 			{
+				//BOSSが死んだらゴールブロック出現
 				if (dead_flag == true)
-				{
-					//BOSSが死んだらゴールブロック出現
-					CObjStage1Clear*sb1 = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);
+				{	
+					CObjStage1Clear*sb1 = (CObjStage1Clear*)Objs::GetObj(OBJ_STAGE1CLEAR);//ゲームクリア情報取得
+					//ゴールブロックオブジェクト作成
 					CObjGoalBlock*objg = new CObjGoalBlock(j*64.0f, i*64.0f - 64.0f);
 					Objs::InsertObj(objg, OBJ_GOAL_BLOCK, 2);
 					
@@ -206,20 +205,21 @@ void CObjBlock::Action()
 			//音楽フラグ
 			if (m_map[i][j] == 42 && map_num == 30&&musicflag == false)
 			{
-				//
+				//Boss2オブジェクト作成
 				CObjBoss2*objboss2 = new CObjBoss2(j*64.0f, i*64.0f - 64.0f);
 				Objs::InsertObj(objboss2, OBJ_BOSS2, 10);
 
 				m_map[i][j] = 0;
 				musicflag = true;
-				Audio::Stop(5);//音楽終了
+
+				Audio::Stop(5);//音楽ストップ
 				float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
 				Audio::Start(4);//音楽スタート				
 			}
 		}
 	}
-		
-	//
+
+	//ブロックオブジェクト情報取得
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//主人公が一定範囲に入ると当たり判定実行
@@ -237,7 +237,6 @@ void CObjBlock::Action()
 		map_num = 30;
 		musicflag = false;
 	}
-
 	if (musicflag == false)
 	{
 		if (map_num == 0)
@@ -252,9 +251,9 @@ void CObjBlock::Action()
 			float Volume = Audio::VolumeMaster(-0.0f);//マスターボリュームを下げる
 			Audio::Start(5);//音楽スタート
 		}
-	}
-	
+	}	
 }
+
 //ドロー
 void CObjBlock::Draw()
 {	
@@ -282,6 +281,7 @@ void CObjBlock::Draw()
 				dst.m_right = dst.m_left + 64.0f;
 				dst.m_bottom = dst.m_top + 64.0f;
 
+				//描画
 				//WolkEnemy
 				if (m_map[i][j] == 5)
 				{
@@ -359,23 +359,24 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F *dst, float c[],int num)
 void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 	bool *left, bool *right, float *vx, float *vy)
 {
+	//衝突状態確認用フラグの初期化
 	*up = false;
 	*down = false;
 	*left = false;
 	*right = false;
 
-
+	//m_mapの全要素にアクセス
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 300; j++)
-		{
-			//m_mapの全要素にアクセス
+		{			
 			if (m_map[i][j] > 0 && m_map[i][j]!=14)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
 				float by = i * 64.0f - 64.0f;
 				bool flag = false;
+
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
@@ -383,7 +384,6 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 				if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
 				{
 					//上下左右判定
-
 					//vectorの作成
 					float rvx = (*x  -scroll) - bx;
 					float rvy = *y - by;
@@ -404,34 +404,27 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-					
-						 if ((r < 45 && r > 0) || r > 315 )
+						//右
+						if ((r < 45 && r > 0) || r > 315 )
 						{
 							*right = true;
 							*x = bx + 64.0f + (scroll);
 							*vx = -(*vx)*0.1f;
-
 						}
-
+						//左
 						else if (r > 135 && r < 225 )
 						{
 							*left = true;
 							*x = bx - 64.0f + (scroll);
-							*vx = -(*vx)*0.1f;
-								
-						}
-						
-						
+							*vx = -(*vx)*0.1f;								
+						}												
 						//上
 						else if (r > 45 && r < 135)
 						{
 							*down = true;
 							*y = by - 64.0f;
-							*vy = 0.0f;
-							
-							
-						}
-						
+							*vy = 0.0f;							
+						}						
 						//下
 						else if (r > 225 && r < 315)
 						{
@@ -440,10 +433,9 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 							if (*vy < 0)
 							{
 								*vy = 0.0f;
-							}
-
-							
+							}						
 						}
+
 						if (flag == false)
 						{
 							flag = true;
@@ -453,11 +445,11 @@ void CObjBlock::BlockHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 			}
 		}
 	}
-
 }
 
 void CObjBlock::SetBlock(int flag)
 {
+	//m_mapの全要素にアクセス
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 300; j++)
@@ -471,30 +463,30 @@ void CObjBlock::SetBlock(int flag)
 			}
 		}
 	}
-
 }
 
+//BlockHit関数:Boss
 void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 	bool *left, bool *right, float *vx, float *vy)
 {
+	//衝突状態確認用フラグの初期化
 	*up = false;
 	*down = false;
 	*left = false;
 	*right = false;
 
-
-
+	//m_mapの全要素にアクセス
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 300; j++)
-		{
-			//m_mapの全要素にアクセス
+		{		
 			if (m_map[i][j] > 0)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
 				float by = i * 64.0f - 192.0f;
 				bool flag = false;
+
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
@@ -502,7 +494,6 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 				if ((*x + (-scroll) + 256.0f > bx) && (*x + (-scroll) < bx + 256.0f) && (*y + 192.0f > by) && (*y < by + 192.0f))
 				{
 					//上下左右判定
-
 					//vectorの作成
 					float rvx = (*x - scroll) - bx;
 					float rvy = *y - by;
@@ -523,23 +514,20 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-
+						//右
 						if ((r < 45 && r > 0) || r > 315)
 						{
 							*right = true;
 							*x = bx + 256.0f + (scroll);
 							*vx = -(*vx)*0.1f;
-
 						}
+						//左
 						else if (r > 135 && r < 225)
 						{
 							*left = true;
 							*x = bx - 256.0f + (scroll);
 							*vx = -(*vx)*0.1f;
-
 						}
-
-						//}
 						//上
 						else if (r > 45 && r < 135)
 						{
@@ -547,7 +535,6 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 							*y = by - 64.0f;
 							*vy = 0.0f;
 						}
-
 						//下
 						else if (r > 225 && r < 315)
 						{
@@ -557,35 +544,35 @@ void CObjBlock::BlockBossHit(float *x, float *y, bool scroll_on, bool *up, bool 
 							{
 								*vy = 0.0f;
 							}
-
-						}
-					
+						}					
 					}
 				}
 			}
 		}
 	}
-
 }
 
+//BlockHit関数 通常弾
 void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 	bool *left, bool *right)
 {
+	//衝突状態確認用フラグの初期化
 	*up = false;
 	*down = false;
 	*left = false;
 	*right = false;
 
+	//m_mapの全要素にアクセス
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 300; j++)
-		{
-			//m_mapの全要素にアクセス
+		{			
 			if (m_map[i][j] > 0)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
 				float by = i * 64.0f -64.0f;
+
 				bool flag = false;
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
@@ -594,7 +581,6 @@ void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *do
 				if ((*x + (-scroll) + 24.0f > bx) && (*x + (-scroll) < bx + 24.0f) && (*y + 24.0f > by) && (*y < by+24.0f))
 				{
 					//上下左右判定
-
 					//vectorの作成
 					float rvx = (*x - scroll) - bx;
 					float rvy = *y - by;
@@ -615,62 +601,55 @@ void CObjBlock::BulletHit(float *x, float *y, bool scroll_on, bool *up, bool *do
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
-
+						//右
 						if ((r < 45 && r > 0) || r > 315)
 						{
 							*right = true;
-
-
 						}
+						//左
 						else if (r > 135 && r < 225)
 						{
 							*left = true;
-
-
 						}
-
-						//}
 						//上
 						else if (r > 45 && r < 135)
 						{
 							*down = true;
-
 						}
-
 						//下
 						else if (r > 225 && r < 315)
 						{
 							*up = true;
-
 						}
-
 					}
 				}
 			}
 		}
 	}
-
 }
 
+//BlockHit関数 レーザー
 void CObjBlock::LaserHit(float *x, float *y, bool scroll_on, bool *up, bool *down,
 	bool *left, bool *right)
 {
+	//衝突状態確認用フラグの初期化
 	*up = false;
 	*down = false;
 	*left = false;
 	*right = false;
 
+	//m_mapの全要素にアクセス
 	for (int i = 0; i < 11; i++)
 	{
 		for (int j = 0; j < 300; j++)
-		{
-			//m_mapの全要素にアクセス
+		{		
 			if (m_map[i][j] > 0)
 			{
 				//要素番号を座標に変更
 				float bx = j * 64.0f;
 				float by = i * 64.0f - 64.0f;
 				bool flag = false;
+
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
@@ -678,7 +657,6 @@ void CObjBlock::LaserHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 				if ((*x + (-scroll) + 60.0f > bx) && (*x + (-scroll) < bx + 60.0f) && (*y + 32.0f > by) && (*y < by + 32.0f))
 				{
 					//上下左右判定
-
 					//vectorの作成
 					float rvx = (*x - scroll) - bx;
 					float rvy = *y - by;
@@ -699,22 +677,21 @@ void CObjBlock::LaserHit(float *x, float *y, bool scroll_on, bool *up, bool *dow
 					if (len < 88.0f)
 					{
 						//角度で上下左右を判定
+						//右
 						if ((r < 45 && r > 0) || r > 315)
 						{
 							*right = true;
 						}
+						//左
 						else if (r > 135 && r < 225)
 						{
 							*left = true;
 						}
-
-						//}
 						//上
 						else if (r > 45 && r < 135)
 						{
 							*down = true;
 						}
-
 						//下
 						else if (r > 225 && r < 315)
 						{

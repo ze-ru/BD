@@ -16,7 +16,6 @@ CObjDamege::CObjDamege(int dm, float x, float y)
 	dam = dm;
 	m_px = x;
 	m_py = y;
-	
 }
 
 //イニシャライズ
@@ -24,6 +23,8 @@ void CObjDamege::Init()
 {
 	size = 0;
 	hit_time = 0;
+
+	//当たり判定
 	Hits::SetHitBox(this, m_px, m_py, 0, 0, ELEMENT_BLUE, OBJ_DAMEGE, 1);
 }
 
@@ -35,10 +36,10 @@ void CObjDamege::Action()
 
 //ドロー
 void CObjDamege::Draw()
-{
-	//ブロックオブジェクト登録
-	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+{	
+	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報取得
 
+	//敵にダメージを与えたらダメージを表示する
 	//描画カラー情報
 	float c[4] = { 1.0f,0.0f,0.0f,1.0f };
 	
@@ -46,11 +47,12 @@ void CObjDamege::Draw()
 	size++;
 	hit_time++;
 
+	//ダメージ表示
 	wchar_t str2[50];
 	if (hit_time < 50)
 	{
 		swprintf_s(str2, L"%d", dam);
-		Font::StrDraw(str2, m_px + pb->GetScroll() - 20.0f, m_py - size, 25, c);
+		Font::StrDraw(str2, m_px + pb->GetScroll() - 20.0f, m_py - size, 25, c);//フォント設定
 	}
 	if (hit_time > 50)
 	{

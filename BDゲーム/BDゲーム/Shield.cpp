@@ -111,13 +111,11 @@ void CObjShield::Action()
 	}
 	if (m_dead == true)
 	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;//ダメージ判定
 	}
 	if (/*Input::GetVKey('U') == true ||*/ (objh->GetX() - block->GetScroll()) > 17920)
 	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
+		dm_hit_flag = true;//ダメージ判定
 	}
 
 	
@@ -142,16 +140,7 @@ void CObjShield::Action()
 			m_hit_flag = false;
 			Audio::Stop(13);
 		}
-		if (m_dead == true)
-		{
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-		}
-		if (/*Input::GetVKey('U') == true ||*/ (objh->GetX() - block->GetScroll()) > 17920)
-		{
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-		}
+		
 
 		if (dm_hit_flag == true)
 		{

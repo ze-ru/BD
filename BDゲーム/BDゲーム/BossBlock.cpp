@@ -13,7 +13,6 @@
 //使用するネームスペース
 using namespace GameL;
 
-//コンストラクタ
 CObjBossBlock::CObjBossBlock(float x,float y,int stagenum)
 {
     m_bx = x;
@@ -39,22 +38,24 @@ void CObjBossBlock::Init()
 
 	musicflag = false;
 
-	Hits::SetHitBox(this, m_bx, m_by, 64, 64, ELEMENT_BLOCK, OBJ_BOSSBLOCK, 1);
-	
+	//Boss当たり判定
+	Hits::SetHitBox(this, m_bx, m_by, 64, 64, ELEMENT_BLOCK, OBJ_BOSSBLOCK, 1);	
 }
 
 //アクション
 void CObjBossBlock::Action()
 {
-	//
-	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//オブジェクト情報を取得
+	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公オブジェクト情報を取得
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報を取得
+
     hx = hero->GetX() - block->GetScroll();
     hy = hero->GetY();
 
 	hvx = hero->GetVX();
 	hvy = hero->GetVY();
 
+	//主人公が一定範囲に入ると当たり判定実行
 	if ((hero->GetX() - block->GetScroll()) > 17920 && num == 8 && boss_flag == false)
 	{
 		boss_flag = true;
@@ -138,28 +139,32 @@ void CObjBossBlock::Action()
 //ドロー
 void CObjBossBlock::Draw()
 {
+	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	RECT_F src;
-	RECT_F dst;
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
 
 	//ブロック情報を持ってくる
-	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公オブジェクト情報
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報
 
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
+		//切り取り位置の設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
+		//表示位置の設定
 		dst.m_top = m_by;
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = 64.0f + m_by;
 
+		//描画
 		Draw::Draw(num, &src, &dst, c, 0.0f);
 	}
 }

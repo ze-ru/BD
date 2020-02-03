@@ -21,11 +21,11 @@ void CObjNormalBullet::Init()
 	m_vy = 0.0f;
 	m_time = 0;
 
-	m_hit_up = false;
-	m_hit_down = false;
-	m_hit_left = false;
-	m_hit_right = false;
-	dm = 5;
+	m_hit_up = false;//上の当たり判定
+	m_hit_down = false;//下の当たり判定
+	m_hit_left = false;//左の当たり判定
+	m_hit_right = false;//右の当たり判定
+	dm = 5;//ダメージ値
 	Audio::Start(7);
 
 	hit_flag = false;

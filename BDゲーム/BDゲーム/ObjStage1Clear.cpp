@@ -47,9 +47,9 @@ void CObjStage1Clear::Draw()
 		src.m_right = 800.0f;
 		src.m_bottom = 600.0f;
 
-		//ステージクリアオブジェクト作成
-		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト登録
-		CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公オブジェクト登録
+		//オブジェクト情報を取得
+		CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報取得
+		CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公オブジェクト情報取得
 
 		//表示位置の設定
 		dst.m_top = 0.0f;
