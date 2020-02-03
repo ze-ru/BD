@@ -41,7 +41,7 @@ void CObjDamege::Draw()
 
 	//•`‰æƒJƒ‰[î•ñ
 	float c[4] = { 1.0f,0.0f,0.0f,1.0f };
-	wchar_t str[50];
+	
 
 	size++;
 	hit_time++;
