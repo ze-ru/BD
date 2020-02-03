@@ -37,10 +37,10 @@ public :
 
 private:
 	void BlockDraw(float x, float y, RECT_F *dst, float c[],int num);
-	int m_map[11][300]; //マップ情報
+	int m_map[11][300];//マップ情報
 	int map_num;
-	float m_scroll; //左右スクロール用
-	bool dead_flag;
+	float m_scroll;//左右スクロール用
+	bool dead_flag;//撃破フラグ
 
 	int m_time;
 
