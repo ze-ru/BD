@@ -27,11 +27,14 @@ void CObjGamerule2::Action()
 			m_time++;
 		}
 
-		if (m_time > 3)
+		if (m_time > 7)
 		{
-			Scene::SetScene(new CSceneStage1(11, 0, 0, 0));
+			m_frame = 1;
 		}
-		
+	}
+	if (m_frame == 1&&Input::GetVKey(VK_RETURN)==true)
+	{
+		Scene::SetScene(new CSceneStage1(11, 0, 0, 0));
 	}
 }
 
@@ -48,10 +51,10 @@ void CObjGamerule2::Draw()
 		Font::StrDraw(L"「連射攻撃できる」", 70, 160, 40, c);
 
 		Font::StrDraw(L"・スナイパーライフル", 50, 240, 40, c);
-		Font::StrDraw(L"「敵を貫通して攻撃できる」", 70, 280, 40, c);
+		Font::StrDraw(L"「敵を3体まで貫通して攻撃できる」", 70, 280, 40, c);
 
 		Font::StrDraw(L"・レーザー銃", 50, 360, 40, c);
-		Font::StrDraw(L"「敵を貫通して攻撃できる」", 70, 400, 40, c);
+		Font::StrDraw(L"「すべての敵を貫通して攻撃できる」", 70, 400, 40, c);
 
 		Font::StrDraw(L"START:Push[EnterKey]", 115, 500, 60, c);
 	}

@@ -51,7 +51,7 @@ void CObjstageselect::Action()
 	}
 
 	//選択肢を選ぶとき
-	if (keyE >= 2)
+	if (keyE >= 3)
 	{
 		keyE = 0;
 	}
@@ -80,12 +80,10 @@ void CObjstageselect::Action()
 			Scene::SetScene(new CSceneStage1(12,8,0,0));
 		}
 
-		/*if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)
+		if (keyE == 2 && Input::GetVKey(VK_RETURN) == true)
 		{
-			mapnum = 9;
-			mapflag = 13;
-			Scene::SetScene(new CSceneStage1(9,13));
-		}*/
+			Scene::SetScene(new CSceneTitle());
+		}
 	}
 }
 //ドロー
@@ -97,20 +95,20 @@ void CObjstageselect::Draw()
 	Font::StrDraw(L"Lost World", 50, 90, 140, c);
 	if (keyE == 0)
 	{
-		Font::StrDraw(L"▶stage1", 165, 320, 80, c);
-		Font::StrDraw(L"  stage2", 160, 420, 80, c);
-		
+		Font::StrDraw(L"▶stage1", 165, 300, 80, c);
+		Font::StrDraw(L"  stage2", 160, 400, 80, c);
+		Font::StrDraw(L"　title", 160, 500, 80, c);
 	}
 	if (keyE == 1)
 	{
-		Font::StrDraw(L"  stage1", 165, 320, 80, c);
-		Font::StrDraw(L"▶stage2", 160, 420, 80, c);
-		
+		Font::StrDraw(L"  stage1", 165, 300, 80, c);
+		Font::StrDraw(L"▶stage2", 160, 400, 80, c);
+		Font::StrDraw(L"　title", 160, 500, 80, c);
 	}
-	/*else if(keyE==2)
+	else if(keyE==2)
 	{
-		Font::StrDraw(L"  stage1", 165, 320, 80, c);
-		Font::StrDraw(L"  stage2", 160, 420, 80, c);
-		Font::StrDraw(L"▶stage3", 160, 510, 80, c);
-	}*/
+		Font::StrDraw(L"  stage1", 165, 300, 80, c);
+		Font::StrDraw(L"  stage2", 160, 400, 80, c);
+		Font::StrDraw(L"▶title", 160, 500, 80, c);
+	}
 }
