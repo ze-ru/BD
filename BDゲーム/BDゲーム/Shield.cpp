@@ -20,7 +20,6 @@ CObjShield::CObjShield(float x, float y)
 //イニシャライズ
 void CObjShield::Init()
 {
-	m_time = 0;//時間
 	m_posture = 0;//
 	hit_flag = false;//
 	dm = 5;//ダメージ値
@@ -156,9 +155,10 @@ void CObjShield::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	RECT_F src;
-	RECT_F dst;
+	RECT_F src;//描画元読み取り位置
+	RECT_F dst;//描画先表示位置
 
+	//描画元読み取り位置
 	src.m_top = 0.0f;
 	src.m_left = 128.0f;
 	src.m_right = 160.0f;
@@ -166,14 +166,14 @@ void CObjShield::Draw()
 
 
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	//
+	//描画先表示位置
 	dst.m_top = 0.0f + m_ey;
 	dst.m_left = (32.0f*m_posture) + m_ex + block->GetScroll();
 	dst.m_right = (32 - 32.0f*m_posture) + m_ex + block->GetScroll();
 	dst.m_bottom = 64.0f + m_ey;
 
 
-	//
+	//描画
 	Draw::Draw(22, &src, &dst, c, 0.0f);
 }
 

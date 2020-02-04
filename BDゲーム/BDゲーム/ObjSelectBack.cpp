@@ -21,11 +21,12 @@ void CObjSelectBack::Action()
 
 void CObjSelectBack::Draw()
 {
+	/*
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;
 	RECT_F dst;
-	/*
+	
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 800.0f;

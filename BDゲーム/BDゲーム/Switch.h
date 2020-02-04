@@ -24,5 +24,5 @@ private:
 	bool m_hit_left;
 	bool m_hit_right;
 
-	int flag;
+	bool flag;
 };

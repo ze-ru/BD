@@ -42,8 +42,8 @@ void CObjDamege::Draw()
 	//敵にダメージを与えたらダメージを表示する
 	//描画カラー情報
 	float c[4] = { 1.0f,0.0f,0.0f,1.0f };
-	wchar_t str[50];
 	
+
 	size++;
 	hit_time++;
 
