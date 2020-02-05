@@ -94,14 +94,14 @@ void CSceneStage1::InitScene()
 
 	//グラフィック読み込み
 	Draw::LoadImageW(L"Stage1.png", 0, TEX_SIZE_512);
-	Draw::LoadImageW(L"Back.png", 10, TEX_SIZE_512);
 	Draw::LoadImageW(L"Hero.png",2,TEX_SIZE_512);
 	Draw::LoadImageW(L"enemy1.png", 3, TEX_SIZE_512);
 	Draw::LoadImageW(L"LockEnemy.png", 4, TEX_SIZE_512);
 	Draw::LoadImageW(L"face.png", 5, TEX_SIZE_512);
 	Draw::LoadImageW(L"FlyEnemy.png", 6, TEX_SIZE_512);
 	Draw::LoadImageW(L"Stage2.png", 8, TEX_SIZE_512);
-	Draw::LoadImageW(L"Stage3.png", 30, TEX_SIZE_512);
+	Draw::LoadImageW(L"Back.png", 10, TEX_SIZE_512);
+
 	Draw::LoadImageW(L"Stage1Back.png", 11, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround2.png", 12, TEX_SIZE_512);
 	Draw::LoadImageW(L"BackGround3.png", 13, TEX_SIZE_512);
@@ -112,12 +112,16 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"Number.png", 18, TEX_SIZE_512);
 	Draw::LoadImageW(L"Weapon.png", 19, TEX_SIZE_512);
 	Draw::LoadImageW(L"LastBoss.png", 20, TEX_SIZE_512);
+
 	Draw::LoadImageW(L"HealBlock.png", 21, TEX_SIZE_512);
 	Draw::LoadImageW(L"Sield.png", 22, TEX_SIZE_512);
 	Draw::LoadImageW(L"DefeatEfect.png", 23, TEX_SIZE_512);
 	Draw::LoadImageW(L"GOAL3.png", 24, TEX_SIZE_512);
 	Draw::LoadImageW(L"SelectBack.png", 25, TEX_SIZE_512);
 	Draw::LoadImageW(L"Select.png", 26, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"Stage3.png", 30, TEX_SIZE_512);
+
 
 	Audio::LoadAudio(0, L"stage1.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
