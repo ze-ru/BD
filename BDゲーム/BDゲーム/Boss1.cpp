@@ -13,7 +13,7 @@ using namespace GameL;
 
 CObjBoss1::CObjBoss1(float x, float y)
 {
-	m_ex = x+64.0f;//
+	m_ex = x+64.0f;
 	m_ey = y-64.0f;
 }
 //
@@ -35,24 +35,25 @@ void CObjBoss1::Init()
 	m_hp = 300;//HPを300に設定
 
 	m_dead = 0;
-	hit_flag = false;
+	hit_flag = false;//被ダメージ用
 	m_time = 0;
-	attacktime = 0;
+	attacktime = 0;//攻撃間隔用
 	dead_flag = false;
 	time2 = 0;
-	m_time_hit = 0;
+
+	m_time_hit = 0;//被ダメージ間隔
 
 	m_eff.m_top = 0;
 	m_eff.m_left = 0;
 	m_eff.m_right = 0;
 	m_eff.m_bottom = 0;
 
-	ani = 0;
-	ani_time = 0;
+	ani = 0;//アニメーション
+	ani_time = 0;//アニメーション間隔
 	m_del = false;
-	score = 1000;
+	score = 1000;//撃破時のScoreを1000に設定
 
-	moveflag = false;//右向き = true,左向き = false;
+	moveflag = false;//右向き = true,左向き = false
 }
 
 //
@@ -296,7 +297,7 @@ void CObjBoss1::Action()
 	{
 		Audio::Stop(12);
 		m_time_hit++;
-		if (m_time_hit > 10)
+		if (m_time_hit > 10)//m_time_hitが10を超えるまで、連続してダメージが入らないようにする
 		{
 			hit_flag = false;
 			m_time_hit = 0;
@@ -325,43 +326,44 @@ void CObjBoss1::Draw()
 
 	if (hit_flag == false && moveflag == true)
 	{
+		//切り取り位置
 		src.m_top = 32.0f;
 		src.m_left = 0.0f;
 		src.m_right = 256.0f;
 		src.m_bottom = 192.0f;
 
-
+		//表示位置
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + pb->GetScroll();
 		dst.m_right = m_ex + 256.0f + pb->GetScroll();
 		dst.m_bottom = m_ey + 192.0f;
 
-		//
+		//描画
 		Draw::Draw(14, &src, &dst, c, m_dead);
 	}
 	else if (hit_flag == false && moveflag == false)
 	{
+		//切り取り位置
 		src.m_top = 32.0f;
 		src.m_left = 0.0f;
 		src.m_right = 256.0f;
 		src.m_bottom = 192.0f;
 
+		//表示位置
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + 256.0f + pb->GetScroll();
 		dst.m_right = m_ex + pb->GetScroll();
 		dst.m_bottom = m_ey + 192.0f;
 
-		//
+		//描画
 		Draw::Draw(14, &src, &dst, c, m_dead);
 	}
-
-	
-	
-
+	//爆破エフェクトの表示位置
 	dst.m_top = 0.0f + m_ey;
 	dst.m_left = 32.0f + m_ex + pb->GetScroll();
 	dst.m_right = 224.0f + m_ex + pb->GetScroll();
 	dst.m_bottom = 192.0f + m_ey;
 
+	//爆破エフェクトの描画
 	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }

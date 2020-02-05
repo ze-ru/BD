@@ -18,58 +18,36 @@ CObjBossEnemy::CObjBossEnemy(float x, float y,float kak)
 
 void CObjBossEnemy::Init()
 {
+	//変数の初期化
 	m_ani_time = 0;
 	m_ani_frame = 0;
-	//m_posture = 1;
 
-	m_vx = 0.0f;
-	m_vx = 0.0f;
 	m_time = 0;
+
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
 	m_time_flat = 0;
 	count = 0;
-	m_hp = 25;
+	m_hp = 25;//Hpを25に設定
 	hit_flag = false;
-	score = 100;
+	score = 100;//撃破時のScoreを100に設定
 	m_time_hit = 0;
 
 	attack_time = 1.0f;
 	
-/*	m_eff.m_top = 0;
-	m_eff.m_left = 0;
-	m_eff.m_right = 0;
-	m_eff.m_bottom = 0;
 
-	ani = 0;
-	ani_time = 0;
-	m_del = false;*/
-	
-	Hits::SetHitBox(this, m_px, m_py, 32, 32, ELEMENT_ENEMY, OBJ_BOSSENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 32, 32, ELEMENT_ENEMY, OBJ_BOSSENEMY, 1);//HitBox作成
 }
 void CObjBossEnemy::Action()
 {
 
-	//弾丸消滅処理
-/*	if (m_del == true)
-	{
-		//Resoucesの描画物のRECT
-		//m_eff = GetBulletEffect(&ani, &ani_time, m_del, 4);
-		//着弾アニメーション終了で本当にオブジェクトの破棄
-		if (ani == 8)
-		{
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-		}
-		return;//消滅処理は、ここでアクションメソッドを終了させる
-	}*/
-
 	if (count < 4)
 	{
 		m_time_flat++;
-		if (m_time_flat > 50)
+		if (m_time_flat > 50)//m_time_flatが50を超えるとAssaultBullet作成
 		{
 			CObjAssaultBullet*objAB = (CObjAssaultBullet*)Objs::GetObj(OBJ_ASSAULT_BULLET);
 			CObjAssaultBullet*objABullet = new CObjAssaultBullet(m_px, m_py-10);
@@ -96,14 +74,11 @@ void CObjBossEnemy::Action()
 
 	CHitBox*hit = Hits::GetHitBox(this);
 
-	
 	//HitBoxの内容を更新
-
 	hit->SetPos(m_px + pb->GetScroll(), m_py);
 
-
-
 	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+	//攻撃を受けたとき
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
 	{
 		m_hp -= 10;
@@ -142,6 +117,7 @@ void CObjBossEnemy::Action()
 	{
 		Audio::Stop(12);
 		m_time_hit++;
+
 		if (m_time_hit > 10)
 		{
 			hit_flag = false;
@@ -173,25 +149,20 @@ void CObjBossEnemy::Draw()
 
 	RECT_F src;
 	RECT_F dst;
-
+	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 512.0f;
 	src.m_right = 536.0f;
 	src.m_bottom = 16.0f;
 
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		dst.m_top = m_py;
-		dst.m_left = m_px + pb->GetScroll();
-		dst.m_right = dst.m_left + 32.0f;
-		dst.m_bottom = m_py + 32.0f;
 
-	//
+	//表示位置
+	dst.m_top = m_py;
+	dst.m_left = m_px + pb->GetScroll();
+	dst.m_right = dst.m_left + 32.0f;
+	dst.m_bottom = m_py + 32.0f;
+
+	//描画
 	Draw::Draw(20, &src, &dst, c, k);
-
-	/*dst.m_top = 0.0f + m_py;
-	dst.m_left = 0.0f + m_px + pb->GetScroll();
-	dst.m_right = 32.0f + m_px + pb->GetScroll();
-	dst.m_bottom = 32.0f + m_py;
-
-	Draw::Draw(23, &m_eff, &dst, c, 0.0f);*/
 }

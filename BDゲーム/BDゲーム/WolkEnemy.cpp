@@ -20,6 +20,7 @@ CObjWolkEnemy::CObjWolkEnemy(float x,float y)
 //
 void CObjWolkEnemy::Init()
 {
+	//変数の初期化
 	m_vx = 0.0f;//
 	m_vy = 0.0f;
 	m_posture = 0.0f;
@@ -31,12 +32,15 @@ void CObjWolkEnemy::Init()
 	m_ani_max_time = 4;
 	m_time = 0;
 
-	m_move = false;//false=右　true=左
-	m_hp = 30;
+	m_move = false;//向き用変数　false=右,true=左
+	m_hp = 30;//Hpを30に設定
+	score = 100;//撃破時のScoreを100に設定
+
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
 	hit_flag = false;
 	m_dead = 0.0f;
 
@@ -51,7 +55,7 @@ void CObjWolkEnemy::Init()
 	ani_time = 0;
 	m_del = false;
 
-	score = 100;
+	
 	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this, m_ex, m_ey, 64, 64, ELEMENT_ENEMY, OBJ_WOLKENEMY, 1);
 
@@ -96,25 +100,15 @@ void CObjWolkEnemy::Action()
 		m_speed_power = 0.1f;
 		m_ani_max_time = 6;
 
-		//ブロック衝突で向き変更(仮)
-		/*if (m_hit_left == true)
-		{
-			m_move = false;
-		}
-		if (m_hit_right == true)
-		{
-			m_move = true;
-		}*/
-
 		//方向
-		if (m_move == true)
+		if (m_move == true)//左
 		{
 			m_vx += m_speed_power;
 			m_posture = 1.0f;
 			m_ani_time += 1;
 
 		}
-		if (m_move == false)
+		if (m_move == false)//右
 		{
 			m_vx -= m_speed_power;
 			m_posture = 0.0f;
@@ -153,15 +147,14 @@ void CObjWolkEnemy::Action()
 		m_ey += m_vy;
 
 		//主人公の位置で向き変更
-
 		if (m_ex > objh->GetX() - pb->GetScroll())
 		{
-			m_move = false;
+			m_move = false;//右向き
 		}
 
 		if (m_ex < objh->GetX() - pb->GetScroll())
 		{
-			m_move = true;
+			m_move = true;//左向き
 
 		}
 
@@ -178,6 +171,7 @@ void CObjWolkEnemy::Action()
 
 
 		CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
+		//攻撃を受けたとき
 		if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
 		{
 			m_hp -= 10;
@@ -212,7 +206,7 @@ void CObjWolkEnemy::Action()
 		}
 		
 
-		if (/*Input::GetVKey('U') == true||*/ (objh->GetX() - pb->GetScroll()) > 17920)
+		if (objh->GetX() - pb->GetScroll() > 17920)
 		{
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//保有するHitBoxに削除する
@@ -244,39 +238,36 @@ void CObjWolkEnemy::Draw()
 	{
 		0,1,0,1,
 	};
-	//
+	
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 	RECT_F src;
 	RECT_F dst;
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	if (hit_flag == false)
 	{
-	src.m_top = 0.0f;
-	src.m_left = 0.0f + AniData[m_ani_frame] * 64;
-	src.m_right = 64.0f + AniData[m_ani_frame] * 64;
-	src.m_bottom = 64.0f;
+		//切り取り位置
+	    src.m_top = 0.0f;
+	    src.m_left = 0.0f + AniData[m_ani_frame] * 64;
+	    src.m_right = 64.0f + AniData[m_ani_frame] * 64;
+	    src.m_bottom = 64.0f;
 
-	
-	
-	
+		//表示位置
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = (64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_right = (64 - 64.0f*m_posture) + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
-
-
-
-
-		//
+		
+		//描画
 		Draw::Draw(3, &src, &dst, c, m_dead);
 	}
-
-
+	//爆破エフェクトの切り取り位置
 	dst.m_top = 0.0f + m_ey;
 	dst.m_left = 0.0f + m_ex + pb->GetScroll();
 	dst.m_right = 64.0f + m_ex + pb->GetScroll();
 	dst.m_bottom = 64.0f + m_ey;
 
+	//爆破エフェクトの描画
 	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }

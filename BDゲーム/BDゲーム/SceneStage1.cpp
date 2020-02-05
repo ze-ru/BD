@@ -110,6 +110,15 @@ void CSceneStage1::InitScene()
 	Draw::LoadImageW(L"Boss2.png", 16, TEX_SIZE_512);
 	Draw::LoadImageW(L"StageClear.png", 17, TEX_SIZE_512);
 	Draw::LoadImageW(L"Number.png", 18, TEX_SIZE_512);
+	Draw::LoadImageW(L"Weapon.png", 19, TEX_SIZE_512);
+	Draw::LoadImageW(L"LastBoss.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"HealBlock.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"Sield.png", 22, TEX_SIZE_512);
+	Draw::LoadImageW(L"DefeatEfect.png", 23, TEX_SIZE_512);
+	Draw::LoadImageW(L"GOAL3.png", 24, TEX_SIZE_512);
+	Draw::LoadImageW(L"SelectBack.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"Select.png", 26, TEX_SIZE_512);
+
 	Audio::LoadAudio(0, L"stage1.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(1, L"stage2.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(2, L"nstage2.wav", SOUND_TYPE::BACK_MUSIC);
@@ -124,15 +133,7 @@ void CSceneStage1::InitScene()
 	Audio::LoadAudio(11, L"敵死亡.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(12, L"敵被ダメ.wav", SOUND_TYPE::BACK_MUSIC);
 	Audio::LoadAudio(13, L"被ダメ.wav", SOUND_TYPE::BACK_MUSIC);
-	Draw::LoadImageW(L"Weapon.png", 19, TEX_SIZE_512);
-	Draw::LoadImageW(L"LastBoss.png", 20, TEX_SIZE_512);
-	Draw::LoadImageW(L"HealBlock.png", 21, TEX_SIZE_512);
-	Draw::LoadImageW(L"Sield.png", 22, TEX_SIZE_512);
-	Draw::LoadImageW(L"DefeatEfect.png", 23, TEX_SIZE_512);
-
-	Draw::LoadImageW(L"GOAL3.png", 24, TEX_SIZE_512);
-	Draw::LoadImageW(L"SelectBack.png", 25, TEX_SIZE_512);
-	Draw::LoadImageW(L"Select.png", 26, TEX_SIZE_512);
+	
 	
 	//ステージ1オブジェクト作成
 	CObjStage1*objs1 = new CObjStage1(map_flag,mapnum);
