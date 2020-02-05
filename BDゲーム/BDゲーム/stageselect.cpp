@@ -6,7 +6,6 @@
 #include"GameL\SceneObjManager.h"
 #include"GameL\DrawTexture.h"
 
-
 //使用するネームスペース
 using namespace GameL;
 
@@ -29,6 +28,7 @@ stageselect::~stageselect()
 //ゲームタイトル初期化メソッド
 void stageselect::InitScene()
 {
+	//ステージ選択オブジェクト作成
 	CObjstageselect* t = new CObjstageselect();
 	Objs::InsertObj(t, OBJ_STAGESELECT, 1);
 }

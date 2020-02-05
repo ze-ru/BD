@@ -37,25 +37,25 @@ void CObjStage2Clear::Draw()
 	float c[4] = { 1,1,1,1 };
 
 	//スタッフロールを表示
-	Font::StrDraw(L"Congratulation!!", 100, 600 - m_vy, 80, c);
+	Font::StrDraw(L"Congratulation!!", 100, 600.0f - m_vy, 80, c);
 
-	Font::StrDraw(L"GAME CLEAR!!", 180, 750 - m_vy, 80, c);
+	Font::StrDraw(L"GAME CLEAR!!", 180, 750.0f - m_vy, 80, c);
 
-	Font::StrDraw(L"ゲーム作成スタッフ", 180, 920 - m_vy, 50, c);
+	Font::StrDraw(L"ゲーム作成スタッフ", 180, 920.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"総合ディレクター 岩本　紫苑", 50, 1050 - m_vy, 50, c);
+	Font::StrDraw(L"総合ディレクター 岩本　紫苑", 50, 1050.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"プログラマー　   寺井　望斗季", 50, 1150 - m_vy, 50, c);
+	Font::StrDraw(L"プログラマー　   寺井　望斗季", 50, 1150.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"グラフィック　   立和名　克弥", 50, 1250 - m_vy, 50, c);
+	Font::StrDraw(L"グラフィック　   立和名　克弥", 50, 1250.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"プランナー　     松﨑　隼人", 50, 1350 - m_vy, 50, c);
+	Font::StrDraw(L"プランナー　     松﨑　隼人", 50, 1350.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"アシスタント  　 松本　和益",  50, 1450 - m_vy, 50, c);
+	Font::StrDraw(L"アシスタント  　 松本　和益",  50, 1450.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"スペシャルサンクス  近コン", 50, 1550 - m_vy, 50, c);
+	Font::StrDraw(L"スペシャルサンクス  近コン", 50, 1550.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"Thank you for playing!!", 120, 1900-m_vy, 50, c);
+	Font::StrDraw(L"Thank you for playing!!", 120, 1900.0f - m_vy, 50, c);
 
-	Font::StrDraw(L"Team BD.", 330,2100-m_vy, 30, c);
+	Font::StrDraw(L"Team BD.", 330, 2100.0f - m_vy, 30, c);
 }

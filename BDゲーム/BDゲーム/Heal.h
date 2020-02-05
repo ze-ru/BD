@@ -13,11 +13,8 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-	
-private:
-	
+private:	
 	int hp;
-
-	float m_px;
+	float m_px;//位置
 	float m_py;
 };
