@@ -1,10 +1,11 @@
 #pragma once
 //使用ヘッダー
 #include"GameL\SceneObjManager.h"
+
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：タイトル
+//オブジェクト：回復ブロック
 class CObjHeal :public CObj
 {
 public:
@@ -13,8 +14,11 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
-private:	
+	
+private:
+	
 	int hp;
-	float m_px;//位置
+
+	float m_px;
 	float m_py;
 };

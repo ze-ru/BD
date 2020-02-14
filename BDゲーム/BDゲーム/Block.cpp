@@ -1,23 +1,25 @@
 //使用するヘッダーファイル
-#include "GameL\DrawTexture.h"
-#include "GameL\WinInputs.h"
-#include "GameL\SceneManager.h"
+#include"GameL\DrawTexture.h"
+#include"GameL\WinInputs.h"
+#include"GameL\SceneManager.h"
 #include"GameL\SceneObjManager.h"
 #include"GameL\HitBoxManager.h"
-
-#include "GameHead.h"
-#include "Block.h"
 #include"GameL/Audio.h"
+
+#include"Block.h"
+#include"GameHead.h"
 
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
 CObjBlock::CObjBlock(int map[11][300],int mapnum)
 {
 	//マップデータをコピー
 	memcpy(m_map, map, sizeof(int)*(11* 300));
 	map_num = mapnum;
 }
+
 //イニシャライズ
 void CObjBlock::Init()
 {
@@ -28,6 +30,7 @@ void CObjBlock::Init()
 	count = 0;
 	musicflag = false;
 }
+
 //アクション
 void CObjBlock::Action()
 {
@@ -260,7 +263,6 @@ void CObjBlock::Draw()
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-
 	RECT_F dst; //描画先表示位置
 
 	//背景表示
@@ -282,45 +284,29 @@ void CObjBlock::Draw()
 				dst.m_bottom = dst.m_top + 64.0f;
 
 				//描画
-				//WolkEnemy
-				if (m_map[i][j] == 5)
-				{
-					;
-				}
-				else if (m_map[i][j] == 2)
+				//地面ブロック
+				if (m_map[i][j] == 2)
 				{
 					BlockDraw(64.0f, 0.0f, &dst, c,map_num);
 				}
+				//地面ブロック
 				else if (m_map[i][j] == 3)
 				{
 					BlockDraw(128.0f, 0.0f, &dst, c,map_num);
 				}
+				//削除ブロック
 				else if (m_map[i][j] == 4)
 				{
 					BlockDraw(128.0f, 0.0f, &dst, c, map_num);
 				}
-				//Switch
-				else if (m_map[i][j] == 9)
-				{
-					;
-				}
-				//Switch
+				//天井ブロック
 				else if (m_map[i][j] == 10)
 				{
 					BlockDraw(192.0f, 0.0f, &dst, c, map_num);
 				}
-				else if (m_map[i][j] == 14)
-				{
-					;
-				}
-				else if (m_map[i][j] == 42)
-				{
-					;
-				}
 				else
 				{
-					//描画
-					BlockDraw(0.0f, 0.0f, &dst, c,map_num);
+					BlockDraw(0.0f, 0.0f, &dst, c, map_num);
 				}
 			}
 		}

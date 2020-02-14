@@ -53,8 +53,8 @@ void CObjHeroAssultBullet::Action()
 
 
 	m_time++;
-	/*if (m_time == 5)
-		Audio::Stop(7);*/
+	if (m_time == 5)
+		Audio::Stop(7);
 	m_ex += m_vx;
 	m_ey += m_vy;
 

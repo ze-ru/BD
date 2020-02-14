@@ -1,10 +1,11 @@
 #pragma once
 //使用ヘッダー
 #include"GameL\SceneObjManager.h"
+
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：タイトル
+//オブジェクト：ステージセレクト
 class CObjstageselect :public CObj
 {
 public:

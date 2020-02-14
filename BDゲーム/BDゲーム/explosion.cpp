@@ -7,7 +7,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//爆発エフェクト関数
+//爆発エフェクトを描画
 RECT_F GetBulletEffect(int *ani, int *ani_time, bool del, int timing)
 {
 	//返すRECT情報
@@ -22,11 +22,12 @@ RECT_F GetBulletEffect(int *ani, int *ani_time, bool del, int timing)
 		//リソース着弾アニメーション位置
 		RECT_F ani_src[4] =
 		{
-			{64,0,64,128},
-			{64,64,128,128},
+			{64,  0, 64,128},
+			{64, 64,128,128},
 			{64,128,192,128},
 			{64,256,256,128},
 		};
+
 		//アニメーションのコマ間隔
 		if (*ani_time > timing)
 		{

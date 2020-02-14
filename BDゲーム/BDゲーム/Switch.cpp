@@ -21,36 +21,31 @@ CObjSwitch::CObjSwitch(float x, float y)
 //イニシャライズ
 void CObjSwitch::Init()
 {
-	m_hit_up = false;
-	m_hit_down = false;
-	m_hit_left = false;
-	m_hit_right = false;
-
 	flag = false;
 
 	//音楽情報の読み込み
 	Audio::LoadAudio(1, L"switch.wav", SOUND_TYPE::EFFECT);
 
-	//当たり判定用HitBoxを作成
+	//当たり判定用のHitBoxを作成
 	Hits::SetHitBox(this,m_sx,m_sy, 64, 64, ELEMENT_ENEMY, OBJ_SWITCH, 1);
 }
 
 //アクション
 void CObjSwitch::Action()
 {
-	//ブロックオブジェクト情報を取得
-	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-	//Switch削除test
+	//オブジェクト情報を取得
+	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報を取得
+	
 	//自身のHitBoxを持ってくる
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_sx + block->GetScroll(), m_sy);
 
+	//スイッチのバーが右向きかつ、剣で攻撃されると
 	if (hit->CheckElementHit(ELEMENT_ATTACK)==true&&flag==false)
 	{
 		float Volume = Audio::Volume(10.0f,1);//ボリュームを上げる
 		Audio::Start(1);//音楽スタート
-		flag = true;
+		flag = true;//スイッチを左右反転させる
 	}
 	block->SetBlock(flag);
 }
@@ -64,7 +59,7 @@ void CObjSwitch::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-	//切り取り位置の設定
+	//表示位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 256.0f;
 	src.m_right = 320.0f;
@@ -72,21 +67,21 @@ void CObjSwitch::Draw()
 
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	//表示位置の設定
 	if (flag == false)
-	{
-		//表示位置の設定
+	{		
 		dst.m_top = m_sy;
 		dst.m_left = m_sx + block->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = 64.0f + m_sy;
 	}
-	if (flag == true)
+	if (flag == true)//左右反転スイッチを描画
 	{
-		//表示位置の設定
 		dst.m_top = m_sy;
 		dst.m_left = m_sx + block->GetScroll() + 64.0f;
 		dst.m_right = dst.m_left-64.0f;
-		dst.m_bottom = 64.0f + m_sy;
+		dst.m_bottom = 64.0f + m_sy;	
 	}
 
 	//描画

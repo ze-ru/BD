@@ -21,7 +21,7 @@ CObjGoalBlock::CObjGoalBlock(float x, float y)
 
 void CObjGoalBlock::Init()
 {
-	//HitBox作成
+	
 	Hits::SetHitBox(this, m_bx, m_by, 64, 64, ELEMENT_BLOCK, OBJ_GOAL_BLOCK, 1);
 
 }
@@ -29,18 +29,16 @@ void CObjGoalBlock::Init()
 //アクション
 void CObjGoalBlock::Action()
 {
-	//他情報を持ってくる
+
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CHitBox* hit = Hits::GetHitBox(this);
-
-	//HeroがGoalBrockに触れたとき
 	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
 	{
 		CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
-		if(s1->Getmapnum()==0)//ステージ1
+		if(s1->Getmapnum()==0)
 			Scene::SetScene(new CSceneStage1(12, 8,h->Getbullet(),h->GetWeapon()));
-		else//ステージ2
+		else
 			Scene::SetScene(new CSceneGameClear());
 	}
 	hit->SetPos(m_bx+pb->GetScroll(), m_by);
@@ -56,14 +54,14 @@ void CObjGoalBlock::Draw()
 
 	CObjStage1*s1 = (CObjStage1*)Objs::GetObj(OBJ_STAGE1);
 
-	if (s1->Getmapnum() == 0)//ステージ1
+	if (s1->Getmapnum() == 0)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 	}
-	else//ステージ2
+	else
 	{
 		src.m_top = 0.0f;
 		src.m_left = 64.0f;
@@ -71,9 +69,10 @@ void CObjGoalBlock::Draw()
 		src.m_bottom = 64.0f;
 	}
 	
+
 	//ブロック情報を持ってくる
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	
+	//
 	dst.m_top = m_by;
 	dst.m_left = m_bx + block->GetScroll();
 	dst.m_right = dst.m_left + 64.0f;

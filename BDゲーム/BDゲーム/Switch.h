@@ -5,7 +5,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//シーン:ゲームタイトル
+//オブジェクト：スイッチ
 class CObjSwitch :public CObj
 {
 public:
@@ -18,11 +18,6 @@ public:
 private:
 	float m_sx;
 	float m_sy;
-
-	bool m_hit_down;
-	bool m_hit_up;
-	bool m_hit_left;
-	bool m_hit_right;
 
 	bool flag;
 };

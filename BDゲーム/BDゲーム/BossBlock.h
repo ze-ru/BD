@@ -5,7 +5,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//シーン:ゲームタイトル
+//オブジェクト:BossBlock
 class CObjBossBlock :public CObj
 {
 public:

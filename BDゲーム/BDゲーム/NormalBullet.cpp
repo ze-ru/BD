@@ -12,7 +12,6 @@ using namespace GameL;
 CObjNormalBullet::CObjNormalBullet(float x,float y)
 {
 	m_ex = x;
-	
 	m_ey = y+23.0f;
 }
 void CObjNormalBullet::Init()

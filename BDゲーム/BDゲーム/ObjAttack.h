@@ -1,11 +1,11 @@
 #pragma once
-#pragma once
 //使用ヘッダー
 #include"GameL\SceneObjManager.h"
+
 //使用ネームスペース
 using namespace GameL;
 
-//オブジェクト：主人公
+//オブジェクト：攻撃モーション
 class CObjAttack :public CObj
 {
 public:
@@ -14,6 +14,7 @@ public:
 	void Init();//イニシャライズ
 	void Action();//アクション
 	void Draw();//ドロー
+
 	float GetX() { return m_px; };
 	float GetY() { return m_py; };
 private:

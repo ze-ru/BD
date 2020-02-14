@@ -3,9 +3,9 @@
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
 
-#include"GameHead.h"
-#include "StageUi.h"
+#include"StageUi.h"
 #include"Hero.h"
+#include"GameHead.h"
 
 //使用ネームスペース
 using namespace GameL;

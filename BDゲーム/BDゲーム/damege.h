@@ -1,18 +1,20 @@
 #pragma once
-//使用ヘッダー
+//使用するヘッダー
 #include"GameL\SceneObjManager.h"
-//使用ネームスペース
+
+//使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：主人公
+//オブジェクト：ダメージ
 class CObjDamege :public CObj
 {
 public:
 	CObjDamege(int dm,float x,float y);
 	~CObjDamege() {};
-	void Init();
-	void Action();
-	void Draw();
+	void Init();//イニシャライズ
+	void Action();//アクション
+	void Draw();//ドロー
+
 private:
 	int dam;
 	int hit_time;

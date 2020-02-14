@@ -4,13 +4,14 @@
 #include"GameL\SceneManager.h"
 #include"GameL\HitBoxManager.h"
 
-#include"GameHead.h"
-#include "damege.h"
+#include"damege.h"
 #include"Hero.h"
+#include"GameHead.h"
 
 //使用ネームスペース
 using namespace GameL;
 
+//コンストラクタ
 CObjDamege::CObjDamege(int dm, float x, float y)
 {
 	dam = dm;
@@ -37,13 +38,13 @@ void CObjDamege::Action()
 //ドロー
 void CObjDamege::Draw()
 {	
+	//オブジェクト情報を取得
 	CObjBlock*pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報取得
 
 	//敵にダメージを与えたらダメージを表示する
 	//描画カラー情報
 	float c[4] = { 1.0f,0.0f,0.0f,1.0f };
 	
-
 	size++;
 	hit_time++;
 
@@ -59,5 +60,4 @@ void CObjDamege::Draw()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
-	
 }

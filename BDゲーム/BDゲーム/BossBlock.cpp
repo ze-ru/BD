@@ -1,18 +1,17 @@
 //使用するヘッダーファイル
-
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
 #include"GameL\DrawTexture.h"
 #include"GameL\HitBoxManager.h"
+#include"GameL\Audio.h"
 
 #include"BossBlock.h"
-
 #include"GameHead.h"
-#include"GameL\Audio.h"
 
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
 CObjBossBlock::CObjBossBlock(float x,float y,int stagenum)
 {
     m_bx = x;
@@ -49,6 +48,7 @@ void CObjBossBlock::Action()
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公オブジェクト情報を取得
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報を取得
 
+	//主人公の位置情報を取得
     hx = hero->GetX() - block->GetScroll();
     hy = hero->GetY();
 
@@ -122,7 +122,6 @@ void CObjBossBlock::Action()
 					m_hit_left = true;
 					hero->SetX(m_bx - 64.0f + block->GetScroll());
 					hero->SetVX(-hero->GetVX()*0.1f);
-
 				}
 			}
 		}
@@ -149,6 +148,7 @@ void CObjBossBlock::Draw()
 	CObjHero*hero = (CObjHero*)Objs::GetObj(OBJ_HERO);//主人公オブジェクト情報
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);//ブロックオブジェクト情報
 
+	//主人公が一定範囲に入るとBossBlock出現
 	if ((hero->GetX() - block->GetScroll()) > 17920 || bossflag == true)
 	{
 		//切り取り位置の設定
@@ -159,7 +159,6 @@ void CObjBossBlock::Draw()
 
 		//表示位置の設定
 		dst.m_top = m_by;
-		dst.m_left = m_bx + block->GetScroll();
 		dst.m_left = m_bx + block->GetScroll();
 		dst.m_right = dst.m_left + 64.0f;
 		dst.m_bottom = 64.0f + m_by;

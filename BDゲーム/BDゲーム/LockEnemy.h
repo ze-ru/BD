@@ -27,7 +27,7 @@ private:
 	bool m_hit_up;
 	bool m_hit_left;
 	bool m_hit_right;
-	
+	float x;
 	int m_ani_time;
 	int m_ani_frame;
 	float m_hp;

@@ -2,10 +2,9 @@
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
 #include"GameL\DrawFont.h"
-
-#include"ObjStage1Clear.h"
 #include"GameL\UserData.h"
 
+#include"ObjStage1Clear.h"
 #include"GameHead.h"
 
 //使用するネームスペース
@@ -22,7 +21,7 @@ void CObjStage1Clear::Init()
 //アクション
 void CObjStage1Clear::Action()
 {	
-	//Bossが死んだらSTAGE CLEAR
+	//Bossが死んだらSTAGE CLEAR表示
 	if (deadflag == true)
 	{
 		key = true;

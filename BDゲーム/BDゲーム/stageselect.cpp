@@ -28,7 +28,7 @@ stageselect::~stageselect()
 //ゲームタイトル初期化メソッド
 void stageselect::InitScene()
 {
-	//ステージ選択オブジェクト作成
+	//ステージセレクトオブジェクト作成
 	CObjstageselect* t = new CObjstageselect();
 	Objs::InsertObj(t, OBJ_STAGESELECT, 1);
 }

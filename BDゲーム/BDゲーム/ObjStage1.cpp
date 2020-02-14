@@ -1,13 +1,17 @@
+//使用するヘッダーファイル
 #include"GameL\DrawTexture.h"
 #include"GameL\WinInputs.h"
 #include"GameL\SceneManager.h"
 #include"GameL\DrawFont.h"
-#include"ObjStage1.h"
-#include"GameHead.h"
 #include"GameL\Audio.h"
 
+#include"ObjStage1.h"
+#include"GameHead.h"
+
+//使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
 CObjStage1::CObjStage1(int mapdata,int mapnum)
 {
 	map_flag = mapdata;
@@ -19,7 +23,7 @@ void CObjStage1::Init()
 {
 	flag = true;
 	score = 0;
-	time = 0;
+	
 	bossflag = false;
 
 	m_time = 0;
@@ -28,7 +32,6 @@ void CObjStage1::Init()
 //アクション
 void CObjStage1::Action()
 {
-	time++;
 
 	//Tキー入力でステージセレクト画面
 	if (Input::GetVKey('T') == true)

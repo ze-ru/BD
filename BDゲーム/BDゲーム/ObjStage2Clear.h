@@ -1,10 +1,11 @@
 #pragma once
-//使用ヘッダー
+//使用するヘッダー
 #include"GameL\SceneObjManager.h"
+
 //使用するネームスペース
 using namespace GameL;
 
-//オブジェクト：タイトル
+//オブジェクト：スタッフロール
 class CObjStage2Clear :public CObj
 {
 public:
@@ -13,6 +14,7 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
+
 private:	
-	float m_vy;//スタッフロールY軸移動ベクトル	
+	int m_vy;//スタッフロールY移動ベクトル	
 };

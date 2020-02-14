@@ -19,20 +19,19 @@ CObjBoss2::CObjBoss2(float x, float y)
 //
 void CObjBoss2::Init()
 {
-	//変数の初期化
 	m_vx = 0;
 	m_vy = 0;
-	hit_flag = false;//被ダメージ用
+	hit_flag = false;
 	m_time = 0;
-	enemy_flag = false;//BossEnemy生成用
+	enemy_flag = false;
 	enemy_count = 0;
 	dead_count = 0;
-	m_hp = 300;//Hpを300に設定
-	m_hit_time = 0;//被ダメージ間隔
+	m_hp = 300;
+	m_hit_time = 0;
 	m_hit_data = 0;
-	m_hit_flag = false;//被ダメージ間隔用flag
+	m_hit_flag = false;
 
-	hit_count = 0;//Boss2への攻撃回数
+	hit_count = 0;
 
 	m_eff.m_top = 0;
 	m_eff.m_left = 0;
@@ -42,7 +41,7 @@ void CObjBoss2::Init()
 	ani = 0;
 	ani_time = 0;
 	m_del = false;
-	score = 1300;//撃破時のScoreを1300に設定
+	score = 1300;
 	Hits::SetHitBox(this, m_ex+100, m_ey+200, 200, 200, ELEMENT_BOSS2, OBJ_BOSS2, 1);
 }
 
@@ -76,7 +75,6 @@ void CObjBoss2::Action()
 	}
 	if (hit_flag == false)
 	{
-		//攻撃を受けたとき
 		if (hit->CheckElementHit(ELEMENT_ATTACK) == true && m_hit_flag == false)
 		{
 			m_hp -= 15;
@@ -155,26 +153,25 @@ void CObjBoss2::Action()
 			enemy_flag = true;
 		}
 
-		//BossEnemyの生成位置のパターン
-		if (enemy_flag == true&&hit_count==1)//1回目
+		if (enemy_flag == true&&hit_count==1)
 		{
 			CObjBossEnemy*objF = new CObjBossEnemy(m_ex-500+(enemy_count*128), m_ey+544,90);
 			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
 			enemy_count++;
 		}
-		if (enemy_flag == true && hit_count == 2)//2回目
+		if (enemy_flag == true && hit_count == 2)
 		{
 			CObjBossEnemy*objF = new CObjBossEnemy(m_ex - 500 + (enemy_count * 128), m_ey + 32,270);
 			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
 			enemy_count++;
 		}
-		if (enemy_flag == true && hit_count == 3)//3回目
+		if (enemy_flag == true && hit_count == 3)
 		{
 			CObjBossEnemy*objF = new CObjBossEnemy(m_ex-24.0f, m_ey+32 + (enemy_count * 128),180);
 			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
 			enemy_count++;
 		}
-		if (enemy_flag == true && hit_count == 4)//4回目
+		if (enemy_flag == true && hit_count == 4)
 		{
 			CObjBossEnemy*objF = new CObjBossEnemy(m_ex - (64 * 15), m_ey + (enemy_count * 128)+32.0f,0);
 			Objs::InsertObj(objF, OBJ_BOSSENEMY, 15);
@@ -183,7 +180,7 @@ void CObjBoss2::Action()
 	
 		if (enemy_count == 5)
 		{
-			enemy_flag = false;//BossEnemyが生成されないようにする
+			enemy_flag = false;
 			enemy_count = 0;
 		}
 		if (dead_count == 5)
@@ -199,7 +196,6 @@ void CObjBoss2::Action()
 			
 			
 	}
-	//HeroがBoss2より右に行かない処理
 	if (m_ex+pb->GetScroll()+20 <= h->GetX())
 	{
 		h->SetX(m_ex+pb->GetScroll()+20);
@@ -221,45 +217,48 @@ void CObjBoss2::Draw()
 
 	if (hit_flag == false)
 	{
-		//切り取り位置
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 256.0f;
 		src.m_bottom = 256.0f;
 
-		//表示位置
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + pb->GetScroll();
 		dst.m_right = m_ex + 400.0f + pb->GetScroll();
 		dst.m_bottom = m_ey + 576.0f;
 
-		//描画
+
+
+		//
 		Draw::Draw(20, &src, &dst, c, 0.0f);
 	}
-
 	if (hit_flag == true)
 	{
-		//切り取り位置
 		src.m_top = 0.0f;
 		src.m_left = 256.0f;
 		src.m_right = 512.0f;
 		src.m_bottom = 256.0f;
 
-		//表示位置
 		dst.m_top = m_ey;
 		dst.m_left = m_ex + pb->GetScroll();
 		dst.m_right = m_ex + 400.0f + pb->GetScroll();
 		dst.m_bottom = m_ey + 576.0f;
 
-		//描画
+
+
+		//
 		Draw::Draw(20, &src, &dst, c, 0.0f);
 	}
-	//爆破エフェクトの表示位置
+	
+
+
+
+		
+
 	dst.m_top = 88.0f + m_ey;
 	dst.m_left = 0.0f + m_ex + pb->GetScroll();
 	dst.m_right = 400.0f + m_ex + pb->GetScroll();
 	dst.m_bottom = 488.0f + m_ey;
 
-	//爆破エフェクトの描画
 	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }
