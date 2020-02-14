@@ -109,18 +109,19 @@ void CObjBoss2::Action()
 			m_hp -= 40;
 			hit_flag = true;
 			m_hit_data += 40;
-			CObjDamege*dm = new CObjDamege(40, m_ex, m_ey);
+			CObjDamege*dm = new CObjDamege(40, m_ex, m_ey+200);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
 		if (hit->CheckElementHit(ELEMENT_SHOTBULLET) == true)
 		{
 			m_hp -= 5;
-			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
+			m_hit_data += 5;
+			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey+200);
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
-		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true || hit->CheckElementHit(ELEMENT_LASERBULLET) == true)
+		if (hit->CheckElementHit(ELEMENT_ATTACK) == true || hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true || hit->CheckElementHit(ELEMENT_HERONORMALBULLET) == true || hit->CheckElementHit(ELEMENT_LASERBULLET) == true|| hit->CheckElementHit(ELEMENT_SHOTBULLET) == true)
 		{
 			if (m_hit_data >= 60)
 			{
