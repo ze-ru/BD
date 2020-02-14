@@ -44,7 +44,9 @@ enum OBJ_NAME
 	OBJ_LASER_BULLET,
 	OBJ_SHOT_BULLET,
 	OBJ_SELECTBACK,
-	OBJ_GAMERULE2
+	OBJ_GAMERULE2,
+	OBJ_HEROSHOTGUN,
+	OBJ_HERO_SHOTBULLET,
 	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
@@ -79,6 +81,8 @@ enum HIT_ELEMENTS
 	ELEMENT_BOSS2,
 	ELEMENT_LASERBULLET,
 	ELEMENT_SHIELD,
+	ELEMENT_SHOTBULLET,
+	
 };
 //------------------------------------------------
 
@@ -150,6 +154,8 @@ struct UserData
 #include"ObjStage1Clear.h"
 #include"ObjStage2Clear.h"
 #include"ObjSelectBack.h"
+#include"HeroShotBullet.h"
+#include"HeroShotGun.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

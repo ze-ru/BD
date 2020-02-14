@@ -92,4 +92,7 @@ class CObjHero :public CObj
 	  bool wolk;
 	  bool stop;
 	  bool fly;
+
+	  bool shotbullet_flag;
+	  int shotbullet_time;
 };

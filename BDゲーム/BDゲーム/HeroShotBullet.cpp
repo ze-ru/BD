@@ -32,8 +32,10 @@ void CObjHeroShotBullet::Init()
 	m_count = 0;
 	m_v = 1.0f;
 	dm = 3;
+	dm_hit_flag = false;
+	hit_count = 0;
 	Audio::Start(7);
-	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_ENEMY_BULLET, OBJ_SHOT_BULLET, 1);
+	Hits::SetHitBox(this, m_px, m_py, 24, 16, ELEMENT_SHOTBULLET, OBJ_HERO_SHOTBULLET, 1); 
 }
 void CObjHeroShotBullet::Action()
 {
@@ -47,34 +49,51 @@ void CObjHeroShotBullet::Action()
 
 	hit->SetPos(m_px + block->GetScroll(), m_py);
 
-	if (m_time > 50)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-	}
+	
 	block->BulletHit(&m_px, &m_py, false, &m_hit_up, &m_hit_down,
 		&m_hit_left, &m_hit_right);
+
+	if (m_time > 25)
+	{
+		Audio::Stop(7);
+		dm_hit_flag = true;
+	}
+	
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		Audio::Stop(7);
+		dm_hit_flag = true;
+	}
+
+	if (hit->CheckObjNameHit(OBJ_BOSS1) != nullptr || hit->CheckObjNameHit(OBJ_BOSS2))
+	{
+		Audio::Stop(7);
+		hit_count++;
+	}
+
+	if (hit->CheckElementHit(ELEMENT_ENEMY) == true)
+	{
+		Audio::Stop(7);
+		hit_count++;
+	}
+	if (hit->CheckElementHit(ELEMENT_SHIELD) == true)
+	{
+		Audio::Stop(7);
+		
+		dm_hit_flag = true;
+	}
+	if (hit_count > 6)
+	{
+		dm_hit_flag = true;
+	}
+
+	if (dm_hit_flag == true)
+	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
 	}
 
-	if (hit->CheckElementHit(ELEMENT_PLAYER) == true)
-	{
-		if (objh->GetYflag() == false)
-			objh->SetDamege(dm);
-		if (objh->GetX() + 32 - block->GetScroll() > m_px)
-			objh->SetHitflag(true);
-		if (objh->GetX() + 32 - block->GetScroll() < m_px)
-			objh->SetHitflag(false);
-		Audio::Start(13);
-		Audio::Stop(7);
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
-		Audio::Stop(13);
-	}
+	
 
 }
 void CObjHeroShotBullet::Draw()
@@ -85,9 +104,9 @@ void CObjHeroShotBullet::Draw()
 	RECT_F dst;
 
 	src.m_top = 0.0f;
-	src.m_left = 88.0f;
-	src.m_right = 112.0f;
-	src.m_bottom = 16.0f;
+	src.m_left = 384.0f;
+	src.m_right = 400.0f;
+	src.m_bottom = 8.0f;
 
 
 	CObjBlock*block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -99,5 +118,5 @@ void CObjHeroShotBullet::Draw()
 
 
 	//
-	Draw::Draw(4, &src, &dst, c, 0.0f);
+	Draw::Draw(19, &src, &dst, c, 0.0f);
 }

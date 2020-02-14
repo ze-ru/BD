@@ -64,7 +64,8 @@ void CObjHeroAssultBullet::Action()
 	hit->SetPos(m_ex+block->GetScroll(), m_ey);
 
 	
-
+	block->BulletHit(&m_ex, &m_ey, false, &m_hit_up, &m_hit_down,
+		&m_hit_left, &m_hit_right);
 
 	if (m_time > 80) 
 	{
@@ -72,8 +73,7 @@ void CObjHeroAssultBullet::Action()
 		dm_hit_flag = true;
 
 	}
-	block->BulletHit(&m_ex, &m_ey, false, &m_hit_up, &m_hit_down,
-		&m_hit_left, &m_hit_right);
+	
 	if (m_hit_up == true || m_hit_down == true || m_hit_left == true || m_hit_right == true)
 	{
 		Audio::Stop(7);

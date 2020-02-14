@@ -58,6 +58,9 @@ void CObjHero::Init()
 	stop = false;
 	wolk = false;
 
+	shotbullet_flag = false;
+	shotbullet_time = 0;
+
 	//ìñÇΩÇËîªíËópÇÃHitBoxÇçÏê¨
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 	//Hits::SetHitBox(this, m_px + 32, m_py, 32, 64, ELEMENT_PLAYER, OBJ_HERO, 2);
@@ -286,6 +289,44 @@ void CObjHero::Action()
 
 				}
 			}
+			if (wp == 4)
+			{
+				if (Input::GetVKey('C') == true)
+				{
+					if (bullet > 0)
+					{
+						if (flag == false && shotbullet_flag == true)
+						{
+							for (int r = 330; r < 360; r += 30 / 3)
+							{
+								//äpìxiÇ≈äpìxíeä€î≠éÀ
+								CObjHeroShotBullet*objsb = new CObjHeroShotBullet(m_px - pb->GetScroll() + 62.0f, m_py,r);
+								Objs::InsertObj(objsb, OBJ_HERO_SHOTBULLET, 50);
+							}
+							for (int r = 0; r < 30; r += 30 / 3)
+							{
+								//äpìxiÇ≈äpìxíeä€î≠éÀ
+								CObjHeroShotBullet*objsb = new CObjHeroShotBullet(m_px - pb->GetScroll() + 62.0f, m_py,r);
+								Objs::InsertObj(objsb, OBJ_HERO_SHOTBULLET, 50);
+							}
+							bullet--;
+							shotbullet_flag = false;
+						}
+						if (flag == true && shotbullet_flag == true)
+						{
+							for (int r = 150; r <= 210; r += 60 / 6)
+							{
+								CObjHeroShotBullet*objsb = new CObjHeroShotBullet(m_px - pb->GetScroll() - 10.0f, m_py,r);
+								Objs::InsertObj(objsb, OBJ_HERO_SHOTBULLET, 50);
+							}
+							bullet--;
+							shotbullet_flag = false;
+							
+						}
+					}
+				}
+			}
+			
 
 			if (Input::GetVKey('C') == false)
 			{
@@ -469,6 +510,15 @@ void CObjHero::Action()
 
 		}
 	}
+	if (shotbullet_flag == false)
+	{
+		shotbullet_time++;
+		if (shotbullet_time > 30)
+		{
+			shotbullet_flag = true;
+			shotbullet_time = 0;
+		}
+	}
 }
 
 //ÉhÉçÅ[
@@ -549,6 +599,20 @@ void CObjHero::Draw()
 
 			Draw::Draw(19, &src, &dst, c, 0.0f);
 		}
+		if (wp == 4)
+		{
+			src.m_top = 0.0f;
+			src.m_left = 320.0f;
+			src.m_right = 384.0f;
+			src.m_bottom = 64.0f;
+
+			dst.m_top = 10.0f + m_py;
+			dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
+			dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
+			dst.m_bottom = 58.0f + m_py;
+
+			Draw::Draw(19, &src, &dst, c, 0.0f);
+		}
 	}
 	if (wp == 1)
 	{
@@ -600,6 +664,21 @@ void CObjHero::Draw()
 
 
 		//
+		dst.m_top = -10.0f;
+		dst.m_left = 270.0f;
+		dst.m_right = dst.m_left + 96.0f;
+		dst.m_bottom = dst.m_top + 64.0f;
+
+		Draw::Draw(19, &src, &dst, c, 0.0f);
+	}
+
+	if (wp == 4)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 320.0f;
+		src.m_right = 384.0f;
+		src.m_bottom = 64.0f;
+
 		dst.m_top = -10.0f;
 		dst.m_left = 270.0f;
 		dst.m_right = dst.m_left + 96.0f;
