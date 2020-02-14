@@ -14,5 +14,5 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:	
-	int m_vy;//スタッフロールY移動ベクトル	
+	float m_vy;//スタッフロールY軸移動ベクトル	
 };

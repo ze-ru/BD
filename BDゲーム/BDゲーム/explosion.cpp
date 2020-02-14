@@ -1,18 +1,19 @@
 //使用するヘッダーファイル
-
 #include"GameL\DrawTexture.h"
-#include"explosion.h"
 #include"GameL\Audio.h"
 
+#include"explosion.h"
+
+//使用するネームスペース
 using namespace GameL;
 
-
+//爆発エフェクト関数
 RECT_F GetBulletEffect(int *ani, int *ani_time, bool del, int timing)
 {
 	//返すRECT情報
 	RECT_F rect;
 
-	Audio::Start(11);
+	Audio::Start(11);//音楽スタート
 
 	//ブラグで通常弾丸か着弾アニメーション処理分岐
 	if (del == true)

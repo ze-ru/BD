@@ -18,17 +18,5 @@ public:
 private:
 	float m_bx;
 	float m_by;
-	float m_vx;
-	float m_vy;
-
-	float hx;
-	float hy;
-
-	float hvx;
-	float hvy;
-
-	bool bossflag;
-
-	
 
 };

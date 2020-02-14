@@ -38,8 +38,6 @@ private:
 	bool dead_flag;
 	int time2;
 
-	int jamptime;
-
 	bool moveflag;//Boss1‚ÌˆÚ“®•ûŒü—p
 
 	int m_time_hit;

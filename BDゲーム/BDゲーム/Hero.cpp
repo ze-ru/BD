@@ -14,13 +14,14 @@ using namespace GameL;
 
 CObjHero::CObjHero(int b, int w)
 {
-	wp = w;
-	bullet = b;
+	wp = w;//銃の種類
+	bullet = b;//弾数
 }
 
 //イニシャライズ
 void CObjHero::Init()
 {
+	//変数の初期化
 	m_px = 100.0f;//位置
 	m_py = 350.0f;
 	m_vx = 0.0f;//移動ベクトル
@@ -34,15 +35,16 @@ void CObjHero::Init()
 	m_time1 = 0;
 	m_time2 = 0;
 
-	flag = false;//false=右向き true=左向き
+	flag = false;//Heroの方向用flag false=右向き,true=左向き
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
 	hit_flag = true;
-	m_attack = false;
+	m_attack = false;//攻撃用flag false=不能,true=可能
 	m_dead = 0.0f;
 	m_y_flag = false;
 	m_y_num = 0;
@@ -50,13 +52,13 @@ void CObjHero::Init()
 	bullet_count = 0;
 	m_time_bullet = 0;
 	
-	bulletflag = true;
+	bulletflag = true;//銃使用可能判定用flag
 	m_hit_flag = false;
-	m_back_flag = true;//ノックバック用フラグ
+	m_back_flag = true;//ノックバック用flag
 
-	fly = false;
-	stop = false;
-	wolk = false;
+	fly = false; //Heroのjamp用flag 
+	stop = false;//Heroの停止用flag
+	wolk = false;//Heroの移動用flag
 
 	shotbullet_flag = false;
 	shotbullet_time = 0;
@@ -70,14 +72,6 @@ void CObjHero::Init()
 void CObjHero::Action()
 {
 
-	/*if (Input::GetVKey('R') == true)
-	{
-		bullet+=100;
-	}
-	if (Input::GetVKey('H') == true)
-	{
-		m_hp -= 1;
-	}*/
 	if (m_hp < 0)
 	{
 		m_hp = 0;
@@ -184,7 +178,7 @@ void CObjHero::Action()
 
 			if (m_attack == true)
 			{
-				if (Input::GetVKey('X'))
+				if (Input::GetVKey('X'))//Xkeyで剣作成
 				{
 					CObjAttack*obja = new CObjAttack(m_px, m_py);
 					Objs::InsertObj(obja, OBJ_ATTACK, 50);
@@ -201,7 +195,7 @@ void CObjHero::Action()
 					m_attack = true;
 				}
 			}
-			if (wp == 1)
+			if (wp == 1)//Assult
 			{
 				if (Input::GetVKey('C') == true)
 				{
@@ -238,7 +232,7 @@ void CObjHero::Action()
 					m_time_bullet = 10;
 				}
 			}
-			if (wp == 2)
+			if (wp == 2)//Normal
 			{
 				if (Input::GetVKey('C') == true)
 				{
@@ -264,7 +258,7 @@ void CObjHero::Action()
 					}
 				}
 			}
-			if (wp == 3)
+			if (wp == 3)//Laser
 			{
 				if (Input::GetVKey('C') == true)
 				{
@@ -354,10 +348,6 @@ void CObjHero::Action()
 				m_vx = +5.0f;
 				m_posture = 0.0f;
 				m_ani_time += 1;
-				/*if (Input::GetVKey('M') == true)
-				{
-					m_vx = +30;
-				}*/
 				flag = false;
 			}
 
@@ -366,16 +356,8 @@ void CObjHero::Action()
 				m_vx = -5.0f;
 				m_posture = 1.0f;
 				m_ani_time += 1;
-				/*if (Input::GetVKey('M') == true)
-				{
-					m_vx = -30;
-				}*/
 				flag = true;
 			}
-
-			
-
-
 
 			//摩擦
 			m_vx += -(m_vx*0.098);
@@ -455,7 +437,8 @@ void CObjHero::Action()
 				}
 				fly = true;
 			}
-			if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)
+
+			if (Input::GetVKey(VK_LEFT) == false && Input::GetVKey(VK_RIGHT) == false && m_hit_down == true)//停止モーション
 			{
 				m_ani_time++;
 				if (m_ani_time < 40)
@@ -474,7 +457,8 @@ void CObjHero::Action()
 				wolk = false;
 				fly = false;
 			}
-			if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)
+
+			if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)//移動モーション
 			{
 					if (m_ani_time > 6)
 					{
@@ -483,22 +467,18 @@ void CObjHero::Action()
 					}
 					
 			}
-
-
 			if (m_ani_frame == 5)
 			{
 				m_ani_frame = 2;
 			}
+
 			//位置の更新
 			m_px += m_vx;
 			m_py += m_vy;
-			
-
 			//HitBoxの位置の変更
 			hit->SetPos(m_px, m_py);
 
-
-			if (m_py <= 0)
+			if (m_py <= 0)//画面外に行かない処理
 			{
 				m_py = 0;
 				m_vy = 0.0f;
@@ -546,24 +526,24 @@ void CObjHero::Draw()
 
 	if (Input::GetVKey('X') == true && swordcount > -25)
 	{
-		swordcount--;
+		swordcount--;//剣の表示角度を減らす
 		dst.m_top = 10.0f + m_py;
 		dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 24;
 		dst.m_right = (48 - 96.0f*m_posture) + m_px + 24;
 		dst.m_bottom = 58.0f + m_py;
 		Draw::Draw(19, &src, &dst, c, 60 + swordcount * 4.8f);
 	}
-	else if (Input::GetVKey('C') == true)
+	else if (Input::GetVKey('C') == true)//銃を撃つときに表示
 	{
-
-
-		if (wp == 1)
+		if (wp == 1)//Assault
 		{
+			//切り取り位置
 			src.m_top = 0.0f;
 			src.m_left = 192.0f;
 			src.m_right = 256.0f;
 			src.m_bottom = 64.0f;
 
+			//表示位置
 			dst.m_top = 10.0f + m_py;
 			dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
 			dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
@@ -571,13 +551,15 @@ void CObjHero::Draw()
 
 			Draw::Draw(19, &src, &dst, c, 0.0f);
 		}
-		if (wp == 2)
+		if (wp == 2)//Normal
 		{
+			//切り取り位置
 			src.m_top = 0.0f;
 			src.m_left = 0.0f;
 			src.m_right = 64.0f;
 			src.m_bottom = 64.0f;
 
+			//表示位置
 			dst.m_top = 10.0f + m_py;
 			dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
 			dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
@@ -585,13 +567,15 @@ void CObjHero::Draw()
 
 			Draw::Draw(19, &src, &dst, c, 0.0f);
 		}
-		if (wp == 3)
+		if (wp == 3)//Laser
 		{
+			//切り取り位置
 			src.m_top = 0.0f;
 			src.m_left = 64.0f;
 			src.m_right = 128.0f;
 			src.m_bottom = 64.0f;
 
+			//表示位置
 			dst.m_top = 10.0f + m_py;
 			dst.m_left = ((48.0 - 48.0f)*m_posture) + m_px + 32;
 			dst.m_right = (48 - 96.0f*m_posture) + m_px + 32;
@@ -614,10 +598,10 @@ void CObjHero::Draw()
 			Draw::Draw(19, &src, &dst, c, 0.0f);
 		}
 	}
+
+	//所持銃アイコン
 	if (wp == 1)
 	{
-
-
 		src.m_top = 0.0f;
 		src.m_left = 192.0f;
 		src.m_right = 256.0f;
@@ -639,8 +623,6 @@ void CObjHero::Draw()
 		src.m_right = 64.0f;
 		src.m_bottom = 64.0f;
 
-
-
 		//
 		dst.m_top = -10.0f;
 		dst.m_left = 270.0f;
@@ -649,21 +631,13 @@ void CObjHero::Draw()
 
 		Draw::Draw(19, &src, &dst, c, 0.0f);
 	}
-		
-
 	if (wp == 3)
 	{
-
-
-
 		src.m_top = 0.0f;
 		src.m_left = 64.0f;
 		src.m_right = 128.0f;
 		src.m_bottom = 64.0f;
 
-
-
-		//
 		dst.m_top = -10.0f;
 		dst.m_left = 270.0f;
 		dst.m_right = dst.m_left + 96.0f;
@@ -687,7 +661,7 @@ void CObjHero::Draw()
 		Draw::Draw(19, &src, &dst, c, 0.0f);
 	}
 		
-
+	//jampモーション
 	if (m_hit_down == false && m_vy <= 1&&fly==true)
 	{
 		src.m_top = 0.0f;
@@ -695,6 +669,7 @@ void CObjHero::Draw()
 		src.m_right = 64.0f + 5 *64.0f+ 1.0f;
 		src.m_bottom = 64.0f;
 	}
+	//落下モーション
 	else if (m_hit_down == false && m_vy >= 1&&fly==true)
 	{
 		src.m_top = 0.0f;
@@ -709,63 +684,55 @@ void CObjHero::Draw()
 		src.m_right = src.m_left + 64.0f - 2.0f;
 		src.m_bottom = 64.0f;
 	}
-	/*else if(m_hit_down==true&&wolk==true)
-	{
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + AniDate[m_ani_frame] * 64.0f + 1.0f;
-		src.m_right = src.m_left + 64.0f - 2.0f;
-		src.m_bottom = 64.0f;
-	}*/
+
 	if (swordcount <= -25 || Input::GetVKey('X') == false)
 	{
-		swordcount = 0;
+		swordcount = 0;//Swordcountの初期化
 	}
 
-	//表示位置の設定
+	//主人公の表示位置
 	dst.m_top = 0.0f + m_py;
 	dst.m_left = (64.0*m_posture) + m_px;
 	dst.m_right = (64-64.0f*m_posture) + m_px;
 	dst.m_bottom = 64.0f + m_py;
 
-	//描画
+	//主人公の描画
 	Draw::Draw(2, &src, &dst, c, m_dead);
 
+
+	//HPバー(枠)の切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 128.0f;
 	src.m_bottom = 24.0f;
 
-
-	//表示位置の設定
+	//HPバー(枠)の表示位置
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
 	dst.m_right = 256.0f;
 	dst.m_bottom = 48.0f;
 
-
-
-	//描画
+	//HPバー(枠)の描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
+
+	//HPバーの切り取り位置
 	src.m_top = 2.0f;
 	src.m_left = 128.0f;
 	src.m_right = 129.0f;
 	src.m_bottom = 22.0f;
 
-
+	//HPバーの表示位置
 	dst.m_top = 4.0f;
 	dst.m_left = 4.0f;
 	dst.m_right = 252.0f - m_hp*5.04f;
 	dst.m_bottom = 44.0f;
-
+	//HPバーの描画
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 
 	
-
-	
-
 	wchar_t str[50];
-	if(wp!=0)
+	if(wp!=0)//銃を持っているときは弾数を表示する
 	{
 		swprintf_s(str, L"弾数：%d", bullet);
 
@@ -775,6 +742,7 @@ void CObjHero::Draw()
 	
 }
 
+//主人公と敵の当たり判定用関数
 void CObjHero::EnemyHit(int enemynum)
 {
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -784,6 +752,7 @@ void CObjHero::EnemyHit(int enemynum)
 
 	if (hit_flag == true)
 	{
+		//当たった敵の種類判定
 		if (enemynum == 1)
 			hit_data = hit->SearchObjNameHit(OBJ_WOLKENEMY);
 		else if (enemynum == 2)
@@ -824,12 +793,9 @@ void CObjHero::EnemyHit(int enemynum)
 					if (enemynum == 4)
 						m_px += ((CObjBoss1*)hit_data[i]->o)->GetVx();
 					
-
-
 					//後方スクロールライン
 					if (m_px < 80)
 					{
-
 						pb->SetScroll(pb->GetScroll() - 5.0);
 					}
 

@@ -17,6 +17,7 @@ CObjLockEnemy2::CObjLockEnemy2(float x, float y)
 }
 void CObjLockEnemy2::Init()
 {
+	//変数の初期化
 	m_vy = 0;
 	m_vx = 0;
 	m_ani_time = 0;
@@ -27,9 +28,11 @@ void CObjLockEnemy2::Init()
 	m_hit_down = false;
 	m_hit_left = false;
 	m_hit_right = false;
+
 	hit_flag = false;
-	m_hp = 40;
-	score = 100;
+
+	m_hp = 40;//Hpを40に設定
+	score = 100;//撃破時のScoreを100に設定
 	m_time = 0;
 	attack_time = 1.0f;
 
@@ -101,8 +104,11 @@ void CObjLockEnemy2::Action()
 
 	}
 
+
 	CObjStageUi*ui = (CObjStageUi*)Objs::GetObj(OBJ_STAGEUI);
 	hit->SetPos(m_ex + pb->GetScroll(), m_ey);
+
+	//攻撃を受けたとき
 	if (hit->CheckElementHit(ELEMENT_HEROASSULTBULLET) == true && hit_flag == false)
 	{
 		m_hp -= 10;
@@ -161,7 +167,7 @@ void CObjLockEnemy2::Action()
 		m_del = true;
 
 	}
-	if (/*Input::GetVKey('U') == true ||*/ (objh->GetX() - pb->GetScroll()) > 17920)
+	if (objh->GetX() - pb->GetScroll() > 17920)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//保有するHitBoxに削除する
@@ -190,27 +196,25 @@ void CObjLockEnemy2::Draw()
 
 	if (hit_flag == false)
 	{
+		//切り取り位置
+	    src.m_top = 64.0f;
+	    src.m_left = 256.0f;
+	    src.m_right = 320.0f;
+	    src.m_bottom = 128.0f;
 
-	src.m_top = 64.0f;
-	src.m_left = 256.0f;
-	src.m_right = 320.0f;
-	src.m_bottom = 128.0f;
-
-	
+		//表示位置
 		dst.m_top = 0.0f + m_ey;
 		dst.m_left = 64 - 64.0f + m_ex + pb->GetScroll();
 		dst.m_right = 64.0f + m_ex + pb->GetScroll();
 		dst.m_bottom = 64.0f + m_ey;
 
-
-
-		//
 		Draw::Draw(4, &src, &dst, c, 0.0f);
 	}
+	//爆破エフェクトの表示位置
 	dst.m_top = 0.0f + m_ey;
 	dst.m_left = 0.0f + m_ex + pb->GetScroll();
 	dst.m_right = 64.0f + m_ex + pb->GetScroll();
 	dst.m_bottom = 64.0f + m_ey;
-
+    //爆破エフェクトの描画
 	Draw::Draw(23, &m_eff, &dst, c, 0.0f);
 }

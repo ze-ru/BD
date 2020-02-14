@@ -22,7 +22,7 @@ public:
 	void Init();
 	void Action();
 	void Draw();
-	void Getscore(int num) { score += num; }
+	void Getscore(int num) { score += num; }//
 	int Getmapnum() { return map_num; }
 	int Getmapflag() { return map_flag; }
 };
