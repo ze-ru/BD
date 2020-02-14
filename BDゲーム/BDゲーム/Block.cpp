@@ -174,6 +174,15 @@ void CObjBlock::Action()
 			//“GoŒ»êŠ‚ğ0‚É‚·‚é
 			m_map[i][lx] = 0;
 		}
+		//SHOTGUNì¬
+		if (m_map[i][lx] == 23)
+		{
+			CObjShotGun*objsg = new CObjShotGun(lx*64.0f, i*64.0f - 64.0f);
+			Objs::InsertObj(objsg, OBJ_HEROSHOTGUN, 15);
+
+			//“GoŒ»êŠ‚ğ0‚É‚·‚é
+			m_map[i][lx] = 0;
+		}
 
 		//Boss1ì¬
 		if (m_map[i][lx] == 41)

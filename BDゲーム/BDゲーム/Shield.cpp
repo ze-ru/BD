@@ -96,6 +96,12 @@ void CObjShield::Action()
 		Audio::Stop(10);
 		dm_hit_flag = true;
 	}
+	if (hit->CheckElementHit(ELEMENT_SHOTBULLET) == true)
+	{
+		CObjDamege*dm = new CObjDamege(0, m_ex, m_ey);
+		Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+		Audio::Start(12);
+	}
 
 	if (hit_flag == true)
 	{

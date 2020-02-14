@@ -135,6 +135,13 @@ void CObjLockEnemy::Action()
 			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
 			Audio::Start(12);
 		}
+		if (hit->CheckElementHit(ELEMENT_SHOTBULLET) == true)
+		{
+			m_hp -= 5;
+			CObjDamege*dm = new CObjDamege(5, m_ex, m_ey);
+			Objs::InsertObj(dm, OBJ_DAMEGE, 20);
+			Audio::Start(12);
+		}
 
 	if (hit_flag == true)
 	{

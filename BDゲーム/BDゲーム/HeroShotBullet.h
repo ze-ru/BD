@@ -33,4 +33,7 @@ private:
 	int r_rad;
 
 	float m_v;
+
+	bool dm_hit_flag;
+	int hit_count;
 };

@@ -21,7 +21,7 @@ void CObjShotGun::Init()
 	m_time = 0;
 
 
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ASSAULT, OBJ_ASSAULT, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ASSAULT, OBJ_HEROSHOTGUN, 1);
 }
 void CObjShotGun::Action()
 {
@@ -35,10 +35,10 @@ void CObjShotGun::Action()
 		{
 			CObjHero*h = (CObjHero*)Objs::GetObj(OBJ_HERO);
 			if (h->GetWeapon() == 4)
-				h->Setbulletnums(15);
+				h->Setbulletnums(10);
 			else
-				h->Setbulletnum(15);
-			h->SetWeapon(1);
+				h->Setbulletnum(10);
+			h->SetWeapon(4);
 
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//•Û—L‚·‚éHitBox‚Éíœ‚·‚é
@@ -56,8 +56,8 @@ void CObjShotGun::Draw()
 	RECT_F dst;
 
 	src.m_top = 0.0f;
-	src.m_left = 192.0f;
-	src.m_right = 256.0f;
+	src.m_left = 320.0f;
+	src.m_right = 384.0f;
 	src.m_bottom = 64.0f;
 
 
